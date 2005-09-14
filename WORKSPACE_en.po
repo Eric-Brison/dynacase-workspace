@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WORKSPACE\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-13 17:54+0200\n"
+"PO-Revision-Date: 2001-03-14 00:54-0500\n"
+"Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
+"Language-Team: english-anakeen <distrib@anakeen.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+"\n"
+
+msgid "WorkSpace"
+msgstr ""
+
+msgid "Files Managenent"
+msgstr ""
+
+#, c-format
+msgid "no privilege to create this kind (%s) of document"
+msgstr ""
+
+#, c-format
+msgid "%s system"
+msgstr ""
+
+msgid "system documents for worspace"
+msgstr ""
+
+msgid "Files Management"
+msgstr ""

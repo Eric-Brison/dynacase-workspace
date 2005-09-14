@@ -1,6 +1,6 @@
 <?php
 // ---------------------------------------------------------------
-// $Id: WORKSPACE.app,v 1.1 2005/09/13 14:47:16 eric Exp $
+// $Id: WORKSPACE.app,v 1.2 2005/09/14 08:12:51 eric Exp $
 // $Source: /home/cvsroot/anakeen/freedom/workspace/WORKSPACE.app,v $
 // ---------------------------------------------------------------
 //  O   Anakeen - 2001
@@ -25,7 +25,7 @@
 $app_desc = array (
 "name"		=>"WORKSPACE",		//Name
 "short_name"	=>N_("WorkSpace"),		//Short name
-"description"	=>N_("Files Managenent"),//long description
+"description"	=>N_("Files Management"),//long description
 "access_free"	=>"N",			//Access free ? (Y,N)
 "icon"		=>"workspace.gif",	//Icon
 "displayable"	=>"Y",			//Should be displayed on an app list (Y,N)
