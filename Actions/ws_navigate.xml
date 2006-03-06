@@ -1,0 +1,134 @@
+<html>
+  <head>
+
+   <title>[TEXT:Documents exchange]</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="shortcut icon" href="FDL/Images/logo16.ico" >
+<link href="[APPNAME]/Layout/system.css" type="text/css" rel="stylesheet">
+<link href="[APPNAME]/Layout/default.css" type="text/css" rel="stylesheet"   title="Preferee">
+<link href="black.css" type="text/css" rel="alternate stylesheet"   title="Noir">
+<link href="white.css" type="text/css" rel="alternate stylesheet"   title="Blanc">
+
+[CSS:REF]
+
+
+   <style type="text/css">
+[CSS:CODE]
+   </style>
+
+[JS:REF]
+
+<script type="text/javascript" src="[APPNAME]/Layout/pngfix.js"></script>
+<script type="text/javascript" src="[APPNAME]/Layout/displayws.js"></script>
+   <script language="JavaScript">
+  <!--
+    [JS:CODE]   
+  //-->
+   </script>   
+
+
+
+ </head>
+
+<body class="freedom">
+<div id="col1" class="spaces">
+[BLOCK SPACES]
+<div class="space"><img src="[sicon]"><span> [stitle]</span></div>
+[ENDBLOCK SPACES]
+<br style="clear:both">
+<br>
+<div class="space"><img src="[IMG:gnome-fs-home.png]"><span> Personnel</span></div>
+</div>
+
+<div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="b_minileft.png"></td></tr></table></div>
+<div id="col2" class="col2">
+<div id="folders" class="folders">
+<ul id="firstul">
+  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Anakeen</li>
+  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Dossier importants</li>
+  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">Compte-rendus
+   <ul><li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2004</li>
+       <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2005</li>
+       <li><img src="none.png"><img src="[IMG:gnome-fs-folder.png]">2006</li></ul>
+  </li>
+  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Garage</li>
+  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">Administratif
+   <ul><li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2004</li>
+       <li><img class="button"src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2005</li>
+       <li><img class="button" src="none.png"><img src="[IMG:gnome-fs-folder.png]">&Agrave; venir</li></ul>
+  </li>
+  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">divers</li>
+</ul>  
+</div>
+<div id="searches" class="searches">
+<input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" width="22px" src="[IMG:search.png]"></a>
+</div>
+<div id="clipboard" class="clipboard">
+<div class="smallspace"><img src="gnome-fs-folder.png"> <span>Gal&eacute;on</span></div>
+<div class="smallspace"><img src="gnome-mime-spreadsheet.png"> <span>Compte-Rendu d'activit&eacute;.xls</span></div>
+<div class="smallspace"><img src="gnome-mime-document.png"> <span>G&eacute;n&eacute;ral.odt</span></div>
+<div class="smallspace"><img src="gnome-mime-image.png"> <span>Dauphin.jpg</span></div>
+</div>
+</div>
+</div>
+
+<div id="col3" class="col3">
+<div id="fldlist" class="fldlist">
+<TABLE   CELLPADDING=4 CELLSPACING=0>
+	<THEAD>	<TR VALIGN=TOP>
+			<TH WIDTH=317>
+				<a href="" title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a><P>Nom<a href="" title="trier"><IMG class="button"  SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></P					</TH>
+		<TH WIDTH=76>
+			<P>Taille<a href="" title="[TEXT:Sort]"><IMG class="button" SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></P>
+		</TH>
+		<TH WIDTH=74>
+			<P>Date<a href="" title="[TEXT:Sort]"><IMG class="button" SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></P>
+		</TH>
+		<TH WIDTH=67>
+			<P>Type<a href="" title="[TEXT:Sort]"><IMG class="button" SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></P>
+		</TH>
+	</TR>
+</THEAD>
+			
+		</TABLE>
+</div>
+<div id="resume" class="resume">
+<table><tr>
+<td style="width:60%" valign="top"><img width="22px" src="gnome-mime-document.png"><B>Manuel d'utilisation du logiciel Emacs</B>
+	<P><BR>
+	</P>
+	<P>Taille : 278Ko <a href="#" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
+	<P>Date de cr&eacute;ation :	Lundi 30 janvier 2004</P>
+	<P>Date de modification : 	Mardi 28 f&eacute;vrier 2006</P>
+	<P>Participants : Philippe Martin, Isabelle Dupont</P>
+	<BR>
+	
+	<P><a  title="Modifier le r&eacute;sum&eacute;" onclick="document.getElementById('eresume').style.display='';document.getElementById('vresume').style.display='none';correctOnePNG('E2')"><U>R&eacute;sum&eacute; :</U></a></P>
+	<P id="vresume" style="text-align:justify">Emacs est l'&eacute;diteur extensible, personnalisable, auto-document&eacute;
+	et visuel en temps r&eacute;el. Ce fichier Info d&eacute;crit
+	comment &eacute;diter avec Emacs, et en partie comment le
+	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. 
+	</P>
+
+	<p id="eresume" style="display:none;"><textarea rows="4" style="text-align:justify;width:100%" >Emacs est l'&eacute;diteur extensible, personnalisable, auto-document&eacute;
+	et visuel en temps r&eacute;el. Ce fichier Info d&eacute;crit
+	comment &eacute;diter avec Emacs, et en partie comment le
+	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. </textarea><IMG id="E2" style="width:48px;margin-top:-24px;padding-top:0px;position:relative;top:0px;left:330px" title="Sauvegarder le r&eacute;sum&eacute;" class="button" SRC="b_down.png" ></p>
+	<P><a href="" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
+	<P>&eacute;diteur,lisp,gnu,programme</P></td>
+  <td style="width:40%" valign="top">
+        <p style="text-align:right"><b>Version : 21.0.100</b><br>Release : 547</p>
+	<a href="" title="Voir l'historique complet"><U>Historique :</U></a>
+<table><tr><td>02/03/1998</td><td>Correction traduction	chapitre 5.3</td></tr>
+	<tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table>
+<br>
+	
+
+	<img src="gnome-big-document.png">
+	
+ </td>
+</tr></table>
+</div></div>
+
+</body></html>

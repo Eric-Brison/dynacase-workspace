@@ -1,0 +1,39 @@
+
+BODY {
+  background-image:url('../Images/brushedbg.png');
+}
+
+DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
+  background-color:white;
+  color:black;
+}
+
+INPUT, TEXTAREA {  
+  border-style : none none inset none;
+}
+DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover {
+  background-color:#9fd0f9;
+}
+
+A:hover {
+  background-color:#9fd0f9;
+}
+IMG.button {
+ cursor:pointer;
+  -moz-border-radius:15px;	
+}
+
+DIV.aspace TH {
+  background-image:url('../Images/brushedbg.png');
+  -moz-border-radius:15px 0px 15px 0px;
+	
+}
+IMG.button:hover, BUTTON:hover, TEXTAREA:hover {
+  background-color:#9fd0f9;	
+}
+INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus, TEXTAREA:focus {
+  background-color:#f9e19f;	
+}
+BUTTON {
+  -moz-border-radius:5px ;	
+}

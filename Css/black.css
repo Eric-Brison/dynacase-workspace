@@ -1,0 +1,20 @@
+
+BODY {
+  background-color:black;
+  background-image:url('brushedbg.png');
+}
+
+
+DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.resume,DIV.aspace,A,P,B,I,TD   {
+  background-color:black;
+  color:white;
+}
+A {
+  color:yellow;	
+}
+A:hover {
+  background-color:#478ded;  
+}
+DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover  {
+  background-color:#333333;
+}

@@ -1,0 +1,21 @@
+
+BODY {
+  background-color:white;
+}
+
+
+DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.resume,P,B,I,TD   {
+  background-color:white;
+  color:black;
+}
+A {
+  color:blue;	
+}
+DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover  {
+  background-color:#333333;
+}
+
+DIV.spaces,DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume {
+  border-style: none none solid solid ;
+  -moz-border-radius:0px;
+}

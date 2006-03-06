@@ -1,5 +1,5 @@
 # ============================================
-# $Id: Makefile.in,v 1.1 2005/09/13 14:47:16 eric Exp $
+# $Id: Makefile.in,v 1.2 2006/03/06 17:03:34 eric Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
@@ -15,7 +15,7 @@ GZIP_ENV = --best
 
 export targetdir PACKAGE
 
-SUBDIR=  Class Images 
+SUBDIR=  Class Actions Zone Css Images 
 
 include $(utildir)/PubRule
 
