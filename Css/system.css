@@ -7,7 +7,7 @@ DIV.space {
    text-align:center;
   font-size:9pt;
 }
-DIV.space A:link,DIV.space A:visited {
+DIV.space A:link,DIV.space A:visited,A {
   text-decoration:  none;
 }
 DIV.smallspace {
@@ -45,7 +45,6 @@ DIV.rule2 TD {
 }
 DIV.col2 {
   position:absolute;
-
 }
 DIV.col3 {
   position:absolute;
@@ -78,6 +77,13 @@ DIV.folders {
   -moz-border-radius:15px;
   border:inset 2px #A0A0A0;
 }
+SPAN.micon {
+  position:absolute;	
+  white-space:nowrap;
+  background-color:yellow;
+  border:dashed 1px;
+  font-size:9pt;  
+}
 DIV.fldlist  {
   position:absolute;
   overflow:auto;
@@ -94,14 +100,22 @@ DIV.resume  {
   -moz-border-radius:15px;
   border:inset 2px #A0A0A0;
 }
-DIV.folders IMG {
+DIV.folders IMG, SPAN.micon IMG {
    width:20px;
 }
 DIV.folders LI {
   list-style:none;
   list-style-position:inside;
   font-family:arial;
-  font-size:10pt;
+  font-size:9pt;  
+  white-space:nowrap;
+}
+DIV.folders LI A {
+  font-family:arial;
+  font-size:9pt;  
+  height:22px;
+  overflow:hidden;
+  white-space:nowrap;
 }
 DIV.fldlist TH IMG {
   width:32px;

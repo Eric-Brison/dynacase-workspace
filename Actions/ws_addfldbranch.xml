@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<status count="[count]" delay="[delay]" code="[CODE]" warning="[warning]">
+  <branch><![CDATA[
+
+
+[BLOCK TREE]
+  <li title="[title]"><img id='il[ulid][id]' onclick="expandtree(this,'[id]','[ulid][id]')" class="button" src="[IMG:b_right.png]">
+   <span droppable="yes" onmouseover="this.className='folderhover'"  onmouseout="this.className=''"  onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img onmousedown="begindrag(event,this.parentNode,'[id]')" droppable="yes"  id="img[ulid][id]"  src="[icon]">[title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
+[ENDBLOCK TREE]  
+
+
+]]></branch>
+</status>

@@ -40,7 +40,7 @@ function redisplaywsdiv() {
   dsearches.style.height='30px';
 
   dclipboard.style.width='198px';
-  dclipboard.style.top=wh-190;
+  dclipboard.style.top=wh-186;
   dclipboard.style.left=0;
   dclipboard.style.height='180px';
 
@@ -58,7 +58,7 @@ function redisplaywsdiv() {
   dresume.style.width=ww-290;
   dresume.style.top=parseInt((wh-10)/2)-5; 
   dresume.style.left=0;
-  dresume.style.height=parseInt((wh-10)/2)+4; 
+  dresume.style.height=parseInt((wh-10)/2)+7; 
 
 
 }

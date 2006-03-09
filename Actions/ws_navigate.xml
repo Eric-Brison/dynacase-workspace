@@ -21,9 +21,42 @@
 
 <script type="text/javascript" src="[APPNAME]/Layout/pngfix.js"></script>
 <script type="text/javascript" src="[APPNAME]/Layout/displayws.js"></script>
+<script type="text/javascript" src="[APPNAME]/Layout/mechanism.js"></script>
    <script language="JavaScript">
   <!--
-    [JS:CODE]   
+    [JS:CODE] 
+   var idbasket='[FREEDOM_IDBASKET]';
+
+function expandtree(oimg,id,ulid,adddocid) {
+  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid);
+  if (r==1) {
+    oimg.src='[IMG:b_down.png]'; 
+  } else if (r==0) {
+    oimg.src='[IMG:b_right.png]';
+  } else if (r==2) {
+    oimg.src='[IMG:b_wait.png]';
+  }
+  if (isIE) correctOnePNG(oimg);
+}
+   function expandToptree(o,id,ulid) {
+  var r=viewfoldertree(null,id,ulid);
+  ulid.innerHTML='<img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_wait.png]">';
+  
+}
+
+   function endexpandtree(o,c) {
+     if (o) {
+       if (c==0) {
+	 o.src='[IMG:none.png]'; 
+	 o.style.visibility='hidden';
+	 if (isIE) correctOnePNG(o);
+       }
+       else {
+	 o.src='[IMG:b_down.png]'; 
+	 o.style.visibility='visible';
+       }
+     }
+   }
   //-->
    </script>   
 
@@ -34,37 +67,22 @@
 <body class="freedom">
 <div id="col1" class="spaces">
 [BLOCK SPACES]
-<div class="space"><img src="[sicon]"><span> [stitle]</span></div>
+<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))"><img src="[sicon]"><span> [stitle]</span></div>
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
-<div class="space"><img src="[IMG:gnome-fs-home.png]"><span> Personnel</span></div>
+<div class="space" onclick="refreshClipBoard(idbasket,document.getElementById('clipboard'))" ><img src="[IMG:gnome-fs-home.png]"><span> Personnel</span></div>
 </div>
 
 <div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="b_minileft.png"></td></tr></table></div>
 <div id="col2" class="col2">
 <div id="folders" class="folders">
-<ul id="firstul">
-  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Anakeen</li>
-  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Dossier importants</li>
-  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">Compte-rendus
-   <ul><li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2004</li>
-       <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2005</li>
-       <li><img src="none.png"><img src="[IMG:gnome-fs-folder.png]">2006</li></ul>
-  </li>
-  <li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">Garage</li>
-  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">Administratif
-   <ul><li><img class="button" src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2004</li>
-       <li><img class="button"src="[IMG:b_up.png]"><img src="[IMG:gnome-fs-folder.png]">2005</li>
-       <li><img class="button" src="none.png"><img src="[IMG:gnome-fs-folder.png]">&Agrave; venir</li></ul>
-  </li>
-  <li><img class="button" src="b_down.png"><img src="[IMG:gnome-fs-folder.png]">divers</li>
-</ul>  
+<ul id="firstul"></ul>
 </div>
 <div id="searches" class="searches">
 <input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" width="22px" src="[IMG:search.png]"></a>
 </div>
-<div id="clipboard" class="clipboard">
+<div id="clipboard" class="clipboard" droppable="yes" onmouseup="insertinclipboard(event,this,idbasket)" >
 <div class="smallspace"><img src="gnome-fs-folder.png"> <span>Gal&eacute;on</span></div>
 <div class="smallspace"><img src="gnome-mime-spreadsheet.png"> <span>Compte-Rendu d'activit&eacute;.xls</span></div>
 <div class="smallspace"><img src="gnome-mime-document.png"> <span>G&eacute;n&eacute;ral.odt</span></div>
@@ -114,7 +132,7 @@
 	<p id="eresume" style="display:none;"><textarea rows="4" style="text-align:justify;width:100%" >Emacs est l'&eacute;diteur extensible, personnalisable, auto-document&eacute;
 	et visuel en temps r&eacute;el. Ce fichier Info d&eacute;crit
 	comment &eacute;diter avec Emacs, et en partie comment le
-	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. </textarea><IMG id="E2" style="width:48px;margin-top:-24px;padding-top:0px;position:relative;top:0px;left:330px" title="Sauvegarder le r&eacute;sum&eacute;" class="button" SRC="b_down.png" ></p>
+	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. </textarea><IMG id="E2" style="width:48px;margin-top:-24px;padding-top:0px;position:relative;top:0px;left:330px" title="Sauvegarder le r&eacute;sum&eacute;" class="button" SRC="[IMG:b_down.png]" ></p>
 	<P><a href="" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
 	<P>&eacute;diteur,lisp,gnu,programme</P></td>
   <td style="width:40%" valign="top">

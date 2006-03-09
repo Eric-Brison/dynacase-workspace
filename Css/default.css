@@ -1,6 +1,6 @@
 
 BODY {
-  background-image:url('../Images/brushedbg.png');
+  background-image:url('../Images/brushedbg.gif');
 }
 
 DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
@@ -24,12 +24,17 @@ IMG.button {
 }
 
 DIV.aspace TH {
-  background-image:url('../Images/brushedbg.png');
+  background-image:url('../Images/brushedbg.gif');
   -moz-border-radius:15px 0px 15px 0px;
 	
 }
-IMG.button:hover, BUTTON:hover, TEXTAREA:hover {
-  background-color:#9fd0f9;	
+IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
+  background-color:#9fd0f9;
+  cursor:pointer;
+}
+
+SPAN.folderhover {
+  background-color:orange;	
 }
 INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus, TEXTAREA:focus {
   background-color:#f9e19f;	

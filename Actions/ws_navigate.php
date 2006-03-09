@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.1 2006/03/06 17:03:34 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.2 2006/03/09 16:13:10 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -24,7 +24,8 @@ function ws_navigate(&$action) {
 
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/geometry.js");
-
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/common.js");
+ 
 
   $tspaces = getChildDoc($dbaccess,0,"0","ALL",array(), $action->user->id, "ITEM","WORKSPACE");
   $tlayspaces=array();

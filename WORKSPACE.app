@@ -28,6 +28,17 @@ $action_desc = array (
    "short_name"		=>N_("interface to navigate in spaces"),
    "acl"		=>"WORKSPACE_USER",
    "root"		=>"Y"
-  ) );
+  ),
+  array( 
+   "name"		=>"WS_ADDFLDBRANCH",
+   "short_name"		=>N_("add branch in folder tree"),
+   "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
+   "name"		=>"WS_FOLDERICON",
+   "short_name"		=>N_("to view clipboard"),
+   "acl"		=>"WORKSPACE_USER"
+  ) 
+);
 
 ?>

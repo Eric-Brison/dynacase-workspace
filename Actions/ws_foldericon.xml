@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<status count="[count]" delay="[delay]" code="[CODE]" warning="[warning]" >
+  <branch><![CDATA[
+
+
+[BLOCK TREE]
+<div class="smallspace"><img src="[icon]"><br><span>[title]</span></div>
+[ENDBLOCK TREE]  
+
+
+]]></branch>
+</status>
