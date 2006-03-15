@@ -7,6 +7,15 @@ DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duse
   background-color:white;
   color:black;
 }
+DIV.space {
+            border-color:white;
+
+  }
+
+DIV.spaceselect  {
+  background-color:#EEEEEE;
+  border-color:#AAAAAA;
+}
 
 INPUT, TEXTAREA {  
   border-style : none none inset none;

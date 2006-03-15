@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.1 2006/03/09 16:13:10 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.2 2006/03/15 18:17:25 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -26,6 +26,10 @@ function ws_addfldbranch(&$action) {
   $mb=microtime();
   $docid = GetHttpVars("id");
   $addid = GetHttpVars("addid");
+  $pdocid = GetHttpVars("paddid");
+  $addft = GetHttpVars("addft");
+
+
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $action->lay->set("warning","");
   $doc=new_doc($dbaccess,$docid);
@@ -34,8 +38,19 @@ function ws_addfldbranch(&$action) {
     if ($adddoc->isAlive()) {
       $err=$doc->AddFile($adddoc->id);
       if ($err) $action->lay->set("warning",utf8_encode($err));
+      if ($err=="") {
+	if ($addft == "move") {
+	  $pdoc=new_doc($dbaccess,$pdocid);
+	  if ($pdoc->isAlive()) {
+	    $err=$pdoc->DelFile($adddoc->id);
+	    if ($err) $action->lay->set("warning",utf8_encode($err));
+	  }
+	}
+      }
     }
   }
+
+  $action->lay->set("pid",$doc->id);
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
 

@@ -12,7 +12,6 @@
 
 [CSS:REF]
 
-
    <style type="text/css">
 [CSS:CODE]
    </style>
@@ -27,8 +26,9 @@
     [JS:CODE] 
    var idbasket='[FREEDOM_IDBASKET]';
 
-function expandtree(oimg,id,ulid,adddocid) {
-  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid);
+function expandtree(oimg,id,ulid,adddocid,padddocid,addft) {
+  
+  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid,padddocid,addft);
   if (r==1) {
     oimg.src='[IMG:b_down.png]'; 
   } else if (r==0) {
@@ -38,10 +38,20 @@ function expandtree(oimg,id,ulid,adddocid) {
   }
   if (isIE) correctOnePNG(oimg);
 }
-   function expandToptree(o,id,ulid) {
+function expandToptree(o,id,ulid) {
+
+  var ldiv=o.parentNode.getElementsByTagName("div");
+  for (var i=0;i<ldiv.length;i++) {
+    if (ldiv[i].className=='spaceselect') ldiv[i].className='space';
+  }
+  o.className="spaceselect";
+  CURSPACE=o;
   var r=viewfoldertree(null,id,ulid);
-  ulid.innerHTML='<img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_wait.png]">';
   
+  ulid.innerHTML='<table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_wait.png]"></tr></td></table>';
+}
+function clipboardWait(o) {
+  if (o) o.innerHTML='<table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_wait.png]"></tr></td></table>';
 }
 
    function endexpandtree(o,c) {
@@ -77,16 +87,13 @@ function expandtree(oimg,id,ulid,adddocid) {
 <div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="b_minileft.png"></td></tr></table></div>
 <div id="col2" class="col2">
 <div id="folders" class="folders">
-<ul id="firstul"></ul>
+<ul id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
 </div>
 <div id="searches" class="searches">
 <input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" width="22px" src="[IMG:search.png]"></a>
 </div>
 <div id="clipboard" class="clipboard" droppable="yes" onmouseup="insertinclipboard(event,this,idbasket)" >
-<div class="smallspace"><img src="gnome-fs-folder.png"> <span>Gal&eacute;on</span></div>
-<div class="smallspace"><img src="gnome-mime-spreadsheet.png"> <span>Compte-Rendu d'activit&eacute;.xls</span></div>
-<div class="smallspace"><img src="gnome-mime-document.png"> <span>G&eacute;n&eacute;ral.odt</span></div>
-<div class="smallspace"><img src="gnome-mime-image.png"> <span>Dauphin.jpg</span></div>
+<table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 </div>
 </div>

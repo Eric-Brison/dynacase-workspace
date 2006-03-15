@@ -1,13 +1,13 @@
 
-var inprogress=false;
-var thecible=false;
+var INPROGRESS=false;
+var THECIBLE=false;
 var imgcible=false;
 var req;
-
+var CURSPACE=false;
 
 // ----------------------------- expand tree --------------------
-function folderTreeSend(n,cible,adddocid) {
-  if (inprogress) return false; // one request only
+function folderTreeSend(n,cible,adddocid,padddocid,addft) {
+  if (INPROGRESS) return false; // one request only
     // branch for native XMLHttpRequest object
     if (window.XMLHttpRequest) {
         req = new XMLHttpRequest(); 
@@ -21,23 +21,23 @@ function folderTreeSend(n,cible,adddocid) {
         req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 
-        if (adddocid) req.send("addid="+adddocid);
+       
+        if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
 	else req.send(null);
 	//var o=document.getElementById('err'+n);
 	//	if (o) o.innerHTML="<img src=\"Images/progressbar.gif\"><blink>Executing...</blink>";
 	//o=document.getElementById('easycr');
 	//if (o) o.innerHTML="<img src=\"Images/progressbar.gif\"><br><blink>Executing "+n+"...</blink>";
 	
-	inprogress=true;
-	thecible=cible;
+	INPROGRESS=true;
+	THECIBLE=cible;
 	return true;
     }    
 }
 
 function folderTreeAdd() {
-    // only if req shows "loaded"
-  inprogress=false; 
-  var o=thecible;
+  INPROGRESS=false; 
+  var o=THECIBLE;
   if (req.readyState == 4) {
         // only if "OK"
         if (req.status == 200) {
@@ -64,7 +64,16 @@ function folderTreeAdd() {
 	      o.innerHTML=elt;
 	      endexpandtree(imgcible,c);
 	      if (! isNetscape) correctPNG();
-	      
+	      if (POUL && DRAGFT=='move') {		
+		  var imgc=POUL.parentNode.childNodes[0];
+		  if (!(imgc && imgc.onclick)) imgc=CURSPACE;
+		  if (imgc && imgc.onclick) {
+		    // reload branch parent branch
+		    POUL.innerHTML='';
+		    DRAGFT='';
+		    imgc.onclick.apply(imgc,[]);
+		  }
+	      }
 	    } else {
 	      alert('no status\n'+req.responseText);
 	      return;
@@ -81,9 +90,9 @@ function folderTreeAdd() {
     }
 }
 
-function viewfoldertree(img,fldid,where,adddocid) {
+function viewfoldertree(img,fldid,where,adddocid,padddocid,addft) {
   if ((!img) ||  (where.childNodes.length==0)) {
-    if (folderTreeSend(fldid,where,adddocid)) {
+    if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
       imgcible=img;
       return 2;
     }
@@ -100,8 +109,8 @@ function viewfoldertree(img,fldid,where,adddocid) {
 }
 
 // ----------------------------- view clipboard --------------------
-function clipboardSend(n,cible,adddocid) {
-  if (inprogress) return false; // one request only
+function clipboardSend(n,cible,adddocid,padddocid,addft) {
+  if (INPROGRESS) return false; // one request only
     // branch for native XMLHttpRequest object
     if (window.XMLHttpRequest) {
         req = new XMLHttpRequest(); 
@@ -114,23 +123,21 @@ function clipboardSend(n,cible,adddocid) {
         req.onreadystatechange = clipboardView;
         req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-        if (adddocid) req.send("addid="+adddocid);
+	THECIBLE=cible;
+
+        if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
 	else req.send(null);
-	//var o=document.getElementById('err'+n);
-	//	if (o) o.innerHTML="<img src=\"Images/progressbar.gif\"><blink>Executing...</blink>";
-	//o=document.getElementById('easycr');
-	//if (o) o.innerHTML="<img src=\"Images/progressbar.gif\"><br><blink>Executing "+n+"...</blink>";
 	
-	inprogress=true;
-	thecible=cible;
+	
+	INPROGRESS=true;	
+	clipboardWait(cible);
 	return true;
     }    
 }
 
 function clipboardView() {
-    // only if req shows "loaded"
-  inprogress=false; 
-  var o=thecible;
+  INPROGRESS=false; 
+  var o=THECIBLE;
   if (req.readyState == 4) {
         // only if "OK"
         if (req.status == 200) {
@@ -143,12 +150,15 @@ function clipboardView() {
 	      var code=elt.getAttribute("code");
 	      var delay=elt.getAttribute("delay");
 	      var c=elt.getAttribute("count");
+	      var w=elt.getAttribute("warning");
 
 	     
 	      if (code != 'OK') {
 		alert('code not OK\n'+req.responseText);
 		return;
 	      }
+
+	      if (w != '') alert(w);
 	      elts = req.responseXML.getElementsByTagName("branch");
 	      elt=elts[0].firstChild.nodeValue;
 	      // alert(elt);
@@ -156,6 +166,16 @@ function clipboardView() {
 	      o.innerHTML=elt;
 	      endexpandtree(imgcible,c);
 	      if (! isNetscape) correctPNG();
+	      if (POUL && DRAGFT=='move') {		
+		  var imgc=POUL.parentNode.childNodes[0];
+		  if (!(imgc && imgc.onclick)) imgc=CURSPACE;
+		  if (imgc && imgc.onclick) {
+		    // reload branch parent branch
+		    POUL.innerHTML='';
+		    //		    DRAGFT='';
+		    imgc.onclick.apply(imgc,[]);
+		  }
+	      }
 	      
 	    } else {
 	      alert('no status\n'+req.responseText);
@@ -178,37 +198,45 @@ function refreshClipBoard(bid,where) {
 }
 
 // ----------------------------- drag & drop --------------------
-var dragging=false;
-var dragdoc=false;
-var justdrag=false;
+var DRAGGING=false;
+var DRAGDOC=false;// current document id being dragged
+var PDRAGDOC=false; // current folder id of DRAGDOC
+var POUL=false; // current ul id object is being dragged
+var DRAGFT=false;
+
 
 //var micon=new Image(100,100);
 var micon=document.createElement("span");
-var pe=null; // previous elt
+var PE=null; // previous elt
+var PECTRL=null; // previous key
 micon.className='micon';
 micon.style.display='none';
 
-function begindrag(event,o,docid) {
+function begindrag(event,oul,osp,docid,pdocid) {
   if (! event) event=window.event;
-  if (! dragging) {
+  if (! DRAGGING) {
     GetXY(event);
-    //micon=o;micon.style.position='absolute';
+    
     micon.style.top = Ypos+2; 
     micon.style.left = Xpos+2; 
     micon.style.zIndex = 100;
     micon.style.display='';
-    dragging=true;
-    dragdoc=docid;
-    //micon.src=o.src;
+    DRAGGING=true;
+    DRAGDOC=docid;
+    PDRAGDOC=pdocid;
     
-    micon.innerHTML=o.innerHTML;
+    micon.innerHTML=osp.innerHTML;
     document.onmousemove=movedrag ;
     document.onmouseup=enddrag ;
+    document.onkeydown=keydrag ;
+    document.onkeyup=keydrag ;
+
 
     if (isIE) {
       // sendEvent(o,"mouseover");
-      o.className='';
+      osp.className='';
     }
+    POUL=oul;
     stopPropagation(event);
     return false;
   }
@@ -216,7 +244,7 @@ function begindrag(event,o,docid) {
 
 
 function movedrag(event) {
-  if (dragging) {
+  if (DRAGGING) {
     if (! event) event=window.event;
     GetXY(event);
     micon.style.top = Ypos+2; 
@@ -226,12 +254,11 @@ function movedrag(event) {
 
     var drop=e.getAttribute("droppable");
     if (drop == 'yes') {
-      if (pe!=e) {	
-	if (pe)   sendEvent(pe,"mouseout");
+      if (PE!=e) {	
+	if (PE)   sendEvent(PE,"mouseout");
 	sendEvent(e,"mouseover");
-	//e.style.backgroundColor='yellow';
-	//e.style.border='dashed';
-	pe=e;
+
+	PE=e;
       }
     } else {
       
@@ -240,22 +267,53 @@ function movedrag(event) {
     return false;
   }
 }
-function endjustdrag() {
-  //justdrag=false;
+function keydrag(event) {
+  
+    if (! event) event=window.event;
+    
+    var ctrl=event.ctrlKey;
+    if (isNetscape) {
+      // the ctrlKey   is not correct
+      if (event.keyCode==17) {
+	if (event.type == 'keyup') ctrl=false;
+	else if (event.type == 'keydown') ctrl=true;
+      }
+    }
+    window.status=event.keyCode + ':'+event.altKey+ ':'+event.ctrlKey;
+    if (ctrl != PECTRL) {
+      // redisplay emblem
+      var li=micon.getElementsByTagName("img");
+      var il=false;
+
+      for (var i=0;i<li.length;i++) {
+	if (li[i].className=="ilink") {
+	  il=li[i];
+	}
+      }
+      if (il) {
+	if (ctrl) {
+	  il.src='Images/plus.gif';
+	} else {
+	  il.src='Images/minus.gif';
+	}
+      }
+      PECTRL=ctrl;
+    }
 }
 function enddrag(event) {
   
   if (! event) event=window.event;
   document.onmousemove= "";
   document.onmouseup="" ;
+  document.onkeyup="" ;
+  document.onkeydown="" ;
   var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
 
   micon.style.display='none';
   sendEvent(e,"mouseup");
-
   
   
-  dragging=false;
+  DRAGGING=false;
 }
 
 function copydrag(o,ulid,cdocid) {
@@ -270,18 +328,30 @@ addEvent(window,"load",initDrag);
 
 // ----------------------------- Insert ClipBoard --------------------
 function insertinclipboard(event,o,bid) {
+
     if (! event) event=window.event;
-    if (dragging) {
-      dragging=false;
-      if (dragdoc>0) clipboardSend(bid,o,dragdoc);
+    if (DRAGGING) {
+      var ft='move';
+      var ctrlKey = event.ctrlKey;
+      if (ctrlKey) ft='add';
+      DRAGFT=ft;
+      if (ft == 'move') {
+	//
+      }
+      DRAGGING=false;
+      if (DRAGDOC>0) clipboardSend(bid,o,DRAGDOC,PDRAGDOC,'move');
     } 
 }
 function insertinfolder(event,o,oimg,docid,ulid) {
+  var ft='move';
     if (! event) event=window.event;
-    if ((dragging)&& (dragdoc!=docid)){
+    var ctrlKey = event.ctrlKey;
+    if (ctrlKey) ft='add';
+    if ((DRAGGING)&& (PDRAGDOC!=docid)&& (DRAGDOC!=docid)){
       document.getElementById(ulid).innerHTML='';
-      expandtree(document.getElementById(oimg),docid,ulid,dragdoc);
-      dragging=false;
+      DRAGFT=ft;
+      expandtree(document.getElementById(oimg),docid,ulid,DRAGDOC,PDRAGDOC,ft);
+      DRAGGING=false;
     } 
 }
 function cancelEvent() {
