@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<status count="[count]" delay="[delay]" code="[CODE]" warning="[warning]" >
+  <branch><![CDATA[
+
+
+
+[ZONE FDL:VIEWCARD]
+
+]]></branch>
+</status>

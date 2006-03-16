@@ -5,6 +5,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="shortcut icon" href="FDL/Images/logo16.ico" >
+
 <link href="[APPNAME]/Layout/system.css" type="text/css" rel="stylesheet">
 <link href="[APPNAME]/Layout/default.css" type="text/css" rel="stylesheet"   title="Preferee">
 <link href="black.css" type="text/css" rel="alternate stylesheet"   title="Noir">
@@ -77,7 +78,7 @@ function clipboardWait(o) {
 <body class="freedom">
 <div id="col1" class="spaces">
 [BLOCK SPACES]
-<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))"><img src="[sicon]"><span> [stitle]</span></div>
+<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"  onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
@@ -119,41 +120,7 @@ function clipboardWait(o) {
 		</TABLE>
 </div>
 <div id="resume" class="resume">
-<table><tr>
-<td style="width:60%" valign="top"><img width="22px" src="gnome-mime-document.png"><B>Manuel d'utilisation du logiciel Emacs</B>
-	<P><BR>
-	</P>
-	<P>Taille : 278Ko <a href="#" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
-	<P>Date de cr&eacute;ation :	Lundi 30 janvier 2004</P>
-	<P>Date de modification : 	Mardi 28 f&eacute;vrier 2006</P>
-	<P>Participants : Philippe Martin, Isabelle Dupont</P>
-	<BR>
-	
-	<P><a  title="Modifier le r&eacute;sum&eacute;" onclick="document.getElementById('eresume').style.display='';document.getElementById('vresume').style.display='none';correctOnePNG('E2')"><U>R&eacute;sum&eacute; :</U></a></P>
-	<P id="vresume" style="text-align:justify">Emacs est l'&eacute;diteur extensible, personnalisable, auto-document&eacute;
-	et visuel en temps r&eacute;el. Ce fichier Info d&eacute;crit
-	comment &eacute;diter avec Emacs, et en partie comment le
-	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. 
-	</P>
-
-	<p id="eresume" style="display:none;"><textarea rows="4" style="text-align:justify;width:100%" >Emacs est l'&eacute;diteur extensible, personnalisable, auto-document&eacute;
-	et visuel en temps r&eacute;el. Ce fichier Info d&eacute;crit
-	comment &eacute;diter avec Emacs, et en partie comment le
-	personnaliser ; il correspond &agrave; GNU Emacs version	21.0.100. </textarea><IMG id="E2" style="width:48px;margin-top:-24px;padding-top:0px;position:relative;top:0px;left:330px" title="Sauvegarder le r&eacute;sum&eacute;" class="button" SRC="[IMG:b_down.png]" ></p>
-	<P><a href="" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
-	<P>&eacute;diteur,lisp,gnu,programme</P></td>
-  <td style="width:40%" valign="top">
-        <p style="text-align:right"><b>Version : 21.0.100</b><br>Release : 547</p>
-	<a href="" title="Voir l'historique complet"><U>Historique :</U></a>
-<table><tr><td>02/03/1998</td><td>Correction traduction	chapitre 5.3</td></tr>
-	<tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table>
-<br>
-	
-
-	<img src="gnome-big-document.png">
-	
- </td>
-</tr></table>
+<iframe id="iresume" style="width:99%;height:99%"></iframe>
 </div></div>
 
 </body></html>

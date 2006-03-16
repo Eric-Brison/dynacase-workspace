@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.2 2006/03/15 18:17:25 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.3 2006/03/16 18:51:38 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -54,7 +54,7 @@ function ws_addfldbranch(&$action) {
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
 
-    $ls=$doc->getContent(true,array("doctype='D'"));
+    $ls=$doc->getContent(true,array("doctype ~ '^D|S$'"));
     $tc=array();
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>utf8_encode($v["title"]),

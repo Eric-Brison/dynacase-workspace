@@ -31,6 +31,7 @@ DIV.smallspace {
                  font-family:arial;
                  font-size:8pt;
                  overflow : hidden;
+                 cursor:pointer;
                  }
 DIV.smallspace IMG.icon{
                          width:30px;
@@ -188,4 +189,13 @@ DIV.searches A {
                  }
 BODY {
        margin:0px;
+       }          }
+BODY.freedom {
+       margin:30px;
        }
+#iresume { 
+           
+              -moz-border-radius:15px;
+           border:none;
+           margin:2px;
+           }

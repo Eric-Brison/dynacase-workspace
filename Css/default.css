@@ -20,7 +20,7 @@ DIV.spaceselect  {
 INPUT, TEXTAREA {  
   border-style : none none inset none;
 }
-DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover {
+DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover,DIV.smallspace:hover {
   background-color:#9fd0f9;
 }
 
