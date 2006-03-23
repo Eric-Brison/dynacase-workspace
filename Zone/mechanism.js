@@ -120,7 +120,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
     if (req) {
       if (! kview) kview='icon';
         req.onreadystatechange = folderTreeAdd ;
-        req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
+	if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&id='+n, true);
+        else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 	THECIBLE=cible;
 
@@ -341,7 +342,7 @@ function insertinfolder(event,o,oimg,docid,ulid) {
 function viewFolder(event,dirid) {
   var  where=document.getElementById('fldlist');
 
-  folderSend(dirid,where);
+  folderSend(dirid,where,null,null,null,'list');
   
 }
 

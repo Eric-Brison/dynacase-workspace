@@ -81,9 +81,38 @@ DIV.clipboard {
                 border:none;
                 overflow:auto;
                 margin:0px;
-                -moz-border-radius:15px;
-                border:inset 2px #A0A0A0;
+                -moz-border-radius:0 0 15 15;
+                border-style:none inset inset inset;
+                border-width:2px;
+                border-color:#A0A0A0;
                 }
+DIV.tabclip {
+                position:absolute;
+                overflow:auto;
+                margin:0px;
+              text-align:right;
+                -moz-border-radius:15px 15px 0px 15px;
+              border-style:inset inset none inset;
+              border-width:2px;
+              border-color:#A0A0A0;
+                }
+
+DIV.tabclip IMG {
+                  width:16px;
+                  height:16px;
+                  }
+DIV.tabclip SPAN {
+  -moz-border-radius: 8 8 0 0;	
+              width:30px;
+              height:10px;
+  overflow:hidden;
+  float:right;
+  border-width : 1px;
+  border-style :outset outset none outset;
+  padding:2px;
+  cursor:pointer;
+                   
+                  }
 DIV.searches {
                position:absolute;
                border-width:1px;
@@ -112,7 +141,7 @@ DIV.fldlist  {
                }
 DIV.resume  {
               position:absolute;
-              overflow:auto;
+              overflow:hidden;
               font-family:arial;
               font-size:10pt;
               margin:3px;
@@ -189,7 +218,7 @@ DIV.searches A {
                  }
 BODY {
        margin:0px;
-       }          }
+       }
 BODY.freedom {
        margin:30px;
        }

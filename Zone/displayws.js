@@ -4,6 +4,7 @@ function redisplaywsdiv() {
   var dcol2=document.getElementById('col2');
   var dcol3=document.getElementById('col3');
   var dfldlist=document.getElementById('fldlist');
+  var dtabclip=document.getElementById('tabclip');
   var dresume=document.getElementById('resume');
   var dclipboard=document.getElementById('clipboard');
   var dfolders=document.getElementById('folders');
@@ -32,17 +33,22 @@ function redisplaywsdiv() {
   dfolders.style.width='198px';
   dfolders.style.top=0;
   dfolders.style.left=0;
-  dfolders.style.height=wh-230;
+  dfolders.style.height=wh-250;
 
   dsearches.style.width='198px';
-  dsearches.style.top=wh-220;
+  dsearches.style.top=wh-240;
   dsearches.style.left=0;
   dsearches.style.height='30px';
 
+  dtabclip.style.width='198px';
+  dtabclip.style.top=wh-210;
+  dtabclip.style.left=0;
+  dtabclip.style.height='30px';
+
   dclipboard.style.width='198px';
-  dclipboard.style.top=wh-186;
+  dclipboard.style.top=wh-193;
   dclipboard.style.left=0;
-  dclipboard.style.height='180px';
+  dclipboard.style.height='186px';
 
   dx+=205;
   dcol3.style.width=ww-280;

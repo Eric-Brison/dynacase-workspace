@@ -40,6 +40,11 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
+   "name"		=>"WS_FOLDERLIST",
+   "short_name"		=>N_("to view folder"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
    "name"		=>"WS_VIEWDOC",
    "short_name"		=>N_("to view a document"),
    "acl"		=>"WORKSPACE_USER"

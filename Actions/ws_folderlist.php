@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.3 2006/03/23 19:22:37 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.1 2006/03/23 19:22:37 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -17,14 +17,14 @@ include_once("FDL/Lib.Dir.php");
 
 
 /**
- * Add/Move document to clipboard
+ * View list of documents from one folder
  * @param Action &$action current action
  * @global id Http var : basket id
  * @global addid Http var : document id to add/move to basket id
  * @global paddid Http var : current folder of document id to add/move to basket id
  * @global addft Http var : action to realize : [add|move]
  */
-function ws_foldericon(&$action) {
+function ws_folderlist(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
 
   $mb=microtime();
@@ -73,6 +73,9 @@ function ws_foldericon(&$action) {
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
+		  "size"=>getv($v,"sfi_filesize"),
+		  "mime"=>getv($v,"sfi_mimetxt"),
+		  "mdate"=>strftime("%d %b %Y %H:%M",getv($v,"revdate")),
 		  "icon"=>$doc->getIcon($v["icon"]));
     }
 

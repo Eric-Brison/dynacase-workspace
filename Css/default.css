@@ -8,9 +8,8 @@ DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duse
   color:black;
 }
 DIV.space {
-            border-color:white;
-
-  }
+  border-color:white;
+}
 
 DIV.spaceselect  {
   background-color:#EEEEEE;
@@ -24,11 +23,15 @@ DIV.fldlist TBODY TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover,DIV.smallspac
   background-color:#9fd0f9;
 }
 
+DIV.tabclip SPAN {         
+  border-color : #aaaaaa;          
+  background-color : white;
+}
 A:hover {
   background-color:#9fd0f9;
 }
 IMG.button {
- cursor:pointer;
+  cursor:pointer;
   -moz-border-radius:15px;	
 }
 
@@ -43,7 +46,7 @@ IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
 }
 
 SPAN.folderhover {
-  background-color:orange;	
+  background-color:#9fd0f9;
 }
 INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus, TEXTAREA:focus {
   background-color:#f9e19f;	
