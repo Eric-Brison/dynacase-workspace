@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.1 2006/03/23 19:22:37 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.2 2006/03/24 17:42:35 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -71,12 +71,23 @@ function ws_folderlist(&$action) {
     $ls=$doc->getContent();
     $tc=array();
     foreach ($ls as $k=>$v) {
+      $size=getv($v,"sfi_filesize");
+      if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
+      else if ($size < 1048576) $dsize=sprintf(_("%d kb"),$size/1024);
+      else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
+   //    $icon=getv($v,"sfi_mimeicon");
+//       if (! $icon) $icon=$doc->getIcon($v["icon"]);
+//       else $icon=$doc->getIcon($icon);
+
+	$icon=$doc->getIcon($v["icon"]);
+
+
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
-		  "size"=>getv($v,"sfi_filesize"),
+		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxt"),
 		  "mdate"=>strftime("%d %b %Y %H:%M",getv($v,"revdate")),
-		  "icon"=>$doc->getIcon($v["icon"]));
+		  "icon"=>$icon);
     }
 
     $action->lay->setBlockData("TREE",$tc);

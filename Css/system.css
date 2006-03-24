@@ -1,230 +1,237 @@
 A IMG {
-        border :none;
-        }
+  border :none;
+}
 
 DIV.space, DIV.spaceselect {
-                             width:56px;
-                             overflow:hidden;
+  width:56px;
+  overflow:hidden;
 
-                             text-align:center;
-                             font-size:9pt;
-                             cursor:pointer;
-                             border-width:2px;
-                             -moz-border-radius:15px;
-                             }
+  text-align:center;
+  font-size:9pt;
+  cursor:pointer;
+  border-width:2px;
+  -moz-border-radius:15px;
+}
 DIV.space { 
-            border-style:solid;
-            border-width:2px;
-            }
+  border-style:solid;
+  border-width:2px;
+}
 DIV.spaceselect { 
-                  border-style:inset;
-                  }
+  border-style:inset;
+}
 DIV.space A:link,DIV.space A:visited,A {
-                                         text-decoration:  none;
-                                         }
+  text-decoration:  none;
+}
 DIV.smallspace {
-                 width:60px;
-                 height:80px;
-                 border:none;
-                 float:left;
-                 text-align:center;
-                 font-family:arial;
-                 font-size:8pt;
-                 overflow : hidden;
-                 cursor:pointer;
-                 }
+  width:60px;
+  height:80px;
+  border:none;
+  float:left;
+  text-align:center;
+  font-family:arial;
+  font-size:8pt;
+  overflow : hidden;
+  cursor:pointer;
+}
 DIV.smallspace IMG.icon{
-                         width:30px;
-                         height:30px;
-                         }
+  width:30px;
+  height:30px;
+}
 DIV.smallspace IMG.ilink{
-                          position:relative;
-                          top:-17px;
-                          left:-7px;
-                          }
+  position:relative;
+  top:-17px;
+  left:-7px;
+}
 DIV.rule2 {
-            position:absolute;
-            vertical-align:middle;
-            margin-top:3px;
-            }
+  position:absolute;
+  vertical-align:middle;
+  margin-top:3px;
+}
 DIV.rule2 TABLE {
-                  width:3px;
-                  height:98%;
-                  margin:0px;
-                  padding:0px;
-                  }
+  width:3px;
+  height:98%;
+  margin:0px;
+  padding:0px;
+}
 DIV.rule2 TR {
-               margin:0px;
-               padding:0px;
-               }
+  margin:0px;
+  padding:0px;
+}
 DIV.rule2 TD {
-               vertical-align:middle;
-               margin:0px;
-               padding:0px;
-               }
+  vertical-align:middle;
+  margin:0px;
+  padding:0px;
+}
 DIV.col2 {
-           position:absolute;
-           }
+  position:absolute;
+}
 DIV.col3 {
-           position:absolute;
-           
-           }
+  position:absolute;
+  
+}
 DIV.spaces {
-             position:absolute;
-             
-             margin:3px 0px  3px  3px;
-             -moz-border-radius:15px;
-             border:inset 2px #A0A0A0;
-             }
+  position:absolute;
+  
+  margin:3px 0px  3px  3px;
+  -moz-border-radius:15px;
+  border:inset 2px #A0A0A0;
+}
 DIV.clipboard {
-                position:absolute;
-                border:none;
-                overflow:auto;
-                margin:0px;
-                -moz-border-radius:0 0 15 15;
-                border-style:none inset inset inset;
-                border-width:2px;
-                border-color:#A0A0A0;
-                }
+  position:absolute;
+  border:none;
+  overflow:auto;
+  margin:0px;
+  -moz-border-radius:0 0 15 15;
+  border-style:none inset inset inset;
+  border-width:2px;
+  border-color:#A0A0A0;
+}
 DIV.tabclip {
-                position:absolute;
-                overflow:auto;
-                margin:0px;
-              text-align:right;
-                -moz-border-radius:15px 15px 0px 15px;
-              border-style:inset inset none inset;
-              border-width:2px;
-              border-color:#A0A0A0;
-                }
+  position:absolute;
+  overflow:auto;
+  margin:0px;
+  text-align:right;
+  -moz-border-radius:15px 15px 0px 15px;
+  border-style:inset inset none inset;
+  border-width:2px;
+  border-color:#A0A0A0;
+}
 
 DIV.tabclip IMG {
-                  width:16px;
-                  height:16px;
-                  }
+  width:16px;
+  height:16px;
+}
 DIV.tabclip SPAN {
   -moz-border-radius: 8 8 0 0;	
-              width:30px;
-              height:10px;
+  width:30px;
+  height:10px;
   overflow:hidden;
   float:right;
   border-width : 1px;
   border-style :outset outset none outset;
   padding:2px;
   cursor:pointer;
-                   
-                  }
+  
+}
 DIV.searches {
-               position:absolute;
-               border-width:1px;
-               }
+  position:absolute;
+  border-width:1px;
+}
 DIV.folders {
-              position:absolute;
-              border:none;
-              overflow:auto;
-              margin:3px 0px 0px 0px;
-              -moz-border-radius:15px;
-              border:inset 2px #A0A0A0;
-              }
+  position:absolute;
+  border:none;
+  overflow:auto;
+  margin:3px 0px 0px 0px;
+  -moz-border-radius:15px;
+  border:inset 2px #A0A0A0;
+}
 SPAN.micon {
-             position:absolute;	
-             white-space:nowrap;
-             background-color:yellow;
-             border:dashed 1px;
-             font-size:9pt;  
-             }
+  position:absolute;	
+  white-space:nowrap;
+  background-color:yellow;
+  border:dashed 1px;
+  font-size:9pt;  
+}
 DIV.fldlist  {
-               position:absolute;
-               overflow:auto;
-               margin:3px;
-               -moz-border-radius:15px;
-               border:inset 2px #A0A0A0;
-               }
+  position:absolute;
+  overflow:auto;
+  margin:3px;
+  -moz-border-radius:15px;
+  border:inset 2px #A0A0A0;
+}
 DIV.resume  {
-              position:absolute;
-              overflow:hidden;
-              font-family:arial;
-              font-size:10pt;
-              margin:3px;
-              -moz-border-radius:15px;
-              border:inset 2px #A0A0A0;
-              }
+  position:absolute;
+  overflow:hidden;
+  font-family:arial;
+  font-size:10pt;
+  margin:3px;
+  -moz-border-radius:15px;
+  border:inset 2px #A0A0A0;
+}
 DIV.folders IMG, SPAN.micon IMG.icon {
-                                       width:20px;
-                                       }
+  width:20px;
+}
 SPAN.micon IMG.ilink {
-                       position:relative;
-                       top:-10px;
-                       left:-7px;
-                       }
+  position:relative;
+  top:-10px;
+  left:-7px;
+}
 DIV.folders IMG.ilink {
-                        position:relative;
-                        top:-12px;
-                        left:-5px;
-                        width:8px;
-                        }
+  position:relative;
+  top:-12px;
+  left:-5px;
+  width:8px;
+}
 DIV.folders LI {
-                 list-style:none;
-                 list-style-position:inside;
-                 font-family:arial;
-                 font-size:9pt;  
-                 white-space:nowrap;
-                 }
+  list-style:none;
+  list-style-position:inside;
+  font-family:arial;
+  font-size:9pt;  
+  white-space:nowrap;
+}
 DIV.folders LI A {
-                   font-family:arial;
-                   font-size:9pt;  
-                   height:22px;
-                   overflow:hidden;
-                   white-space:nowrap;
-                   }
+  font-family:arial;
+  font-size:9pt;  
+  height:22px;
+  overflow:hidden;
+  white-space:nowrap;
+}
 DIV.fldlist TH IMG {
-                     width:32px;
-                     }
+  width:32px;
+}
 #firstul  {
-            padding-left:0px;
-            margin-left:0px;
-            }
+  padding-left:0px;
+  margin-left:0px;
+}
 DIV.folders UL {
-                 padding-left:20px;
-                 margin-left:0px;
-                 }
+  padding-left:20px;
+  margin-left:0px;
+}
 DIV.resume * {
-               font-family:arial;
-               font-size:9pt;
-               }
+  font-family:arial;
+  font-size:9pt;
+}
 DIV.resume P {
-               margin:0px;
-               }
+  margin:0px;
+}
 DIV.fldlist TBODY P:hover {
-                            cursor:pointer;
-                            }
+  cursor:pointer;
+}
 DIV.resume TD {
-                vertical-align:top;
-                }
+  vertical-align:top;
+}
 DIV.fldlist * {
-                font-family:arial;
-                font-size:9pt;
-                }
+  font-family:arial;
+  font-size:9pt;
+}
 DIV.fldlist P {
-                margin:0px;
-                }
+  margin:0px;
+}
 DIV.fldlist TD,DIV.fldlist TH  {
-                                 padding:0px 2px 0px 2px;
-                                 }
+  padding:0px 2px 0px 2px;
+}
 DIV.searches INPUT {
-                     width:160px;
-                     }
+  width:160px;
+}
 DIV.searches A {
-                 background-color:transparent;
-                 }
+  background-color:transparent;
+}
 BODY {
-       margin:0px;
-       }
+  margin:0px;
+}
 BODY.freedom {
-       margin:30px;
-       }
+  margin:30px;
+}
 #iresume { 
-           
-              -moz-border-radius:15px;
-           border:none;
-           margin:2px;
-           }
+  
+  -moz-border-radius:15px;
+  border:none;
+  margin:2px;
+}
+TABLE.tfldlist {
+  width:100%;
+}
+TABLE.tfldlist IMG.icon{
+  width:16px;
+  height:16px;
+}

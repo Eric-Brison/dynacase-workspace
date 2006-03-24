@@ -3,7 +3,7 @@
   <branch><![CDATA[
 
 
-<TABLE   CELLPADDING=4 CELLSPACING=0>
+<TABLE   CELLPADDING=4 CELLSPACING=0 class="tfldlist">
 <THEAD>	<TR VALIGN=TOP>
   <TH ><a href="" title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a>Nom<a href="" title="trier"><IMG class="button"  SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></P></TH>
   <TH>Taille<a href="" title="[TEXT:Sort]"><IMG class="button" SRC="[IMG:b_down.png]" ALIGN=MIDDLE></a></TH>
@@ -13,7 +13,7 @@
 </THEAD>
 <tbody>
 [BLOCK TREE]
-<tr><td><img class="icon" src="[icon]">[title]</td><td>[size]</td><td>[mdate]</td><td>[mime]</td></tr>
+<tr onclick="viewDoc(event,'[id]')"><td><img class="icon" src="[icon]">[title]</td><td>[size]</td><td>[mdate]</td><td>[mime]</td></tr>
 [ENDBLOCK TREE]  
 </tbody>
 
