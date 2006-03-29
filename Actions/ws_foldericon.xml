@@ -4,7 +4,7 @@
 
 
 [BLOCK TREE]
-<div class="smallspace" onclick="viewDoc(event,'[id]')"><img class="icon" src="[icon]"><img class="ilink" src="[IMG:link.gif]"><br><span>[title]</span></div>
+<div class="smallspace" onclick="viewDoc(event,'[id]')" onmousedown="begindrag(event,null,this,'[id]','[pid]')"><img class="icon" src="[icon]"><img class="ilink" src="[IMG:link.gif]"><br><span>[title]</span></div>
 [ENDBLOCK TREE]  
 
 

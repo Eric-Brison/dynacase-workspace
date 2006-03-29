@@ -4,7 +4,7 @@ var THECIBLE=false;
 var imgcible=false;
 var req;
 var CURSPACE=false;
-
+var IDCFLDID=false; // current folder doc id
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
   if (INPROGRESS) return false; // one request only
@@ -175,64 +175,137 @@ var POUL=false; // current ul id object is being dragged
 var DRAGFT=false;
 
 
-//var micon=new Image(100,100);
-var micon=document.createElement("span");
+//var MICON=new Image(100,100);
+var MICON=document.createElement("span");
 var PE=null; // previous elt
-var PECTRL=null; // previous key
-micon.className='micon';
-micon.style.display='none';
+var PEDROP=null; // previous elt droppable
+var PECTRL=0; // previous hot key pushed (ctrl or shift)
+var CDROPZ=null; // current drop zone
+var IEPARASITE=null;
+MICON.className='MICON';
+MICON.style.display='none';
 
+
+// osp : element to copy to see in draggin mode
 function begindrag(event,oul,osp,docid,pdocid) {
   if (! event) event=window.event;
   if (! DRAGGING) {
     GetXY(event);
-    
-    micon.style.top = Ypos+2; 
-    micon.style.left = Xpos+2; 
-    micon.style.zIndex = 100;
-    micon.style.display='';
+    if (isIE) IEPARASITE=false;
+    MICON.style.top = Ypos+2; 
+    MICON.style.left = Xpos+2; 
+    MICON.style.zIndex = 100;
+    MICON.style.display='';
     DRAGGING=true;
     DRAGDOC=docid;
     PDRAGDOC=pdocid;
     
-    micon.innerHTML=osp.innerHTML;
+    MICON.innerHTML=osp.innerHTML;
     document.onmousemove=movedrag ;
     document.onmouseup=enddrag ;
     document.onkeydown=keydrag ;
     document.onkeyup=keydrag ;
-
+    document.body.style.cursor='move';
 
     if (isIE) {
       // sendEvent(o,"mouseover");
-      osp.className='';
+      //      osp.className='';
     }
     POUL=oul;
     stopPropagation(event);
+
     return false;
   }
 }
 
+var DEBUG=0;
+function overdragft(event,o) {  
+  if (DRAGGING) {
+    var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
 
+    if (IEPARASITE == o) return;
+    var drop=o.getAttribute("droppable");
+    if (drop == 'yes') { 
+      o.style.border='red 1px solid';
+      
+      if (isIE && (! IEPARASITE)) {
+	IEPARASITE=o;
+	IEPARASITE.style.border='orange 3px solid';
+      }
+      var dft=DRAGFT;
+      CDROPZ=o;
+      if (!dft) {
+	var ft=o.getAttribute("dropft");
+	if (ft) dft=ft;
+      }
+      changedragft(event,dft);  
+    } else {      
+      if (oft) oft.innerHTML='';
+      o.style.border='orange 1px solid';
+
+    }
+  } else {    
+      o.style.border='green 1px solid';
+  }
+   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
+}
+
+function outdragft(event,o) {  
+    if (IEPARASITE == o) return;
+    var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
+    var oft=document.getElementById('miconft');
+    if (oft) oft.innerHTML='';
+    if (PECTRL== 0) DRAGFT=false;
+        window.status=DRAGFT +'PE:'+PECTRL;
+    CDROPZ=null;
+      o.style.border='blue 1px solid';
+      if (e == PEDROP) PEDROP=false;
+}
+
+
+function changedragft(event,nft) {
+  var oft=document.getElementById('miconft'); 
+  if (!oft) {
+       MICON.innerHTML=MICON.innerHTML+'<span id="miconft">COUOU</span>';
+       oft=document.getElementById('miconft');
+    }
+
+  if (oft) {
+    oft.innerHTML=nft;   
+    DRAGFT=nft;
+  }
+}
 function movedrag(event) {
   if (DRAGGING) {
     if (! event) event=window.event;
     GetXY(event);
-    micon.style.top = Ypos+2; 
-    micon.style.left = Xpos+2; 
+    MICON.style.top = Ypos+2; 
+    MICON.style.left = Xpos+2; 
     //stopPropagation(event)
-    var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
-
+    var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);   
     var drop=e.getAttribute("droppable");
+
     if (drop == 'yes') {
+      if (PEDROP!=e) {	
+	if (PEDROP)   sendEvent(PEDROP,"mouseout");
+	sendEvent(e,"mouseover");
+	PEDROP=e;
+	//alert('first:'+PE);
+	top.status='first:'+PE;
+      }
+    } else {
+      if (isIE) {
+	if (PEDROP!=e) {	if (PEDROP)   sendEvent(PEDROP,"mouseout");}
       if (PE!=e) {	
 	if (PE)   sendEvent(PE,"mouseout");
 	sendEvent(e,"mouseover");
-
 	PE=e;
+	//alert('first:'+PE);
+	top.status='first:'+PE;
+      }  
+
       }
-    } else {
-      
-      //	e.style.backgroundColor='purple';
+
     }
     return false;
   }
@@ -242,33 +315,38 @@ function keydrag(event) {
     if (! event) event=window.event;
    
     var ctrl=event.ctrlKey;
+    var shift=event.shiftKey;
+    var lpe=0;
     if (isNetscape) {
       // the ctrlKey   is not correct
       if (event.keyCode==17) {
 	if (event.type == 'keyup') ctrl=false;
 	else if (event.type == 'keydown') ctrl=true;
+      } else if (event.keyCode==16) {
+	if (event.type == 'keyup') shift=false;
+	else if (event.type == 'keydown') shift=true;
       }
     }
-    window.status=event.keyCode + ':'+event.altKey+ ':'+event.ctrlKey;
-    if (ctrl != PECTRL) {
-      // redisplay emblem
-      var li=micon.getElementsByTagName("img");
-      var il=false;
 
-      for (var i=0;i<li.length;i++) {
-	if (li[i].className=="ilink") {
-	  il=li[i];
-	}
+    if (ctrl) lpe++;
+    if (shift) lpe++;
+    if (lpe != PECTRL) {
+      
+      if (ctrl && (!shift)) {   changedragft(event,'copy');	}
+      else if (ctrl && shift) { changedragft(event,'link');	}
+      else  if ((!ctrl) && shift) { changedragft(event,'move');	}
+      else {
+	  var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null); 
+
+	  DRAGFT=false;
+	  if (CDROPZ) sendEvent(CDROPZ,"mouseover");
+	  else  changedragft(event,'nothing');
       }
-      if (il) {
-	if (ctrl) {
-	  il.src='Images/plus.gif';
-	} else {
-	  il.src='Images/minus.gif';
-	}
-      }
-      PECTRL=ctrl;
-    }
+      
+      PECTRL=lpe;
+    }    
+    window.status= ':ft:['+DRAGFT+ ']:dropz['+CDROPZ;
+    //    window.status=event.keyCode + ':alt:['+event.altKey+ ']:ctrl['+event.ctrlKey+']:shift['+event.shiftKey+'PE:'+PECTRL;
 }
 function enddrag(event) {
   
@@ -279,9 +357,10 @@ function enddrag(event) {
   document.onkeydown="" ;
   var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
 
-  micon.style.display='none';
+  MICON.style.display='none';
   sendEvent(e,"mouseup");
   
+  document.body.style.cursor='auto';
   
   DRAGGING=false;
 }
@@ -291,27 +370,30 @@ function copydrag(o,ulid,cdocid) {
 }
 
 function initDrag() {
-  document.body.appendChild(micon);  
+  document.body.appendChild(MICON);  
 }
 
 addEvent(window,"load",initDrag);
 
 // ----------------------------- Insert ClipBoard --------------------
-function insertinclipboard(event,o,bid) {
+function insertinclipboard(event,o,bid,kview) {
 
     if (! event) event=window.event;
+    if (! kview) kview='icon';
+    var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
+
+    //    alert("insertinclipboard"+bid+':'+kview+event.toString());
     if (DRAGGING) {
-      var ft='move';
-      var ctrlKey = event.ctrlKey;
-      if (ctrlKey) ft='add';
-      DRAGFT=ft;
-      if (ft == 'move') {
-	//
+     
+      if (! isIE) DRAGGING=false;
+
+      if (PDRAGDOC != bid) {
+	DRAGGING=false;
+	if (DRAGDOC>0) folderSend(bid,o,DRAGDOC,PDRAGDOC,DRAGFT,kview);
       }
-      DRAGGING=false;
-      if (DRAGDOC>0) folderSend(bid,o,DRAGDOC,PDRAGDOC,ft);
     } 
 }
+
 function insertinspace(event,o,sid) {
 
     if (! event) event=window.event;
@@ -341,7 +423,7 @@ function insertinfolder(event,o,oimg,docid,ulid) {
 }
 function viewFolder(event,dirid) {
   var  where=document.getElementById('fldlist');
-
+  IDCFLDID=dirid;
   folderSend(dirid,where,null,null,null,'list');
   
 }

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.2 2006/03/24 17:42:35 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.3 2006/03/29 14:52:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -65,14 +65,16 @@ function ws_folderlist(&$action) {
     }
   }
 
+  $action->lay->set("pid",$doc->initid);
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
 
     $ls=$doc->getContent();
     $tc=array();
     foreach ($ls as $k=>$v) {
-      $size=getv($v,"sfi_filesize");
-      if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
+      $size=getv($v,"sfi_filesize",-1);
+      if ($size < 0) $dsize="";
+      else if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
       else if ($size < 1048576) $dsize=sprintf(_("%d kb"),$size/1024);
       else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
    //    $icon=getv($v,"sfi_mimeicon");
@@ -86,7 +88,7 @@ function ws_folderlist(&$action) {
 		  "id"=>$v["id"],
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxt"),
-		  "mdate"=>strftime("%d %b %Y %H:%M",getv($v,"revdate")),
+		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),
 		  "icon"=>$icon);
     }
 

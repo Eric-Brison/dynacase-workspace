@@ -222,11 +222,13 @@ BODY {
 BODY.freedom {
   margin:30px;
 }
-#iresume { 
-  
+#iresume {   
   -moz-border-radius:15px;
   border:none;
   margin:2px;
+}
+#miconft {  
+  font-weight: bold;
 }
 TABLE.tfldlist {
   width:100%;

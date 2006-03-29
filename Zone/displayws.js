@@ -12,6 +12,9 @@ function redisplaywsdiv() {
   var ww=getFrameWidth();
   var wh=getFrameHeight();
   var dx=0;
+
+  if (isIE && (window==top)) ww-=20; // vertical scroll bar always
+  //  if (isIE) wh-=20;
   //  alert(ww+' x '+wh);
   dcol1.style.width='60px';
   dcol1.style.top='0px';

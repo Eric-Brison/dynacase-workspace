@@ -5,7 +5,11 @@
 
 [BLOCK TREE]
   <li title="[title]"><img id='il[ulid][id]' onclick="DRAGFT='';expandtree(this,'[id]','[ulid][id]')" class="button" src="[IMG:b_right.png]">
-   <span droppable="yes" onclick="viewFolder(event,'[id]')" onmouseover="this.className='folderhover'"  onmouseout="this.className=''"  onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')" droppable="yes"  id="img[ulid][id]"  src="[icon]"><img class="ilink" src="[IMG:link.gif]">[title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
+   <span droppable="yes" dropft="move"  
+         onmouseover="overdragft(event,this);this.className='folderhover'" 
+	 onmouseout="outdragft(event,this);this.className=''" 
+	 onclick="viewFolder(event,'[id]')"   
+	 onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')"  id="img[ulid][id]"  src="[icon]"><img class="ilink" src="[IMG:link.gif]">[title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
 [ENDBLOCK TREE]  
 
 

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.3 2006/03/23 19:22:37 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.4 2006/03/29 14:52:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -65,6 +65,7 @@ function ws_foldericon(&$action) {
     }
   }
 
+  $action->lay->set("pid",$doc->initid);
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
 
