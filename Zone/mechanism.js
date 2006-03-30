@@ -35,57 +35,57 @@ function folderTreeAdd() {
   INPROGRESS=false; 
   var o=THECIBLE;
   if (req.readyState == 4) {
-        // only if "OK"
-        if (req.status == 200) {
-            // ...processing statements go here...
-	  //  alert(req.responseText);
-	  if (req.responseXML) {
-	    var elts = req.responseXML.getElementsByTagName("status");
-	    if (elts.length == 1) {
-	      var elt=elts[0];
-	      var code=elt.getAttribute("code");
-	      var delay=elt.getAttribute("delay");
-	      var c=elt.getAttribute("count");
-	      var w=elt.getAttribute("warning");
+    // only if "OK"
+    if (req.status == 200) {
+      // ...processing statements go here...
+      //  alert(req.responseText);
+      if (req.responseXML) {
+	var elts = req.responseXML.getElementsByTagName("status");
+	if (elts.length == 1) {
+	  var elt=elts[0];
+	  var code=elt.getAttribute("code");
+	  var delay=elt.getAttribute("delay");
+	  var c=elt.getAttribute("count");
+	  var w=elt.getAttribute("warning");
 
-	      if (w != '') alert(w);
-	      if (code != 'OK') {
-		alert('code not OK\n'+req.responseText);
-		return;
-	      }
-	      elts = req.responseXML.getElementsByTagName("branch");
-	      elt=elts[0].firstChild.nodeValue;
-	      // alert(elt);
-	      if (o) {
-		if (c > 0)       o.style.display='';
-		o.innerHTML=elt;
-	      }
-	      endexpandtree(imgcible,c);
-	      if (! isNetscape) correctPNG();
-	      if (POUL && DRAGFT=='move') {		
-		  var imgc=POUL.parentNode.childNodes[0];
-		  if (!(imgc && imgc.onclick)) imgc=CURSPACE;
-		  if (imgc && imgc.onclick) {
-		    // reload branch parent branch
-		    POUL.innerHTML='';
-		    DRAGFT='';
-		    imgc.onclick.apply(imgc,[]);
-		  }
-	      }
-	    } else {
-	      alert('no status\n'+req.responseText);
-	      return;
-	    }
-	  } else {
-	    alert('no xml\n'+req.responseText);
-		return;
-	  } 	  
-        } else {
-            alert("There was a problem retrieving the XML data:\n" +
-                req.statusText);
+	  if (w != '') alert(w);
+	  if (code != 'OK') {
+	    alert('code not OK\n'+req.responseText);
 	    return;
-        }
+	  }
+	  elts = req.responseXML.getElementsByTagName("branch");
+	  elt=elts[0].firstChild.nodeValue;
+	  // alert(elt);
+	  if (o) {
+	    if (c > 0)       o.style.display='';
+	    o.innerHTML=elt;
+	  }
+	  endexpandtree(imgcible,c);
+	  if (! isNetscape) correctPNG();
+	  if (POUL && DRAGFT=='move') {		
+	    var imgc=POUL.parentNode.childNodes[0]; // to (re)expand the branch
+	    if (!(imgc && imgc.onclick)) imgc=CURSPACE;
+	    if (imgc && imgc.onclick) {
+	      // reload branch parent branch
+	      POUL.innerHTML='';
+	      DRAGFT='';
+	      imgc.onclick.apply(imgc,[]);
+	    }
+	  }
+	} else {
+	  alert('no status\n'+req.responseText);
+	  return;
+	}
+      } else {
+	alert('no xml\n'+req.responseText);
+	return;
+      } 	  
+    } else {
+      alert("There was a problem retrieving the XML data:\n" +
+	    req.statusText);
+      return;
     }
+  }
 }
 
 function viewfoldertree(img,fldid,where,adddocid,padddocid,addft) {
@@ -181,7 +181,7 @@ var PE=null; // previous elt
 var PEDROP=null; // previous elt droppable
 var PECTRL=0; // previous hot key pushed (ctrl or shift)
 var CDROPZ=null; // current drop zone
-var IEPARASITE=null;
+var IEPARASITE=null; // to ignored unwanted event fire produced by IE
 MICON.className='MICON';
 MICON.style.display='none';
 
