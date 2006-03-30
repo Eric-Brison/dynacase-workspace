@@ -1,5 +1,5 @@
 # ============================================
-# $Id: Makefile.in,v 1.2 2006/03/06 17:03:34 eric Exp $
+# $Id: Makefile.in,v 1.3 2006/03/30 16:21:50 eric Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
@@ -20,5 +20,11 @@ SUBDIR=  Class Actions Zone Css Images
 include $(utildir)/PubRule
 
 DISTFILES += $(SUBDIR) \
-            RELEASE VERSION   
+            RELEASE VERSION   workspace.csv
 
+
+
+$(pubdir)/$(appname)/workspace.csv : workspace.csv 
+	cp workspace.csv $(pubdir)/$(appname)
+
+publish: $(pubdir)/$(appname)/workspace.csv

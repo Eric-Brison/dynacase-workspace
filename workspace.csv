@@ -1,0 +1,40 @@
+ORDER;IGROUP;;;ba_title;ba_desc;gui_color;grp_name;grp_role;grp_mail;grp_type;us_login;us_whatid;us_meid;us_iddomain;us_domain
+DOC;IGROUP;GWORKSPACE;;;;;Espace de travail;;;;group.workspace;;;1;local
+DOC;IGROUP;GWSPADMIN;GADMIN;;;;Administrateur des espaces de travail;;;;gadmin.workspace;;;1;local
+// famille fichier;;;id;class;name;;;;;;;
+BEGIN;0;fichier;;;SIMPLEFILE;;;;;;;
+METHOD;Method.SimpleFile.php;;;;;;;;;;;
+TYPE;C;;;;;;;;;;;
+;;;;;;;;;;;;
+ICON;sfile.png;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+ATTR;SFI_FRDESC;;description;N;N;frame;;W;;;;
+ATTR;SFI_TITLE;SFI_FRDESC;titre;Y;N;text;10;R;;;;
+ATTR;SFI_TITLEW;SFI_FRDESC;titre;N;N;text;20;O;;;;
+ATTR;SFI_SUBJECT;SFI_FRDESC;sujet;N;Y;text;30;W;;;;
+ATTR;SFI_KEYWORD;SFI_FRDESC;mots-clés;N;N;text;40;W;;;;
+ATTR;SFI_DESCRIPTION;SFI_FRDESC;résumé;N;N;longtext;50;W;;;;
+ATTR;SFI_FILE;SFI_FRDESC;fichier;N;N;file;60;W;;;;
+ATTR;SFI_MIMETXT;SFI_FRDESC;type;N;N;text;60;R;;;;
+ATTR;SFI_MIMESYS;SFI_FRDESC;type système;N;N;text;70;R;;;;
+ATTR;SFI_MIMEICON;SFI_FRDESC;icone;N;N;image;80;R;;;;
+ATTR;SFI_FILESIZE;SFI_FRDESC;taille;N;N;double;90;R;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+END;;;;;;;;;;;;
+// famille action;;;id;class;name;;;;;;;;;;
+BEGIN;DIR;espace de travail;;;WORKSPACE;;;;;;;;;;
+TYPE;C;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+ICON;folderwork.gif;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
+ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;12;W;Y;;;;;;esize=10
+;;;;;;;;;;;;;;;
+END;;;;;;;;;;;;;;;
