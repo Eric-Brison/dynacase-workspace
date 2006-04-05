@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.3 2006/03/29 14:52:00 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.4 2006/04/05 10:01:24 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -100,6 +100,10 @@ function ws_folderlist(&$action) {
   }
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
+  $action->lay->set("title",$doc->title);
+  if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
+  else $action->lay->set("nbdoc",_("0 document"));
+					
 
 
 }

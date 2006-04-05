@@ -27,9 +27,9 @@
     [JS:CODE] 
    var idbasket='[FREEDOM_IDBASKET]';
 
-function expandtree(oimg,id,ulid,adddocid,padddocid,addft) {
+function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
   
-  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid,padddocid,addft);
+  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid,padddocid,addft,reset);
   if (r==1) {
     oimg.src='[IMG:b_down.png]'; 
   } else if (r==0) {

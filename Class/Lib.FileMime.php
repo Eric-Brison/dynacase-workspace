@@ -21,6 +21,7 @@ function getIconMimeArray() {
 		"application/vnd.sun.xml.calc" => "mime-spreadsheet",
 		"application/vnd.sun.xml.impress" => "mime-presentation",
 		"application/vnd.sun.xml.writer" => "mime-wordprocessing",
+		"application/vnd.sun.xml.writer.global" => "mime-wordprocessing",
 		"application/vnd.sun.xml.draw" => "mime-vectorgfx",
 		"application/wordperfect" => "mime-wordprocessing",
 		"application/x-7z-compressed" => "mime-tgz",
@@ -127,17 +128,29 @@ function getSysMimeFile($f,$fn="") {
       if (preg_match('/\.sxc$/',$fn))    return 'application/vnd.sun.xml.calc';
       if (preg_match('/\.sxi$/',$fn))    return 'application/vnd.sun.xml.impress';
       if (preg_match('/\.sxd$/',$fn))    return 'application/vnd.sun.xml.draw';
+      if (preg_match('/\.sxg$/',$fn))    return 'application/vnd.sun.xml.writer.global';
       return 'application/vnd.sun.xml.writer';
       
-  }
-  if (preg_match('/OpenDocument/',$txt)) {
+    }
+    if (preg_match('/OpenDocument/',$txt)) {
       if (preg_match('/\.odp$/',$fn))    return 'application/vnd.oasis.opendocument.presentation';
       if (preg_match('/\.odt$/',$fn))    return 'application/vnd.oasis.opendocument.text';
       if (preg_match('/\.ods$/',$fn))    return 'application/vnd.oasis.opendocument.spreadsheet';
       if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.drawing';
-     return 'application/vnd.oasis.opendocument.text';
+      return 'application/vnd.oasis.opendocument.text';
     
-  }
+    }
+
+      if (preg_match('/\.sxw$/',$fn))    return 'application/vnd.sun.xml.writer';
+      if (preg_match('/\.sxc$/',$fn))    return 'application/vnd.sun.xml.calc';
+      if (preg_match('/\.sxi$/',$fn))    return 'application/vnd.sun.xml.impress';
+      if (preg_match('/\.sxd$/',$fn))    return 'application/vnd.sun.xml.draw';
+      if (preg_match('/\.sxg$/',$fn))    return 'application/vnd.sun.xml.writer.global';
+      if (preg_match('/\.odp$/',$fn))    return 'application/vnd.oasis.opendocument.presentation';
+      if (preg_match('/\.odt$/',$fn))    return 'application/vnd.oasis.opendocument.text';
+      if (preg_match('/\.ods$/',$fn))    return 'application/vnd.oasis.opendocument.spreadsheet';
+      if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.drawing';
+    
   }
   if (!$sys ) {
     // try with text only

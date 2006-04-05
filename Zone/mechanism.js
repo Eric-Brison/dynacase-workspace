@@ -1,4 +1,6 @@
 
+
+
 var INPROGRESS=false;
 var THECIBLE=false;
 var imgcible=false;
@@ -7,6 +9,7 @@ var CURSPACE=false;
 var IDCFLDID=false; // current folder doc id
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
+  if (INPROGRESS) alert('abordted');
   if (INPROGRESS) return false; // one request only
     // branch for native XMLHttpRequest object
     if (window.XMLHttpRequest) {
@@ -34,8 +37,10 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 function folderTreeAdd() {
   INPROGRESS=false; 
   var o=THECIBLE;
+ 
   if (req.readyState == 4) {
     // only if "OK"
+    //dump('readyState\n');
     if (req.status == 200) {
       // ...processing statements go here...
       //  alert(req.responseText);
@@ -62,16 +67,18 @@ function folderTreeAdd() {
 	  }
 	  endexpandtree(imgcible,c);
 	  if (! isNetscape) correctPNG();
+	  //dump('\tDRAGFT:'+DRAGFT+'\n');
 	  if (POUL && DRAGFT=='move') {		
-	    var imgc=POUL.parentNode.childNodes[0]; // to (re)expand the branch
-	    if (!(imgc && imgc.onclick)) imgc=CURSPACE;
-	    if (imgc && imgc.onclick) {
+	    //	    alert(POUL.tagName);
 	      // reload branch parent branch
-	      POUL.innerHTML='';
-	      DRAGFT='';
-	      imgc.onclick.apply(imgc,[]);
+	    DRAGFT='';
+	    //dump('\tPOUL detected\n');
+	    if (POUL.getAttribute('ondblclick')) {
+	      POUL.ondblclick.apply(POUL,[]);	    
+	      //dump('\tondblclick apply\n');
 	    }
-	  }
+
+	  } 
 	} else {
 	  alert('no status\n'+req.responseText);
 	  return;
@@ -85,11 +92,16 @@ function folderTreeAdd() {
 	    req.statusText);
       return;
     }
-  }
+  } 
 }
 
-function viewfoldertree(img,fldid,where,adddocid,padddocid,addft) {
-  if ((!img) ||  (where.childNodes.length==0)) {
+function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
+  if (! where) return 0;
+  if (reset && reset==true) {
+    where.innerHTML='';
+  }
+
+  if ((!img) || (where.childNodes.length==0)) {
     if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
       imgcible=img;
       return 2;
@@ -247,19 +259,21 @@ function overdragft(event,o) {
   } else {    
       o.style.border='green 1px solid';
   }
-   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
+  //   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
 }
 
 function outdragft(event,o) {  
+  if (DRAGGING) {
     if (IEPARASITE == o) return;
     var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
     var oft=document.getElementById('miconft');
     if (oft) oft.innerHTML='';
     if (PECTRL== 0) DRAGFT=false;
-        window.status=DRAGFT +'PE:'+PECTRL;
+    //        window.status=DRAGFT +'PE:'+PECTRL;
     CDROPZ=null;
       o.style.border='blue 1px solid';
       if (e == PEDROP) PEDROP=false;
+  }
 }
 
 
@@ -290,8 +304,7 @@ function movedrag(event) {
 	if (PEDROP)   sendEvent(PEDROP,"mouseout");
 	sendEvent(e,"mouseover");
 	PEDROP=e;
-	//alert('first:'+PE);
-	top.status='first:'+PE;
+
       }
     } else {
       if (isIE) {
@@ -300,8 +313,7 @@ function movedrag(event) {
 	if (PE)   sendEvent(PE,"mouseout");
 	sendEvent(e,"mouseover");
 	PE=e;
-	//alert('first:'+PE);
-	top.status='first:'+PE;
+
       }  
 
       }
@@ -339,13 +351,14 @@ function keydrag(event) {
 	  var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null); 
 
 	  DRAGFT=false;
+	  //dump('\tkeydrag\n');
 	  if (CDROPZ) sendEvent(CDROPZ,"mouseover");
 	  else  changedragft(event,'nothing');
       }
       
       PECTRL=lpe;
     }    
-    window.status= ':ft:['+DRAGFT+ ']:dropz['+CDROPZ;
+    //    window.status= ':ft:['+DRAGFT+ ']:dropz['+CDROPZ;
     //    window.status=event.keyCode + ':alt:['+event.altKey+ ']:ctrl['+event.ctrlKey+']:shift['+event.shiftKey+'PE:'+PECTRL;
 }
 function enddrag(event) {
@@ -441,4 +454,14 @@ function viewDoc(event,docid) {
   where.src='index.php?sole=Y&app=FDL&action=FDL_CARD&id='+docid;
 
   
+}
+// to find the previous button to refresh branch in folder trre
+function getPrevLiButton(o) {
+  var e=o.parentNode.parentNode.parentNode;
+  if (e && e.parentNode) {
+    e=e.parentNode.childNodes[0];
+    //    alert(e.nodeType);
+    if (e && (e.nodeType==1) && e.getAttribute('ondblclick')) return e;
+  }
+  return CURSPACE;
 }
