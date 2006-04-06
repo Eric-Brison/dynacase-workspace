@@ -3,7 +3,7 @@
   <branch><![CDATA[
 
 
-<TABLE   CELLPADDING=4 CELLSPACING=0 class="tfldlist" ondblclick="viewFolder(event,'[pid]')">
+<TABLE   CELLPADDING=4 CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
 <THEAD>	
 <tr><th align="left" colspan="4">[title], [nbdoc]</th></tr>
 <TR VALIGN=TOP>
@@ -15,7 +15,7 @@
 </THEAD>
 <tbody>
 [BLOCK TREE]
-<tr onclick="viewDoc(event,'[id]')"><td ><img style="cursor:move" onclick="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="right">[mime]</td></tr>
+<tr onclick="viewDoc(event,'[id]')"><td ><img title="[TEXT:click and drag to move document]" onclick="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="right">[mime]</td></tr>
 [ENDBLOCK TREE]  
 </tbody>
 </TABLE>

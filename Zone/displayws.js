@@ -9,6 +9,7 @@ function redisplaywsdiv() {
   var dclipboard=document.getElementById('clipboard');
   var dfolders=document.getElementById('folders');
   var dsearches=document.getElementById('searches');
+  var dtrash=document.getElementById('itrash');
   var ww=getFrameWidth();
   var wh=getFrameHeight();
   var dx=0;
@@ -69,7 +70,9 @@ function redisplaywsdiv() {
   dresume.style.left=0;
   dresume.style.height=parseInt((wh-10)/2)+7; 
 
-
+  dtrash.style.position='absolute';
+  dtrash.style.top=wh-100;
+  
 }
 
 addEvent(window,"load",redisplaywsdiv);

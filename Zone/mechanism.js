@@ -6,7 +6,10 @@ var THECIBLE=false;
 var imgcible=false;
 var req;
 var CURSPACE=false;
-var IDCFLDID=false; // current folder doc id
+var CFLDID=false; // current folder doc id
+var CLIPCID=false; // current folder for clipboard
+
+var REFRESH=false; // to indicate the the state is for resfresh one part
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
   if (INPROGRESS) alert('abordted');
@@ -68,13 +71,15 @@ function folderTreeAdd() {
 	  endexpandtree(imgcible,c);
 	  if (! isNetscape) correctPNG();
 	  //dump('\tDRAGFT:'+DRAGFT+'\n');
-	  if (POUL && DRAGFT=='move') {		
+	  if (POUL && ((DRAGFT=='move')||(DRAGFT=='del'))) {		
 	    //	    alert(POUL.tagName);
 	      // reload branch parent branch
 	    DRAGFT='';
 	    //dump('\tPOUL detected\n');
 	    if (POUL.getAttribute('ondblclick')) {
-	      POUL.ondblclick.apply(POUL,[]);	    
+	      REFRESH=true;
+	      POUL.ondblclick.apply(POUL,[]);	   
+	      REFRESH=false;; 
 	      //dump('\tondblclick apply\n');
 	    }
 
@@ -121,6 +126,7 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 // ----------------------------- view clipboard --------------------
 function folderSend(n,cible,adddocid,padddocid,addft,kview) {
   if (INPROGRESS) return false; // one request only
+
     // branch for native XMLHttpRequest object
     if (window.XMLHttpRequest) {
         req = new XMLHttpRequest(); 
@@ -132,7 +138,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
     if (req) {
       if (! kview) kview='icon';
         req.onreadystatechange = folderTreeAdd ;
-	if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&id='+n, true);
+	if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, true);
+	else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&id='+n, true);
         else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 	THECIBLE=cible;
@@ -176,6 +183,7 @@ function documentSend(docid,cible) {
 }
 
 function refreshClipBoard(bid,where) {
+  CLIPCID=bid;
   folderSend(bid,where);
 }
 
@@ -217,7 +225,9 @@ function begindrag(event,oul,osp,docid,pdocid) {
     document.onmouseup=enddrag ;
     document.onkeydown=keydrag ;
     document.onkeyup=keydrag ;
-    document.body.style.cursor='move';
+
+    document.body.style.cursor='no-drop';
+    
 
     if (isIE) {
       // sendEvent(o,"mouseover");
@@ -244,6 +254,7 @@ function overdragft(event,o) {
 	IEPARASITE=o;
 	IEPARASITE.style.border='orange 3px solid';
       }
+      if (PECTRL== 0) DRAGFT=false;
       var dft=DRAGFT;
       CDROPZ=o;
       if (!dft) {
@@ -251,9 +262,13 @@ function overdragft(event,o) {
 	if (ft) dft=ft;
       }
       changedragft(event,dft);  
+      document.body.style.cursor='move';
     } else {      
+      var oft=document.getElementById('miconft');
       if (oft) oft.innerHTML='';
       o.style.border='orange 1px solid';
+      
+      document.body.style.cursor='no-drop';
 
     }
   } else {    
@@ -267,7 +282,10 @@ function outdragft(event,o) {
     if (IEPARASITE == o) return;
     var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
     var oft=document.getElementById('miconft');
-    if (oft) oft.innerHTML='';
+    if (oft) {
+      oft.innerHTML='';
+      document.body.style.cursor='no-drop';
+    }
     if (PECTRL== 0) DRAGFT=false;
     //        window.status=DRAGFT +'PE:'+PECTRL;
     CDROPZ=null;
@@ -402,32 +420,34 @@ function insertinclipboard(event,o,bid,kview) {
 
       if (PDRAGDOC != bid) {
 	DRAGGING=false;
-	if (DRAGDOC>0) folderSend(bid,o,DRAGDOC,PDRAGDOC,DRAGFT,kview);
+	if ((DRAGDOC>0)&&(DRAGFT)) folderSend(bid,o,DRAGDOC,PDRAGDOC,DRAGFT,kview);
       }
     } 
 }
 
 function insertinspace(event,o,sid) {
-
     if (! event) event=window.event;
     if (DRAGGING) {
-      var ft='move';
-      var ctrlKey = event.ctrlKey;
-      if (ctrlKey) ft='add';
-      DRAGFT=ft;
-      if (ft == 'move') {
-	//
-      }
       DRAGGING=false;
-      if (DRAGDOC>0) folderSend(sid,false,DRAGDOC,PDRAGDOC,ft);
+      if ((DRAGDOC>0)&&(DRAGFT)) folderSend(sid,false,DRAGDOC,PDRAGDOC,DRAGFT);
     } 
 }
+function deleteinspace(event,o) {
+    if (! event) event=window.event;
+    if (DRAGGING) {
+      DRAGFT='del';
+      DRAGGING=false;
+      if ((DRAGDOC>0)&&(DRAGFT)) folderSend(null,false,DRAGDOC,PDRAGDOC,DRAGFT,'list');
+    } 
+}
+
+
 function insertinfolder(event,o,oimg,docid,ulid) {
   var ft='move';
     if (! event) event=window.event;
     var ctrlKey = event.ctrlKey;
     if (ctrlKey) ft='add';
-    if ((DRAGGING)&& (PDRAGDOC!=docid)&& (DRAGDOC!=docid)){
+    if ((DRAGGING)&& (PDRAGDOC!=docid)&& (DRAGDOC!=docid)&&(DRAGFT)){
       document.getElementById(ulid).innerHTML='';
       DRAGFT=ft;
       expandtree(document.getElementById(oimg),docid,ulid,DRAGDOC,PDRAGDOC,ft);
@@ -436,7 +456,7 @@ function insertinfolder(event,o,oimg,docid,ulid) {
 }
 function viewFolder(event,dirid) {
   var  where=document.getElementById('fldlist');
-  IDCFLDID=dirid;
+  CFLDID=dirid;
   folderSend(dirid,where,null,null,null,'list');
   
 }

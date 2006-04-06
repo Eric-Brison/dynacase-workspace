@@ -82,7 +82,9 @@ function clipboardWait(o) {
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
-<div class="space"  ><img src="[IMG:gnome-fs-home.png]"><span> Personnel</span></div>
+<div class="space"  ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
+<br>
+<div class="space" id="itrash" onclick="expandToptree(this,'trash',document.getElementById('firstul'))" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[IMG:trash.png]"><span> [TEXT:Trash]</span></div>
 </div>
 
 <div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="b_minileft.png"></td></tr></table></div>
@@ -93,19 +95,19 @@ function clipboardWait(o) {
 <div id="searches" class="searches">
 <input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" width="22px" src="[IMG:search.png]"></a>
 </div>
-<div id="tabclip" class="tabclip">
+<div id="tabclip" ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">
   <span title="[TEXT:my affected documents]"><img src="[IMG:button-blue.png]"></span>
   <span title="[TEXT:my locked documents]" onclick="refreshClipBoard('lock',document.getElementById('clipboard'))"><img  src="[IMG:ylock.png]"></span>
   <span title="[TEXT:my ... documents]"><img src="[IMG:button-yellow.png]"></span>
   <span title="[TEXT:my basket]" onclick="refreshClipBoard(idbasket,document.getElementById('clipboard'))"><img src="[IMG:button-green.png]"></span></div>
-<div id="clipboard" class="clipboard" droppable="yes" dropft="shortcut"  onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinclipboard(event,this,idbasket)" >
+<div id="clipboard" class="clipboard"    onmouseup="insertinclipboard(event,this,CLIPCID)" >
 <table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 </div>
 </div>
 
 <div id="col3" class="col3">
-<div id="fldlist" class="fldlist" droppable="yes" dropft="move" onmouseup="insertinclipboard(event,this,IDCFLDID,'list')" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
+<div id="fldlist" class="fldlist" droppable="yes" dropft="move" onmouseup="insertinclipboard(event,this,CFLDID,'list')" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 <div id="resume" class="resume">
 <iframe id="iresume" style="width:99%;height:99%"></iframe>

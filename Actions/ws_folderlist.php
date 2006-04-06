@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.4 2006/04/05 10:01:24 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.5 2006/04/06 16:48:23 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -50,25 +50,40 @@ function ws_folderlist(&$action) {
   }
 
 
-  if ($addid) {
-    $adddoc=new_doc($dbaccess,$addid);
-    if ($adddoc->isAlive()) {
-      $err=$doc->AddFile($adddoc->id);
-    }
-    if ($err=="") {
-      if ($addft == "move") {
-	$pdoc=new_doc($dbaccess,$pdocid);
-	if ($pdoc->isAlive()) {
-	  $err=$pdoc->DelFile($adddoc->id);
+  if (($addft == "move") || ($addft == "add")) {
+    if ($doc->isAlive()) {
+      if ($addid) {
+	$adddoc=new_doc($dbaccess,$addid);
+	if ($adddoc->isAlive()) {
+	  $err=$doc->AddFile($adddoc->id);
 	}
       }
     }
   }
+  if ($err=="") {
+    if (($addft == "move")) {
+      $pdoc=new_doc($dbaccess,$pdocid);
+      if ($pdoc->isAlive()) {
+	$err=$pdoc->DelFile($adddoc->id);
+      }
+    }
+  }
+  if ($err=="") { 
+    if (($addft == "del")) { 
+      if ($addid) {
+	$adddoc=new_doc($dbaccess,$addid);
+	if ($adddoc->isAlive()) {
+	  $err=$adddoc->delete(); 
+	}
+      }   
+    }
+  }
 
+
+  
   $action->lay->set("pid",$doc->initid);
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
-
     $ls=$doc->getContent();
     $tc=array();
     foreach ($ls as $k=>$v) {
@@ -100,9 +115,9 @@ function ws_folderlist(&$action) {
   }
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
-  $action->lay->set("title",$doc->title);
-  if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
-  else $action->lay->set("nbdoc",_("0 document"));
+  $action->lay->set("title",utf8_encode($doc->title));
+  if (count($tc) > 0) $action->lay->set("nbdoc",utf8_encode(sprintf(_("%d documents"),count($tc))));
+  else $action->lay->set("nbdoc",utf8_encode(_("0 document")));
 					
 
 

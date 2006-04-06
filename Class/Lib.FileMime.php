@@ -14,7 +14,7 @@ function getIconMimeArray() {
 		"application/vnd.oasis.opendocument.presentation" => "mime-presentation",
 		"application/vnd.oasis.opendocument.spreadsheet" => "mime-spreadsheet",
 		"application/vnd.oasis.opendocument.text" => "mime-wordprocessing",
-		"application/vnd.oasis.opendocument.draw" => "mime-vectorgfx",
+		"application/vnd.oasis.opendocument.graphics" => "mime-vectorgfx",
 		"application/vnd.stardivision.calc" => "mime-spreadsheet",
 		"application/vnd.stardivision.impress" => "mime-presentation",
 		"application/vnd.stardivision.writer" => "mime-wordprocessing",
@@ -48,7 +48,7 @@ function getIconMimeArray() {
 		"application/x-gnumeric" => "mime-spreadsheet",
 		"application/x-gzip" => "mime-tgz",
 		"application/xhtml+xml" => "text-html",
-		"application/x-killustrator" => "image-x-generic",
+		"application/x-killustrator" => "mime-vectorgfx",
 		"application/x-kpresenter" => "mime-presentation",
 		"application/x-kspread" => "mime-spreadsheet",
 		"application/x-kword" => "mime-wordprocessing",
@@ -85,7 +85,6 @@ function getIconMimeArray() {
 		"text/x-vcard" => "mime-address-book",
 		"text/x-zsh" => "mime-shellscript",
 		"text/x-makefile" => "mime-make",
-		"video" => "video-x-generic",
 		"x-font-afm" => "font-x-generic");
 }
 
@@ -136,7 +135,7 @@ function getSysMimeFile($f,$fn="") {
       if (preg_match('/\.odp$/',$fn))    return 'application/vnd.oasis.opendocument.presentation';
       if (preg_match('/\.odt$/',$fn))    return 'application/vnd.oasis.opendocument.text';
       if (preg_match('/\.ods$/',$fn))    return 'application/vnd.oasis.opendocument.spreadsheet';
-      if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.drawing';
+      if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.graphics';
       return 'application/vnd.oasis.opendocument.text';
     
     }
@@ -149,7 +148,7 @@ function getSysMimeFile($f,$fn="") {
       if (preg_match('/\.odp$/',$fn))    return 'application/vnd.oasis.opendocument.presentation';
       if (preg_match('/\.odt$/',$fn))    return 'application/vnd.oasis.opendocument.text';
       if (preg_match('/\.ods$/',$fn))    return 'application/vnd.oasis.opendocument.spreadsheet';
-      if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.drawing';
+      if (preg_match('/\.odg$/',$fn))    return 'application/vnd.oasis.opendocument.graphics';
     
   }
   if (!$sys ) {

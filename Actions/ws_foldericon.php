@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.4 2006/03/29 14:52:00 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.5 2006/04/06 16:48:23 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -21,7 +21,7 @@ include_once("FDL/Lib.Dir.php");
  * @param Action &$action current action
  * @global id Http var : basket id
  * @global addid Http var : document id to add/move to basket id
- * @global paddid Http var : current folder of document id to add/move to basket id
+ * @global paddid Http var : current folder of document comes 
  * @global addft Http var : action to realize : [add|move]
  */
 function ws_foldericon(&$action) {
@@ -65,8 +65,11 @@ function ws_foldericon(&$action) {
     }
   }
 
-  $action->lay->set("pid",$doc->initid);
+  $action->lay->set("pid",$docid);
   $action->lay->set("CODE","KO");
+
+  $action->lay->set("droppable",($doc->doctype=="D")?"yes":"no");
+
   if ($doc->isAlive()) {
 
     $ls=$doc->getContent();

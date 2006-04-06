@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.3 2006/03/16 18:51:38 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.4 2006/04/06 16:48:23 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -59,6 +59,7 @@ function ws_addfldbranch(&$action) {
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
+		  "droppable"=>($v["doctype"]=="D")?"yes":"no",
 		  "icon"=>$doc->getIcon($v["icon"]));
     }
 
