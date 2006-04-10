@@ -32,6 +32,8 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 	else req.send(null);
 	
 	INPROGRESS=true;
+
+	document.body.style.cursor='progress';
 	THECIBLE=cible;
 	return true;
     }    
@@ -39,6 +41,7 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 
 function folderTreeAdd() {
   INPROGRESS=false; 
+  document.body.style.cursor='auto';
   var o=THECIBLE;
  
   if (req.readyState == 4) {
@@ -139,7 +142,7 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
       if (! kview) kview='icon';
         req.onreadystatechange = folderTreeAdd ;
 	if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, true);
-	else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&id='+n, true);
+	else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, true);
         else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 	THECIBLE=cible;
@@ -148,7 +151,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
 	else req.send(null);
 	
 	
-	INPROGRESS=true;	
+	INPROGRESS=true;
+	document.body.style.cursor='progress';	
 	clipboardWait(cible);
 	return true;
     }    
@@ -176,7 +180,8 @@ function documentSend(docid,cible) {
 	req.send(null);
 	
 	
-	INPROGRESS=true;	
+	INPROGRESS=true;
+	document.body.style.cursor='progress';	
 	clipboardWait(cible);
 	return true;
     }    
@@ -192,6 +197,8 @@ var DRAGGING=false;
 var DRAGDOC=false;// current document id being dragged
 var PDRAGDOC=false; // current folder id of DRAGDOC
 var POUL=false; // current ul id object is being dragged
+var CORDER='title'; // current order for folder list
+var CDESCORDER=true; // decrease or increase order
 var DRAGFT=false;
 
 
@@ -460,7 +467,14 @@ function viewFolder(event,dirid) {
   folderSend(dirid,where,null,null,null,'list');
   
 }
-
+function changeOrder(event,norder) {
+  if (CORDER == norder) CDESCORDER=(!CDESCORDER); // invert order
+  else {
+    CORDER=norder;
+    CDESCORDER=true;
+  }
+  viewFolder(event,CFLDID);
+}
 function viewDoc_(event,docid) {
   var  where=document.getElementById('resume');
 
