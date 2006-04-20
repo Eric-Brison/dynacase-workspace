@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.2 2006/03/09 16:13:10 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.3 2006/04/20 06:58:46 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -24,7 +24,15 @@ function ws_navigate(&$action) {
 
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/geometry.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/subwindow.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/AnchorPosition.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/common.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/DHTMLapi.js");
+
+
+
+    // css pour popup
+    $action->parent->AddCssRef("FDL:POPUP.CSS",true);
  
 
   $tspaces = getChildDoc($dbaccess,0,"0","ALL",array(), $action->user->id, "ITEM","WORKSPACE");
@@ -36,6 +44,21 @@ function ws_navigate(&$action) {
   }
 
   $action->lay->setBlockData("SPACES",$tlayspaces);
-  
+  if (trashempty($dbaccess,$action->user->id)) $action->lay->set("imgtrash",$action->getImageUrl('trashempty.png'));
+  else $action->lay->set("imgtrash",$action->getImageUrl('trash.png'));
+
 
 }
+
+function trashempty($dbaccess,$userid) {
+  $q=new QueryDb($dbaccess,"Doc");
+  $q->Query(0,0,"TABLE",
+	    sprintf("select id from doc where doctype='Z' and owner=%d limit 1",$userid));
+
+  return ($q->nb == 0);
+
+}
+
+
+
+?>

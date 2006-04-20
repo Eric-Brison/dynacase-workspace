@@ -23,7 +23,7 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
       req = new ActiveXObject("Microsoft.XMLHTTP");
     }
     if (req) {
-        req.onreadystatechange = folderTreeAdd;
+        req.onreadystatechange = XmlInsertHtml;
         req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 
@@ -39,7 +39,7 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
     }    
 }
 
-function folderTreeAdd() {
+function XmlInsertHtml() {
   INPROGRESS=false; 
   document.body.style.cursor='auto';
   var o=THECIBLE;
@@ -73,7 +73,7 @@ function folderTreeAdd() {
 	  }
 	  endexpandtree(imgcible,c);
 	  if (! isNetscape) correctPNG();
-	  //dump('\tDRAGFT:'+DRAGFT+'\n');
+	  //  dump('\tDRAGFT:'+DRAGFT+'\n');
 	  if (POUL && ((DRAGFT=='move')||(DRAGFT=='del'))) {		
 	    //	    alert(POUL.tagName);
 	      // reload branch parent branch
@@ -87,6 +87,7 @@ function folderTreeAdd() {
 	    }
 
 	  } 
+	  changedragft(null,'nothing');
 	} else {
 	  alert('no status\n'+req.responseText);
 	  return;
@@ -140,7 +141,7 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
     }
     if (req) {
       if (! kview) kview='icon';
-        req.onreadystatechange = folderTreeAdd ;
+        req.onreadystatechange = XmlInsertHtml ;
 	if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, true);
 	else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, true);
         else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
@@ -171,7 +172,7 @@ function documentSend(docid,cible) {
       req = new ActiveXObject("Microsoft.XMLHTTP");
     }
     if (req) {
-        req.onreadystatechange = folderTreeAdd ;
+        req.onreadystatechange = XmlInsertHtml ;
         req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_VIEWDOC&id='+docid, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 	THECIBLE=cible;
@@ -186,6 +187,8 @@ function documentSend(docid,cible) {
 	return true;
     }    
 }
+// ----------------------------- view context memnu --------------------
+
 
 function refreshClipBoard(bid,where) {
   CLIPCID=bid;
@@ -200,8 +203,8 @@ var POUL=false; // current ul id object is being dragged
 var CORDER='title'; // current order for folder list
 var CDESCORDER=true; // decrease or increase order
 var DRAGFT=false;
-
-
+var PREVSPANSELECT=false; //previous span element (folder) selected
+var PREVTRSELECT=false; //previous tr element (document) selected
 //var MICON=new Image(100,100);
 var MICON=document.createElement("span");
 var PE=null; // previous elt
@@ -224,6 +227,7 @@ function begindrag(event,oul,osp,docid,pdocid) {
     MICON.style.zIndex = 100;
     MICON.style.display='';
     DRAGGING=true;
+    DRAGFT=false;
     DRAGDOC=docid;
     PDRAGDOC=pdocid;
     
@@ -280,6 +284,7 @@ function overdragft(event,o) {
     }
   } else {    
       o.style.border='green 1px solid';
+      if (o.className=='') o.className='folderhover';
   }
   //   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
 }
@@ -298,10 +303,17 @@ function outdragft(event,o) {
     CDROPZ=null;
       o.style.border='blue 1px solid';
       if (e == PEDROP) PEDROP=false;
+  } else {    
+      if (o.className=='folderhover') o.className='';
   }
 }
 
-
+function overdoc(o) {
+  if (o.className=='') o.className='trhover';
+}
+function outdoc(o) {
+  if (o.className=='trhover') o.className='';
+}
 function changedragft(event,nft) {
   var oft=document.getElementById('miconft'); 
   if (!oft) {
@@ -399,8 +411,9 @@ function enddrag(event) {
   sendEvent(e,"mouseup");
   
   document.body.style.cursor='auto';
-  
   DRAGGING=false;
+  PECTRL=false;
+  //  changedragft(event,'nothing');
 }
 
 function copydrag(o,ulid,cdocid) {
@@ -450,19 +463,22 @@ function deleteinspace(event,o) {
 
 
 function insertinfolder(event,o,oimg,docid,ulid) {
-  var ft='move';
     if (! event) event=window.event;
-    var ctrlKey = event.ctrlKey;
-    if (ctrlKey) ft='add';
+   
     if ((DRAGGING)&& (PDRAGDOC!=docid)&& (DRAGDOC!=docid)&&(DRAGFT)){
       document.getElementById(ulid).innerHTML='';
-      DRAGFT=ft;
-      expandtree(document.getElementById(oimg),docid,ulid,DRAGDOC,PDRAGDOC,ft);
+
+      expandtree(document.getElementById(oimg),docid,ulid,DRAGDOC,PDRAGDOC,DRAGFT);
       DRAGGING=false;
     } 
 }
-function viewFolder(event,dirid) {
+function viewFolder(event,dirid,o) {
   var  where=document.getElementById('fldlist');
+  if (o) {
+    if (PREVSPANSELECT) PREVSPANSELECT.className='';
+    o.className='folderselect';
+    PREVSPANSELECT=o;
+  }
   CFLDID=dirid;
   folderSend(dirid,where,null,null,null,'list');
   
@@ -482,8 +498,13 @@ function viewDoc_(event,docid) {
   
 }
 
-function viewDoc(event,docid) {
+function viewDoc(event,docid,o) {
   var  where=document.getElementById('iresume');
+  if (o) {
+    if (PREVTRSELECT) PREVTRSELECT.className='';    
+    o.className='docselect';
+    PREVTRSELECT=o;
+  }
 
   where.src='index.php?sole=Y&app=FDL&action=FDL_CARD&id='+docid;
 

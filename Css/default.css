@@ -13,7 +13,12 @@ DIV.space {
 TABLE.tfldlist TH {
   background-color:#F5F5F5;
   border-left:#AAAAAA solid 1px;
-/*  background-image:url('../Images/tabvig.png');*/
+}
+TABLE.tfldlist TH.thover {
+  background-color:#9fd0f9;
+}
+TABLE.tfldlist TR.trhover {
+  background-color:#EEEEEE;
 }
 
 TABLE.tfldlist TR.headfirst TH {
@@ -28,9 +33,9 @@ DIV.spaceselect  {
 INPUT, TEXTAREA {  
   border-style : none none inset none;
 }
-DIV.fldlist TBODY.folder TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover,DIV.smallspace:hover {
+/*DIV.fldlist TBODY.folder TR:hover, DIV.fldlist TBODY P:hover, INPUT:hover,DIV.smallspace:hover {
   background-color:#9fd0f9;
-}
+}*/
 
 DIV.tabclip SPAN {         
   border-color : #aaaaaa;          
@@ -55,6 +60,9 @@ IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
 }
 
 SPAN.folderhover {
+  background-color:#EEEEEE;
+}
+SPAN.folderselect, TR.docselect {
   background-color:#9fd0f9;
 }
 INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus, TEXTAREA:focus {
@@ -62,4 +70,41 @@ INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus
 }
 BUTTON {
   -moz-border-radius:5px ;	
+}
+/* pop up style */
+
+
+
+.popup {
+  background-color: #EEEEEE;  
+  border-color: #DDDDDD;
+}
+
+.popup a.menuItem * ,a.menuItem, a.menuItem:link, a.menuItem:visited ,a.menuItemCtrl:link, a.menuItemCtrl:visited , a.menuItemDisabled, a.menuItemDisabled:link,a.menuItemDisabled:visited,a.menuItemCtrlDisabled,a.menuItemCtrlDisabled:link,a.menuItemCtrlDisabled:visited , a.separator {
+  color: black;
+  font-size:7pt;
+  font-weight: normal;
+}
+a.separator {
+  border-color:black;
+}
+a.separator:hover {
+  text-decoration: none;
+  color: white!important;
+  background-color: #333333;  
+}
+.popup a.menuItem:hover,.popup a.menuItemCtrl:hover  {
+  color: white!important;
+  background-color: #333333;	
+}
+.popup a.menuItemDisabled:hover,.popup a.menuItemCtrlDisabled:hover {
+  color: white!important;
+  background-color: #333333;	
+}
+.popup a.menuItem:hover *,.popup a.menuItemCtrl:hover *  {
+  background-color: #333333;  
+  color: white;
+}
+.popup a.menuItemDisabled:hover *,.popup a.menuItemCtrlDisabled:hover * {
+  color: white;
 }

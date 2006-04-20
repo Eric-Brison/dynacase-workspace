@@ -3,9 +3,9 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.4 2006/04/06 16:48:23 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.5 2006/04/20 06:58:46 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @package FREEDOM
+ * @package WORKSPACE
  * @subpackage 
  */
  /**
@@ -14,6 +14,7 @@
 
 
 include_once("FDL/Lib.Dir.php");
+include_once("WORKSPACE/Lib.WsFtCommon.php");
 
 
 /**
@@ -33,22 +34,9 @@ function ws_addfldbranch(&$action) {
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $action->lay->set("warning","");
   $doc=new_doc($dbaccess,$docid);
-  if ($addid) {
-    $adddoc=new_doc($dbaccess,$addid);
-    if ($adddoc->isAlive()) {
-      $err=$doc->AddFile($adddoc->id);
-      if ($err) $action->lay->set("warning",utf8_encode($err));
-      if ($err=="") {
-	if ($addft == "move") {
-	  $pdoc=new_doc($dbaccess,$pdocid);
-	  if ($pdoc->isAlive()) {
-	    $err=$pdoc->DelFile($adddoc->id);
-	    if ($err) $action->lay->set("warning",utf8_encode($err));
-	  }
-	}
-      }
-    }
-  }
+  $err=movementDocument($dbaccess,$doc->id,$addid,$pdocid,$addft);
+  if ($err) $action->lay->set("warning",utf8_encode($err));
+  
 
   $action->lay->set("pid",$doc->id);
   $action->lay->set("CODE","KO");
@@ -59,6 +47,7 @@ function ws_addfldbranch(&$action) {
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
+		  "linkfld"=>($v["prelid"]==$doc->initid)?false:true,
 		  "droppable"=>($v["doctype"]=="D")?"yes":"no",
 		  "icon"=>$doc->getIcon($v["icon"]));
     }

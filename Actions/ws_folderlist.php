@@ -3,9 +3,9 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.6 2006/04/10 16:21:32 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.7 2006/04/20 06:58:46 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @package FREEDOM
+ * @package WORKSPACE
  * @subpackage 
  */
  /**
@@ -14,12 +14,13 @@
 
 
 include_once("FDL/Lib.Dir.php");
+include_once("WORKSPACE/Lib.WsFtCommon.php");
 
 
 /**
  * View list of documents from one folder
  * @param Action &$action current action
- * @global id Http var : basket id
+ * @global id Http var : folder id where move/add document
  * @global addid Http var : document id to add/move to basket id
  * @global paddid Http var : current folder of document id to add/move to basket id
  * @global addft Http var : action to realize : [add|move]
@@ -40,6 +41,7 @@ function ws_folderlist(&$action) {
 
   $action->lay->set("warning","");
 
+
   switch ($docid) {
   case "lock":
     // test locked
@@ -48,40 +50,21 @@ function ws_folderlist(&$action) {
     $doc->Add();
     $doc->addQuery("select * from doc where locked = ".$action->user->id);
     break;
+  case "trash":
+    // test locked
+    $doc=createTmpDoc($dbaccess,5);
+    $doc->title=_("trash");
+    $doc->Add();
+    $doc->addQuery("select * from doc where doctype='Z' and owner = ".$action->user->id);
+    break;
   default:
 
     $doc=new_doc($dbaccess,$docid);
   }
 
+  $err=movementDocument($dbaccess,$doc->id,$addid,$pdocid,$addft);
+  if ($err) $action->lay->set("warning",utf8_encode($err));
 
-  if (($addft == "move") || ($addft == "add")) {
-    if ($doc->isAlive()) {
-      if ($addid) {
-	$adddoc=new_doc($dbaccess,$addid);
-	if ($adddoc->isAlive()) {
-	  $err=$doc->AddFile($adddoc->id);
-	}
-      }
-    }
-  }
-  if ($err=="") {
-    if (($addft == "move")) {
-      $pdoc=new_doc($dbaccess,$pdocid);
-      if ($pdoc->isAlive()) {
-	$err=$pdoc->DelFile($adddoc->id);
-      }
-    }
-  }
-  if ($err=="") { 
-    if (($addft == "del")) { 
-      if ($addid) {
-	$adddoc=new_doc($dbaccess,$addid);
-	if ($adddoc->isAlive()) {
-	  $err=$adddoc->delete(); 
-	}
-      }   
-    }
-  }
 
 
 
@@ -150,6 +133,7 @@ function ws_folderlist(&$action) {
 
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
+		  "linkfld"=>($v["prelid"]==$doc->initid)?false:true,
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxt"),
 		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),

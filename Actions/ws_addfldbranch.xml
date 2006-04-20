@@ -6,10 +6,10 @@
 [BLOCK TREE]
   <li title="[title]"><img id='il[ulid][id]' onclick="DRAGFT='';expandtree(this,'[id]','[ulid][id]')" ondblclick="DRAGFT='';expandtree(this,'[id]','[ulid][id]',null,null,null,true)" class="button" src="[IMG:b_right.png]">
    <span droppable="[droppable]" dropft="move"  
-         onmouseover="overdragft(event,this);this.className='folderhover'" 
-	 onmouseout="outdragft(event,this);this.className=''" 
-	 onclick="viewFolder(event,'[id]')"   
-	 onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,getPrevLiButton(this),this.parentNode,'[id]','[pid]')"  id="img[ulid][id]"  src="[icon]"><img class="ilink" src="[IMG:link.gif]">[title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
+         onmouseover="overdragft(event,this)" 
+	 onmouseout="outdragft(event,this)" 
+	 onclick="viewFolder(event,'[id]',this)"   
+	 onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,getPrevLiButton(this),this.parentNode,'[id]','[pid]')"  id="img[ulid][id]"  src="[icon]">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld][title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
 [ENDBLOCK TREE]  
 
 

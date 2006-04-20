@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.5 2006/04/06 16:48:23 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.6 2006/04/20 06:58:46 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -14,6 +14,7 @@
 
 
 include_once("FDL/Lib.Dir.php");
+include_once("WORKSPACE/Lib.WsFtCommon.php");
 
 
 /**
@@ -50,20 +51,8 @@ function ws_foldericon(&$action) {
   }
 
 
-  if ($addid) {
-    $adddoc=new_doc($dbaccess,$addid);
-    if ($adddoc->isAlive()) {
-      $err=$doc->AddFile($adddoc->id);
-    }
-    if ($err=="") {
-      if ($addft == "move") {
-	$pdoc=new_doc($dbaccess,$pdocid);
-	if ($pdoc->isAlive()) {
-	  $err=$pdoc->DelFile($adddoc->id);
-	}
-      }
-    }
-  }
+  $err=movementDocument($dbaccess,$doc->id,$addid,$pdocid,$addft);
+  if ($err) $action->lay->set("warning",utf8_encode($err));
 
   $action->lay->set("pid",$docid);
   $action->lay->set("CODE","KO");

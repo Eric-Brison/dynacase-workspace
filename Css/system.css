@@ -102,15 +102,15 @@ DIV.tabclip IMG {
   height:16px;
 }
 DIV.tabclip SPAN {
-  -moz-border-radius: 8 8 0 0;	
   width:30px;
-  height:10px;
+  height:20px;
   overflow:hidden;
   float:right;
   border-width : 1px;
   border-style :outset outset none outset;
   padding:2px;
   cursor:pointer;
+  -moz-border-radius: 8 8 0 0;	
   
 }
 DIV.searches {

@@ -47,7 +47,7 @@ function redisplaywsdiv() {
   dtabclip.style.width='198px';
   dtabclip.style.top=wh-210;
   dtabclip.style.left=0;
-  dtabclip.style.height='30px';
+   dtabclip.style.height='30px';
 
   dclipboard.style.width='198px';
   dclipboard.style.top=wh-193;
