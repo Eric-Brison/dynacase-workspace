@@ -33,7 +33,8 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 	
 	INPROGRESS=true;
 
-	document.body.style.cursor='progress';
+	//document.body.style.cursor='progress';
+	globalcursor('progress');
 	THECIBLE=cible;
 	return true;
     }    
@@ -41,7 +42,8 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 
 function XmlInsertHtml() {
   INPROGRESS=false; 
-  document.body.style.cursor='auto';
+  //document.body.style.cursor='auto';
+  unglobalcursor();
   var o=THECIBLE;
  
   if (req.readyState == 4) {
@@ -153,7 +155,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
 	
 	
 	INPROGRESS=true;
-	document.body.style.cursor='progress';	
+	//document.body.style.cursor='progress';	
+	globalcursor('progress');
 	clipboardWait(cible);
 	return true;
     }    
@@ -182,7 +185,8 @@ function documentSend(docid,cible) {
 	
 	
 	INPROGRESS=true;
-	document.body.style.cursor='progress';	
+	//document.body.style.cursor='progress';	
+	globalcursor('progress');
 	clipboardWait(cible);
 	return true;
     }    
@@ -237,8 +241,8 @@ function begindrag(event,oul,osp,docid,pdocid) {
     document.onkeydown=keydrag ;
     document.onkeyup=keydrag ;
 
-    document.body.style.cursor='no-drop';
-    
+    //    document.body.style.cursor='no-drop';
+    globalcursor('no-drop');
 
     if (isIE) {
       // sendEvent(o,"mouseover");
@@ -259,11 +263,11 @@ function overdragft(event,o) {
     if (IEPARASITE == o) return;
     var drop=o.getAttribute("droppable");
     if (drop == 'yes') { 
-      o.style.border='red 1px solid';
+      //      o.style.border='red 1px solid';
       
       if (isIE && (! IEPARASITE)) {
 	IEPARASITE=o;
-	IEPARASITE.style.border='orange 3px solid';
+	//	IEPARASITE.style.border='orange 3px solid';
       }
       if (PECTRL== 0) DRAGFT=false;
       var dft=DRAGFT;
@@ -273,17 +277,18 @@ function overdragft(event,o) {
 	if (ft) dft=ft;
       }
       changedragft(event,dft);  
-      document.body.style.cursor='move';
+      //      document.body.style.cursor='move';
+      globalcursor('move');
     } else {      
       var oft=document.getElementById('miconft');
       if (oft) oft.innerHTML='';
-      o.style.border='orange 1px solid';
+      //      o.style.border='orange 1px solid';
       
-      document.body.style.cursor='no-drop';
-
+      //document.body.style.cursor='no-drop';
+      globalcursor('no-drop');
     }
   } else {    
-      o.style.border='green 1px solid';
+    //      o.style.border='green 1px solid';
       if (o.className=='') o.className='folderhover';
   }
   //   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
@@ -296,12 +301,13 @@ function outdragft(event,o) {
     var oft=document.getElementById('miconft');
     if (oft) {
       oft.innerHTML='';
-      document.body.style.cursor='no-drop';
+      //      document.body.style.cursor='no-drop';
+      globalcursor('no-drop');
     }
     if (PECTRL== 0) DRAGFT=false;
     //        window.status=DRAGFT +'PE:'+PECTRL;
     CDROPZ=null;
-      o.style.border='blue 1px solid';
+    //      o.style.border='blue 1px solid';
       if (e == PEDROP) PEDROP=false;
   } else {    
       if (o.className=='folderhover') o.className='';
@@ -410,7 +416,8 @@ function enddrag(event) {
   MICON.style.display='none';
   sendEvent(e,"mouseup");
   
-  document.body.style.cursor='auto';
+  //  document.body.style.cursor='auto';
+  unglobalcursor();
   DRAGGING=false;
   PECTRL=false;
   //  changedragft(event,'nothing');
@@ -519,4 +526,63 @@ function getPrevLiButton(o) {
     if (e && (e.nodeType==1) && e.getAttribute('ondblclick')) return e;
   }
   return CURSPACE;
+}
+
+
+function viewdetailmenu(event,docid,source) {
+  var menuurl='index.php?sole=Y&app=FDL&action=POPUPDOCDETAIL&id='+docid;
+  viewmenu(event,menuurl,source);
+}
+
+function viewfoldermenu(event,docid,source) {
+  var menuurl='index.php?sole=Y&app=WORKSPACE&action=WS_POPUPLISTFOLDER&id='+docid;
+  viewmenu(event,menuurl,source); 
+}
+
+
+function globalcursor(c)
+{
+  if (!document.styleSheets) return;
+  unglobalcursor();
+  document.body.style.cursor=c;
+  if (document.styleSheets[1].addRule) {
+	  document.styleSheets[1].addRule("*","cursor:"+c+" ! important",0);
+  } else if (document.styleSheets[1].insertRule) {
+	  document.styleSheets[1].insertRule("*{cursor:"+c+" ! important;}", 0); 
+  }
+		
+}
+function unglobalcursor() {
+  if (!document.styleSheets) return;
+  var theRules;
+  var theSheet;
+  var r0;
+  var s='';
+
+  document.body.style.cursor='auto';
+
+  theSheet=document.styleSheets[1];
+  if (document.styleSheets[1].cssRules)
+    theRules = document.styleSheets[1].cssRules;
+    else if (document.styleSheets[1].rules)
+      theRules = document.styleSheets[1].rules;
+    else return;
+
+  r0=theRules[0].selectorText; 
+  /* for (var i=0; i<theSheet.rules.length; i++) {
+      s=s+'\n'+theSheet.rules[i].selectorText;
+      s=s+'-'+theSheet.rules[i].style;
+      }*/
+  //  alert(s);
+
+  if ((r0 == '*')||(r0 == '')) {
+
+  if (document.styleSheets[1].removeRule) {
+   
+    document.styleSheets[1].removeRule(0);
+  } else if (document.styleSheets[1].deleteRule) {
+    document.styleSheets[1].deleteRule(0); 
+  }
+  }
+		
 }

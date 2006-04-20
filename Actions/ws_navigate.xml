@@ -22,7 +22,7 @@
 <script type="text/javascript" src="[APPNAME]/Layout/pngfix.js"></script>
 <script type="text/javascript" src="[APPNAME]/Layout/displayws.js"></script>
 <script type="text/javascript" src="[APPNAME]/Layout/mechanism.js"></script>
-<script type="text/javascript" src="[APPNAME]/Layout/popupdoc.js"></script>
+
    <script language="JavaScript">
   <!--
     [JS:CODE] 
@@ -82,14 +82,14 @@ function clipboardWaitEnd(o) {
 
  </head>
 
-<body class="freedom">
+<body class="freedom" >
 <div id="col1" class="spaces">
 [BLOCK SPACES]
 <div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="add" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
-<div class="space"  ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
+<div class="space" onclick="globalcursor('move')" oncontextmenu="unglobalcursor()" ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
 <br>
 <div class="space" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]"><span> [TEXT:Trash]</span></div>
 </div>
@@ -117,7 +117,7 @@ function clipboardWaitEnd(o) {
 <div id="fldlist" class="fldlist" droppable="yes" dropft="move" onmouseup="insertinclipboard(event,this,CFLDID,'list')" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 <div id="resume" class="resume">
-<iframe id="iresume" style="width:99%;height:99%"></iframe>
+<iframe id="iresume" name="nresume" style="width:99%;height:99%"></iframe>
 </div></div>
-<div   id="popupzone" style="position:absolute;"></div>
+
 </body></html>

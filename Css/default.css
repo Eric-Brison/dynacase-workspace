@@ -1,4 +1,5 @@
 
+
 BODY {
   background-image:url('../Images/brushedgrey.png');
 }
@@ -26,7 +27,7 @@ TABLE.tfldlist TR.headfirst TH {
   -moz-border-radius:15px 15px 0px 0px;
 }
 DIV.spaceselect  {
-  background-color:#EEEEEE;
+  background-color:#9fd0f9;
   border-color:#AAAAAA;
 }
 
@@ -55,7 +56,7 @@ DIV.aspace TH {
 	
 }
 IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
-  background-color:#9fd0f9;
+  background-color:#EEEEEE;
   cursor:pointer;
 }
 
@@ -80,8 +81,14 @@ BUTTON {
   border-color: #DDDDDD;
 }
 
-.popup a.menuItem * ,a.menuItem, a.menuItem:link, a.menuItem:visited ,a.menuItemCtrl:link, a.menuItemCtrl:visited , a.menuItemDisabled, a.menuItemDisabled:link,a.menuItemDisabled:visited,a.menuItemCtrlDisabled,a.menuItemCtrlDisabled:link,a.menuItemCtrlDisabled:visited , a.separator {
+.popup a.menuItem * ,a.menuItem, a.menuItem:link, a.menuItem:visited ,a.menuItemCtrl:link, a.menuItemCtrl:visited , a.separator {
   color: black;
+  font-size:7pt;
+  font-weight: normal;
+}
+
+ a.menuItemDisabled, a.menuItemDisabled:link,a.menuItemDisabled:visited,a.menuItemCtrlDisabled,a.menuItemCtrlDisabled:link,a.menuItemCtrlDisabled:visited {
+  color: #AAAAAA;
   font-size:7pt;
   font-weight: normal;
 }
@@ -98,8 +105,8 @@ a.separator:hover {
   background-color: #333333;	
 }
 .popup a.menuItemDisabled:hover,.popup a.menuItemCtrlDisabled:hover {
-  color: white!important;
-  background-color: #333333;	
+  color: #777777!important;
+  background-color: #EEEEEE;	
 }
 .popup a.menuItem:hover *,.popup a.menuItemCtrl:hover *  {
   background-color: #333333;  

@@ -3,11 +3,11 @@
   <branch><![CDATA[
 
 
-<TABLE   CELLPADDING=4 CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
+<TABLE    CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
 <THEAD >	
 <tr class="headfirst"><th align="left" colspan="5">[title], [nbdoc]</th></tr>
 <TR VALIGN=TOP>
-  <TH width="20px"><a href="" title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
+  <TH width="20px" onmousedown="viewfoldermenu(event,[pid],this);return false;"><a  title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
 [BLOCK HEAD]
   <TH  onmouseover="this.className='thover'" onmouseout="this.className=''" onclick="changeOrder(event,'[horder]');return false;">[IF issort]<img src="[orderimg]" align="right">[ENDIF issort][htitle]</TH>
 [ENDBLOCK HEAD]
@@ -16,7 +16,7 @@
 </THEAD>
 <tbody class="folder">
 [BLOCK TREE]
-<tr oncontextmenu="viewmenu(event,[id]);return false;" onclick="viewDoc(event,'[id]',this)" onmouseover="overdoc(this)" onmouseout="outdoc(this)"><td ><img title="[TEXT:click and drag to move document]" onclick="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="right">[mime]</td></tr>
+<tr oncontextmenu="viewdetailmenu(event,[id],this);return false;" onclick="viewDoc(event,'[id]',this)" onmouseover="overdoc(this)" onmouseout="outdoc(this)"><td ><img title="[TEXT:click and drag to move document]" onclick="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="right">[mime]</td></tr>
 [ENDBLOCK TREE]  
 </tbody>
 </TABLE>

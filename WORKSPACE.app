@@ -53,6 +53,11 @@ $action_desc = array (
    "name"		=>"WS_DELETEDOC",
    "short_name"		=>N_("to view a document"),
    "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
+   "name"		=>"WS_POPUPLISTFOLDER",
+   "short_name"		=>N_("popup menu in folder list"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

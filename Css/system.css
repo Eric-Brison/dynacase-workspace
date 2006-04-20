@@ -245,3 +245,7 @@ TABLE.tfldlist TH IMG{
 TABLE.tfldlist TH {
   cursor:pointer;
 }
+TABLE.tfldlist TD {
+  border-style:inherit;
+  border-width:inherit;
+}
