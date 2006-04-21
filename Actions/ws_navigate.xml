@@ -9,8 +9,8 @@
 [CSS:REF]
 <link href="[APPNAME]/Layout/system.css" type="text/css" rel="stylesheet">
 <link href="[APPNAME]/Layout/default.css" type="text/css" rel="stylesheet"   title="Preferee">
-<link href="black.css" type="text/css" rel="alternate stylesheet"  title="Noir">
-<link href="white.css" type="text/css" rel="alternate stylesheet"  title="Blanc">
+<link href="[APPNAME]/Layout/black.css" type="text/css" rel="alternate stylesheet"  title="Noir">
+<link href="[APPNAME]/Layout/white.css" type="text/css" rel="alternate stylesheet"  title="Blanc">
 
 
    <style type="text/css">
@@ -19,7 +19,6 @@
 
 [JS:REF]
 
-<script type="text/javascript" src="[APPNAME]/Layout/pngfix.js"></script>
 <script type="text/javascript" src="[APPNAME]/Layout/displayws.js"></script>
 <script type="text/javascript" src="[APPNAME]/Layout/mechanism.js"></script>
 
@@ -94,7 +93,7 @@ function clipboardWaitEnd(o) {
 <div class="space" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]"><span> [TEXT:Trash]</span></div>
 </div>
 
-<div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="b_minileft.png"></td></tr></table></div>
+<div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="[IMG:b_minileft.png]"></td></tr></table></div>
 <div id="col2" class="col2">
 <div id="folders" class="folders">
 <ul id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
