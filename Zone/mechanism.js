@@ -263,11 +263,11 @@ function overdragft(event,o) {
     if (IEPARASITE == o) return;
     var drop=o.getAttribute("droppable");
     if (drop == 'yes') { 
-            o.style.border='red 1px solid';
+      //       o.style.border='red 1px solid';
       
       if (isIE && (! IEPARASITE)) {
 	IEPARASITE=o;
-	IEPARASITE.style.border='orange 3px solid';
+	//IEPARASITE.style.border='orange 3px solid';
 	return;
       }
       if (PECTRL== 0) DRAGFT=false;
@@ -283,13 +283,13 @@ function overdragft(event,o) {
     } else {      
       var oft=document.getElementById('miconft');
       if (oft) oft.innerHTML='';
-            o.style.border='orange 1px solid';
+      //o.style.border='orange 1px solid';
       
       //document.body.style.cursor='no-drop';
       globalcursor('no-drop');
     }
   } else {    
-          o.style.border='green 1px solid';
+    //o.style.border='green 1px solid';
       if (o.className=='') o.className='folderhover';
   }
   //   window.status='overdragft'+DRAGFT +'idrag:'+DEBUG+'PE:'+PECTRL+'drop:'+drop;
@@ -308,7 +308,7 @@ function outdragft(event,o) {
     if (PECTRL== 0) DRAGFT=false;
     //        window.status=DRAGFT +'PE:'+PECTRL;
     CDROPZ=null;
-          o.style.border='blue 1px solid';
+    //o.style.border='blue 1px solid';
       if (e == PEDROP) PEDROP=false;
   } else {    
       if (o.className=='folderhover') o.className='';
