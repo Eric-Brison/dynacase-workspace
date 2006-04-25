@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status count="[count]" delay="[delay]" code="[CODE]" warning="[warning]" >
+[BLOCK ACTIONS]
+<action name="[actname]" docid="[actdocid]"></action>
+[ENDBLOCK ACTIONS]
   <branch><![CDATA[
 
 <div style="height:98%;background-color:orange;border:solid 1px orange" droppable="[droppable]" dropft="shortcut" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)">

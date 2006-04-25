@@ -58,6 +58,11 @@ $action_desc = array (
    "name"		=>"WS_POPUPLISTFOLDER",
    "short_name"		=>N_("popup menu in folder list"),
    "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_EMPTYTRASH",
+   "short_name"		=>N_("empty the user trash"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

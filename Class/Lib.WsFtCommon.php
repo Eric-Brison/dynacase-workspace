@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.1 2006/04/20 06:58:46 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.2 2006/04/25 17:09:58 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -17,10 +17,11 @@
    * @param int $pfldid parent folder where comes the document
    * @param string $docft the function : [add|move|del]
    */
-function movementDocument($dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
-  global $action;
+function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
+
   //  $action->lay->set("warning","prel:$dbaccess,$cfldid,$cdocid,$pfldid,$docft");
   $doc=new_doc($dbaccess,$cfldid);
+  $taction=array();
 
   if (($docft == "move") || ($docft == "link")) {
     if ($doc->isAlive()) {
@@ -28,6 +29,8 @@ function movementDocument($dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	$adddoc=new_doc($dbaccess,$cdocid);
 	if ($adddoc->isAlive()) {
 	  $err=$doc->AddFile($adddoc->id);
+	  if ($err=="") $taction[]=array("actname"=>"ADDFILE",
+					 "actdocid"=>$doc->initid);
 	  if (($err=="")&&($docft == "move")) {
 	    if ($adddoc->prelid == $pfldid) {
 	      // change primary relation
@@ -50,6 +53,8 @@ function movementDocument($dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	    if ($err=="") {
 
 	      $err=$doc->AddFile($copy->id);
+	      if ($err=="") $taction[]=array("actname"=>"ADDFILE",
+					     "actdocid"=>$doc->initid);
 	      if ($err == "") {
 		$copy->title = sprintf(_("duplication of %s "),$copy->title);
 		$copy->prelid=$doc->initid;
@@ -75,6 +80,8 @@ function movementDocument($dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
       $pdoc=new_doc($dbaccess,$pfldid);
       if ($pdoc->isAlive()) {
 	$err=$pdoc->DelFile($adddoc->id);
+	  if ($err=="") $taction[]=array("actname"=>"DELFILE",
+					 "actdocid"=>$pdoc->initid);
       }
     }
   }
@@ -85,15 +92,25 @@ function movementDocument($dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	if ($adddoc->isAlive()) {	 
 	  if ($adddoc->prelid == $pfldid) {
 	    $err=$adddoc->delete(); 
+	    if ($err=="") {
+	      $taction[]=array("actname"=>"TRASHFILE",
+			       "actdocid"=>$pdoc->initid);
+	      $taction[]=array("actname"=>"DELFILE",
+			       "actdocid"=>$pfldid);
+	    }
 	  } else {	      
 	    $pdoc=new_doc($dbaccess,$pfldid);
 	    if ($pdoc->isAlive()) {
 	      $err=$pdoc->DelFile($adddoc->initid);
+	  if ($err=="") $taction[]=array("actname"=>"DELFILE",
+					 "actdocid"=>$pdoc->initid);
 	    }
 	  }	  
 	}
       }   
     }
   }
+
+  $action->lay->setBlockData("ACTIONS",$taction);
   return $err;
 }

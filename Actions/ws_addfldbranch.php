@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.5 2006/04/20 06:58:46 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.6 2006/04/25 17:09:58 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -34,7 +34,7 @@ function ws_addfldbranch(&$action) {
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $action->lay->set("warning","");
   $doc=new_doc($dbaccess,$docid);
-  $err=movementDocument($dbaccess,$doc->id,$addid,$pdocid,$addft);
+  $err=movementDocument($action,$dbaccess,$doc->id,$addid,$pdocid,$addft);
   if ($err) $action->lay->set("warning",utf8_encode($err));
   
 

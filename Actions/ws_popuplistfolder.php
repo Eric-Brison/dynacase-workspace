@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.2 2006/04/21 15:11:57 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.3 2006/04/25 17:09:58 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -35,23 +35,35 @@ function ws_popuplistfolder(&$action) {
   $surl=$action->getParam("CORE_STANDURL");
 
   $tlink=array("createfile"=>array("descr"=>_("Create new file").$doc->id,
-				"url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid",
-				"confirm"=>"false",
-				"control"=>"false",
-				"tconfirm"=>"",
-				"target"=>"nresume",
-				"visibility"=>POPUP_ACTIVE,
-				"submenu"=>"",
+				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid",
+				   "confirm"=>"false",
+				   "control"=>"false",
+				   "icon" => "Images/mime-document.png",
+				   "tconfirm"=>"",
+				   "target"=>"nresume",
+				   "visibility"=>POPUP_ACTIVE,
+				   "submenu"=>"",
 				   "barmenu"=>"false"),
 	       "createfolder"=>array("descr"=>_("Create new folder"),
-				"url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=2&&dirid=$docid",
-				"confirm"=>"false",
-				"control"=>"false",
-				"tconfirm"=>"",
-				"target"=>"nresume",
-				"visibility"=>POPUP_ACTIVE,
-				"submenu"=>"",
-				"barmenu"=>"false"));
+				     "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=2&&dirid=$docid",
+				     "confirm"=>"false",
+				     "control"=>"false",
+				     "icon" => "Images/dossier.gif",
+				     "tconfirm"=>"",
+				     "target"=>"nresume",
+				     "visibility"=>POPUP_ACTIVE,
+				     "submenu"=>"",
+				     "barmenu"=>"false"),
+	       "test"=>array("descr"=>_("TEST"),
+			     "jsfunction"=>"alert('coucou')",
+			     "confirm"=>"false",
+			     "control"=>"false",
+			     "icon" => "Images/dossier.gif",
+			     "tconfirm"=>"",
+			     "target"=>"nresume",
+			     "visibility"=>POPUP_ACTIVE,
+			     "submenu"=>"",
+			     "barmenu"=>"false"));
 
 
   if  ( ($doc->Control("modify") != "") || ($doc->isLocked(true))) {
@@ -67,14 +79,13 @@ function ws_popuplistfolder(&$action) {
          
   if  (($doc->doctype != 'S') && (preg_match("/doctype='Z'/",$doc->getValue("se_sqlselect")))) {
   $tlink["trash"]=array("descr"=>_("Empty trash"),
-			 "url"=>"$surl&app=FREEDOM&action=EMPTYTRASH",
-			 "confirm"=>"false",
-			 "control"=>"false",
-			 "tconfirm"=>"",
-			 "target"=>"nresume",
-			 "visibility"=>POPUP_ACTIVE,
-			 "submenu"=>"",
-			 "barmenu"=>"false");
+			"jsfunction"=>"emptytrash(event)",
+			"confirm"=>"false",
+			"tconfirm"=>"",
+			"target"=>"nresume",
+			"visibility"=>POPUP_ACTIVE,
+			"submenu"=>"",
+			"barmenu"=>"false");
   }
 
   popupdoc($action,$tlink,$tsubmenu);

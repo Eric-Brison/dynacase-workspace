@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.7 2006/04/20 06:58:46 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.8 2006/04/25 17:09:58 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -62,7 +62,7 @@ function ws_folderlist(&$action) {
     $doc=new_doc($dbaccess,$docid);
   }
 
-  $err=movementDocument($dbaccess,$doc->id,$addid,$pdocid,$addft);
+  $err=movementDocument($action,$dbaccess,$doc->id,$addid,$pdocid,$addft);
   if ($err) $action->lay->set("warning",utf8_encode($err));
 
 
@@ -118,6 +118,7 @@ function ws_folderlist(&$action) {
       $action->lay->set("orderimg",$action->getImageUrl('b_up.png'));
     }
 
+    $dynfolder=($doc->doctype!='D');
     foreach ($ls as $k=>$v) {
       $size=getv($v,"sfi_filesize",-1);
       if ($size < 0) $dsize="";
@@ -133,7 +134,7 @@ function ws_folderlist(&$action) {
 
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
-		  "linkfld"=>($v["prelid"]==$doc->initid)?false:true,
+		  "linkfld"=>($dynfolder ||($v["prelid"]==$doc->initid))?false:true,
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxt"),
 		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),

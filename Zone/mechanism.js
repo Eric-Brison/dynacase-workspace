@@ -8,6 +8,7 @@ var req;
 var CURSPACE=false;
 var CFLDID=false; // current folder doc id
 var CLIPCID=false; // current folder for clipboard
+var SYNCHRO=false; // 
 
 var REFRESH=false; // to indicate the the state is for resfresh one part
 // ----------------------------- expand tree --------------------
@@ -23,20 +24,30 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
       req = new ActiveXObject("Microsoft.XMLHTTP");
     }
     if (req) {
-        req.onreadystatechange = XmlInsertHtml;
-        req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n, true);
-	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
+      req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      globalcursor('progress');
+      THECIBLE=cible;
+      if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
+      else req.send(null);
 
-       
-        if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-	else req.send(null);
-	
-	INPROGRESS=true;
-
-	//document.body.style.cursor='progress';
+      if (SYNCHRO) {
+	INPROGRESS=false;
+	unglobalcursor();
+	if(req.status == 200) {
+	   
+	  if (req.responseXML) insertXMlResponse(req.responseXML)
+	  else {
+	    alert('no xml\n'+req.responseText);
+	    return;
+	  } 
+	}
+      } else {
 	globalcursor('progress');
-	THECIBLE=cible;
+	INPROGRESS=true;
 	return true;
+      }
     }    
 }
 
@@ -44,7 +55,6 @@ function XmlInsertHtml() {
   INPROGRESS=false; 
   //document.body.style.cursor='auto';
   unglobalcursor();
-  var o=THECIBLE;
  
   if (req.readyState == 4) {
     // only if "OK"
@@ -52,9 +62,23 @@ function XmlInsertHtml() {
     if (req.status == 200) {
       // ...processing statements go here...
       //  alert(req.responseText);
-      if (req.responseXML) {
-	var elts = req.responseXML.getElementsByTagName("status");
-	if (elts.length == 1) {
+      if (req.responseXML) insertXMlResponse(req.responseXML)
+      else {
+	alert('no xml\n'+req.responseText);
+	return;
+      } 	  
+    } else {
+      alert("There was a problem retrieving the XML data:\n" +
+	    req.statusText);
+      return;
+    }
+  } 
+}
+function insertXMlResponse(xmlres) {  
+    var o=THECIBLE;
+    if (xmlres) {
+      var elts = xmlres.getElementsByTagName("status");
+      if (elts.length == 1) {
 	  var elt=elts[0];
 	  var code=elt.getAttribute("code");
 	  var delay=elt.getAttribute("delay");
@@ -66,46 +90,32 @@ function XmlInsertHtml() {
 	    alert('code not OK\n'+req.responseText);
 	    return;
 	  }
-	  elts = req.responseXML.getElementsByTagName("branch");
-	  elt=elts[0].firstChild.nodeValue;
-	  // alert(elt);
-	  if (o) {
-	    if (c > 0)       o.style.display='';
-	    o.innerHTML=elt;
-	  }
-	  endexpandtree(imgcible,c);
-	  if (! isNetscape) correctPNG();
-	  //  dump('\tDRAGFT:'+DRAGFT+'\n');
-	  if (POUL && ((DRAGFT=='move')||(DRAGFT=='del'))) {		
-	    //	    alert(POUL.tagName);
-	      // reload branch parent branch
-	    DRAGFT='';
-	    //dump('\tPOUL detected\n');
-	    if (POUL.getAttribute('ondblclick')) {
-	      REFRESH=true;
-	      POUL.ondblclick.apply(POUL,[]);	   
-	      REFRESH=false;; 
-	      //dump('\tondblclick apply\n');
+	  elts = xmlres.getElementsByTagName("branch");
+	  if (elts && (elts.length>0)) {
+	    elt=elts[0].firstChild.nodeValue;
+	    if (o) {
+	      if (c > 0)       o.style.display='';
+	      o.innerHTML=elt;
 	    }
+	  }
 
-	  } 
+	  var actions=xmlres.getElementsByTagName("action");
+	  
+	  var actname;
+	  var actdocid;
+	  for (var i=0;i<actions.length;i++) {
+	    actname=actions[i].getAttribute("name");
+	    actdocid=actions[i].getAttribute("docid");
+	    postActionRefresh(actname,actdocid);
+	  }
+
 	  changedragft(null,'nothing');
 	} else {
 	  alert('no status\n'+req.responseText);
 	  return;
 	}
-      } else {
-	alert('no xml\n'+req.responseText);
-	return;
-      } 	  
-    } else {
-      alert("There was a problem retrieving the XML data:\n" +
-	    req.statusText);
-      return;
-    }
-  } 
+      }
 }
-
 function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
   if (! where) return 0;
   if (reset && reset==true) {
@@ -133,35 +143,93 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 function folderSend(n,cible,adddocid,padddocid,addft,kview) {
   if (INPROGRESS) return false; // one request only
 
-    // branch for native XMLHttpRequest object
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest(); 
-    } else if (window.ActiveXObject) {
-      // branch for IE/Windows ActiveX version
-      isIE = true;
-      req = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (req) {
-      if (! kview) kview='icon';
-        req.onreadystatechange = XmlInsertHtml ;
-	if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, true);
-	else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, true);
-        else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, true);
-	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-	THECIBLE=cible;
+  // branch for native XMLHttpRequest object
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest(); 
+  } else if (window.ActiveXObject) {
+    // branch for IE/Windows ActiveX version
+    isIE = true;
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
 
-        if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-	else req.send(null);
-	
-	
-	INPROGRESS=true;
-	//document.body.style.cursor='progress';	
+  if (req) {
+      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
+      
+      if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, (!SYNCHRO));
+      else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, (!SYNCHRO));
+      else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, (!SYNCHRO));
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      globalcursor('progress');
+      THECIBLE=cible;
+     
+      if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
+      else req.send(null);
+
+      if (SYNCHRO) {
+	INPROGRESS=false;
+	unglobalcursor();
+	if (req.status == 200) {	   
+	  if (req.responseXML) insertXMlResponse(req.responseXML)
+	  else {
+	    alert('no xml\n'+req.responseText);
+	    return;
+	  } 
+	}
+      } else {
+	INPROGRESS=true;	
 	globalcursor('progress');
 	clipboardWait(cible);
 	return true;
-    }    
+      }
+    }
 }
 
+// send generic request
+function requestUrlSend(cible,url) {
+  if (INPROGRESS) return false; // one request only
+
+  // branch for native XMLHttpRequest object
+  if (window.XMLHttpRequest) {
+    req = new XMLHttpRequest(); 
+  } else if (window.ActiveXObject) {
+    // branch for IE/Windows ActiveX version
+    isIE = true;
+    req = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  if (req) {
+      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
+      
+      req.open("POST", url, (!SYNCHRO));     
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      globalcursor('progress');
+      THECIBLE=cible;
+     
+ 
+      req.send(null);
+
+      if (SYNCHRO) {
+	INPROGRESS=false;
+	unglobalcursor();
+	if (req.status == 200) {	   
+	  if (req.responseXML) insertXMlResponse(req.responseXML)
+	  else {
+	    alert('no xml\n'+req.responseText);
+	    return;
+	  } 
+	}
+      } else {
+	INPROGRESS=true;	
+	globalcursor('progress');
+	clipboardWait(cible);
+	return true;
+      }
+    }
+}
+
+function emptytrash(event) {
+  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_EMPTYTRASH');
+}
 
 // ----------------------------- view document detail --------------------
 function documentSend(docid,cible) {
@@ -565,25 +633,89 @@ function unglobalcursor() {
   theSheet=document.styleSheets[1];
   if (document.styleSheets[1].cssRules)
     theRules = document.styleSheets[1].cssRules;
-    else if (document.styleSheets[1].rules)
-      theRules = document.styleSheets[1].rules;
-    else return;
+  else if (document.styleSheets[1].rules)
+    theRules = document.styleSheets[1].rules;
+  else return;
 
   r0=theRules[0].selectorText; 
   /* for (var i=0; i<theSheet.rules.length; i++) {
-      s=s+'\n'+theSheet.rules[i].selectorText;
-      s=s+'-'+theSheet.rules[i].style;
-      }*/
+     s=s+'\n'+theSheet.rules[i].selectorText;
+     s=s+'-'+theSheet.rules[i].style;
+     }*/
   //  alert(s);
 
   if ((r0 == '*')||(r0 == '')) {
 
-  if (document.styleSheets[1].removeRule) {
+    if (document.styleSheets[1].removeRule) {
    
-    document.styleSheets[1].removeRule(0);
-  } else if (document.styleSheets[1].deleteRule) {
-    document.styleSheets[1].deleteRule(0); 
-  }
+      document.styleSheets[1].removeRule(0);
+    } else if (document.styleSheets[1].deleteRule) {
+      document.styleSheets[1].deleteRule(0); 
+    }
   }
 		
 }
+
+
+function postActionRefresh(action,docid) {  
+  switch (action) {
+  case "ADDFILE":
+    //    alert("ADDFILE:"+docid);
+    postAddFile(docid);
+    break;
+  case "DELFILE":
+    //  alert("DELFILE:"+docid);
+    postAddFile(docid);
+    
+    break;
+  case "EMPTYTRASH":
+    //  alert("DELFILE:"+docid);
+    postEmptyTrash(docid);
+    
+    break;
+  default:
+    
+    alert("UNKNOW:"+action+":"+docid);
+  }
+}
+
+
+function postAddFile(docid) {
+  var fldid;
+  var img;
+  SYNCHRO=true;
+  if (CFLDID == docid) {
+    viewFolder(null,CFLDID)
+  }
+  for (var i=0; i<document.images.length; i++)   {
+    img=document.images[i];
+    fldid=img.getAttribute("docid");
+    if (docid==fldid) {
+      img.style.border='solid 2px green';
+      if (img.getAttribute('ondblclick')) {
+	//	expandtree(this,'[id]','[ulid][id]',null,null,null,true)
+	img.ondblclick.apply(img,[]);	 
+
+      }
+      
+    }
+  }
+  
+  SYNCHRO=false;
+  
+}
+
+
+function postEmptyTrash() {
+  var fldid;
+  var o;
+  alert(CFLDID);
+  if (CFLDID == 'trash') {
+    viewFolder(null,CFLDID)
+  }
+  o=document.getElementById('trashicon');
+  if (o) o.src='Images/trashempty.png';
+  
+  
+}
+

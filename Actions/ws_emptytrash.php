@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_deletedoc.php,v 1.3 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: ws_emptytrash.php,v 1.1 2006/04/25 17:09:58 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -24,7 +24,7 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  * @global addft Http var : action to realize : [del]
  * @global paddid Http var : current folder of document comes 
  */
-function ws_deletedoc(&$action) {
+function ws_emptytrash(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
 
   $mb=microtime();
@@ -34,29 +34,24 @@ function ws_deletedoc(&$action) {
   $dbaccess = $action->GetParam("FREEDOM_DB");
 
   $action->lay->set("warning","");
+
+  $uid=$action->user->id;
+
+  if ($uid > 0) {
+    $q=new QueryDb($dbaccess,"Doc");
+    $lq=$q->Query(0,0,"TABLE","delete from doc where doctype='Z' and owner=$uid");
+
+    if (! $lq) $err=_("the trash cannot be empty");
+  } else {
+    $err=_("no user defined");
+  }
+
   $err=movementDocument($action,$dbaccess,false,$docid,$pdocid,$addft);
   if ($err) $action->lay->set("warning",utf8_encode($err));
-  /*
-  $pdoc=new_doc($dbaccess,$pdocid);
-  
-  if ($pdoc->isAlive()) {
-
-    $doc=new_doc($dbaccess,$docid);
-    if ($doc->isAlive()) {
-      $err=$pdoc->DelFile($doc->id);
-      //$err=$doc->delete(); 
-    }
-  } else {
-    $action->lay->set("CODE","NOTALIVE");
-  }
-  if ($err == "") {
-    $action->lay->set("CODE","OK");
-    
-  } else {
-    $action->lay->set("CODE","NOTALIVE");
-    $action->lay->set("warning",utf8_encode($err));
-  }
-  */
+ 
+  if ($err=="") $taction[]=array("actname"=>"EMPTYTRASH",
+				 "actdocid"=>$pdoc->initid);
+  $action->lay->setBlockData("ACTIONS",$taction);
   $action->lay->set("CODE","OK");
   $action->lay->set("count",1);
   $action->lay->set("delay",microtime_diff(microtime(),$mb));					
