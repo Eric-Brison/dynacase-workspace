@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.8 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.9 2006/04/26 15:52:01 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -73,7 +73,7 @@ function ws_folderlist(&$action) {
   $thead=array("title"=>array("htitle"=>_("Filename Menu"),
 			      "horder"=>"title",
 			      "issort"=>false),
-	       "date"=>array("htitle"=>_("Access Date Menu"),
+	       "date"=>array("htitle"=>_("Modification Date Menu"),
 			     "horder"=>"date",
 			     "issort"=>false),
 	       "size"=>array("htitle"=>_("File Size Menu"),

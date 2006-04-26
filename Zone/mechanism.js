@@ -3,7 +3,7 @@
 
 var INPROGRESS=false;
 var THECIBLE=false;
-var imgcible=false;
+var EXPANDIMG=false;
 var req;
 var CURSPACE=false;
 var CFLDID=false; // current folder doc id
@@ -98,7 +98,6 @@ function insertXMlResponse(xmlres) {
 	      o.innerHTML=elt;
 	    }
 	  }
-
 	  var actions=xmlres.getElementsByTagName("action");
 	  
 	  var actname;
@@ -106,7 +105,7 @@ function insertXMlResponse(xmlres) {
 	  for (var i=0;i<actions.length;i++) {
 	    actname=actions[i].getAttribute("name");
 	    actdocid=actions[i].getAttribute("docid");
-	    postActionRefresh(actname,actdocid);
+	    postActionRefresh(actname,actdocid,c);
 	  }
 
 	  changedragft(null,'nothing');
@@ -124,7 +123,7 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 
   if ((!img) || (where.childNodes.length==0)) {
     if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
-      imgcible=img;
+      EXPANDIMG=img;
       return 2;
     }
     else return -1;
@@ -229,6 +228,12 @@ function requestUrlSend(cible,url) {
 
 function emptytrash(event) {
   requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_EMPTYTRASH');
+}
+function restoreDoc(event,docid) {
+  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_RESTOREDOC&id='+docid);
+}
+function deleteDoc(event,docid) {
+  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+docid+'&paddid='+CFLDID);
 }
 
 // ----------------------------- view document detail --------------------
@@ -599,7 +604,7 @@ function getPrevLiButton(o) {
 
 
 function viewdetailmenu(event,docid,source) {
-  var menuurl='index.php?sole=Y&app=FDL&action=POPUPDOCDETAIL&id='+docid;
+  var menuurl='index.php?sole=Y&app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid;
   viewmenu(event,menuurl,source);
 }
 
@@ -657,7 +662,7 @@ function unglobalcursor() {
 }
 
 
-function postActionRefresh(action,docid) {  
+function postActionRefresh(action,docid,c) {  
   switch (action) {
   case "ADDFILE":
     //    alert("ADDFILE:"+docid);
@@ -673,10 +678,21 @@ function postActionRefresh(action,docid) {
     postEmptyTrash(docid);
     
     break;
-  default:
+  case "TRASHFILE":
+    postTrashFile(docid);
     
+    
+    break;
+  case "ADDBRANCH":
+    //  alert("DELFILE:"+docid);
+    endexpandtree(EXPANDIMG,c);
+    EXPANDIMG=null;
+    
+    break;
+  default:    
     alert("UNKNOW:"+action+":"+docid);
   }
+  // alert("ACTION:"+action+":"+docid);
 }
 
 
@@ -709,7 +725,6 @@ function postAddFile(docid) {
 function postEmptyTrash() {
   var fldid;
   var o;
-  alert(CFLDID);
   if (CFLDID == 'trash') {
     viewFolder(null,CFLDID)
   }
@@ -719,3 +734,15 @@ function postEmptyTrash() {
   
 }
 
+
+function postTrashFile() {
+  var fldid;
+  var o;
+  if (CFLDID == 'trash') {
+    viewFolder(null,CFLDID)
+  }
+  o=document.getElementById('trashicon');
+  if (o) o.src='Images/trash.png';
+  
+  
+}

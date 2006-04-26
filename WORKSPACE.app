@@ -56,12 +56,22 @@ $action_desc = array (
   ) ,
   array( 
    "name"		=>"WS_POPUPLISTFOLDER",
+   "short_name"		=>N_("popup menu global in folder list"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_POPUPDOCFOLDER",
    "short_name"		=>N_("popup menu in folder list"),
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
    "name"		=>"WS_EMPTYTRASH",
    "short_name"		=>N_("empty the user trash"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_RESTOREDOC",
+   "short_name"		=>N_("restore a document from the trash"),
    "acl"		=>"WORKSPACE_USER"
   ) 
 );

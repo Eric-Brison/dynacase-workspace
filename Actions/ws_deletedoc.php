@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_deletedoc.php,v 1.3 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: ws_deletedoc.php,v 1.4 2006/04/26 15:52:01 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -30,8 +30,9 @@ function ws_deletedoc(&$action) {
   $mb=microtime();
   $docid = GetHttpVars("id");
   $pdocid = GetHttpVars("paddid");
-  $addft = GetHttpVars("addft");
+  $addft = GetHttpVars("addft","del");
   $dbaccess = $action->GetParam("FREEDOM_DB");
+
 
   $action->lay->set("warning","");
   $err=movementDocument($action,$dbaccess,false,$docid,$pdocid,$addft);
