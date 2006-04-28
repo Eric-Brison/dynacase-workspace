@@ -693,6 +693,11 @@ function postActionRefresh(action,docid,c) {
     EXPANDIMG=null;
     
     break;
+  case "LOCKFILE":
+  case "UNLOCKFILE":    
+   postLocking(docid);
+        
+    break;
   default:    
     alert("UNKNOW:"+action+":"+docid);
   }
@@ -734,9 +739,18 @@ function postEmptyTrash() {
     viewFolder(null,CFLDID)
   }
   o=document.getElementById('trashicon');
-  if (o) o.src='Images/trashempty.png';
-  
-  
+  if (o) o.src='Images/trashempty.png';    
+}
+
+function postLocking(docid) {
+  var fldid;
+  var o;
+  if (CFLDID == 'lock') {
+    viewFolder(null,CFLDID)
+  }
+  if (CLIPCID == 'lock') {
+    refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
+  } 
 }
 
 
@@ -750,4 +764,13 @@ function postTrashFile() {
   if (o) o.src='Images/trash.png';
   
   
+}
+function receiptActionNotification(code,arg) {
+  
+  for (var i=0;i<code.length;i++) {
+    alert(code[i]);
+    postActionRefresh(code[i],arg[i]);
+  }
+  
+
 }
