@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.3 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.4 2006/04/28 06:44:36 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -54,6 +54,7 @@ function ws_popuplistfolder(&$action) {
 				     "visibility"=>POPUP_ACTIVE,
 				     "submenu"=>"",
 				     "barmenu"=>"false"),
+	       "sep1"=>array("separator"=>true),
 	       "test"=>array("descr"=>_("TEST"),
 			     "jsfunction"=>"alert('coucou')",
 			     "confirm"=>"false",

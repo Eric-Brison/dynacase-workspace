@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.2 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.3 2006/04/28 06:44:36 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -89,8 +89,9 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
     if (($docft == "del")) { 
       if ($cdocid) {
 	$adddoc=new_doc($dbaccess,$cdocid);
-	if ($adddoc->isAlive()) {	 
-	  if ($adddoc->prelid == $pfldid) {
+	if ($adddoc->isAlive()) {
+	  $pdoc=new_doc($dbaccess,$pfldid);	 
+	  if (($adddoc->prelid == $pfldid) || ($pdoc->doctype=='S')) {
 	    $err=$adddoc->delete(); 
 	    if ($err=="") {
 	      $taction[]=array("actname"=>"TRASHFILE",
@@ -99,11 +100,10 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 			       "actdocid"=>$pfldid);
 	    }
 	  } else {	      
-	    $pdoc=new_doc($dbaccess,$pfldid);
 	    if ($pdoc->isAlive()) {
 	      $err=$pdoc->DelFile($adddoc->initid);
-	  if ($err=="") $taction[]=array("actname"=>"DELFILE",
-					 "actdocid"=>$pdoc->initid);
+	      if ($err=="") $taction[]=array("actname"=>"DELFILE",
+					     "actdocid"=>$pdoc->initid);
 	    }
 	  }	  
 	}

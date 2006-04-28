@@ -9,7 +9,7 @@ var CURSPACE=false;
 var CFLDID=false; // current folder doc id
 var CLIPCID=false; // current folder for clipboard
 var SYNCHRO=false; // 
-
+var  CGCURSOR='auto'; // current global cursor
 var REFRESH=false; // to indicate the the state is for resfresh one part
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
@@ -108,6 +108,7 @@ function insertXMlResponse(xmlres) {
 	    postActionRefresh(actname,actdocid,c);
 	  }
 
+	  if (! isNetscape) correctPNG();
 	  changedragft(null,'nothing');
 	} else {
 	  alert('no status\n'+req.responseText);
@@ -616,6 +617,7 @@ function viewfoldermenu(event,docid,source) {
 
 function globalcursor(c)
 {
+  if (c==CGCURSOR) return;
   if (!document.styleSheets) return;
   unglobalcursor();
   document.body.style.cursor=c;
@@ -624,6 +626,7 @@ function globalcursor(c)
   } else if (document.styleSheets[1].insertRule) {
 	  document.styleSheets[1].insertRule("*{cursor:"+c+" ! important;}", 0); 
   }
+  CGCURSOR=c;
 		
 }
 function unglobalcursor() {
@@ -658,6 +661,7 @@ function unglobalcursor() {
       document.styleSheets[1].deleteRule(0); 
     }
   }
+  CGCURSOR='auto';;
 		
 }
 
@@ -703,6 +707,9 @@ function postAddFile(docid) {
   if (CFLDID == docid) {
     viewFolder(null,CFLDID)
   }
+  if (CLIPCID == docid) {
+    refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
+  }
   for (var i=0; i<document.images.length; i++)   {
     img=document.images[i];
     fldid=img.getAttribute("docid");
@@ -711,9 +718,7 @@ function postAddFile(docid) {
       if (img.getAttribute('ondblclick')) {
 	//	expandtree(this,'[id]','[ulid][id]',null,null,null,true)
 	img.ondblclick.apply(img,[]);	 
-
-      }
-      
+      }      
     }
   }
   
