@@ -3,7 +3,7 @@
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
         <P><BR>
         </P>
-        <P>[TEXT:Size] : [dsize] <a href="#" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
+        <P>[TEXT:Size] : [dsize] <a href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
         <P title="[CDATE]">[TEXT:Creation date] :    [createdate]</P>
         <P>[TEXT:Modification date] :       [moddate]</P>
         <P>Participants : Philippe Martin, Isabelle Dupont</P>
