@@ -156,6 +156,8 @@ function getSysMimeFile($f,$fn="") {
     if ($txt) {
       if (preg_match('/^XML/',$txt))  return 'text/xml';
     }
+    
+    if (preg_match('/\.xls$/',$fn))    return 'application/vnd.ms-excel';
   }
 
   return $sys;

@@ -3,27 +3,33 @@
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
         <P><BR>
         </P>
-        <P>[TEXT:Size] : [dsize] <a href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
+        <P>[TEXT:Size] : [dsize] <a [IF ISIE]target="_blank"[ENDIF ISIE] href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="T&eacute;l&eacute;charger le fichier">T&eacute;l&eacute;charger</a></P>
         <P title="[CDATE]">[TEXT:Creation date] :    [createdate]</P>
         <P>[TEXT:Modification date] :       [moddate]</P>
         <P>Participants : Philippe Martin, Isabelle Dupont</P>
         <BR>
 
-        <P><a  title="Modifier le r&eacute;sum&eacute;" onclick="document.getElementById('eresume').style.display='';document.getElementById('vresume').style.display='none';correctOnePNG('E2')"><U>R&eacute;sum&eacute; :</U></a></P>
-        <P id="vresume" style="text-align:justify">[V_SFI_DESCRIPTION] </P>
+        <P><a  title="Modifier le r&eacute;sum&eacute;" 
+               onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))"
+               onclick2="document.getElementById('eresume').style.display='';document.getElementById('vresume').style.display='none';correctOnePNG('E2')"><U>R&eacute;sum&eacute; :</U></a></P>
+        <P id="sfi_description" style="text-align:justify">[V_SFI_DESCRIPTION] </P>
 
         <p id="eresume" style="display:none;"><textarea rows="4" style="text-align:justify;width:100%" >[SFI_DESCRIPTION]</textarea><IMG id="E2" style="width:48px;margin-top:-24px;padding-top:0px;position:relative;top:0px;left:330px" title="Sauvegarder le r&eacute;sum&eacute;" class="button" SRC="Images/b_down.png" ></p>
-        <P><a href="" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
-        <P>[V_SFI_KEYWORD]</P></td>
+        <P><a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
+        <P id="sfi_keyword">[V_SFI_KEYWORD]</P></td>
   <td style="width:40%" valign="top">
         <p style="text-align:right"><b>[TEXT:Version] : [VERSION]</b><br>[TEXT:Release] : [REVISION]</p>
-        <a href="" title="Voir l'historique complet"><U>Historique :</U></a>
+        <a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]')" target="histo" title="Voir l'historique complet"><U>Historique :</U></a>
 <table><tr><td>02/03/1998</td><td>Correction traduction chapitre 5.3</td></tr>
         <tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table>
 <br>
 
 
-        <img src="gnome-big-document.png">
+        [IF thumb]
+           <img onclick="correctOnePNG(this,true)"  id="idimgthumb" src="[V_SFI_THUMB]">
+
+	<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF thumb]
+
 
  </td>
 </tr></table>
