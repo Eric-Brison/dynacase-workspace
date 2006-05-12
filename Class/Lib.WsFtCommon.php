@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.3 2006/04/28 06:44:36 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.4 2006/05/12 15:39:49 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -23,7 +23,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
   $doc=new_doc($dbaccess,$cfldid);
   $taction=array();
 
-  if (($docft == "move") || ($docft == "link")) {
+  if (($docft == "move") || ($docft == "link")|| ($docft == "shortcut") ) {
     if ($doc->isAlive()) {
       if ($cdocid) {
 	$adddoc=new_doc($dbaccess,$cdocid);

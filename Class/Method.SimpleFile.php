@@ -39,6 +39,7 @@ function computeThumbnail() {
 	  
 	  switch ($mime) {
 	  case "text/xml":
+	  case "text/html":
 	  case "application/pdf":
 	  case "application/postscript":
 	    $convert="convert";
@@ -210,6 +211,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   global $action;
   $this->viewdefaultcard($target,$ulink,$abstract);
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
 
 
   if ($this->revision == 0) {
@@ -228,6 +230,10 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
   $this->lay->set("dsize",$dsize);
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
+  $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
+  $this->lay->set("isinline",ereg("html|image|plain",$this->getValue("sfi_mimesys")));
+
+
 
 }
 

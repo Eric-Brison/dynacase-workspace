@@ -249,3 +249,8 @@ TABLE.tfldlist TD {
   border-style:inherit;
   border-width:inherit;
 }
+BUTTON.binline {
+  border:none;
+  background:none;
+  cursor:pointer;
+}

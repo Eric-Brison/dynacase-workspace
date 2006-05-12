@@ -21,7 +21,7 @@ ATTR;SFI_MIMETXT;SFI_FRDESC;type;N;N;text;60;R;;;;
 ATTR;SFI_MIMESYS;SFI_FRDESC;type système;N;N;text;70;R;;;;
 ATTR;SFI_MIMEICON;SFI_FRDESC;icone;N;N;image;80;R;;;;
 ATTR;SFI_FILESIZE;SFI_FRDESC;taille;N;N;double;90;R;;;;
-ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;file;100;R;;;;
+ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;image;100;R;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
 ;;;;;;;;;;;;
