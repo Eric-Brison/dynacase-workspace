@@ -27,8 +27,8 @@
 
         [IF thumb]
            <img onclick="correctOnePNG(this,true)"  id="idimgthumb" src="[V_SFI_THUMB]">
-
-	<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF thumb]
+[IF ISIE]
+	<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF ISIE][ENDIF thumb]
 
 
  </td>

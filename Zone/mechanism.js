@@ -26,11 +26,12 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
     if (req) {
       if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
       req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
-      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded2"); 
+      //      req.setRequestHeader("Content-length", "1"); 
       globalcursor('progress');
       THECIBLE=cible;
       if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-      else req.send(null);
+      else req.send('');
 
       if (SYNCHRO) {
 	INPROGRESS=false;
@@ -55,7 +56,6 @@ function XmlInsertHtml() {
   INPROGRESS=false; 
   //document.body.style.cursor='auto';
   unglobalcursor();
- 
   if (req.readyState == 4) {
     // only if "OK"
     //dump('readyState\n');
@@ -69,7 +69,7 @@ function XmlInsertHtml() {
       } 	  
     } else {
       alert("There was a problem retrieving the XML data:\n" +
-	    req.statusText);
+	    req.statusText+' code :'+req.status);
       return;
     }
   } 
@@ -159,11 +159,12 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
       else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, (!SYNCHRO));
       else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, (!SYNCHRO));
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      //      req.setRequestHeader("Content-Length", "0");
       globalcursor('progress');
       THECIBLE=cible;
      
       if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-      else req.send(null);
+      else req.send('');
 
       if (SYNCHRO) {
 	INPROGRESS=false;
@@ -202,11 +203,12 @@ function requestUrlSend(cible,url) {
       
       req.open("POST", url, (!SYNCHRO));     
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+      //      req.setRequestHeader("Content-Length", "0");
       globalcursor('progress');
       THECIBLE=cible;
      
  
-      req.send(null);
+      req.send('');
 
       if (SYNCHRO) {
 	INPROGRESS=false;
@@ -252,10 +254,11 @@ function documentSend(docid,cible) {
         req.onreadystatechange = XmlInsertHtml ;
         req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_VIEWDOC&id='+docid, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+	//      req.setRequestHeader("Content-Length", "0");
 	THECIBLE=cible;
 
 
-	req.send(null);
+	req.send('');
 	
 	
 	INPROGRESS=true;
@@ -768,7 +771,7 @@ function postTrashFile() {
 function receiptActionNotification(code,arg) {
   
   for (var i=0;i<code.length;i++) {
-    alert(code[i]);
+    //  alert(code[i]);
     postActionRefresh(code[i],arg[i]);
   }
   

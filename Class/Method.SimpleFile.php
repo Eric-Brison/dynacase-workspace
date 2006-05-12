@@ -17,9 +17,7 @@ function postModify() {
 
 function specRefresh() {
   $this->computeMime();
-  print_r2($this->getValues());
-  //  if ($this->getValue("sfi_thumb")=="") 
-$this->computeThumbnail();
+    if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
 }
 
 function computeThumbnail() {
@@ -31,7 +29,6 @@ function computeThumbnail() {
 
 	$mime=$this->getValue("sfi_mimesys");
 	
-	print "$mime<br>";
 	if (ereg("(.*)/(.*)",$mime,$reg) ) {
 	  $mimebase=$reg[1];
 	}
@@ -49,15 +46,21 @@ function computeThumbnail() {
 	  case "application/vnd.ms-excel":
 	    $convert="xlhtml";
 	    break;
-	  case "application/vnd.oasis.opendocument.text":
+	  case "application/msword--":
 	    $convert="abiword";
+	    break;
+	  case "application/vnd.oasis.opendocument.presentation":
+	  case "application/vnd.oasis.opendocument.spreadsheet":
+	  case "application/vnd.oasis.opendocument.graphics":
+	  case "application/vnd.oasis.opendocument.text":
+	    $convert="unzip";
 	    break;
 	    
 	  }
 	}
 
 
-	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background navy -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
+	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
 
 	//	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2   %s";
 	switch ($convert) {
@@ -68,7 +71,7 @@ function computeThumbnail() {
 
 	  $cmd = sprintf($convertcmd,$pf, $cible);
 	  system($cmd);
-	  print ($cmd);
+	  //print ($cmd);
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 
@@ -79,21 +82,49 @@ function computeThumbnail() {
 	  break;
 	case "abiword":
 	  $pf=$info->path;
-	  $ciblepdf=uniqid("/tmp/thumb").".pdf";
+	  $ciblepng=uniqid("/tmp/thumb").".png";
 	  
-	  $cmd = sprintf("abiword --to=pdf -o %s  %s",$ciblepdf, $pf );
+	  // $cmd = sprintf("abiword --to=pdf -o %s  %s",$ciblepdf, $pf );
+	  $cmd = sprintf('abiword --print="|convert -[0] %s" %s',$ciblepng, $pf);
 	  system($cmd);
 	  print ($cmd);
-	  if (file_exists($ciblepdf)) {
+	  if (file_exists($ciblepng)) {
 
 
 
 
 	    $cible=uniqid("/tmp/thumb").".png";
 	    //	    $cmd = sprintf("convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 4x4+4+4 \) +swap   -background none -mosaic  %s",$ciblepdf, $cible);
-	    $cmd = sprintf($convertcmd,$ciblepdf, $cible);
+	    $cmd = sprintf($convertcmd,$ciblepng, $cible);
+	  $c=system($cmd);
+	  // print ($cmd."<br>$c");
+	  if (file_exists($cible)) {
+	    $err=$vf->Store($cible, false , $vid);
+
+	    $ft="image/png|$vid";
+	    $this->setValue("sfi_thumb",$ft);
+	    unlink($cible);
+	  }
+	  unlink($ciblepng);
+	  }
+	  break;
+	case "xlhtml":
+	  $pf=$info->path;
+	  $ciblepdf=uniqid("/tmp/thumb").".html";
+	  
+	  $cmd = sprintf("xlhtml -xp:0  %s > %s", $pf, $ciblepdf );
 	  system($cmd);
-	  print ($cmd);
+	  //  print ($cmd);
+	  if (file_exists($ciblepdf)) {
+
+
+
+
+	  $cible=uniqid("/tmp/thumb").".png";
+
+	  $cmd = sprintf($convertcmd ,$ciblepdf, $cible);
+	  system($cmd);
+	  //	  print ($cmd);
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 
@@ -104,23 +135,26 @@ function computeThumbnail() {
 	  unlink($ciblepdf);
 	  }
 	  break;
-	case "xlhtml":
+	case "unzip":
 	  $pf=$info->path;
-	  $ciblepdf=uniqid("/tmp/thumb").".html";
+	  $cibledir=uniqid("/tmp/thumb");
 	  
-	  $cmd = sprintf("xlhtml -xp:0  %s > %s", $pf, $ciblepdf );
+	  $cmd = sprintf("unzip -j %s Thumbnails/thumbnail.png -d %s >/dev/null", $pf, $cibledir );
 	  system($cmd);
-	  print ($cmd);
-	  if (file_exists($ciblepdf)) {
+	  //  print ($cmd);
+	  $ciblepng=$cibledir."/thumbnail.png";
+
+	  if ($ciblepng) {
 
 
 
 
 	  $cible=uniqid("/tmp/thumb").".png";
-
-	  $cmd = sprintf($convertcmd ,$ciblepdf, $cible);
+	  $convertcmd="convert  %s[0]  -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic  %s";
+	
+	  $cmd = sprintf($convertcmd ,$ciblepng, $cible);
 	  system($cmd);
-	  print ($cmd);
+	  // print ($cmd);
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 
@@ -128,7 +162,8 @@ function computeThumbnail() {
 	    $this->setValue("sfi_thumb",$ft);
 	    unlink($cible);
 	  }
-	  unlink($ciblepdf);
+	  unlink($ciblepng);
+	  rmdir($cibledir);
 	  }
 	  break;
 	}
