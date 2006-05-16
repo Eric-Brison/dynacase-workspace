@@ -78,6 +78,16 @@ $action_desc = array (
    "name"		=>"WS_DOWNLOADFILE",
    "short_name"		=>N_("download file from simplefile"),
    "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
+   "name"		=>"WS_EDITHTMLFILE",
+   "short_name"		=>N_("edit HTML file"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_MODHTMLFILE",
+   "short_name"		=>N_("edit HTML file"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

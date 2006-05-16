@@ -72,7 +72,7 @@ function computeThumbnail() {
 
 	  $cmd = sprintf($convertcmd,$pf, $cible);
 	  system($cmd);
-	  //print ($cmd);
+	  print_r2 ($cmd);
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 

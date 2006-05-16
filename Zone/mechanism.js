@@ -9,7 +9,6 @@ var CURSPACE=false;
 var CFLDID=false; // current folder doc id
 var CLIPCID=false; // current folder for clipboard
 var SYNCHRO=false; // 
-var  CGCURSOR='auto'; // current global cursor
 var REFRESH=false; // to indicate the the state is for resfresh one part
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
@@ -26,7 +25,7 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
     if (req) {
       if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
       req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
-      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded2"); 
+      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
       //      req.setRequestHeader("Content-length", "1"); 
       globalcursor('progress');
       THECIBLE=cible;
@@ -618,55 +617,7 @@ function viewfoldermenu(event,docid,source) {
 }
 
 
-function globalcursor(c)
-{
-  if (c==CGCURSOR) return;
-  if (!document.styleSheets) return;
-  unglobalcursor();
-  document.body.style.cursor=c;
-  if (document.styleSheets[1].addRule) {
-	  document.styleSheets[1].addRule("*","cursor:"+c+" ! important",0);
-  } else if (document.styleSheets[1].insertRule) {
-	  document.styleSheets[1].insertRule("*{cursor:"+c+" ! important;}", 0); 
-  }
-  CGCURSOR=c;
-		
-}
-function unglobalcursor() {
-  if (!document.styleSheets) return;
-  var theRules;
-  var theSheet;
-  var r0;
-  var s='';
 
-  document.body.style.cursor='auto';
-
-  theSheet=document.styleSheets[1];
-  if (document.styleSheets[1].cssRules)
-    theRules = document.styleSheets[1].cssRules;
-  else if (document.styleSheets[1].rules)
-    theRules = document.styleSheets[1].rules;
-  else return;
-
-  r0=theRules[0].selectorText; 
-  /* for (var i=0; i<theSheet.rules.length; i++) {
-     s=s+'\n'+theSheet.rules[i].selectorText;
-     s=s+'-'+theSheet.rules[i].style;
-     }*/
-  //  alert(s);
-
-  if ((r0 == '*')||(r0 == '')) {
-
-    if (document.styleSheets[1].removeRule) {
-   
-      document.styleSheets[1].removeRule(0);
-    } else if (document.styleSheets[1].deleteRule) {
-      document.styleSheets[1].deleteRule(0); 
-    }
-  }
-  CGCURSOR='auto';;
-		
-}
 
 
 function postActionRefresh(action,docid,c) {  

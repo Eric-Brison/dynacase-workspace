@@ -1,16 +1,16 @@
 <div class="resume">
 <table width="100%"><thead  ><tr>
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
-        <b><br><P id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[V_SFI_TITLEW] </P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','ithresume','iinline')">[TEXT:Return to main view]</a></b>
+        <b><br><P id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[V_SFI_TITLEW] [V_SFI_MIMESYS]</P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','ithresume','iinline')">[TEXT:Return to main view]</a></b>
         
-</td><td><p style="text-align:right"><b>[TEXT:Version] : [VERSION]</b><br>[TEXT:Release] : [REVISION]</p>
+</td><td><p style="text-align:right"><img  id="imglck" src="Images/1x1.gif"><b>[TEXT:Version] : [VERSION]</b></p><p style="text-align:right">[TEXT:Release] : [REVISION]</p>
         </td>
 </thead>
 
 <tbody id="ithresume">
 <tr><td><P><BR></P>
         <P>[TEXT:Size] : [dsize] <a [IF ISIE]target="_blank"[ENDIF ISIE] href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file]">[TEXT:Download]</a>
-      [IF ishtml]<a onclick="subwindow(200,200,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file] </a>[ENDIF ishtml]</P>
+      [IF ishtml]<a onclick="subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file] </a>[ENDIF ishtml]</P>
    <P title="[CDATE]">[TEXT:Creation date] :    [createdate]</P>
         <P>[TEXT:Modification date] :       [moddate]</P>
         <P>Participants : Philippe Martin, Isabelle Dupont</P>

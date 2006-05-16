@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.9 2006/04/26 15:52:01 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.10 2006/05/16 17:03:13 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -48,7 +48,7 @@ function ws_folderlist(&$action) {
     $doc=createTmpDoc($dbaccess,5);
     $doc->title="locked";
     $doc->Add();
-    $doc->addQuery("select * from doc where locked = ".$action->user->id);
+    $doc->addQuery("select * from doc where abs(locked) = ".$action->user->id);
     break;
   case "trash":
     // test locked

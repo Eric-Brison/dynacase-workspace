@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.7 2006/04/25 17:09:58 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.8 2006/05/16 17:03:13 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -43,7 +43,8 @@ function ws_foldericon(&$action) {
     $doc=createTmpDoc($dbaccess,5);
     $doc->title="locked";
     $doc->Add();
-    $doc->addQuery("select * from doc where locked = ".$action->user->id);
+    if ($action->user->id>1)  $doc->addQuery("select * from doc where abs(locked) = ".$action->user->id);
+    else  $doc->addQuery("select * from doc where locked = ".$action->user->id);
     break;
   default:
 

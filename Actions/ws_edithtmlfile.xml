@@ -1,0 +1,140 @@
+<html>
+	<head>
+		<title>[edittitle]</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex, nofollow">
+		<script type="text/javascript" src="fckeditor/fckeditor.js"></script>
+
+[JS:REF]
+<script>
+[JS:CODE]
+function submitfile(event,docid,attrid) {
+  if (window.opener) {
+    if (window.opener.attributeSend) {
+
+      cursorwait();
+      // Get the editor instance that we want to interact with.
+	var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
+
+	// Get the editor contents in XHTML.
+
+	var newval= oEditor.GetXHTML( true );
+
+	// var newval='<html>'+oEditor.EditorDocument.body.innerHTML+'</html>';
+
+      var menuurl='../../[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
+       window.opener.attributeSend(event,menuurl,null,newval);
+
+             cursorauto();
+    }
+  }
+}
+
+var ourl;
+function ws_autoclose(event) {
+  if ((! window.opener) || (window.opener.closed)  || (window.opener.location.href != ourl)) self.close();
+}
+if (window.opener)   {
+    ourl=window.opener.location.href;
+    setInterval('ws_autoclose()',2000);
+ }
+
+function viewedit() {
+
+
+    var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
+ 	
+    alert(iffile.document.head.innerHTML);
+    alert(iffile.document.body.innerHTML);
+	// Set the editor contents (replace the actual one).
+    oEditor.SetHTML( 'This is the <b>new content</b> I want in the editor.' ) ;
+
+  
+}
+function getHTMLFile(oed) {
+  var req;
+
+    // branch for native XMLHttpRequest object
+    if (window.XMLHttpRequest) {
+        req = new XMLHttpRequest(); 
+    } else if (window.ActiveXObject) {
+      // branch for IE/Windows ActiveX version     
+      req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (req) {
+     
+      req.open("POST", '[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[docid]&inline=yes',false);
+      //      req.setRequestHeader("Content-length", "1"); 
+     
+      req.send('');
+
+      if(req.status == 200) {
+	   
+	if (req.responseText) {
+	  //var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
+	  //oEditor.SetHTML(req.responseText);
+	  oed.Value=req.responseText;
+	}
+	else {
+	  alert('no txt\n'+req.responseText);
+	  return;
+	} 
+      }
+     
+    }    
+}
+var oFCKeditor = new FCKeditor( 'wsfile' ) ;
+
+
+function cursorwait() {
+  var j=window.frames[0];
+
+  globalcursor('progress',j);
+  globalcursor('progress',j.eEditorArea);
+}
+function cursorauto() {
+  var j=window.frames[0];
+
+  unglobalcursor(j);
+  unglobalcursor(j.eEditorArea);
+}
+
+</script>
+<style>
+body {
+  background-color:white;
+}
+</style>
+	</head>
+
+	<body>
+		
+		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false">
+		<input type="hidden" name="id" value="[docid]">
+		<input type="hidden" name="attrid" value="[attrid]">
+			<script type="text/javascript">
+<!--
+// Automatically calculates the editor base path based on the _samples directory.
+// This is usefull only for these samples. A real application should use something like this:
+// oFCKeditor.BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
+//var sBasePath = document.location.pathname.substring(0,document.location.pathname.lastIndexOf('_samples')) ;
+
+//oFCKeditor.BasePath	= sBasePath ;
+oFCKeditor.BasePath = 'fckeditor/';
+oFCKeditor.Config['FullPage'] = true ;
+oFCKeditor.Config['SkinPath'] =  'skins/silver/';
+[IFNOT BIG]oFCKeditor.Value='[fullhtml]';[ENDIF BIG]
+oFCKeditor.Height='100%';
+oFCKeditor.Width='100%';
+[IF BIG]getHTMLFile(oFCKeditor)[ENDIF BIG]
+oFCKeditor.Create();
+
+
+//-->
+			</script>
+		</form>
+<p onclick="testx();">MOVE</p>
+<p onclick="testy();">UNMOVE</p>
+
+	</body>
+</html>
