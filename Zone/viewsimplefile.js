@@ -3,16 +3,32 @@ function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById(toview);
   var oc=document.getElementById(tocache);
   var obrfull=document.getElementById('brfull');
+  var obrreload=document.getElementById('brreload');
   if (ov && oc) {
 
     if (obrfull.style.display=='none') obrfull.style.display='';
     else obrfull.style.display='none';
-    if  (  (ov.src != url)   )  {
-      ov.src=url;
+    
+    if (url != '') {
+      if  (  (ov.src == 'about:blank')   )  {
+	//	alert('resource:\n'+ov.src+'\n'+url);
+	ov.src=url;
+      } else {
+	obrreload.style.display='';
+      }
+    } else {
+	obrreload.style.display='none';
     }
     oc.style.display='none';
     ov.style.display='';
     resizeIurl(ov.id);
+  }
+}
+
+function wsreload(event,toreload) {
+  var ov=window.winline;
+  if (ov ) {
+    ov.location.reload();
   }
 }
 function resizeIurl(iurl) {

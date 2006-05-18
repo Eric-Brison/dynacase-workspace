@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_edithtmlfile.php,v 1.1 2006/05/16 17:03:45 eric Exp $
+ * @version $Id: ws_edithtmlfile.php,v 1.2 2006/05/18 07:23:52 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -27,6 +27,7 @@ function ws_edithtmlfile(&$action) {
   $aid = GetHttpVars("attrid");
 
   $dbaccess = $action->GetParam("FREEDOM_DB");
+  //  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
 
 
 

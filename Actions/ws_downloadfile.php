@@ -3,7 +3,7 @@
  * Download File in web client
  *
  * @author Anakeen 2006
- * @version $Id: ws_downloadfile.php,v 1.2 2006/05/12 15:39:49 eric Exp $
+ * @version $Id: ws_downloadfile.php,v 1.3 2006/05/18 07:23:52 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -42,6 +42,6 @@ function ws_downloadfile(&$action) {
     $mimetype= $doc->getValue("sfi_mimesys");
 
   
-    DownloadVault($action, $vaultid, true, $mimetype,$imgheight,$inline);
+    DownloadVault($action, $vaultid, true, $mimetype,$imgheight,$inline,false);
   exit;
 }

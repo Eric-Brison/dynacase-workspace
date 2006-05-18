@@ -61,7 +61,7 @@ function computeThumbnail() {
 	}
 
 
-	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
+	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
 
 	//	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2   %s";
 	switch ($convert) {
@@ -222,6 +222,10 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   }
   $this->lay->set("createdate",strftime("%A %d %B %Y",$cdate));
   $this->lay->set("moddate",strftime("%A %d %B %Y",$this->revdate));
+  $thetitle=$this->getValue("sfi_titlew");
+  if ($thetitle=="") $thetitle=sprintf(_("No title"));
+  $this->lay->set("thetitle",$thetitle);
+
 
   $size=$this->getValue("sfi_filesize");
   if ($size < 0) $dsize="";
@@ -231,7 +235,8 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("dsize",$dsize);
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
-  $this->lay->set("isinline",ereg("html|image|plain",$this->getValue("sfi_mimesys")));
+    //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
+  $this->lay->set("isinline",ereg("html|image|plain|xml",$this->getValue("sfi_mimesys")));
 
 
 

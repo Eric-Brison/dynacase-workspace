@@ -1,7 +1,7 @@
 <div class="resume">
 <table width="100%"><thead  ><tr>
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
-        <b><br><P id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[V_SFI_TITLEW] [V_SFI_MIMESYS]</P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','ithresume','iinline')">[TEXT:Return to main view]</a></b>
+        <b><br><P title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[thetitle]</P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'','ithresume','iinline')">[TEXT:Return to main view]</a> <a href="javascript:void(0)" style="display:none" id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></b>
         
 </td><td><p style="text-align:right"><img  id="imglck" src="Images/1x1.gif"><b>[TEXT:Version] : [VERSION]</b></p><p style="text-align:right">[TEXT:Release] : [REVISION]</p>
         </td>
@@ -9,10 +9,18 @@
 
 <tbody id="ithresume">
 <tr><td><P><BR></P>
-        <P>[TEXT:Size] : [dsize] <a [IF ISIE]target="_blank"[ENDIF ISIE] href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file]">[TEXT:Download]</a>
-      [IF ishtml]<a onclick="subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file] </a>[ENDIF ishtml]</P>
-   <P title="[CDATE]">[TEXT:Creation date] :    [createdate]</P>
+        <P>[TEXT:Size] : [dsize] <a [IF ISIE]target="_blank"[ENDIF ISIE] href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file]">[TEXT:Download]</a> 
+	[IF isinline]<a title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','iinline','ithresume')">[TEXT:Display]</a>[ENDIF isinline]
+      [IF ishtml]<a onclick="subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file]</a>[ENDIF ishtml]</P>
+   <P title="[CDATE]">[TEXT:Creation date] :    [createdate] [V_SFI_MIMESYS]</P>
         <P>[TEXT:Modification date] :       [moddate]</P>
+
+
+        <P><a  title="[TEXT:Click to modify subject]" 
+               onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))"><U>[TEXT:Subject] :</U></a>
+        <span id="sfi_subject"  onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" style="cursor:text;text-align:justify">[V_SFI_SUBJECT]</span> </P>
+
+
         <P>Participants : Philippe Martin, Isabelle Dupont</P>
         <BR></td>
      <td><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]')" target="histo" title="Voir l'historique complet"><U>Historique :</U></a>
@@ -24,12 +32,11 @@
         
 
         <P><a  title="[TEXT:Modify the abstract]" 
-               onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))"
-               ><U>[TEXT:Abstract] :</U></a></P>
+               onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))"><U>[TEXT:Abstract] :</U></a></P>
         <P id="sfi_description"  onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))" style="cursor:text;text-align:justify">[V_SFI_DESCRIPTION] </P>
 
 
-        <P><a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs"><U>Mots-Clefs :</U></a></P>
+        <P><a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs"><U>[TEXT:Keywords] :</U></a></P>
         <P id="sfi_keyword" style="cursor:text;" onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" >[V_SFI_KEYWORD]</P></td>
   <td style="width:40%" valign="top">
         
@@ -51,7 +58,7 @@
 </tr></tbody></table>
 </div></div>
 
-      [IF isinline]<iframe id="iinline"   style="display:none"  src=""></iframe>  [ENDIF isinline]
+      [IF isinline]<iframe id="iinline" name="winline"  style="display:none"  src="about:blank"></iframe>  [ENDIF isinline]
 
 <style>
 DIV.resume * {

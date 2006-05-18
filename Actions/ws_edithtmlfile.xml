@@ -12,7 +12,7 @@ function submitfile(event,docid,attrid) {
   if (window.opener) {
     if (window.opener.attributeSend) {
 
-      cursorwait();
+       cursorwait();
       // Get the editor instance that we want to interact with.
 	var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
 
@@ -22,33 +22,43 @@ function submitfile(event,docid,attrid) {
 
 	// var newval='<html>'+oEditor.EditorDocument.body.innerHTML+'</html>';
 
-      var menuurl='../../[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
+
+	var menuurl='';
+	if (isNetscape) menuurl='../../';
+	menuurl=menuurl+'[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
+      
        window.opener.attributeSend(event,menuurl,null,newval);
 
-             cursorauto();
+          cursorauto();
     }
   }
 }
 
 var ourl;
 function ws_autoclose(event) {
-  if ((! window.opener) || (window.opener.closed)  || (window.opener.location.href != ourl)) self.close();
+  if ((! window.opener) || (window.opener.closed)) self.close();
+
+  var a;
+  try{
+    a=window.opener.location;
+    a=window.opener.location.href;
+  }
+  catch(exception) {
+    self.close();
+  }
+  
+  if ( (! window.opener.location)  || (! window.opener.location.href) || (window.opener.location.href != ourl)) {
+    self.close();
+  }  
 }
 if (window.opener)   {
     ourl=window.opener.location.href;
     setInterval('ws_autoclose()',2000);
  }
 
-function viewedit() {
+function wscanceledit(event) {
 
-
-    var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
- 	
-    alert(iffile.document.head.innerHTML);
-    alert(iffile.document.body.innerHTML);
-	// Set the editor contents (replace the actual one).
-    oEditor.SetHTML( 'This is the <b>new content</b> I want in the editor.' ) ;
-
+  window.opener.cancelattr(event,'[docid]','[attrid]');
   
 }
 function getHTMLFile(oed) {
@@ -88,28 +98,29 @@ var oFCKeditor = new FCKeditor( 'wsfile' ) ;
 
 function cursorwait() {
   var j=window.frames[0];
-
+  
   globalcursor('progress',j);
-  globalcursor('progress',j.eEditorArea);
+   globalcursor('progress',j.frames[0]);
 }
 function cursorauto() {
   var j=window.frames[0];
 
-  unglobalcursor(j);
-  unglobalcursor(j.eEditorArea);
+   unglobalcursor(j);
+    unglobalcursor(j.frames[0]);
 }
 
 </script>
 <style>
 body {
   background-color:white;
+  margin:0px;
 }
 </style>
 	</head>
 
-	<body>
+	<body onunload="wscanceledit(event);return false">
 		
-		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false">
+		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false" style="display:inline">
 		<input type="hidden" name="id" value="[docid]">
 		<input type="hidden" name="attrid" value="[attrid]">
 			<script type="text/javascript">
@@ -118,10 +129,11 @@ body {
 // This is usefull only for these samples. A real application should use something like this:
 // oFCKeditor.BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
 //var sBasePath = document.location.pathname.substring(0,document.location.pathname.lastIndexOf('_samples')) ;
-
 //oFCKeditor.BasePath	= sBasePath ;
 oFCKeditor.BasePath = 'fckeditor/';
+
 oFCKeditor.Config['FullPage'] = true ;
+
 oFCKeditor.Config['SkinPath'] =  'skins/silver/';
 [IFNOT BIG]oFCKeditor.Value='[fullhtml]';[ENDIF BIG]
 oFCKeditor.Height='100%';
@@ -133,8 +145,6 @@ oFCKeditor.Create();
 //-->
 			</script>
 		</form>
-<p onclick="testx();">MOVE</p>
-<p onclick="testy();">UNMOVE</p>
 
 	</body>
 </html>
