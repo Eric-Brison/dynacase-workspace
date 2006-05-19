@@ -99,8 +99,8 @@ var oFCKeditor = new FCKeditor( 'wsfile' ) ;
 function cursorwait() {
   var j=window.frames[0];
   
-  globalcursor('progress',j);
-   globalcursor('progress',j.frames[0]);
+   globalcursor('progress',j);
+     globalcursor('progress',j.frames[0]);
 }
 function cursorauto() {
   var j=window.frames[0];
@@ -125,13 +125,11 @@ body {
 		<input type="hidden" name="attrid" value="[attrid]">
 			<script type="text/javascript">
 <!--
-// Automatically calculates the editor base path based on the _samples directory.
-// This is usefull only for these samples. A real application should use something like this:
-// oFCKeditor.BasePath = '/fckeditor/' ;	// '/fckeditor/' is the default value.
-//var sBasePath = document.location.pathname.substring(0,document.location.pathname.lastIndexOf('_samples')) ;
-//oFCKeditor.BasePath	= sBasePath ;
+
 oFCKeditor.BasePath = 'fckeditor/';
 
+
+oFCKeditor.ToolbarSet = 'ws';
 oFCKeditor.Config['FullPage'] = true ;
 
 oFCKeditor.Config['SkinPath'] =  'skins/silver/';

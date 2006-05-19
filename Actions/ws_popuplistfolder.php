@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.5 2006/05/19 07:05:19 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.6 2006/05/19 14:08:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -34,7 +34,7 @@ function ws_popuplistfolder(&$action) {
 
   $surl=$action->getParam("CORE_STANDURL");
 
-  $tlink=array("createfile"=>array("descr"=>_("Create new file"),
+  $tlink=array("createfile"=>array("descr"=>_("Add new file"),
 				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid",
 				   "confirm"=>"false",
 				   "control"=>"false",

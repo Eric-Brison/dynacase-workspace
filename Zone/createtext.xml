@@ -14,6 +14,8 @@
 var oFCKeditor = new FCKeditor( 'wscreatefile' ) ;
 oFCKeditor.BasePath = 'fckeditor/';
 
+oFCKeditor.ToolbarSet = 'ws';
+
 oFCKeditor.Config['FullPage'] = true ;
 
 oFCKeditor.Config['SkinPath'] =  'skins/silver/';
