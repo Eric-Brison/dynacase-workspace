@@ -6,18 +6,59 @@ var $defaultview= "WORKSPACE:VIEWSIMPLEFILE:T";
 function postModify() {
   $this->computeMime();
 
-
+  /*
   $fi=$this->getValue("sfi_file");
   $fiold=$this->getOldValue("sfi_file");
   if (($fiold !== false) && ($fi != $fiold))  $this->computeThumbnail();
+  */
 
 }
 
 
 
 function specRefresh() {
-  $this->computeMime();
-    if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
+  // $this->computeMime();
+  //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
+}
+
+/**
+ * return the converter for thumbnail based of mime type
+ * @return string empty if no converter found
+ */
+function canThumbnail() {
+  $mime=$this->getValue("sfi_mimesys");
+	
+  if (ereg("(.*)/(.*)",$mime,$reg) ) {
+    $mimebase=$reg[1];
+  }
+  $convert="";
+  if ($mimebase == "image") {
+    $convert="convert";
+  } else {
+	  
+    switch ($mime) {
+    case "text/xml":
+    case "text/html":
+    case "application/pdf":
+    case "application/postscript":
+      $convert="convert";
+      break;
+    case "application/vnd.ms-excel":
+      $convert="xlhtml";
+      break;
+    case "application/msword--":
+      $convert="abiword";
+      break;
+    case "application/vnd.oasis.opendocument.presentation":
+    case "application/vnd.oasis.opendocument.spreadsheet":
+    case "application/vnd.oasis.opendocument.graphics":
+    case "application/vnd.oasis.opendocument.text":
+      $convert="unzip";
+      break;
+	    
+    }
+  }
+  return $convert;
 }
 
 function computeThumbnail() {
@@ -27,38 +68,7 @@ function computeThumbnail() {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 
-	$mime=$this->getValue("sfi_mimesys");
-	
-	if (ereg("(.*)/(.*)",$mime,$reg) ) {
-	  $mimebase=$reg[1];
-	}
-	$convert="";
-	if ($mimebase == "image") {
-	  $convert="convert";
-	} else {
-	  
-	  switch ($mime) {
-	  case "text/xml":
-	  case "text/html":
-	  case "application/pdf":
-	  case "application/postscript":
-	    $convert="convert";
-	    break;
-	  case "application/vnd.ms-excel":
-	    $convert="xlhtml";
-	    break;
-	  case "application/msword--":
-	    $convert="abiword";
-	    break;
-	  case "application/vnd.oasis.opendocument.presentation":
-	  case "application/vnd.oasis.opendocument.spreadsheet":
-	  case "application/vnd.oasis.opendocument.graphics":
-	  case "application/vnd.oasis.opendocument.text":
-	    $convert="unzip";
-	    break;
-	    
-	  }
-	}
+	$convert=$this->canThumbnail();
 
 
 	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
@@ -72,12 +82,13 @@ function computeThumbnail() {
 
 	  $cmd = sprintf($convertcmd,$pf, $cible);
 	  system($cmd);
-	  print_r2 ($cmd);
+	  // print_r2 ($cmd);
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 
 	    $ft="image/png|$vid";
 	    $this->setValue("sfi_thumb",$ft);
+	    $this->modify(true,array("sfi_thumb"),true);
 	    unlink($cible);
 	  }
 	  break;
@@ -88,7 +99,7 @@ function computeThumbnail() {
 	  // $cmd = sprintf("abiword --to=pdf -o %s  %s",$ciblepdf, $pf );
 	  $cmd = sprintf('abiword --print="|convert -[0] %s" %s',$ciblepng, $pf);
 	  system($cmd);
-	  print ($cmd);
+	  //print ($cmd);
 	  if (file_exists($ciblepng)) {
 
 
@@ -104,6 +115,7 @@ function computeThumbnail() {
 
 	    $ft="image/png|$vid";
 	    $this->setValue("sfi_thumb",$ft);
+	    $this->modify(true,array("sfi_thumb"),true);
 	    unlink($cible);
 	  }
 	  unlink($ciblepng);
@@ -131,6 +143,7 @@ function computeThumbnail() {
 
 	    $ft="image/png|$vid";
 	    $this->setValue("sfi_thumb",$ft);
+	    $this->modify(true,array("sfi_thumb"),true);
 	    unlink($cible);
 	  }
 	  unlink($ciblepdf);
@@ -161,6 +174,7 @@ function computeThumbnail() {
 
 	    $ft="image/png|$vid";
 	    $this->setValue("sfi_thumb",$ft);
+	    $this->modify(true,array("sfi_thumb"),true);
 	    unlink($cible);
 	  }
 	  unlink($ciblepng);
@@ -209,9 +223,15 @@ function computeMime() {
 
 function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   global $action;
+  $recomputeThumbnail=(getHttpVars("recomputethumb")=="yes");
+  if ($recomputeThumbnail) $this->computeThumbnail();
+
+
+
   $this->viewdefaultcard($target,$ulink,$abstract);
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
+
 
 
   if ($this->revision == 0) {
@@ -238,9 +258,27 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
   $this->lay->set("isinline",ereg("html|image|plain|xml",$this->getValue("sfi_mimesys")));
 
-
+  $this->lay->set("thumbrecompute",$this->canThumbnail());
 
 }
 
 
+function createtext() {
+  global $action;
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/fckeditor/fckeditor.js");
+  $this->editattr();
+  
+}
+
+function postCreated() {
+  // convert html to file
+
+  $html=getHttpVars("wscreatefile");
+
+  if (($this->getValue("sfi_file")=="")  && $html) {
+    $this->SetTextValueInFile("sfi_file",$html,$this->getValue("sfi_titlew").".html");
+    $this->modify();
+  }
+  
+}
 ?>

@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.4 2006/04/28 06:44:36 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.5 2006/05/19 07:05:19 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -34,7 +34,7 @@ function ws_popuplistfolder(&$action) {
 
   $surl=$action->getParam("CORE_STANDURL");
 
-  $tlink=array("createfile"=>array("descr"=>_("Create new file").$doc->id,
+  $tlink=array("createfile"=>array("descr"=>_("Create new file"),
 				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid",
 				   "confirm"=>"false",
 				   "control"=>"false",
@@ -44,11 +44,21 @@ function ws_popuplistfolder(&$action) {
 				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
+	       "createtext"=>array("descr"=>_("Create new text"),
+				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid&zone=WORKSPACE:CREATETEXT",
+				   "confirm"=>"false",
+				   "control"=>"false",
+				   "icon" => "Images/mime-html.png",
+				   "tconfirm"=>"",
+				   "target"=>"nresume",
+				   "visibility"=>POPUP_ACTIVE,
+				   "submenu"=>"",
+				   "barmenu"=>"false"),
 	       "createfolder"=>array("descr"=>_("Create new folder"),
-				     "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=2&&dirid=$docid",
+				     "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFOLDER&&dirid=$docid",
 				     "confirm"=>"false",
 				     "control"=>"false",
-				     "icon" => "Images/dossier.gif",
+				     "icon" => "Images/directory.gif",
 				     "tconfirm"=>"",
 				     "target"=>"nresume",
 				     "visibility"=>POPUP_ACTIVE,
@@ -70,11 +80,13 @@ function ws_popuplistfolder(&$action) {
   if  ( ($doc->Control("modify") != "") || ($doc->isLocked(true))) {
     $tlink["createfile"]["visibility"]=POPUP_INACTIVE;
     $tlink["createfolder"]["visibility"]=POPUP_INACTIVE;
+    $tlink["createtext"]["visibility"]=POPUP_INACTIVE;
   }
   
   if  ($doc->doctype != 'D')  {
     $tlink["createfile"]["visibility"]=POPUP_INVISIBLE;
     $tlink["createfolder"]["visibility"]=POPUP_INVISIBLE;
+    $tlink["createtext"]["visibility"]=POPUP_INVISIBLE;
   }
   
          

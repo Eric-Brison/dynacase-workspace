@@ -43,10 +43,10 @@
 <br>
 
 
-        [IF isinline]<a title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','iinline','ithresume')">[ENDIF isinline]
+        [IF thumbrecompute]<a title="[TEXT:Double Click to recompute the thumbnail]" ondblclick="document.location.href=document.location.href+'&recomputethumb=yes'">[ENDIF thumbrecompute]
          [IF thumb]   <img id="idimgthumb" src="[V_SFI_THUMB]">[ENDIF thumb]
          [IFNOT thumb]   <img id="idimgthumb" src="Images/[ICON]">[ENDIF thumb]
-  [IF isinline]</a>[ENDIF isinline]
+  [IF thumbrecompute]</a>[ENDIF thumbrecompute]
 
 
    

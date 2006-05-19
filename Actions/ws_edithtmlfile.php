@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_edithtmlfile.php,v 1.2 2006/05/18 07:23:52 eric Exp $
+ * @version $Id: ws_edithtmlfile.php,v 1.3 2006/05/19 07:05:19 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -66,7 +66,7 @@ function ws_edithtmlfile(&$action) {
 
     $big=(strlen($content) > 100000);
 
-    if (! $big) $action->lay->set("fullhtml",str_replace(array("'","\n"),array("\\'","\\\n"),$content));
+    if (! $big) $action->lay->set("fullhtml",str_replace(array("'","\n","\r"),array("\\'","\\\n",""),$content));
 
     
   } else {

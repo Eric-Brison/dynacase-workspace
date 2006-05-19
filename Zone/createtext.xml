@@ -1,0 +1,25 @@
+<div class="resume">
+<table width="100%" cellspacing="0">
+
+<tr><td width="10%" align="right">[L_SFI_TITLEW] : </td><td>[V_SFI_TITLEW]</td><td width="50%" rowspan="3">[L_SFI_DESCRIPTION] :<br>[V_SFI_DESCRIPTION]</td></tr>
+<tr><td align="right">[L_SFI_SUBJECT] : </td><td> [V_SFI_SUBJECT]</td><td>&nbsp;</td></tr>
+<tr><td align="right">[L_SFI_KEYWORD] : </td><td> [V_SFI_KEYWORD]</td><td>&nbsp;</td></tr>
+</table>
+</div>
+
+
+
+			<script type="text/javascript">
+
+var oFCKeditor = new FCKeditor( 'wscreatefile' ) ;
+oFCKeditor.BasePath = 'fckeditor/';
+
+oFCKeditor.Config['FullPage'] = true ;
+
+oFCKeditor.Config['SkinPath'] =  'skins/silver/';
+oFCKeditor.Height='100%';
+//oFCKeditor.Width='100%';
+oFCKeditor.Create();
+
+
+			</script>

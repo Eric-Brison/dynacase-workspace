@@ -1,0 +1,13 @@
+<img width="48px" src="Images/[ICON]"> [TEXT:Folder]<br>
+  <b><P title="[TEXT:Click to modify title]" id="sfi_title" 
+	onclick="editattr(event,'[ID]','ba_title',document.getElementById('sfi_title'))" 
+	style="cursor:text;display:inline;margin-left:22px">[V_BA_TITLE]</P></b>
+
+
+<br><br>
+       <a  title="[TEXT:Click to modify description]" 
+               onclick="editattr(event,'[ID]','ba_desc',document.getElementById('sfi_subject'))"><U>[L_BA_DESC] :</U></a>
+        <P id="sfi_subject"  onclick="editattr(event,'[ID]','ba_desc',document.getElementById('sfi_subject'))" style="cursor:text;text-align:justify">[V_BA_DESC]</P> 
+
+
+
