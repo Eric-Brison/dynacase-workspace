@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.4 2006/05/12 15:39:49 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.5 2006/05/30 16:32:27 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -29,8 +29,15 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	$adddoc=new_doc($dbaccess,$cdocid);
 	if ($adddoc->isAlive()) {
 	  $err=$doc->AddFile($adddoc->id);
-	  if ($err=="") $taction[]=array("actname"=>"ADDFILE",
-					 "actdocid"=>$doc->initid);
+	  if ($err=="") {
+	    if (strstr("SD", $adddoc->doctype) === false) {
+	      $taction[]=array("actname"=>"ADDFILE",
+			       "actdocid"=>$doc->initid);
+	    } else {
+	      $taction[]=array("actname"=>"ADDFOLDER",
+			       "actdocid"=>$doc->initid);	    
+	    }
+	  }
 	  if (($err=="")&&($docft == "move")) {
 	    if ($adddoc->prelid == $pfldid) {
 	      // change primary relation
@@ -53,8 +60,16 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	    if ($err=="") {
 
 	      $err=$doc->AddFile($copy->id);
-	      if ($err=="") $taction[]=array("actname"=>"ADDFILE",
-					     "actdocid"=>$doc->initid);
+	      if ($err=="") {
+		if (strstr("SD", $copy->doctype) === false) {
+		  $taction[]=array("actname"=>"ADDFILE",
+				   "actdocid"=>$doc->initid);
+		} else {
+		  $taction[]=array("actname"=>"ADDFOLDER",
+				   "actdocid"=>$doc->initid);	    
+		}
+	      }
+
 	      if ($err == "") {
 		$copy->title = sprintf(_("duplication of %s "),$copy->title);
 		$copy->prelid=$doc->initid;
@@ -68,9 +83,9 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	      }
 	    }
 	  } else {
-	$err=sprintf(_("failed to copy document %s"),$doc->title);
-      }
-    }
+	    $err=sprintf(_("failed to copy document %s"),$doc->title);
+	  }
+	}
       }
     }
   }
@@ -80,8 +95,15 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
       $pdoc=new_doc($dbaccess,$pfldid);
       if ($pdoc->isAlive()) {
 	$err=$pdoc->DelFile($adddoc->id);
-	  if ($err=="") $taction[]=array("actname"=>"DELFILE",
-					 "actdocid"=>$pdoc->initid);
+	if ($err=="") {
+	  if (strstr("SD", $adddoc->doctype) === false) {
+	    $taction[]=array("actname"=>"DELFILE",
+			     "actdocid"=>$pdoc->initid);
+	  } else {
+	    $taction[]=array("actname"=>"DELFOLDER",
+			     "actdocid"=>$pdoc->initid);	    
+	  }
+	}
       }
     }
   }
@@ -92,18 +114,31 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	if ($adddoc->isAlive()) {
 	  $pdoc=new_doc($dbaccess,$pfldid);	 
 	  if (($adddoc->prelid == $pfldid) || ($pdoc->doctype=='S')) {
+	    $isnotfld=(strstr("SD", $adddoc->doctype) === false);
 	    $err=$adddoc->delete(); 
 	    if ($err=="") {
 	      $taction[]=array("actname"=>"TRASHFILE",
 			       "actdocid"=>$pdoc->initid);
-	      $taction[]=array("actname"=>"DELFILE",
-			       "actdocid"=>$pfldid);
+	      if ($isnotfld) {
+		$taction[]=array("actname"=>"DELFILE",
+				 "actdocid"=>$pdoc->initid);
+	      } else {
+		$taction[]=array("actname"=>"DELFOLDER",
+				 "actdocid"=>$pdoc->initid);	    
+	      }
 	    }
 	  } else {	      
 	    if ($pdoc->isAlive()) {
 	      $err=$pdoc->DelFile($adddoc->initid);
-	      if ($err=="") $taction[]=array("actname"=>"DELFILE",
-					     "actdocid"=>$pdoc->initid);
+	      if ($err=="") {
+		if (strstr("SD", $adddoc->doctype) === false) {
+		  $taction[]=array("actname"=>"DELFILE",
+				   "actdocid"=>$pdoc->initid);
+		} else {
+		  $taction[]=array("actname"=>"DELFOLDER",
+				   "actdocid"=>$pdoc->initid);	    
+		}
+	      } 
 	    }
 	  }	  
 	}

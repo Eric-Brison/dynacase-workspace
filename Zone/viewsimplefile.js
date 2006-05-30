@@ -1,3 +1,4 @@
+var WEDITHTML=null; // window of HTML editor
 
 function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById(toview);
@@ -59,3 +60,19 @@ function receiptActionNotification(code,arg) {
     }
   }
 }
+
+function wsischanged(event) {
+  if (! event) event=window.event;
+  //alert(event);
+  if (INPUTCHANGED)  event.returnValue='Attribute in modification';
+  else {
+    if (WEDITHTML) {
+      if (! WEDITHTML.closed) {
+	if (WEDITHTML.wsIsModified()) {
+	  event.returnValue='HTML in edition';
+	}
+      }
+    }
+  }
+}
+addEvent(window,"beforeunload",wsischanged)

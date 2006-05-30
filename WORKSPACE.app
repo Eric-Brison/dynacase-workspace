@@ -88,6 +88,36 @@ $action_desc = array (
    "name"		=>"WS_MODHTMLFILE",
    "short_name"		=>N_("edit HTML file"),
    "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_MODEDITFILE",
+   "short_name"		=>N_("edit download file"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_EDITMODFILE",
+   "short_name"		=>N_("edit download file"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_CANCELMODFILE",
+   "short_name"		=>N_("cancel download file"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_EDITADDVERSION",
+   "short_name"		=>N_("edit for new version"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_DOWNLOADEDITFILE",
+   "short_name"		=>N_("download file for edition"),
+   "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
+   "name"		=>"WS_UPLOADFILE",
+   "short_name"		=>N_("upload file for modification"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

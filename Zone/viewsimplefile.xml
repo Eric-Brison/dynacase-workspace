@@ -3,33 +3,26 @@
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
         <b><br><P title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[thetitle]</P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'','ithresume','iinline')">[TEXT:Return to main view]</a> <a href="javascript:void(0)" style="display:none" id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></b>
         
-</td><td><p style="text-align:right"><img  id="imglck" src="Images/1x1.gif"><b>[TEXT:Version] : [VERSION]</b></p><p style="text-align:right">[TEXT:Release] : [REVISION]</p>
+</td><td><p style="text-align:right"><img  id="imglck" src="[emblem]"><b>[TEXT:Version] : [VERSION]</b></p><p style="text-align:right">[TEXT:Release] : [REVISION]</p>
         </td>
 </thead>
 
 <tbody id="ithresume">
 <tr><td><P><BR></P>
-        <P>[TEXT:Size] : [dsize] <a [IF ISIE]target="_blank"[ENDIF ISIE] href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file]">[TEXT:Download]</a> 
+        <P>[TEXT:Size] : [dsize] <a  href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file]">[TEXT:Download]</a> 
 	[IF isinline]<a title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','iinline','ithresume')">[TEXT:Display]</a>[ENDIF isinline]
-      [IF ishtml]<a onclick="subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file]</a>[ENDIF ishtml]</P>
+      [IF canedithtml]<a onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file]</a>[ENDIF canedithtml]</P>
    <P title="[CDATE]">[TEXT:Creation date] :    [createdate] [V_SFI_MIMESYS]</P>
         <P>[TEXT:Modification date] :       [moddate]</P>
 
 
         <P><a  title="[TEXT:Click to modify subject]" 
-               onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))"><U>[TEXT:Subject] :</U></a>
-        <span id="sfi_subject"  onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" style="cursor:text;text-align:justify">[V_SFI_SUBJECT]</span> </P>
+               onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))"><U>[TEXT:Subject] :</U></a></P>
+        <P id="sfi_subject"  onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" style="cursor:text;text-align:justify">[V_SFI_SUBJECT]</P> 
 
 
         <P>Participants : Philippe Martin, Isabelle Dupont</P>
-        <BR></td>
-     <td><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]')" target="histo" title="Voir l'historique complet"><U>Historique :</U></a>
-<table><tr><td>02/03/1998</td><td>Correction traduction chapitre 5.3</td></tr>
-        <tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table></td></tr>
-
-
-<tr><td>
-        
+        <BR>
 
         <P><a  title="[TEXT:Modify the abstract]" 
                onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))"><U>[TEXT:Abstract] :</U></a></P>
@@ -38,26 +31,21 @@
 
         <P><a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs"><U>[TEXT:Keywords] :</U></a></P>
         <P id="sfi_keyword" style="cursor:text;" onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" >[V_SFI_KEYWORD]</P></td>
-  <td style="width:40%" valign="top">
-        
-<br>
-
+     <td><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]')" target="histo" title="Voir l'historique complet"><U>Historique :</U></a>
+<table><tr><td>02/03/1998</td><td>Correction traduction chapitre 5.3</td></tr>
+        <tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table>
 
         [IF thumbrecompute]<a title="[TEXT:Double Click to recompute the thumbnail]" ondblclick="document.location.href=document.location.href+'&recomputethumb=yes'">[ENDIF thumbrecompute]
          [IF thumb]   <img id="idimgthumb" src="[V_SFI_THUMB]">[ENDIF thumb]
          [IFNOT thumb]   <img id="idimgthumb" src="Images/[ICON]">[ENDIF thumb]
   [IF thumbrecompute]</a>[ENDIF thumbrecompute]
+</td></tr>
 
 
-   
-[IF ISIE]
-	<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF ISIE]
-
-
- </td>
-</tr></tbody></table>
+</tbody></table>
 </div></div>
 
+[IF ISIE]<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF ISIE]
       [IF isinline]<iframe id="iinline" name="winline"  style="display:none"  src="about:blank"></iframe>  [ENDIF isinline]
 
 <style>

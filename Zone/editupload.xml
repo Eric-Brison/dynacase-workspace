@@ -1,0 +1,9 @@
+<P>
+<table><tr><td>
+[TEXT:New file] :  </td><td>[V_SFI_FILE]</td></tr>
+</table>
+
+[SFI_TITLE]
+[V_SFI_TITLE]
+
+<A onclick="alert(document.getElementById('fedit')._UPL_sfi_file.value)">OOO</A>

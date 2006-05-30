@@ -233,6 +233,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
 
 
+  $this->lay->set("emblem",$this->getEmblem());
 
   if ($this->revision == 0) {
     $cdate=FrenchDateToUnixTs($this->cdate);
@@ -255,6 +256,9 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("dsize",$dsize);
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
+  $this->lay->set("canedithtml",($this->getValue("sfi_mimesys")=="text/html")&&($this->getValue('sfi_inedition') != 1));
+
+
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
   $this->lay->set("isinline",ereg("html|image|plain|xml",$this->getValue("sfi_mimesys")));
 
@@ -265,6 +269,9 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
 
 function createtext() {
   global $action;
+  $a=$this->getAttribute("sfi_titlew");
+  $a->needed="Y";
+
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/fckeditor/fckeditor.js");
   $this->editattr();
   
@@ -279,6 +286,29 @@ function postCreated() {
     $this->SetTextValueInFile("sfi_file",$html,$this->getValue("sfi_titlew").".html");
     $this->modify();
   }
+  
+}
+
+/**
+ * test if file is already downloaded to be changed
+ */
+function fileIsInEdition() {
+  if ($this->getValue('sfi_inedition') == 1) return MENU_ACTIVE;
+  else return MENU_INVISIBLE;
+}
+  
+/**
+ * inverse of ::fileIsInEdition()
+ */
+function fileIsNotInEdition() {
+  if ($this->fileIsInEdition() == MENU_INVISIBLE) return MENU_ACTIVE;
+  return MENU_INVISIBLE;
+}
+  
+function editupload() {
+
+  $this->viewprop();
+  $this->editattr();
   
 }
 ?>

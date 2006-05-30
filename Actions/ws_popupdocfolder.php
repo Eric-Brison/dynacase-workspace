@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.2 2006/04/28 06:44:36 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.3 2006/05/30 16:32:27 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -90,7 +90,7 @@ function ws_popupdocfolder(&$action) {
 				   "tconfirm"=>_("Sure duplicate ?"),
 				   "target"=>"",
 				   "visibility"=>POPUP_CTRLACTIVE,
-				   "submenu"=>"security",
+				   "submenu"=>"",
 				   "barmenu"=>"false"),
 	       "lockdoc"=>array( "descr"=>_("Lock"),
 				 "url"=>"$surl&app=FDL&action=LOCKFILE&id=$docid",

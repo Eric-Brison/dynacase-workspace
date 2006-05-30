@@ -28,13 +28,13 @@ function submitfile(event,docid,attrid) {
 	menuurl=menuurl+'[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
       
        window.opener.attributeSend(event,menuurl,null,newval);
-
-          cursorauto();
+       oEditor.ResetIsDirty();
+       cursorauto();
     }
   }
 }
 
-var ourl;
+var OURL;
 function ws_autoclose(event) {
   if ((! window.opener) || (window.opener.closed)) self.close();
 
@@ -47,12 +47,12 @@ function ws_autoclose(event) {
     self.close();
   }
   
-  if ( (! window.opener.location)  || (! window.opener.location.href) || (window.opener.location.href != ourl)) {
+  if ( (! window.opener.location)  || (! window.opener.location.href) || (window.opener.location.href != OURL)) {
     self.close();
   }  
 }
 if (window.opener)   {
-    ourl=window.opener.location.href;
+    OURL=window.opener.location.href;
     setInterval('ws_autoclose()',2000);
  }
 
@@ -61,6 +61,7 @@ function wscanceledit(event) {
   window.opener.cancelattr(event,'[docid]','[attrid]');
   
 }
+
 function getHTMLFile(oed) {
   var req;
 
@@ -108,7 +109,9 @@ function cursorauto() {
    unglobalcursor(j);
     unglobalcursor(j.frames[0]);
 }
-
+function wsIsModified() {
+  return FCKeditorAPI.GetInstance('wsfile').IsDirty();
+}
 </script>
 <style>
 body {
@@ -118,7 +121,8 @@ body {
 </style>
 	</head>
 
-	<body onunload="wscanceledit(event);return false">
+	<body onunload="wscanceledit(event);return false"
+	onbeforeunload="if (wsIsModified()) return '[TEXT:The text has be modified]'" >
 		
 		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false" style="display:inline">
 		<input type="hidden" name="id" value="[docid]">
@@ -139,10 +143,8 @@ oFCKeditor.Width='100%';
 [IF BIG]getHTMLFile(oFCKeditor)[ENDIF BIG]
 oFCKeditor.Create();
 
-
 //-->
 			</script>
 		</form>
-
 	</body>
 </html>

@@ -26,7 +26,7 @@
   <!--
     [JS:CODE] 
    var idbasket='[FREEDOM_IDBASKET]';
-
+var CORE_STANDURL='[CORE_STANDURL]';
 
 function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
   
@@ -50,6 +50,7 @@ function expandToptree(o,id,ulid) {
   }
   o.className="spaceselect";
   CURSPACE=o;
+  CURSPACEID=id;
   var r=viewfoldertree(null,id,ulid);
   if (r==2) {
     ulid.innerHTML='<table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_wait.png]"></tr></td></table>';

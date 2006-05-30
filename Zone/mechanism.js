@@ -1,15 +1,33 @@
 
+var DRAGGING=false;
+var DRAGDOC=false;// current document id being dragged
+var PDRAGDOC=false; // current folder id of DRAGDOC
+var POUL=false; // current ul id object is being dragged
+var CORDER='title'; // current order for folder list
+var CDESCORDER=true; // decrease or increase order
+var DRAGFT=false;
+var PREVSPANSELECT=false; //previous span element (folder) selected
+var PREVTRSELECT=false; //previous tr element (document) selected
+//var MICON=new Image(100,100);
+var MICON=document.createElement("span");
+var PE=null; // previous elt
+var PEDROP=null; // previous elt droppable
+var PECTRL=0; // previous hot key pushed (ctrl or shift)
+var CDROPZ=null; // current drop zone
+var IEPARASITE=null; // to ignored unwanted event fire produced by IE
 
 
 var INPROGRESS=false;
 var THECIBLE=false;
 var EXPANDIMG=false;
 var req;
-var CURSPACE=false;
+var CURSPACE=false; // current selected space object
+var CURSPACEID=false; // current selected space id
 var CFLDID=false; // current folder doc id
 var CLIPCID=false; // current folder for clipboard
 var SYNCHRO=false; // 
 var REFRESH=false; // to indicate the the state is for resfresh one part
+var PREVVIEWDOCID=false; // to don't do twice teh same action
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
   if (INPROGRESS) alert('abordted');
@@ -24,7 +42,7 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
     }
     if (req) {
       if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
-      req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
+      req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
       //      req.setRequestHeader("Content-length", "1"); 
       globalcursor('progress');
@@ -154,9 +172,9 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
   if (req) {
       if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
       
-      if (addft=='del') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, (!SYNCHRO));
-      else if (kview == 'list') req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, (!SYNCHRO));
-      else req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, (!SYNCHRO));
+      if (addft=='del') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, (!SYNCHRO));
+      else if (kview == 'list') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, (!SYNCHRO));
+      else req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, (!SYNCHRO));
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
       //      req.setRequestHeader("Content-Length", "0");
       globalcursor('progress');
@@ -229,13 +247,13 @@ function requestUrlSend(cible,url) {
 }
 
 function emptytrash(event) {
-  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_EMPTYTRASH');
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_EMPTYTRASH');
 }
 function restoreDoc(event,docid) {
-  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_RESTOREDOC&id='+docid);
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid);
 }
 function deleteDoc(event,docid) {
-  requestUrlSend(null,'index.php?sole=Y&app=WORKSPACE&action=WS_DELETEDOC&id='+docid+'&paddid='+CFLDID);
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+docid+'&paddid='+CFLDID);
 }
 
 // ----------------------------- view document detail --------------------
@@ -251,7 +269,7 @@ function documentSend(docid,cible) {
     }
     if (req) {
         req.onreadystatechange = XmlInsertHtml ;
-        req.open("POST", 'index.php?sole=Y&app=WORKSPACE&action=WS_VIEWDOC&id='+docid, true);
+        req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_VIEWDOC&id='+docid, true);
 	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
 	//      req.setRequestHeader("Content-Length", "0");
 	THECIBLE=cible;
@@ -276,22 +294,6 @@ function refreshClipBoard(bid,where) {
 }
 
 // ----------------------------- drag & drop --------------------
-var DRAGGING=false;
-var DRAGDOC=false;// current document id being dragged
-var PDRAGDOC=false; // current folder id of DRAGDOC
-var POUL=false; // current ul id object is being dragged
-var CORDER='title'; // current order for folder list
-var CDESCORDER=true; // decrease or increase order
-var DRAGFT=false;
-var PREVSPANSELECT=false; //previous span element (folder) selected
-var PREVTRSELECT=false; //previous tr element (document) selected
-//var MICON=new Image(100,100);
-var MICON=document.createElement("span");
-var PE=null; // previous elt
-var PEDROP=null; // previous elt droppable
-var PECTRL=0; // previous hot key pushed (ctrl or shift)
-var CDROPZ=null; // current drop zone
-var IEPARASITE=null; // to ignored unwanted event fire produced by IE
 MICON.className='MICON';
 MICON.style.display='none';
 
@@ -305,29 +307,34 @@ function begindrag(event,oul,osp,docid,pdocid) {
     MICON.style.top = Ypos+2; 
     MICON.style.left = Xpos+2; 
     MICON.style.zIndex = 100;
-    MICON.style.display='';
     DRAGGING=true;
-    DRAGFT=false;
     DRAGDOC=docid;
     PDRAGDOC=pdocid;
+   
     
     MICON.innerHTML=osp.innerHTML;
-    document.onmousemove=movedrag ;
     document.onmouseup=enddrag ;
+    setTimeout('reallybegindrag()',200); // display dragging mode 200ms after
+
+      
+    //    POUL=oul;
+    stopPropagation(event);
+
+    return false;
+  }
+}
+
+
+function reallybegindrag(event) {
+  if (DRAGGING) {
+    MICON.style.display='';
+    DRAGFT=false;
+    document.onmousemove=movedrag ;
     document.onkeydown=keydrag ;
     document.onkeyup=keydrag ;
 
     //    document.body.style.cursor='no-drop';
     globalcursor('no-drop');
-
-    if (isIE) {
-      // sendEvent(o,"mouseover");
-      //      osp.className='';
-    }
-    POUL=oul;
-    stopPropagation(event);
-
-    return false;
   }
 }
 
@@ -575,14 +582,12 @@ function changeOrder(event,norder) {
   }
   viewFolder(event,CFLDID);
 }
-function viewDoc_(event,docid) {
-  var  where=document.getElementById('resume');
 
-  documentSend(docid,where);
-  
-}
 
 function viewDoc(event,docid,o) {
+  if (PREVVIEWDOCID==docid) return;
+  PREVVIEWDOCID=docid;
+
   var  where=document.getElementById('iresume');
   if (o) {
     if (PREVTRSELECT) PREVTRSELECT.className='';    
@@ -590,7 +595,7 @@ function viewDoc(event,docid,o) {
     PREVTRSELECT=o;
   }
 
-  where.src='index.php?sole=Y&app=FDL&action=FDL_CARD&id='+docid;
+  where.src=CORE_STANDURL+'app=FDL&action=FDL_CARD&id='+docid;
 
   
 }
@@ -607,12 +612,12 @@ function getPrevLiButton(o) {
 
 
 function viewdetailmenu(event,docid,source) {
-  var menuurl='index.php?sole=Y&app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid;
+  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid;
   viewmenu(event,menuurl,source);
 }
 
 function viewfoldermenu(event,docid,source) {
-  var menuurl='index.php?sole=Y&app=WORKSPACE&action=WS_POPUPLISTFOLDER&id='+docid;
+  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPLISTFOLDER&id='+docid;
   viewmenu(event,menuurl,source); 
 }
 
@@ -622,6 +627,11 @@ function viewfoldermenu(event,docid,source) {
 
 function postActionRefresh(action,docid,c) {  
   switch (action) {
+  case "ADDFOLDER":
+  case "DELFOLDER":
+    postAddFile(docid);
+    postAddFolder(docid);
+    break;
   case "ADDFILE":
     //    alert("ADDFILE:"+docid);
     postAddFile(docid);
@@ -655,7 +665,7 @@ function postActionRefresh(action,docid,c) {
   default:    
     alert("UNKNOW:"+action+":"+docid);
   }
-  // alert("ACTION:"+action+":"+docid);
+  //   alert("ACTION:"+action+":"+docid);
 }
 
 
@@ -669,6 +679,24 @@ function postAddFile(docid) {
   if (CLIPCID == docid) {
     refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
   }
+  
+  
+  SYNCHRO=false;
+  
+}
+function  postAddFolder(docid) {
+  var fldid;
+  var img;
+  SYNCHRO=true;
+ 
+  if (CURSPACEID == docid) {
+    
+    if (CURSPACE && CURSPACE.getAttribute('onclick')) {
+      CURSPACE.onclick.apply(CURSPACE,[]);	
+    }
+  } else {
+    
+    
   for (var i=0; i<document.images.length; i++)   {
     img=document.images[i];
     fldid=img.getAttribute("docid");
@@ -680,11 +708,10 @@ function postAddFile(docid) {
       }      
     }
   }
-  
+  }
   SYNCHRO=false;
   
 }
-
 
 function postEmptyTrash() {
   var fldid;
