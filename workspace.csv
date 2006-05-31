@@ -25,7 +25,7 @@ ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;image;100;R;;;;;;;
 ATTR;SFI_INEDITION;SFI_FRDESC;fichier en édition ?;N;N;text;110;H;;;;;;;
 ATTR;SFI_MODFILE;;Modifier le fichier;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITMODFILE&id=%I%;;::fileIsNotInEdition();;;
 ATTR;SFI_CANCELMODFILE;;Abandonner la modification;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_CANCELMODFILE&id=%I%;;::fileIsInEdition();;;ltarget=_self
-ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;
+ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;ltarget=_self
 ATTR;SFI_ADDVERSION;;Versionner;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITADDVERSION&id=%I%;;::fileIsNotInEdition();;;
 END;;;;;;;;;;;;;;;
 BEGIN;DIR;répertoire;;;SIMPLEFOLDER;;;;;;;;;;

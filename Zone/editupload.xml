@@ -1,9 +1,46 @@
-<P>
-<table><tr><td>
+<p>[TEXT:You must click on the Search... button to select the modified file ]</p>
+<p>[TEXT:To prevent error, the filename must be the same as the previous name]</p>
+<p>[TEXT:If you want to change file, you need to abord the modification and choose 'replace file' in the context menu]</p>
+<table cellspacing="0" ><tr><td>
 [TEXT:New file] :  </td><td>[V_SFI_FILE]</td></tr>
 </table>
 
-[SFI_TITLE]
-[V_SFI_TITLE]
 
-<A onclick="alert(document.getElementById('fedit')._UPL_sfi_file.value)">OOO</A>
+[V_SFI_INEDITION]
+<br>
+[TEXT:Stay in edition mode ?] <input title="[TEXT:Select it if you want to change again the file after this save]" type="checkbox" onchange="this.form._sfi_inedition.value=((this.checked)?1:0)">
+
+
+
+<script>
+var editform=document.getElementById('fedit');
+var ORIonsubmit=editform.onsubmit;
+
+document.getElementById('fedit').onsubmit=function zou(event) {if (! verifysamefilename(event,'[SFI_TITLE]',this._UPL_sfi_file)) return false;return ORIonsubmit.apply(this,[event]);};
+editform._sfi_inedition.value=0; // to reset the edition mode
+
+// cannot do the in onsubmit handler
+//addEvent(document.getElementById('fedit'),"submit",function testit(event) {return verifysamefilename(event,'[SFI_TITLE]',this._UPL_sfi_file)});
+
+function verifysamefilename(event,prevname,input) {
+  if (! event) event=window.event;
+  var nf=input.value;
+  var ls=0;
+
+  if (nf) {
+    ls=nf.lastIndexOf('/');
+    if (ls==-1)  ls=nf.lastIndexOf('\\\\');
+    if (ls > 1) nf=nf.substring(ls+1);
+
+    if (nf == prevname) {   
+      return true;
+    }
+  }
+  if (! nf) alert('[TEXT:You need to select the file]');
+  else alert('[TEXT:The name of the file must be the same as previous name]');
+  return false;
+  //  alert(prevname+":"+input.value+':'+nf.substring(ls));
+  
+}
+
+</script>

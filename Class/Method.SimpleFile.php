@@ -12,6 +12,18 @@ function postModify() {
   if (($fiold !== false) && ($fi != $fiold))  $this->computeThumbnail();
   */
 
+  $fi=$this->getValue("sfi_inedition");
+  $fiold=$this->getOldValue("sfi_inedition");
+
+  if (($fi == 0) && ($fiold==1)) {
+    
+    $err=$this->unlock(); // auto unlock in not in edition mode
+    if ($err=="") {
+      global $action;
+      $action->AddActionDone("LOCKFILE",$this->id);
+    }
+
+  }
 }
 
 
@@ -306,7 +318,8 @@ function fileIsNotInEdition() {
 }
   
 function editupload() {
-
+  global $action;
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/editupload.js");
   $this->viewprop();
   $this->editattr();
   
