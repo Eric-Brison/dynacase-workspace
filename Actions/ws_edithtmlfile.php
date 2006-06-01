@@ -1,9 +1,9 @@
 <?php
 /**
- * Display doucment explorer
+ * Display editor to modify HTML file
  *
  * @author Anakeen 2006
- * @version $Id: ws_edithtmlfile.php,v 1.3 2006/05/19 07:05:19 eric Exp $
+ * @version $Id: ws_edithtmlfile.php,v 1.4 2006/06/01 12:57:20 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 

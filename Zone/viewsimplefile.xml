@@ -3,7 +3,7 @@
 <td style="width:60%" valign="top"><img width="22px" src="Images/[ICON]"><B>[TITLE]</B>
         <b><br><P title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" style="cursor:text;display:inline;margin-left:22px">[thetitle]</P><a href="javascript:void(0)" style="display:none" id="brfull" onclick="viewinline(event,'','ithresume','iinline')">[TEXT:Return to main view]</a> <a href="javascript:void(0)" style="display:none" id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></b>
         
-</td><td><p style="text-align:right"><img  id="imglck" src="[emblem]"><b>[TEXT:Version] : [VERSION]</b></p><p style="text-align:right">[TEXT:Release] : [REVISION]</p>
+</td><td><p style="text-align:right"><img  id="imglck" src="[emblem]">[IF S_SFI_VERSION]<b>[TEXT:Version] : [V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]</p>
         </td>
 </thead>
 

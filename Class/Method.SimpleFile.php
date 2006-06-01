@@ -302,9 +302,12 @@ function postCreated() {
 }
 
 /**
- * test if file is already downloaded to be changed
+ * menu state to view upload file menu
+ *  test if file is already downloaded to be changed
  */
 function fileIsInEdition() {
+  if ($this->CanEdit()!="") return MENU_INVISIBLE;
+
   if ($this->getValue('sfi_inedition') == 1) return MENU_ACTIVE;
   else return MENU_INVISIBLE;
 }
@@ -313,15 +316,31 @@ function fileIsInEdition() {
  * inverse of ::fileIsInEdition()
  */
 function fileIsNotInEdition() {
+  if ($this->CanEdit()!="") return MENU_INVISIBLE;
   if ($this->fileIsInEdition() == MENU_INVISIBLE) return MENU_ACTIVE;
   return MENU_INVISIBLE;
 }
   
+/**
+ * menu state to view add version menu
+ */
+function canVersionned() {
+  if ($this->CanEdit()!="") return MENU_INACTIVE;
+  if ($this->getValue('sfi_version') == "") return MENU_INVISIBLE;
+  if ($this->getValue('sfi_inedition') == 1) return MENU_INACTIVE;
+  return MENU_ACTIVE;   
+}
+
 function editupload() {
   global $action;
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/editupload.js");
   $this->viewprop();
-  $this->editattr();
-  
+  $this->editattr();  
 }
+
+
+function editversion() {
+  $this->editattr();  
+}
+
 ?>

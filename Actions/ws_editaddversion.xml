@@ -1,0 +1,34 @@
+[ZONE FDL:HTMLHEAD?title=[TEXT:Add version]]
+<div id="before">
+<div style="text-align:center">
+<H2>[TEXT:Create new version for the document]</H2>
+<H2>[title]</h2></div>
+
+<p>[TEXT:The current version will be archived with the version] [version] .</p>
+<p>[TEXT:A new document version will be created with the new name version].</p>
+
+<form  id="ifversion"  
+       class="fborder" 
+       name="fversion" 
+       onsubmit="if (this.newversion.value=='') {alert('[TEXT:Version name is empty]');return false;}"
+       method="POST" ENCTYPE="multipart/form-data" 
+       action="[CORE_STANDURL]&app=WORKSPACE&action=WS_ADDVERSION" >
+
+<div style="text-align:center">
+[TEXT:Actual version] : <b>[version]</b><hr>
+<b>[TEXT:New version]</b> : <input id="iversion" type="text"  name="newversion">
+[TEXT:Comment]:<textarea style="vertical-align:text-top" name="comversion"></textarea>
+</div>
+<div style="text-align:right">
+<input type="hidden" name="id" value="[docid]">
+<input type="submit" onsubmit="window.setTimeout('verifydownload([docid])',2000);" value="[TEXT:Create new version]">
+<input type="reset" onclick="self.close()" value="[TEXT:Cancel]">
+</div>
+</div>
+
+</form>
+<div id="after" style="display:none">
+<p>[oktext]</p>
+</div>
+<script>document.fversion.target=window.opener.name</script>
+[ZONE FDL:HTMLFOOT]

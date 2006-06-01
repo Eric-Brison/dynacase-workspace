@@ -1,9 +1,9 @@
 <?php
 /**
- * Display info before download file for editing and replace it
+ * Create new version for simple file
  *
  * @author Anakeen 2006
- * @version $Id: ws_cancelmodfile.php,v 1.2 2006/06/01 12:57:20 eric Exp $
+ * @version $Id: ws_addversion.php,v 1.1 2006/06/01 12:57:20 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -17,35 +17,39 @@ include_once("FDL/Lib.Dir.php");
 
 
 /**
- * Display info before download
+ * Create new version
  * @param Action &$action current action
  * @global id Http var : document for file to edit (SIMPLEFILE family)
  */
-function ws_cancelmodfile(&$action) {
+function ws_addversion(&$action) {
   
   $docid = GetHttpVars("id");
-  $dbaccess = $action->GetParam("FREEDOM_DB");
+  $newversion = GetHttpVars("newversion");
+  $newcomment = GetHttpVars("comversion");
   $autoclose = (GetHttpVars("autoclose","N")=="Y"); // close window after
+  $dbaccess = $action->GetParam("FREEDOM_DB");
 
   $doc=new_doc($dbaccess,$docid);
   if (!$doc->isAlive()) $action->exitError(sprintf(_("document %s does not exist"),$docid));
 
-  if ($doc->getValue('sfi_inedition') != 1) $action->exitError(sprintf(_("document %s is not in edition"),$docid));
 
 
   $err=$doc->control("edit");
   if ($err != "") $action->exiterror($err);
 
-  $err = $doc->unlock(); // lock
+  $err = $doc->unlock(true); // lock
   if ($err=="") {
+
     $action->AddActionDone("UNLOCKFILE",$doc->id);
-    $doc->deleteValue("sfi_inedition");
-    $err=$doc->modify();
     if ($err == "") {
-      $doc->AddComment(_("file modification aborted"));
-			      
+      $err=$doc->AddRevision($newcomment);
+      if ($err=="") {
+	$doc->setValue("sfi_version",$newversion);
+	$err=$doc->modify();
+      }
     }
   } 
+  if ($err) $action->AddWarningMsg($err);
   if (! $autoclose)  redirect($action,"FDL","FDL_CARD&id=".$doc->id,$action->GetParam("CORE_STANDURL"));
 
   

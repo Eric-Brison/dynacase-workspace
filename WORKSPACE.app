@@ -118,6 +118,11 @@ $action_desc = array (
    "name"		=>"WS_UPLOADFILE",
    "short_name"		=>N_("upload file for modification"),
    "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
+   "name"		=>"WS_ADDVERSION",
+   "short_name"		=>N_("create a new version"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

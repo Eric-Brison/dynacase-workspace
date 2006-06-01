@@ -1,11 +1,12 @@
 
 function verifydownload(docid) {
 
-  var v=getdocvalue(docid,'sfi_inedition');
+  var v=getdocvalue(docid,'sfi_version');
  
-  if (! v) {
+  if ((! v) || (v != document.getElementById('iversion').value)) {
     window.setTimeout('verifydownload('+docid+')',2000);
   } else {
+
     window.opener.location.reload();
     document.getElementById('before').style.display='none';
     document.getElementById('after').style.display=''; 
