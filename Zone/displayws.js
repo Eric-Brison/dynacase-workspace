@@ -44,7 +44,7 @@ function redisplaywsdiv() {
   ch=wh-240;if (isIE) ch -=3;
   dsearches.style.width='198px';
   dsearches.style.top=ch;
-  dsearches.style.left=0;
+  dsearches.style.left=(isIE)?1:2;
   dsearches.style.height='30px';
 
   ch+=30;if (isIE) ch -=3;
