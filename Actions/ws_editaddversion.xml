@@ -1,7 +1,7 @@
 [ZONE FDL:HTMLHEAD?title=[TEXT:Add version]]
 <div id="before">
 <div style="text-align:center">
-<H2>[TEXT:Create new version for the document]</H2>
+<H2><img align="left" src="[IMG:version.png]"> [TEXT:Create new version for the document]</H2>
 <H2>[title]</h2></div>
 
 <p>[TEXT:The current version will be archived with the version] [version] .</p>
@@ -18,7 +18,7 @@
 [TEXT:Actual version] : <b>[version]</b><hr>
 <b>[TEXT:New version]</b> : <input id="iversion" type="text"  name="newversion">
 [TEXT:Comment]:<textarea style="vertical-align:text-top" name="comversion"></textarea>
-</div>
+</div><hr>
 <div style="text-align:right">
 <input type="hidden" name="id" value="[docid]">
 <input type="submit" onsubmit="window.setTimeout('verifydownload([docid])',2000);" value="[TEXT:Create new version]">

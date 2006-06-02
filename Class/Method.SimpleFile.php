@@ -269,8 +269,10 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
   $this->lay->set("canedithtml",($this->getValue("sfi_mimesys")=="text/html")&&($this->getValue('sfi_inedition') != 1));
-
-
+  $this->lay->set("isinedition",($this->fileIsInEdition()==MENU_ACTIVE));
+  $this->lay->set("isnotinedition",($this->fileIsNotInEdition()==MENU_ACTIVE));
+  $this->lay->set("canedit",($this->canEdit()==""));
+  $this->lay->set("canversionned",($this->canVersionned()==MENU_ACTIVE));
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
   $this->lay->set("isinline",ereg("html|image|plain|xml",$this->getValue("sfi_mimesys")));
 

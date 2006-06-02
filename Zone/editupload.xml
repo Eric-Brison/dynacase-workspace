@@ -1,4 +1,5 @@
-<p>[TEXT:You must click on the Search... button to select the modified file ]</p>
+<div class="normal">
+<p><img align="left" src="[IMG:database_co.png]"> [TEXT:You must click on the Search... button to select the modified file ]</p>
 <p>[TEXT:To prevent error, the filename must be the same as the previous name]</p>
 <p>[TEXT:If you want to change file, you need to abord the modification and choose 'replace file' in the context menu]</p>
 <table cellspacing="0" ><tr><td>
@@ -9,7 +10,7 @@
 [V_SFI_INEDITION]
 <br>
 [TEXT:Stay in edition mode ?] <input title="[TEXT:Select it if you want to change again the file after this save]" type="checkbox" onchange="this.form._sfi_inedition.value=((this.checked)?1:0)">
-
+</div>
 
 
 <script>

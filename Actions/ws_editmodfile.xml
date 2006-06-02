@@ -1,6 +1,7 @@
 [ZONE FDL:HTMLHEAD]
+<div class="normal">
 <div id="before">
-<p>[TEXT:The file will be downloaded in your personal computer. You need to save it in your personal space. Do not try to open it directly because you can loose it].</p>
+<p><img align="left" src="[IMG:database_ci.png]">[TEXT:The file will be downloaded in your personal computer. You need to save it in your personal space. Do not try to open it directly because you can loose it].</p>
 <p>[TEXT:When the file is saved, you can edit it with the appropriated application and save it at the same place]
 [TEXT:When the modification are done, you must go to web shared folder application and select the file]</p>
 <p>[TEXT:The name file must the same as previous name]. [TEXT:On the context menu select 'upload file' to save modified file in the web shared folder].</p>
@@ -11,5 +12,6 @@
 </div>
 <div id="after" style="display:none">
 <p>[oktext]</p>
+</div>
 </div>
 [ZONE FDL:HTMLFOOT]

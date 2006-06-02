@@ -1,27 +1,30 @@
 var WEDITHTML=null; // window of HTML editor
 
 function viewinline(event,url,toview,tocache) {
-  var ov=document.getElementById(toview);
-  var oc=document.getElementById(tocache);
-  var obrfull=document.getElementById('brfull');
-  var obrreload=document.getElementById('brreload');
-  if (ov && oc) {
+  var ov=document.getElementById('iinline');
+  var dview=getElementsByNameTag(document,toview,'div');
+  var dcache=getElementsByNameTag(document,tocache,'div');
 
-    if (obrfull.style.display=='none') obrfull.style.display='';
-    else obrfull.style.display='none';
+  var i;
+
+  for (i=0;i<dcache.length;i++) {
+    dcache[i].style.display='none';
+  }
+  for (i=0;i<dview.length;i++) {
+    dview[i].style.display='';
+  }
+  
+  if (ov ) {
+    if (toview=='dview') ov.style.display='';
+    else  ov.style.display='none';
     
     if (url != '') {
       if  (  (ov.src == 'about:blank')   )  {
 	//	alert('resource:\n'+ov.src+'\n'+url);
 	ov.src=url;
-      } else {
-	obrreload.style.display='';
-      }
-    } else {
-	obrreload.style.display='none';
-    }
-    oc.style.display='none';
-    ov.style.display='';
+      } 
+    } 
+
     resizeIurl(ov.id);
   }
 }

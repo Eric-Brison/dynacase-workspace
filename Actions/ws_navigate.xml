@@ -101,7 +101,7 @@ function clipboardWaitEnd(o) {
 <ul id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
 </div>
 <div id="searches" class="searches">
-<input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" width="22px" src="[IMG:search.png]"></a>
+<input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" align="absbottom" width="22px" src="[IMG:search.png]"></a>
 </div>
 <div id="tabclip"  ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">
   <span  style="display:none" title="[TEXT:my affected documents]"><img src="[IMG:button-blue.png]"></span>
@@ -118,7 +118,7 @@ function clipboardWaitEnd(o) {
 <div id="fldlist" class="fldlist" droppable="yes" dropft="move" onmouseup="insertinclipboard(event,this,CFLDID,'list')" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 <div id="resume" class="resume">
-<iframe id="iresume" name="nresume" style="width:99%;height:99%"></iframe>
+<iframe id="iresume" name="nresume" style="margin:0px;width:100%;height:99%"></iframe>
 </div></div>
 
 </body></html>

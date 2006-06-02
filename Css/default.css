@@ -8,6 +8,32 @@ DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duse
   background-color:white;
   color:black;
 }
+
+DIV.spaces {
+  position:absolute;
+  
+  margin:3px 0px  3px  3px;
+/*  -moz-border-radius:15px;*/
+  border:inset 2px white;
+}
+
+DIV.clipboard {
+/*  -moz-border-radius:0 0 15 15;*/
+  border-style:none inset inset inset;
+  border-width:2px;
+  border-color:white;
+}
+DIV.tabclip {
+
+/*  -moz-border-radius:15px 15px 0px 15px;*/
+  border-style:inset inset none inset;
+  border-width:2px;
+  border-color:white;
+}
+DIV.folders,DIV.fldlist,DIV.resume {
+/*  -moz-border-radius:15px;*/
+  border:inset 2px white;
+}
 DIV.space {
   border-color:white;
 }
@@ -24,7 +50,7 @@ TABLE.tfldlist TR.trhover {
 
 TABLE.tfldlist TR.headfirst TH {
   background-color:#EEEEEE;
-  -moz-border-radius:15px 15px 0px 0px;
+/*  -moz-border-radius:15px 15px 0px 0px;*/
 }
 DIV.spaceselect  {
   background-color:#9fd0f9;
@@ -52,7 +78,7 @@ IMG.button {
 
 DIV.aspace TH {
   background-image:url('../Images/brushedbg.gif');
-  -moz-border-radius:15px 0px 15px 0px;
+/*  -moz-border-radius:15px 0px 15px 0px;*/
 	
 }
 IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {

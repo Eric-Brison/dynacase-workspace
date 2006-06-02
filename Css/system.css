@@ -5,12 +5,12 @@ A IMG {
 DIV.space, DIV.spaceselect {
   width:56px;
   overflow:hidden;
-
+  margin:0px;
   text-align:center;
   font-size:9pt;
   cursor:pointer;
   border-width:2px;
-  -moz-border-radius:15px;
+/*  -moz-border-radius:15px;*/
 }
 DIV.space { 
   border-style:solid;
@@ -64,37 +64,30 @@ DIV.rule2 TD {
 }
 DIV.col2 {
   position:absolute;
+  margin:0px;
 }
 DIV.col3 {
   position:absolute;
+  margin:0px;
   
 }
 DIV.spaces {
   position:absolute;
   
   margin:3px 0px  3px  3px;
-  -moz-border-radius:15px;
-  border:inset 2px #A0A0A0;
+
 }
 DIV.clipboard {
   position:absolute;
   border:none;
   overflow:auto;
   margin:0px;
-  -moz-border-radius:0 0 15 15;
-  border-style:none inset inset inset;
-  border-width:2px;
-  border-color:#A0A0A0;
 }
 DIV.tabclip {
   position:absolute;
   overflow:auto;
   margin:0px;
   text-align:right;
-  -moz-border-radius:15px 15px 0px 15px;
-  border-style:inset inset none inset;
-  border-width:2px;
-  border-color:#A0A0A0;
 }
 
 DIV.tabclip IMG {
@@ -110,7 +103,7 @@ DIV.tabclip SPAN {
   border-style :outset outset none outset;
   padding:2px;
   cursor:pointer;
-  -moz-border-radius: 8 8 0 0;	
+/*  -moz-border-radius: 8 8 0 0;	*/
   
 }
 DIV.searches {
@@ -122,8 +115,6 @@ DIV.folders {
   border:none;
   overflow:auto;
   margin:3px 0px 0px 0px;
-  -moz-border-radius:15px;
-  border:inset 2px #A0A0A0;
 }
 SPAN.micon {
   position:absolute;	
@@ -136,8 +127,6 @@ DIV.fldlist  {
   position:absolute;
   overflow:auto;
   margin:3px;
-  -moz-border-radius:15px;
-  border:inset 2px #A0A0A0;
 }
 DIV.resume  {
   position:absolute;
@@ -145,8 +134,6 @@ DIV.resume  {
   font-family:arial;
   font-size:10pt;
   margin:3px;
-  -moz-border-radius:15px;
-  border:inset 2px #A0A0A0;
 }
 DIV.folders IMG, SPAN.micon IMG.icon {
   width:20px;
@@ -223,7 +210,7 @@ BODY.freedom {
   margin:30px;
 }
 #iresume {   
-  -moz-border-radius:15px;
+/*  -moz-border-radius:15px;*/
   border:none;
   margin:2px;
 }
