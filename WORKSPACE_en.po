@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-13 17:54+0200\n"
+"POT-Creation-Date: 2006-06-06 17:42+0200\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -15,22 +15,474 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
 
+#, c-format
+msgid "Document %s is not alive"
+msgstr ""
+
+#, c-format
+msgid "%s attribute is not a file"
+msgstr ""
+
+#, c-format
+msgid "%s : edit HTML file"
+msgstr ""
+
+msgid "Add new file"
+msgstr ""
+
+msgid "Create new text"
+msgstr ""
+
+msgid "Create new folder"
+msgstr ""
+
+msgid "TEST"
+msgstr ""
+
+msgid "Empty trash"
+msgstr ""
+
+msgid "trash"
+msgstr ""
+
+msgid "Filename Menu"
+msgstr ""
+
+msgid "Modification Date Menu"
+msgstr ""
+
+msgid "File Size Menu"
+msgstr ""
+
+msgid "File Type Menu"
+msgstr ""
+
+#, c-format
+msgid "%d bytes"
+msgstr ""
+
+#, c-format
+msgid "%d kb"
+msgstr ""
+
+#, c-format
+msgid "%.01f Mb"
+msgstr ""
+
+#, c-format
+msgid "%d documents"
+msgstr ""
+
+msgid "0 document"
+msgstr ""
+
+msgid "the trash cannot be empty"
+msgstr ""
+
+msgid "no user defined"
+msgstr ""
+
+msgid "no file referenced"
+msgstr ""
+
+#, c-format
+msgid "document [%s] not found"
+msgstr ""
+
+msgid "View latest"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+#, c-format
+msgid "Sure delete %s ?"
+msgstr ""
+
+msgid "Change state"
+msgstr ""
+
+msgid "Revise"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Sure duplicate ?"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+msgid "Change profile"
+msgstr ""
+
+msgid "goaccess"
+msgstr ""
+
+msgid "Add to basket"
+msgstr ""
+
+msgid "restore"
+msgstr ""
+
+msgid "Search linked documents"
+msgstr ""
+
+#, c-format
+msgid "unknown attribute %s for document %s"
+msgstr ""
+
+#, c-format
+msgid "visibility %s does not allow modify attribute %s for document %s"
+msgstr ""
+
+#, c-format
+msgid "modify [%s] attribute"
+msgstr ""
+
+#, c-format
+msgid "document %s does not exist"
+msgstr ""
+
+#, c-format
+msgid "document %s is not in edition"
+msgstr ""
+
+msgid "file modification aborted"
+msgstr ""
+
+#, c-format
+msgid "%s file downloaded by %s on %s"
+msgstr ""
+
+#, c-format
+msgid "document %s already in edition"
+msgstr ""
+
+#, c-format
+msgid "Download <i>%s</i> file<br> for modification"
+msgstr ""
+
+#, c-format
+msgid ""
+"The file %s has been downloaded and the document has been locked and "
+"tagged : in edition"
+msgstr ""
+
 msgid "WorkSpace"
 msgstr ""
 
-msgid "Files Managenent"
+msgid "Documents Exchange"
+msgstr ""
+
+msgid "Access For Workspace edition"
+msgstr ""
+
+msgid "Access for exchange documents"
+msgstr ""
+
+msgid "interface to navigate in spaces"
+msgstr ""
+
+msgid "add branch in folder tree"
+msgstr ""
+
+msgid "to view clipboard"
+msgstr ""
+
+msgid "to view folder"
+msgstr ""
+
+msgid "to view a document"
+msgstr ""
+
+msgid "popup menu global in folder list"
+msgstr ""
+
+msgid "popup menu in folder list"
+msgstr ""
+
+msgid "empty the user trash"
+msgstr ""
+
+msgid "restore a document from the trash"
+msgstr ""
+
+msgid "download file from simplefile"
+msgstr ""
+
+msgid "edit HTML file"
+msgstr ""
+
+msgid "edit download file"
+msgstr ""
+
+msgid "cancel download file"
+msgstr ""
+
+msgid "edit for new version"
+msgstr ""
+
+msgid "download file for edition"
+msgstr ""
+
+msgid "upload file for modification"
+msgstr ""
+
+msgid "create a new version"
 msgstr ""
 
 #, c-format
-msgid "no privilege to create this kind (%s) of document"
+msgid "duplication of %s "
 msgstr ""
 
 #, c-format
-msgid "%s system"
+msgid "failed to copy document %s"
 msgstr ""
 
-msgid "system documents for worspace"
+msgid "undefined"
 msgstr ""
 
-msgid "Files Management"
+msgid "fixed"
+msgstr ""
+
+msgid "nobody"
+msgstr ""
+
+#, c-format
+msgid "unknow user %s"
+msgstr ""
+
+msgid "No title"
+msgstr ""
+
+msgid "The text has be modified"
+msgstr ""
+
+msgid "Documents exchange"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Trash"
+msgstr ""
+
+msgid "my affected documents"
+msgstr ""
+
+msgid "my locked documents"
+msgstr ""
+
+msgid "my documents to read"
+msgstr ""
+
+msgid "my basket"
+msgstr ""
+
+msgid "Actions..."
+msgstr ""
+
+msgid "click and drag to move document"
+msgstr ""
+
+msgid "Add version"
+msgstr ""
+
+msgid "Create new version for the document"
+msgstr ""
+
+msgid "The current version will be archived with the version"
+msgstr ""
+
+msgid "A new document version will be created with the new name version"
+msgstr ""
+
+msgid "Version name is empty"
+msgstr ""
+
+msgid "Actual version"
+msgstr ""
+
+msgid "New version"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Create new version"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid ""
+"The file will be downloaded in your personal computer. You need to save it "
+"in your personal space. Do not try to open it directly because you can loose "
+"it"
+msgstr ""
+
+msgid ""
+"When the file is saved, you can edit it with the appropriated application "
+"and save it at the same place"
+msgstr ""
+
+msgid ""
+"When the modification are done, you must go to web shared folder application "
+"and select the file"
+msgstr ""
+
+msgid "The name file must the same as previous name"
+msgstr ""
+
+msgid ""
+"On the context menu select 'upload file' to save modified file in the web "
+"shared folder"
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
+msgid "Click to modify title"
+msgstr ""
+
+msgid "Click to modify description"
+msgstr ""
+
+msgid "You must click on the Search... button to select the modified file "
+msgstr ""
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+
+msgid ""
+"If you want to change file, you need to abord the modification and choose "
+"'replace file' in the context menu"
+msgstr ""
+
+msgid "New file"
+msgstr ""
+
+msgid "Stay in edition mode ?"
+msgstr ""
+
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+
+msgid "You need to select the file"
+msgstr ""
+
+msgid "The name of the file must be the same as previous name"
+msgstr ""
+
+msgid "The version rename will not create new version"
+msgstr ""
+
+msgid "Download file for reading"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Put the modified file"
+msgstr ""
+
+msgid "Upload modified file"
+msgstr ""
+
+msgid "Abort modification and unlock document"
+msgstr ""
+
+msgid "Abord file modification"
+msgstr ""
+
+msgid "Download file for edit and modify it"
+msgstr ""
+
+msgid "Modify the file"
+msgstr ""
+
+msgid "View file inline"
+msgstr ""
+
+msgid "Display"
+msgstr ""
+
+msgid "Edit HTML file"
+msgstr ""
+
+msgid "Return to main view"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "View file properties"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid "Click to modify subject"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Modify the abstract"
+msgstr ""
+
+msgid "Abstract"
+msgstr ""
+
+msgid "Keywords"
+msgstr ""
+
+msgid "Rename the version"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Undefined"
+msgstr ""
+
+msgid "Double Click to recompute the thumbnail"
+msgstr ""
+
+msgid "Creation date"
+msgstr ""
+
+msgid "Modification date"
+msgstr ""
+
+msgid "File type "
+msgstr ""
+
+msgid "bytes"
+msgstr ""
+
+msgid "Last acces date"
+msgstr ""
+
+msgid "File type"
+msgstr ""
+
+msgid "Locked by"
+msgstr ""
+
+msgid "File path"
 msgstr ""
