@@ -8,6 +8,7 @@
 [JS:REF]
 <script>
 [JS:CODE]
+
 function submitfile(event,docid,attrid) {
   if (window.opener) {
     if (window.opener.attributeSend) {
@@ -45,6 +46,7 @@ function ws_autoclose(event) {
   }
   catch(exception) {
     self.close();
+    return;
   }
   
   if ( (! window.opener.location)  || (! window.opener.location.href) || (window.opener.location.href != OURL)) {
@@ -63,31 +65,30 @@ function wscanceledit(event) {
 }
 
 function getHTMLFile(oed) {
-  var req;
+  var regfile;
 
     // branch for native XMLHttpRequest object
     if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest(); 
+        regfile = new XMLHttpRequest(); 
     } else if (window.ActiveXObject) {
       // branch for IE/Windows ActiveX version     
-      req = new ActiveXObject("Microsoft.XMLHTTP");
+      regfile = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    if (req) {
-     
-      req.open("POST", '[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[docid]&inline=yes',false);
+    if (regfile) {     
+      regfile.open("POST", '[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[docid]&inline=yes',false);
       //      req.setRequestHeader("Content-length", "1"); 
      
-      req.send('');
+      regfile.send('');
 
-      if(req.status == 200) {
+      if(regfile.status == 200) {
 	   
-	if (req.responseText) {
+	if (regfile.responseText) {
 	  //var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
-	  //oEditor.SetHTML(req.responseText);
-	  oed.Value=req.responseText;
+	  //oEditor.SetHTML(regfile.responseText);
+	  oed.Value=regfile.responseText;
 	}
 	else {
-	  alert('no txt\n'+req.responseText);
+	  alert('no txt\n'+regfile.responseText);
 	  return;
 	} 
       }
@@ -129,6 +130,7 @@ body {
 		<input type="hidden" name="attrid" value="[attrid]">
 			<script type="text/javascript">
 <!--
+
 
 oFCKeditor.BasePath = 'fckeditor/';
 

@@ -663,7 +663,7 @@ function postActionRefresh(action,docid,c) {
         
     break;
   default:    
-    alert("UNKNOW:"+action+":"+docid);
+    // alert("UNKNOW:"+action+":"+docid);
   }
   //   alert("ACTION:"+action+":"+docid);
 }

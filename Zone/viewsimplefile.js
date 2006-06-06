@@ -60,6 +60,13 @@ function receiptActionNotification(code,arg) {
       var ilck=document.getElementById('imglck');
       if (ilck) ilck.src='Images/1x1.gif';
       break;
+    
+    case "MODATTR":
+      if (arg[i]=='sfi_version') {
+	var ilck=document.getElementById('imgver');
+	if (ilck) ilck.style.display='';
+      }
+      break;
     }
   }
 }
@@ -70,11 +77,20 @@ function wsischanged(event) {
   if (INPUTCHANGED)  event.returnValue='Attribute in modification';
   else {
     if (WEDITHTML) {
-      if (! WEDITHTML.closed) {
-	if (WEDITHTML.wsIsModified()) {
-	  event.returnValue='HTML in edition';
+      var wc; // to prevent not wanted IE event onbeforeunload in href
+      try{
+	wc= WEDITHTML.closed;
+	if (! wc) {
+	
+	  //      alert('wsischanged'+event.type);displayPropertyNames(event);
+	  if (WEDITHTML.wsIsModified()) {
+	    event.returnValue='HTML in edition';
+	  }
 	}
       }
+      catch(exception) {
+	return;
+      }        
     }
   }
 }

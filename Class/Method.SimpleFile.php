@@ -15,14 +15,12 @@ function postModify() {
   $fi=$this->getValue("sfi_inedition");
   $fiold=$this->getOldValue("sfi_inedition");
 
-  if (($fi == 0) && ($fiold==1)) {
-    
+  if (($fi == 0) && ($fiold==1)) {    
     $err=$this->unlock(); // auto unlock in not in edition mode
     if ($err=="") {
       global $action;
-      $action->AddActionDone("LOCKFILE",$this->id);
+      $action->AddActionDone("UNLOCKFILE",$this->id);
     }
-
   }
 }
 
@@ -233,6 +231,52 @@ function computeMime() {
 }
 
 
+function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
+  $this->viewdefaultcard($target,$ulink,$abstract);
+  if ($this->revision == 0) {
+    $cdate=FrenchDateToUnixTs($this->cdate);
+    $adate=FrenchDateToUnixTs($this->adate);
+  } else {
+    $idoc=new_doc($this->dbaccess,$this->initid);
+    $cdate=FrenchDateToUnixTs($idoc->cdate);    
+    $adate=FrenchDateToUnixTs($idoc->adate);    
+  }
+  $this->lay->set("createdate",strftime("%A %d %B %Y %H:%M",$cdate));
+  $this->lay->set("accessdate",strftime("%A %d %B %Y %H:%M",$adate));
+  $this->lay->set("moddate",strftime("%A %d %B %Y %H:%M",$this->revdate));
+  $this->lay->set("theversion",($this->version!="")?$this->version:_("undefined"));
+  if ($this->locked == -1)  $this->lay->set("thelocker",_("fixed"));
+  elseif ($this->locked == 0) $this->lay->set("thelocker",_("nobody"));
+  else {
+    $uid=abs($this->locked);
+    $u=new User("",$uid);
+    if ($u->isAffected()) {
+      $this->lay->set("thelocker", sprintf("%s %s",$u->firstname,$u->lastname));
+    } else {
+      $this->lay->set("thelocker", sprintf(_("unknow user %s"),$uid));
+    }
+  }
+  
+
+
+
+  $size=$this->getValue("sfi_filesize");
+  if ($size < 0) $dsize="";
+  else if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
+  else if ($size < 1048576) $dsize=sprintf(_("%d kb"),$size/1024);
+  else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
+  $this->lay->set("dsize",$dsize);
+
+  $path=$this->getMainPath();
+  $spath="";
+  foreach ($path as $k=>$v) {
+    $spath=$v."/".$spath;
+  }
+
+  $this->lay->set("thepath", $spath);
+
+
+}
 function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   global $action;
   $recomputeThumbnail=(getHttpVars("recomputethumb")=="yes");
@@ -247,14 +291,6 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
 
   $this->lay->set("emblem",$this->getEmblem());
 
-  if ($this->revision == 0) {
-    $cdate=FrenchDateToUnixTs($this->cdate);
-  } else {
-    $idoc=new_doc($this->dbaccess,$this->initid);
-    $cdate=FrenchDateToUnixTs($idoc->cdate);    
-  }
-  $this->lay->set("createdate",strftime("%A %d %B %Y",$cdate));
-  $this->lay->set("moddate",strftime("%A %d %B %Y",$this->revdate));
   $thetitle=$this->getValue("sfi_titlew");
   if ($thetitle=="") $thetitle=sprintf(_("No title"));
   $this->lay->set("thetitle",$thetitle);
@@ -274,7 +310,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("canedit",($this->canEdit()==""));
   $this->lay->set("canversionned",($this->canVersionned()==MENU_ACTIVE));
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
-  $this->lay->set("isinline",ereg("html|image|plain|xml",$this->getValue("sfi_mimesys")));
+  $this->lay->set("isinline",ereg("html|image|plain|text/xml",$this->getValue("sfi_mimesys")));
 
   $this->lay->set("thumbrecompute",$this->canThumbnail());
 

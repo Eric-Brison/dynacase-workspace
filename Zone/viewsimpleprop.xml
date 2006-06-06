@@ -1,0 +1,27 @@
+<div class="resume">
+
+<img align="left" width="40px" src="Images/[ICON]"><B>[TITLE]</B><hr><br>
+<table style="width:100%"><tr><td style="width:40%" align="right">[TEXT:Size]&nbsp;: </td><td> [dsize]  ([V_SFI_FILESIZE] [TEXT:bytes])</td></tr>
+        <tr><td align="right" title="[CDATE]">[TEXT:Creation date]&nbsp;: </td><td>    [createdate] </td></tr>
+        <tr><td align="right">[TEXT:Modification date]&nbsp;: </td><td>       [moddate]</td></tr>
+        <tr><td align="right">[TEXT:Last acces date]&nbsp;: </td><td>       [accessdate]</td></tr>
+        <tr><td align="right">[TEXT:File type]&nbsp;: </td><td>     [V_SFI_MIMESYS] - [V_SFI_MIMETXT]</td></tr>
+        <tr><td align="right">[TEXT:Version]&nbsp;: </td><td>  [theversion]</td></tr>
+        <tr><td align="right">[TEXT:Locked by]&nbsp;: </td><td>  [thelocker]</td></tr>
+        <tr><td align="right">[TEXT:File path]&nbsp;: </td><td>  [thepath]</td></tr>
+</table>
+     
+</div>
+
+<style>
+DIV.resume * {
+  font-family:arial;
+  font-size:9pt;
+}
+DIV.resume TD {
+  vertical-align:top;
+}
+DIV.resume P {
+  margin:0px;
+}
+</style>
