@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.3 2006/05/30 16:32:27 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.4 2006/06/08 16:07:56 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -60,75 +60,28 @@ function ws_popupdocfolder(&$action) {
 				"visibility"=>POPUP_INACTIVE,
 				"submenu"=>"",
 				"barmenu"=>"false"),
-	       "editstate"=>array( "descr"=>_("Change state"),
-				   "url"=>"$surl&app=FREEDOM&action=FREEDOM_EDITSTATE&id=&id=$docid",
-				   "confirm"=>"false",
-				   "tconfirm"=>"",
-				   "target"=>"",
-				   "visibility"=>POPUP_INVISIBLE,
-				   "submenu"=>"",
-				   "barmenu"=>"false"),
-	       "revise"=>array( "descr"=>_("Revise"),
-				"url"=>"$surl&app=FREEDOM&action=REVCOMMENT&id=$docid",
-				"confirm"=>"false",
-				"tconfirm"=>"",
-				"target"=>"",
-				"visibility"=>POPUP_INACTIVE,
-				"submenu"=>"",
-				"barmenu"=>"false"),
 	       "histo"=>array( "descr"=>_("History"),
-			       "url"=>"$surl&app=FREEDOM&action=HISTO&id=$docid",
+			       "url"=>"$surl&app=FREEDOM&action=HISTO&id=$docid&viewrev=N",
 			       "confirm"=>"false",
 			       "tconfirm"=>"",
 			       "target"=>"",
-			       "visibility"=>POPUP_CTRLACTIVE,
+			       "visibility"=>POPUP_ACTIVE,
 			       "submenu"=>"",
 			       "barmenu"=>"false"),
 	       "duplicate"=>array( "descr"=>_("Duplicate"),
-				   "url"=>"$surl&app=GENERIC&action=GENERIC_DUPLICATE&id=$docid",
+				   "jsfunction"=>"copyDoc(event,$docid)",
 				   "confirm"=>"true",
 				   "tconfirm"=>_("Sure duplicate ?"),
 				   "target"=>"",
-				   "visibility"=>POPUP_CTRLACTIVE,
+				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
-	       "lockdoc"=>array( "descr"=>_("Lock"),
-				 "url"=>"$surl&app=FDL&action=LOCKFILE&id=$docid",
-				 "confirm"=>"false",
-				 "tconfirm"=>"",
-				 "target"=>"",
-				 "visibility"=>POPUP_ACTIVE,
-				 "submenu"=>"security",
-				 "barmenu"=>"false"),
-	       "unlockdoc"=>array( "descr"=>_("Unlock"),
-				   "url"=>"$surl&app=FDL&action=UNLOCKFILE&id=$docid",
-				   "confirm"=>"false",
-				   "tconfirm"=>"",
-				   "target"=>"",
-				   "visibility"=>POPUP_ACTIVE,
-				   "submenu"=>"security",
-				   "barmenu"=>"false"),
-	       "editprof"=>array( "descr"=>_("Change profile"),
-				  "url"=>"$surl&app=FREEDOM&action=EDITPROF&id=$docid",
-				  "confirm"=>"false",
-				  "tconfirm"=>"",
-				  "target"=>"",
-				  "visibility"=>POPUP_ACTIVE,
-				  "submenu"=>"security",
-				  "barmenu"=>"false"),
-	       "access"=>array( "descr"=>_("goaccess"),
-				"url"=>"$surl&app=FREEDOM&action=FREEDOM_GACCESS&id=".$doc->profid,
-				"confirm"=>"false",
-				"tconfirm"=>"",
-				"target"=>"",
-				"visibility"=>POPUP_ACTIVE,
-				"submenu"=>"security"),
 	       "tobasket"=>array( "descr"=>_("Add to basket"),
 				  "url"=>"$surl&app=FREEDOM&action=ADDDIRFILE&docid=$docid&dirid=".$action->getParam("FREEDOM_IDBASKET"),
 				  "confirm"=>"false",
 				  "tconfirm"=>"",
 				  "target"=>"",
-				  "visibility"=>POPUP_CTRLACTIVE,
+				  "visibility"=>POPUP_ACTIVE,
 				  "submenu"=>"",
 				  "barmenu"=>"false"),
 	       "restore"=>array( "descr"=>_("restore"),
@@ -138,19 +91,14 @@ function ws_popupdocfolder(&$action) {
 				 "target"=>"",
 				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
-				 "barmenu"=>"false"),
-	       "reference"=>array( "descr"=>_("Search linked documents"),
-				   "url"=>"$surl&app=GENERIC&action=GENERIC_ISEARCH&id=$docid",
-				   "confirm"=>"false",
-				   "tconfirm"=>"",
-				   "target"=>"",
-				   "visibility"=>POPUP_CTRLACTIVE,
-				   "submenu"=>"",
-				   "barmenu"=>"false"));
+				 "barmenu"=>"false"));
   changeMenuVisibility($action,$tlink,$doc);
 
 
-  if ($doc->doctype=='Z')  $tlink["restore"]["visibility"]=POPUP_ACTIVE;
+  if ($doc->doctype=='Z') {
+    $tlink["restore"]["visibility"]=POPUP_ACTIVE;
+    $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
+  }
   
   
          
@@ -165,7 +113,7 @@ function ws_popupdocfolder(&$action) {
 			  "barmenu"=>"false");
   }
 
-  addFamilyPopup($tlink,$doc);
+  //  addFamilyPopup($tlink,$doc);
   popupdoc($action,$tlink,$tsubmenu);
 }
 

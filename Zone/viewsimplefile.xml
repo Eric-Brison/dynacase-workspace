@@ -5,7 +5,7 @@
 <table width="100%"><tr><td style="width:80px" > 
 <div name="dmain"><img align="left" width="80px" src="Images/[ICON]"></div>
 <div name="dview" style="display:none"><img align="left" width="40px" src="Images/[ICON]"></div></td>
-  <td  valign="top" align="left"><B>[TITLE]</B> <B [IF canedit]title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" [ENDIF canedit]style="cursor:text;display:inline;margin-left:22px">[thetitle]</B></div>
+  <td  valign="top" align="left"><B>[TITLE]</B> <B [IF canedit]title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" [ENDIF canedit]style="cursor:text;display:inline;margin-left:22px;">[thetitle]</B></div>
 <div   name="dmain">
     <a  href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file for reading]">[TEXT:Download]</a> 
 [IF isinedition]
@@ -22,15 +22,12 @@
 <div name="dmain">
         <P>[TEXT:Size] : [dsize] <a  href="javascript:void(0)" title="[TEXT:View file properties]" onclick="subwindow(300,400,'properties','[CORE_STANDURL]app=FDL&action=IMPCARD&zone=WORKSPACE:VIEWSIMPLEPROP:T&id=[ID]')">[TEXT:Properties]</a>
 	</P>
-   
-
-
         <P>[IF canedit]<a  title="[TEXT:Click to modify subject]" 
                onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))">[ENDIF canedit]<U>[TEXT:Subject] :</U>[IF canedit]</a>[ENDIF canedit]</P>
         <P id="sfi_subject" [IF canedit] onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" [ENDIF canedit]style="cursor:text;text-align:justify">[V_SFI_SUBJECT]</P> 
 
 
-        <P>Participants : Philippe Martin, Isabelle Dupont</P>
+        <P>[TEXT:Participates] : [participate]</P>
         <BR>
 
         <P>[IF canedit]<a  title="[TEXT:Modify the abstract]" 
@@ -52,9 +49,10 @@
      [IF S_SFI_VERSION]<b id="sfi_version">[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]
      [IFNOT S_SFI_VERSION]<b id="sfi_version">[TEXT:Undefined]</b>[ENDIF S_SFI_VERSION][IF canedit]<a href="javascript:void(0)" onclick="subwindow(350,600,'version','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITADDVERSION&id=[ID]')"><img width="22px" style="border:none[IFNOT canversionned];display:none[ENDIF canversionned]" title="[TEXT:Create new version]" id="imgver" src="[IMG:version.gif]"></a>[ENDIF canedit]</div>
      <div name="dmain">
-     <br><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]')" target="histo" title="Voir l'historique complet"><U>Historique :</U></a>
-<table><tr><td>02/03/1998</td><td>Correction traduction chapitre 5.3</td></tr>
-        <tr><td>02/03/2000</td><td>Ajout compl&eacute;ment utilisation copier/coller</td></tr></table>
+     <br><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N')" target="histo" title="[TEXT:View complete historic]"><U>[TEXT:Historic] :</U></a>
+<table>
+[BLOCK comments]<tr><td>[jdate]</td><td>[comment]</td></tr>[ENDBLOCK comments]
+        </table>
 <div style="text-align:center">
         [IF thumbrecompute][IF canedit]<a title="[TEXT:Double Click to recompute the thumbnail]" ondblclick="document.location.href=document.location.href+'&recomputethumb=yes'">[ENDIF canedit][ENDIF thumbrecompute]
          [IF thumb]<img id="idimgthumb" src="[V_SFI_THUMB]">[ENDIF thumb]

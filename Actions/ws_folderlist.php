@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.10 2006/05/16 17:03:13 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.11 2006/06/08 16:07:56 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -36,6 +36,7 @@ function ws_folderlist(&$action) {
   $addid = GetHttpVars("addid");
   $addft = GetHttpVars("addft");
   $order = GetHttpVars("order");
+  $key = GetHttpVars("key");
   $dorder = (GetHttpVars("dorder","true")=="true");
   $dbaccess = $action->GetParam("FREEDOM_DB");
 
@@ -56,6 +57,26 @@ function ws_folderlist(&$action) {
     $doc->title=_("trash");
     $doc->Add();
     $doc->addQuery("select * from doc where doctype='Z' and owner = ".$action->user->id);
+    break;
+  case "search":
+    // search
+    $keyword=$key;
+    $doc=createTmpDoc($dbaccess,5);
+    $doc->title=sprintf(_("search %s"),$keyword);
+    $doc->Add();
+    $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
+
+
+    $sqlfilter=$doc->getSqlGeneralFilters($keyword,"yes",false);
+  
+    $sdirid = 0;
+    $query=getSqlSearchDoc($dbaccess, 
+			   $sdirid,  
+			   $famid, 
+			   $sqlfilter);
+
+    $doc->AddQuery($query);
+    $docid=$doc->id;
     break;
   default:
 
@@ -136,7 +157,7 @@ function ws_folderlist(&$action) {
 		  "id"=>$v["id"],
 		  "linkfld"=>($dynfolder ||($v["prelid"]==$doc->initid))?false:true,
 		  "size"=>$dsize,
-		  "mime"=>getv($v,"sfi_mimetxt"),
+		  "mime"=>getv($v,"sfi_mimetxtshort"),
 		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),
 		  "icon"=>$icon);
     }
@@ -145,6 +166,7 @@ function ws_folderlist(&$action) {
     $action->lay->set("CODE","OK");
   } else {
     $action->lay->set("CODE","NOTALIVE");
+    $action->lay->set("warning",$docid);
   }
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));

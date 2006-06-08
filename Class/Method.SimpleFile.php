@@ -202,15 +202,18 @@ function computeThumbnail() {
    * compute the mime type and the size
    */
 function computeMime() {
+  static $vf;
   $f=$this->getValue("sfi_file");
   if ($f) {
     if (ereg ("(.*)\|(.*)", $f, $reg)) {
-      $vf = newFreeVaultFile($this->dbaccess);
+      if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
-
 	include_once ("WORKSPACE/Lib.FileMime.php");
 
 	$this->setValue("sfi_mimetxt",getTextMimeFile($info->path));
+	$short=strtok($this->getValue("sfi_mimetxt"),",");
+	if (! $short) $short=$this->getValue("sfi_mimetxt");
+	$this->setValue("sfi_mimetxtshort",$short);
 	$this->setValue("sfi_mimesys",getSysMimeFile($info->path,$info->name));
 	$this->setValue("sfi_title",$info->name);
 	$this->setValue("sfi_filesize",$info->size);
@@ -313,6 +316,22 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("isinline",ereg("html|image|plain|text/xml",$this->getValue("sfi_mimesys")));
 
   $this->lay->set("thumbrecompute",$this->canThumbnail());
+
+
+  $h=$this->getHisto(true);
+  $parti=array();
+  $tcomment=array();
+  foreach ($h as $k=>$v) {
+    $parti[$v["uname"]]=$v["uname"];
+    if (($v["level"] == HISTO_INFO)||($v["level"] == HISTO_MESSAGE)) {      
+      $tcomment[$k]=$v;
+      $tcomment[$k]["jdate"]=strtok($v["date"]," ");
+      if (count($tcomment) > 1) break;
+    }      
+  }
+
+  $this->lay->set("participate",implode(", ",$parti));
+  $this->lay->setBlockData("comments",$tcomment);
 
 }
 

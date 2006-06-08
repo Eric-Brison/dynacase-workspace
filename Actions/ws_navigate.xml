@@ -90,7 +90,7 @@ function clipboardWaitEnd(o) {
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
-<div class="space" onclick="globalcursor('move')" oncontextmenu="unglobalcursor()" ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
+<div class="space" style="display:none" onclick="globalcursor('move')" oncontextmenu="unglobalcursor()" ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
 <br>
 <div class="space" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]" id="trashicon"><span> [TEXT:Trash]</span></div>
 </div>
@@ -101,7 +101,7 @@ function clipboardWaitEnd(o) {
 <ul id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
 </div>
 <div id="searches" class="searches">
-<input title="saisissez les mots &agrave; rechercher" size="12" type="text"></input> <a href="" title="lancer la recherche"><img class="button" align="absbottom" width="22px" src="[IMG:search.png]"></a>
+<input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" onkeypress="if (trackCR(event)) viewSearch(event,this.value);"></input><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value);" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]">
 </div>
 <div id="tabclip"  ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">
   <span  style="display:none" title="[TEXT:my affected documents]"><img src="[IMG:button-blue.png]"></span>

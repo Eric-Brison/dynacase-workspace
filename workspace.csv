@@ -11,19 +11,20 @@ ICON;sfile.png;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 ATTR;SFI_FRDESC;;description;N;N;frame;;W;;;;;;;
-ATTR;SFI_TITLE;SFI_FRDESC;nom du fichier;Y;N;text;10;R;;;;;;;
-ATTR;SFI_TITLEW;SFI_FRDESC;titre;N;N;text;20;O;;;;;;;
-ATTR;SFI_SUBJECT;SFI_FRDESC;sujet;N;Y;text;30;W;;;;;;;
-ATTR;SFI_KEYWORD;SFI_FRDESC;mots-clés;N;N;text;40;W;;;;;;;
-ATTR;SFI_DESCRIPTION;SFI_FRDESC;résumé;N;N;longtext;50;W;;;;;;;
-ATTR;SFI_FILE;SFI_FRDESC;fichier;N;N;file;60;W;;;;;;;
-ATTR;SFI_MIMETXT;SFI_FRDESC;type;N;N;text;60;R;;;;;;;
-ATTR;SFI_MIMESYS;SFI_FRDESC;type système;N;N;text;70;R;;;;;;;
-ATTR;SFI_MIMEICON;SFI_FRDESC;icone;N;N;image;80;R;;;;;;;
-ATTR;SFI_FILESIZE;SFI_FRDESC;taille;N;N;double;90;R;;;;;;;
-ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;image;100;R;;;;;;;
-ATTR;SFI_INEDITION;SFI_FRDESC;fichier en édition ?;N;N;text;100;H;;;;;;;
-ATTR;SFI_VERSION;SFI_FRDESC;version;N;N;text;110;W;;;;;;;version=yes
+ATTR;SFI_FILE;SFI_FRDESC;fichier;N;N;file;10;W;Y;;;;;;
+ATTR;SFI_TITLE;SFI_FRDESC;nom du fichier;Y;N;text;30;R;;;;;;;
+ATTR;SFI_TITLEW;SFI_FRDESC;titre;N;N;text;50;O;;;;;;;
+ATTR;SFI_SUBJECT;SFI_FRDESC;sujet;N;Y;text;70;W;;;;;;;
+ATTR;SFI_KEYWORD;SFI_FRDESC;mots-clés;N;N;text;90;W;;;;;;;
+ATTR;SFI_DESCRIPTION;SFI_FRDESC;résumé;N;N;longtext;110;W;;;;;;;
+ATTR;SFI_MIMETXTSHORT;SFI_FRDESC;type court;N;N;text;130;R;;;;;;;
+ATTR;SFI_MIMETXT;SFI_FRDESC;type;N;N;text;150;R;;;;;;;
+ATTR;SFI_MIMESYS;SFI_FRDESC;type système;N;N;text;170;R;;;;;;;
+ATTR;SFI_MIMEICON;SFI_FRDESC;icone;N;N;image;190;R;;;;;;;
+ATTR;SFI_FILESIZE;SFI_FRDESC;taille;N;N;double;210;R;;;;;;;
+ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;image;230;R;;;;;;;
+ATTR;SFI_INEDITION;SFI_FRDESC;fichier en édition ?;N;N;text;250;H;;;;;;;
+ATTR;SFI_VERSION;SFI_FRDESC;version;N;N;text;270;W;;;;;;;version=yes
 ATTR;SFI_MODFILE;;Modifier le fichier;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITMODFILE&id=%I%;;::fileIsNotInEdition();;;
 ATTR;SFI_CANCELMODFILE;;Abandonner la modification;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_CANCELMODFILE&id=%I%;;::fileIsInEdition();;;ltarget=_self
 ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;ltarget=_self

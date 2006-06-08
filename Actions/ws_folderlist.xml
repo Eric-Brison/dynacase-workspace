@@ -19,7 +19,7 @@
 </THEAD>
 <tbody class="folder">
 [BLOCK TREE]
-<tr oncontextmenu="viewdetailmenu(event,[id],this);return false;"  onclick="viewDoc(event,'[id]',this);" onmouseover="overdoc(this)" onmouseout="outdoc(this)"><td><img title="[TEXT:click and drag to move document]" onclick2="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="right">[mime]</td></tr>
+<tr oncontextmenu="viewdetailmenu(event,[id],this);return false;"  onclick="viewDoc(event,'[id]',this);" onmouseover="overdoc(this)" onmouseout="outdoc(this)"><td><img title="[TEXT:click and drag to move document]" onclick2="stopPropagation(event)" class="icon" src="[icon]" onmousedown="begindrag(event,this.parentNode.parentNode.parentNode.parentNode,this.parentNode,'[id]','[pid]')">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="left">[mime]</td></tr>
 [ENDBLOCK TREE]  
 </tbody>
 </TABLE>

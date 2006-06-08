@@ -157,7 +157,7 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 }
 
 // ----------------------------- view clipboard --------------------
-function folderSend(n,cible,adddocid,padddocid,addft,kview) {
+function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   if (INPROGRESS) return false; // one request only
 
   // branch for native XMLHttpRequest object
@@ -173,8 +173,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview) {
       if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
       
       if (addft=='del') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, (!SYNCHRO));
-      else if (kview == 'list') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n, (!SYNCHRO));
-      else req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n, (!SYNCHRO));
+      else if (kview == 'list') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key, (!SYNCHRO));
+      else req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key, (!SYNCHRO));
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
       //      req.setRequestHeader("Content-Length", "0");
       globalcursor('progress');
@@ -254,6 +254,9 @@ function restoreDoc(event,docid) {
 }
 function deleteDoc(event,docid) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+docid+'&paddid='+CFLDID);
+}
+function copyDoc(event,docid) {
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_COPYDOC&id='+docid+'&paddid='+CFLDID);
 }
 
 // ----------------------------- view document detail --------------------
@@ -572,8 +575,24 @@ function viewFolder(event,dirid,o) {
   }
   CFLDID=dirid;
   folderSend(dirid,where,null,null,null,'list');
-  
 }
+function viewSearch(event,key) {
+  var  where=document.getElementById('fldlist');
+ 
+  CFLDID=null;
+  folderSend('search',where,null,null,null,'list',key);
+}
+
+function trackCR(event) {
+  var intKeyCode;
+
+  if (!event) event=window.event;
+  intKeyCode=event.keyCode;
+  if (intKeyCode == 13) return true;
+
+  return false;
+}
+
 function changeOrder(event,norder) {
   if (CORDER == norder) CDESCORDER=(!CDESCORDER); // invert order
   else {
