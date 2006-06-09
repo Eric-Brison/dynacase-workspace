@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.5 2006/06/09 15:08:29 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.1 2006/06/09 15:08:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -15,7 +15,7 @@
 include_once("FDL/popupdoc.php");
 include_once("FDL/popupdocdetail.php");
 // -----------------------------------
-function ws_popupdocfolder(&$action) {
+function ws_popupsimplefile(&$action) {
   // -----------------------------------
   // define accessibility
   $docid = GetHttpVars("id");
@@ -48,20 +48,20 @@ function ws_popupdocfolder(&$action) {
 				 "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&rzone=$zone&id=$docid",
 				 "confirm"=>"false",
 				 "tconfirm"=>"",
-				 "target"=>"",
+				 "target"=>"_self",
 				 "visibility"=>POPUP_ACTIVE,
 				 "submenu"=>"",
 				 "barmenu"=>"false"),
 	       "delete"=>array( "descr"=>_("Delete"),
-				"jsfunction"=>"deleteDoc(event,$docid)",
+				"url"=>"$surl&app=GENERIC&action=GENERIC_DEL&id=$docid",
 				"confirm"=>"true",
 				"tconfirm"=>sprintf(_("Sure delete %s ?"),$doc->title),
-				"target"=>"",
+				"target"=>"_self",
 				"visibility"=>POPUP_INACTIVE,
 				"submenu"=>"",
 				"barmenu"=>"false"),
-	       "histo"=>array( "descr"=>_("History"),
-			       "url"=>"$surl&app=FREEDOM&action=HISTO&id=$docid&viewrev=N",
+	       "postit"=>array( "descr"=>_("Add a note"),
+				"jsfunction"=>"postit('$surl&app=GENERIC&action=GENERIC_EDIT&classid=27&pit_title=&pit_idadoc=$docid',50,50,300,200)",
 			       "confirm"=>"false",
 			       "tconfirm"=>"",
 			       "target"=>"",
@@ -69,15 +69,15 @@ function ws_popupdocfolder(&$action) {
 			       "submenu"=>"",
 			       "barmenu"=>"false"),
 	       "duplicate"=>array( "descr"=>_("Duplicate"),
-				   "jsfunction"=>"copyDoc(event,$docid)",
+				   "url"=>"$surl&app=GENERIC&action=GENERIC_DUPLICATE&id=$docid",
 				   "confirm"=>"true",
 				   "tconfirm"=>_("Sure duplicate ?"),
-				   "target"=>"",
+				   "target"=>"_self",
 				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
 	       "tobasket"=>array( "descr"=>_("Add to basket"),
-				  "jsfunction"=>"addToBasket(event,$docid)",
+				  "jsfunction"=>"shortcutToFld(event,$docid,'".$action->getParam("FREEDOM_IDBASKET")."')",
 				  "confirm"=>"false",
 				  "tconfirm"=>"",
 				  "target"=>"",

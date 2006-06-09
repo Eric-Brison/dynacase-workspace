@@ -24,8 +24,32 @@ function postModify() {
   }
 }
 
-
-
+/**
+ * use for duplicate physicaly the file
+ */
+function postCopy() {
+  
+  $f=$this->getValue("sfi_file");
+  if ($f) {
+    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+      $vf = newFreeVaultFile($this->dbaccess);
+      if ($vf->Show($reg[2], $info) == "") {
+	$cible=$info->path;
+	if (file_exists($cible)) {
+	  $err=$vf->Store($cible, false , $vid);
+	  if ($err == "") {
+	    $pp=strrpos($info->name,'.');
+	    $base=substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
+	    $vf->Rename($base);
+	    $this->setValue("sfi_file",$reg[1]."|$vid");
+	    $this->modify();
+	  }
+	}
+      }
+    }
+  }
+  return $err;
+}
 function specRefresh() {
   // $this->computeMime();
   //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
@@ -290,6 +314,8 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->viewdefaultcard($target,$ulink,$abstract);
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/popupdoc.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
 
 
   $this->lay->set("emblem",$this->getEmblem());

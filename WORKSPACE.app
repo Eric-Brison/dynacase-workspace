@@ -63,6 +63,11 @@ $action_desc = array (
    "name"		=>"WS_POPUPDOCFOLDER",
    "short_name"		=>N_("popup menu in folder list"),
    "acl"		=>"WORKSPACE_USER"
+  )  , 
+  array( 
+   "name"		=>"WS_POPUPSIMPLEFILE",
+   "short_name"		=>N_("popup menu for simplefile family"),
+   "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
    "name"		=>"WS_EMPTYTRASH",

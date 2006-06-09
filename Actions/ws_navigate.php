@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.4 2006/04/20 18:15:07 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.5 2006/06/09 15:08:29 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -28,6 +28,7 @@ function ws_navigate(&$action) {
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/AnchorPosition.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/common.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/popupdoc.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/DHTMLapi.js");
 
 

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.11 2006/06/08 16:07:56 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.12 2006/06/09 15:08:29 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -60,7 +60,7 @@ function ws_folderlist(&$action) {
     break;
   case "search":
     // search
-    $keyword=$key;
+    $keyword=utf8_decode($key);
     $doc=createTmpDoc($dbaccess,5);
     $doc->title=sprintf(_("search %s"),$keyword);
     $doc->Add();

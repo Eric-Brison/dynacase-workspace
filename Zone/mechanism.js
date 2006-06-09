@@ -17,122 +17,29 @@ var CDROPZ=null; // current drop zone
 var IEPARASITE=null; // to ignored unwanted event fire produced by IE
 
 
+var THECIBLE=false; // object where insert HTML code
 var INPROGRESS=false;
-var THECIBLE=false;
 var EXPANDIMG=false;
 var req;
 var CURSPACE=false; // current selected space object
 var CURSPACEID=false; // current selected space id
 var CFLDID=false; // current folder doc id
 var CLIPCID=false; // current folder for clipboard
-var SYNCHRO=false; // 
 var REFRESH=false; // to indicate the the state is for resfresh one part
 var PREVVIEWDOCID=false; // to don't do twice teh same action
+var CORE_STANDURL=window.location.pathname+'?sole=Y&';
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
-  if (INPROGRESS) alert('abordted');
-  if (INPROGRESS) return false; // one request only
-    // branch for native XMLHttpRequest object
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest(); 
-    } else if (window.ActiveXObject) {
-      // branch for IE/Windows ActiveX version
-      isIE = true;
-      req = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (req) {
-      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
-      req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n,(!SYNCHRO));
-      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-      //      req.setRequestHeader("Content-length", "1"); 
-      globalcursor('progress');
-      THECIBLE=cible;
-      if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-      else req.send('');
+  var url;
+  url= CORE_STANDURL+'app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n;
 
-      if (SYNCHRO) {
-	INPROGRESS=false;
-	unglobalcursor();
-	if(req.status == 200) {
-	   
-	  if (req.responseXML) insertXMlResponse(req.responseXML)
-	  else {
-	    alert('no xml\n'+req.responseText);
-	    return;
-	  } 
-	}
-      } else {
-	globalcursor('progress');
-	INPROGRESS=true;
-	return true;
-      }
-    }    
-}
-
-function XmlInsertHtml() {
-  INPROGRESS=false; 
-  //document.body.style.cursor='auto';
-  unglobalcursor();
-  if (req.readyState == 4) {
-    // only if "OK"
-    //dump('readyState\n');
-    if (req.status == 200) {
-      // ...processing statements go here...
-      //  alert(req.responseText);
-      if (req.responseXML) insertXMlResponse(req.responseXML)
-      else {
-	alert('no xml\n'+req.responseText);
-	return;
-      } 	  
-    } else {
-      alert("There was a problem retrieving the XML data:\n" +
-	    req.statusText+' code :'+req.status);
-      return;
-    }
-  } 
-}
-function insertXMlResponse(xmlres) {  
-    var o=THECIBLE;
-    if (xmlres) {
-      var elts = xmlres.getElementsByTagName("status");
-      if (elts.length == 1) {
-	  var elt=elts[0];
-	  var code=elt.getAttribute("code");
-	  var delay=elt.getAttribute("delay");
-	  var c=elt.getAttribute("count");
-	  var w=elt.getAttribute("warning");
-
-	  if (w != '') alert(w);
-	  if (code != 'OK') {
-	    alert('code not OK\n'+req.responseText);
-	    return;
-	  }
-	  elts = xmlres.getElementsByTagName("branch");
-	  if (elts && (elts.length>0)) {
-	    elt=elts[0].firstChild.nodeValue;
-	    if (o) {
-	      if (c > 0)       o.style.display='';
-	      o.innerHTML=elt;
-	    }
-	  }
-	  var actions=xmlres.getElementsByTagName("action");
-	  
-	  var actname;
-	  var actdocid;
-	  for (var i=0;i<actions.length;i++) {
-	    actname=actions[i].getAttribute("name");
-	    actdocid=actions[i].getAttribute("docid");
-	    postActionRefresh(actname,actdocid,c);
-	  }
-
-	  if (! isNetscape) correctPNG();
+  if (adddocid) url = url+ "&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
+  
+  requestUrlSend(cible,url);
 	  changedragft(null,'nothing');
-	} else {
-	  alert('no status\n'+req.responseText);
-	  return;
-	}
-      }
 }
+
+
 function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
   if (! where) return 0;
   if (reset && reset==true) {
@@ -158,93 +65,18 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 
 // ----------------------------- view clipboard --------------------
 function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
-  if (INPROGRESS) return false; // one request only
 
-  // branch for native XMLHttpRequest object
-  if (window.XMLHttpRequest) {
-    req = new XMLHttpRequest(); 
-  } else if (window.ActiveXObject) {
-    // branch for IE/Windows ActiveX version
-    isIE = true;
-    req = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-  if (req) {
-      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
-      
-      if (addft=='del') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid, (!SYNCHRO));
-      else if (kview == 'list') req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key, (!SYNCHRO));
-      else req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key, (!SYNCHRO));
-      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-      //      req.setRequestHeader("Content-Length", "0");
-      globalcursor('progress');
-      THECIBLE=cible;
-     
-      if (adddocid) req.send("addid="+adddocid+"&addft="+addft+"&paddid="+padddocid);
-      else req.send('');
-
-      if (SYNCHRO) {
-	INPROGRESS=false;
-	unglobalcursor();
-	if (req.status == 200) {	   
-	  if (req.responseXML) insertXMlResponse(req.responseXML)
-	  else {
-	    alert('no xml\n'+req.responseText);
-	    return;
-	  } 
-	}
-      } else {
-	INPROGRESS=true;	
-	globalcursor('progress');
-	clipboardWait(cible);
-	return true;
-      }
-    }
-}
-
-// send generic request
-function requestUrlSend(cible,url) {
-  if (INPROGRESS) return false; // one request only
-
-  // branch for native XMLHttpRequest object
-  if (window.XMLHttpRequest) {
-    req = new XMLHttpRequest(); 
-  } else if (window.ActiveXObject) {
-    // branch for IE/Windows ActiveX version
-    isIE = true;
-    req = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-  if (req) {
-      if (! SYNCHRO) req.onreadystatechange = XmlInsertHtml;
-      
-      req.open("POST", url, (!SYNCHRO));     
-      req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-      //      req.setRequestHeader("Content-Length", "0");
-      globalcursor('progress');
-      THECIBLE=cible;
-     
+  var url;
  
-      req.send('');
-
-      if (SYNCHRO) {
-	INPROGRESS=false;
-	unglobalcursor();
-	if (req.status == 200) {	   
-	  if (req.responseXML) insertXMlResponse(req.responseXML)
-	  else {
-	    alert('no xml\n'+req.responseText);
-	    return;
-	  } 
-	}
-      } else {
-	INPROGRESS=true;	
-	globalcursor('progress');
-	clipboardWait(cible);
-	return true;
-      }
-    }
+      
+  if (addft=='del') url= CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid;
+  else if (kview == 'list') url=CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key;
+  else url= CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key;
+  if (adddocid) url+="&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
+  requestUrlSend(cible,url);
+  changedragft(null,'nothing');
 }
+
 
 function emptytrash(event) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_EMPTYTRASH');
@@ -259,35 +91,13 @@ function copyDoc(event,docid) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_COPYDOC&id='+docid+'&paddid='+CFLDID);
 }
 
-// ----------------------------- view document detail --------------------
-function documentSend(docid,cible) {
-  if (INPROGRESS) return false; // one request only
-    // branch for native XMLHttpRequest object
-    if (window.XMLHttpRequest) {
-        req = new XMLHttpRequest(); 
-    } else if (window.ActiveXObject) {
-      // branch for IE/Windows ActiveX version
-      isIE = true;
-      req = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (req) {
-        req.onreadystatechange = XmlInsertHtml ;
-        req.open("POST", CORE_STANDURL+'app=WORKSPACE&action=WS_VIEWDOC&id='+docid, true);
-	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
-	//      req.setRequestHeader("Content-Length", "0");
-	THECIBLE=cible;
+function addToBasket(event,docid) {
 
-
-	req.send('');
-	
-	
-	INPROGRESS=true;
-	//document.body.style.cursor='progress';	
-	globalcursor('progress');
-	clipboardWait(cible);
-	return true;
-    }    
+  folderSend(IDBASKET,false,docid,false,'shortcut');
 }
+
+
+
 // ----------------------------- view context memnu --------------------
 
 
