@@ -7,7 +7,7 @@
 
 <div style="height:98%;background-color:orange;border:solid 1px orange" droppable="[droppable]" dropft="shortcut" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)">
 [BLOCK TREE]
-<div class="smallspace" onclick="viewDoc(event,'[id]')" onmousedown="begindrag(event,document.getElementById('tabclip'),this,'[id]','[pid]')"><img class="icon" src="[icon]"><img class="ilink" src="[IMG:link.gif]"><br><span>[title]</span></div>
+<div class="smallspace" onclick="viewDoc(event,'[id]')" onmousedown="begindrag(event,document.getElementById('tabclip'),this,'[id]','[pid]')"><img class="icon" src="[icon]"><br><span>[title]</span></div>
 [ENDBLOCK TREE]  
 </div>
 

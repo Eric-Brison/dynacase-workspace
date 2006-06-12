@@ -6,13 +6,339 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-06 17:42+0200\n"
-"PO-Revision-Date: 2006-06-06 17:58+0200\n"
+"POT-Creation-Date: 2006-06-12 16:17+0200\n"
+"PO-Revision-Date: 2006-06-12 17:17+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid " (copy)"
+msgstr " (copie)"
+
+msgid "undefined"
+msgstr "non défini"
+
+#, c-format
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
+
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#, c-format
+msgid "%d kb"
+msgstr "%d ko"
+
+#, c-format
+msgid "%.01f Mb"
+msgstr "%.01f Mo"
+
+msgid "No title"
+msgstr "Pas de titre"
+
+#, c-format
+msgid "duplication of %s "
+msgstr "copie de %s"
+
+#, c-format
+msgid "failed to copy document %s"
+msgstr "échec de la copie du document %s"
+
+msgid "WorkSpace"
+msgstr "Espace de travail"
+
+msgid "Documents Exchange"
+msgstr "Echange de documents"
+
+msgid "Access For Workspace edition"
+msgstr "Accès à l'édition des espaces de travail"
+
+msgid "Access for exchange documents"
+msgstr "Access à l'échange de documents"
+
+msgid "interface to navigate in spaces"
+msgstr "interface pour naviguer dans les espaces"
+
+msgid "add branch in folder tree"
+msgstr "ajouter une branche dans l'arbre des dossiers"
+
+msgid "to view clipboard"
+msgstr "pour voir le panier"
+
+msgid "to view folder"
+msgstr "pour voir un dossier"
+
+msgid "to view a document"
+msgstr "pour voir un document"
+
+msgid "popup menu global in folder list"
+msgstr ""
+
+msgid "popup menu in folder list"
+msgstr ""
+
+msgid "popup menu for simplefile family"
+msgstr ""
+
+msgid "empty the user trash"
+msgstr "vider la corbeille"
+
+msgid "restore a document from the trash"
+msgstr "restaurer un document depuis la corbeille"
+
+msgid "download file from simplefile"
+msgstr "télécharger un fichier pour simplefile"
+
+msgid "edit HTML file"
+msgstr "éditer le fichier HTML"
+
+msgid "edit download file"
+msgstr ""
+
+msgid "cancel download file"
+msgstr ""
+
+msgid "edit for new version"
+msgstr ""
+
+msgid "download file for edition"
+msgstr ""
+
+msgid "upload file for modification"
+msgstr "rapatrier le fichier pour modification"
+
+msgid "create a new version"
+msgstr "créer une nouvelle version"
+
+msgid "duplicate a document"
+msgstr "dupliquer un document"
+
+msgid "Documents exchange"
+msgstr "Echange de documents"
+
+msgid "Private"
+msgstr "Privé"
+
+msgid "Trash"
+msgstr "Corbeille"
+
+msgid "input file name to search"
+msgstr "nom du fichier à rechercher"
+
+msgid "Send searches"
+msgstr "Lancer la recherche"
+
+msgid "my affected documents"
+msgstr "mes documents affectés"
+
+msgid "my locked documents"
+msgstr "mes documents verrouillés"
+
+msgid "my documents to read"
+msgstr "mes documents à lire"
+
+msgid "my basket"
+msgstr "mon panier"
+
+msgid "The text has be modified"
+msgstr "Le texte a été modifié"
+
+msgid ""
+"The file will be downloaded in your personal computer. You need to save it "
+"in your personal space. Do not try to open it directly because you can loose "
+"it"
+msgstr "Le fichier va être téléchargé sur votre ordinateur. Vous devez le sauver dans votre espace personnel. N'essayer pas de l'ouvrir directement car vous risquez de perdre vos modifications"
+
+msgid ""
+"When the file is saved, you can edit it with the appropriated application "
+"and save it at the same place"
+msgstr "Lorsque le fichier est sauvé, vous pouver l'éditer avec le programme approprié et sauver les modifications du fichier sans le renommer"
+
+msgid ""
+"When the modification are done, you must go to web shared folder application "
+"and select the file"
+msgstr "Quand les modifications sont finies, vous devez aller sur l'application \"échange de documents\" afin de sélectionner le document pour rapatrier le fichier modifié"
+
+msgid "The name file must the same as previous name"
+msgstr "Le nom du fichier doit être le même que le nom initial"
+
+msgid ""
+"On the context menu select 'upload file' to save modified file in the web "
+"shared folder"
+msgstr ""
+
+msgid "Actions..."
+msgstr "Actions..."
+
+msgid "click and drag to move document"
+msgstr "Clic et glisse pour déplacer le document "
+
+msgid "Add version"
+msgstr "Ajouter une version"
+
+msgid "Create new version for the document"
+msgstr "Créer une nouvelle version pour le document"
+
+msgid "The current version will be archived with the version"
+msgstr ""
+
+msgid "A new document version will be created with the new name version"
+msgstr ""
+
+msgid "Version name is empty"
+msgstr "Le nom de la version est vide"
+
+msgid "Actual version"
+msgstr "Version actuelle"
+
+msgid "New version"
+msgstr "Nouvelle version"
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgid "Create new version"
+msgstr "Créer une nouvelle version"
+
+msgid "The version rename will not create new version"
+msgstr "Le renommage de la version ne crée pas de nouvelle version"
+
+msgid "Click to modify title"
+msgstr "Cliquer pour modifier le titre"
+
+msgid "Click to modify description"
+msgstr "Cliquer pour modifier la description"
+
+msgid "Download file for reading"
+msgstr "Télécharger le fichier pour le consulter"
+
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Put the modified file"
+msgstr "Récupérer le fichier modifié"
+
+msgid "Upload modified file"
+msgstr "Rapatrier le fichier modifié"
+
+msgid "Abort modification and unlock document"
+msgstr "Abandonne la modification en cours et déverouille le document"
+
+msgid "Abord file modification"
+msgstr "Abandonner la modification"
+
+msgid "Download file for edit and modify it"
+msgstr "Télécharger le fichier afin de le modifier"
+
+msgid "Modify the file"
+msgstr "Modifier le fichier"
+
+msgid "View file inline"
+msgstr "Voir le fichier en ligne"
+
+msgid "Display"
+msgstr "Afficher"
+
+msgid "Edit HTML file"
+msgstr "Editer le fichier HTML"
+
+msgid "Return to main view"
+msgstr "Retour à la vue principale"
+
+msgid "Reload"
+msgstr "Recharger"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "View file properties"
+msgstr "Voir les propriétés du fichier"
+
+msgid "Click to modify subject"
+msgstr "Cliquer pour modifier le sujet"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Participates"
+msgstr "Participants"
+
+msgid "Modify the abstract"
+msgstr "Modifier le résumé"
+
+msgid "Abstract"
+msgstr "Résumé"
+
+msgid "Keywords"
+msgstr "Mots-Clefs"
+
+msgid "Rename the version"
+msgstr "Renommer la version"
+
+msgid "Undefined"
+msgstr "Non défini"
+
+msgid "View complete historic"
+msgstr "Voir l'historique complet"
+
+msgid "Historic"
+msgstr "Historique"
+
+msgid "Double Click to recompute the thumbnail"
+msgstr "Double-cliquer pour mettre à jour la miniature"
+
+msgid "bytes"
+msgstr "octets"
+
+msgid "Creation date"
+msgstr "Date de création"
+
+msgid "Modification date"
+msgstr "Date de dernière modification"
+
+msgid "Last acces date"
+msgstr "Date de dernier accès"
+
+msgid "File type"
+msgstr "Type de fichier"
+
+msgid "Locked by"
+msgstr "Verrouillé par"
+
+msgid "File path"
+msgstr "Emplacement"
+
+msgid "You must click on the Search... button to select the modified file "
+msgstr "Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier modifié"
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr "Afin de limiter les erreurs, le nom du fichier doit être le même que celui du fichier original"
+
+msgid ""
+"If you want to change file, you need to abord the modification and choose "
+"'replace file' in the context menu"
+msgstr ""
+
+msgid "New file"
+msgstr "Nouveau fichier"
+
+msgid "Stay in edition mode ?"
+msgstr "Rester en mode édition ?"
+
+msgid "Select it if you want to change again the file after this save"
+msgstr "Sélectionner si vous vouler refaire des modifications après la sauvegarde"
+
+msgid "You need to select the file"
+msgstr "Vous devez selectionner un fichier"
+
+msgid "The name of the file must be the same as previous name"
+msgstr "Le nom du fichier doit être le même que l'original"
+
+msgid "Download file"
+msgstr "Télécharger le fichier"
 
 #, c-format
 msgid "Document %s is not alive"
@@ -26,20 +352,25 @@ msgstr "L'attribut %s n'est pas du type fichier"
 msgid "%s : edit HTML file"
 msgstr "%s : édition du fichier HTML"
 
-msgid "Add new file"
-msgstr "Ajouter un fichier"
-
-msgid "Create new text"
-msgstr "Créer un texte"
-
-msgid "Create new folder"
-msgstr "Créer un dossier"
-
-msgid "TEST"
+#, c-format
+msgid "cannot duplicate %s document"
 msgstr ""
 
-msgid "Empty trash"
-msgstr "Vider la corbeille"
+#, c-format
+msgid "document %s does not exist"
+msgstr ""
+
+#, c-format
+msgid "unknown attribute %s for document %s"
+msgstr ""
+
+#, c-format
+msgid "visibility %s does not allow modify attribute %s for document %s"
+msgstr ""
+
+#, c-format
+msgid "modify [%s] attribute"
+msgstr ""
 
 msgid "trash"
 msgstr "corbeille"
@@ -56,113 +387,8 @@ msgstr "Taille"
 msgid "File Type Menu"
 msgstr "Type"
 
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
-#, c-format
-msgid "%.01f Mb"
-msgstr "%.01f Mo"
-
-#, c-format
-msgid "%d documents"
-msgstr "%d documents"
-
 msgid "0 document"
 msgstr "0 document"
-
-msgid "the trash cannot be empty"
-msgstr "La corbeille ne peut pas être vidée"
-
-msgid "no user defined"
-msgstr "pas d'utilisateur défini"
-
-msgid "no file referenced"
-msgstr "pas de fichier référencé"
-
-#, c-format
-msgid "document [%s] not found"
-msgstr "document [%s] pas trouvé"
-
-msgid "View latest"
-msgstr "Voir la dernière version"
-
-msgid "Edit"
-msgstr "Editer"
-
-msgid "Delete"
-msgstr "Supprimer"
-
-#, c-format
-msgid "Sure delete %s ?"
-msgstr "Etes-vous sur de supprimer %s ?"
-
-msgid "Change state"
-msgstr ""
-
-msgid "Revise"
-msgstr ""
-
-msgid "History"
-msgstr ""
-
-msgid "Duplicate"
-msgstr ""
-
-msgid "Sure duplicate ?"
-msgstr ""
-
-msgid "Lock"
-msgstr ""
-
-msgid "Unlock"
-msgstr ""
-
-msgid "Change profile"
-msgstr ""
-
-msgid "goaccess"
-msgstr ""
-
-msgid "Add to basket"
-msgstr ""
-
-msgid "restore"
-msgstr ""
-
-msgid "Search linked documents"
-msgstr ""
-
-#, c-format
-msgid "unknown attribute %s for document %s"
-msgstr ""
-
-#, c-format
-msgid "visibility %s does not allow modify attribute %s for document %s"
-msgstr ""
-
-#, c-format
-msgid "modify [%s] attribute"
-msgstr ""
-
-#, c-format
-msgid "document %s does not exist"
-msgstr ""
-
-#, c-format
-msgid "document %s is not in edition"
-msgstr ""
-
-msgid "file modification aborted"
-msgstr ""
-
-#, c-format
-msgid "%s file downloaded by %s on %s"
-msgstr ""
 
 #, c-format
 msgid "document %s already in edition"
@@ -178,314 +404,58 @@ msgid ""
 "tagged : in edition"
 msgstr ""
 
-msgid "WorkSpace"
-msgstr "Espace de travail"
+msgid "Add new file"
+msgstr "Ajouter un fichier"
 
-msgid "Documents Exchange"
+msgid "Create new text"
+msgstr "Créer un texte"
+
+msgid "Create new folder"
+msgstr "Créer un dossier"
+
+msgid "TEST"
 msgstr ""
 
-msgid "Access For Workspace edition"
-msgstr ""
+msgid "Empty trash"
+msgstr "Vider la corbeille"
 
-msgid "Access for exchange documents"
-msgstr ""
-
-msgid "interface to navigate in spaces"
-msgstr ""
-
-msgid "add branch in folder tree"
-msgstr ""
-
-msgid "to view clipboard"
-msgstr ""
-
-msgid "to view folder"
-msgstr ""
-
-msgid "to view a document"
-msgstr ""
-
-msgid "popup menu global in folder list"
-msgstr ""
-
-msgid "popup menu in folder list"
-msgstr ""
-
-msgid "empty the user trash"
-msgstr ""
-
-msgid "restore a document from the trash"
-msgstr ""
-
-msgid "download file from simplefile"
-msgstr ""
-
-msgid "edit HTML file"
-msgstr ""
-
-msgid "edit download file"
-msgstr ""
-
-msgid "cancel download file"
-msgstr ""
-
-msgid "edit for new version"
-msgstr ""
-
-msgid "download file for edition"
-msgstr ""
-
-msgid "upload file for modification"
-msgstr ""
-
-msgid "create a new version"
+#, c-format
+msgid "%s file downloaded by %s on %s"
 msgstr ""
 
 #, c-format
-msgid "duplication of %s "
+msgid "Sure delete %s ?"
+msgstr "Etes-vous sur de supprimer %s ?"
+
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+msgid "Sure duplicate ?"
 msgstr ""
+
+msgid "restore"
+msgstr "restaurer"
+
+msgid "the trash cannot be empty"
+msgstr "La corbeille ne peut pas être vidée"
+
+msgid "no user defined"
+msgstr "pas d'utilisateur défini"
 
 #, c-format
-msgid "failed to copy document %s"
-msgstr ""
-
-msgid "undefined"
-msgstr ""
-
-msgid "fixed"
-msgstr ""
-
-msgid "nobody"
-msgstr ""
+msgid "document [%s] not found"
+msgstr "document [%s] pas trouvé"
 
 #, c-format
-msgid "unknow user %s"
+msgid "document %s is not in edition"
 msgstr ""
 
-msgid "No title"
-msgstr ""
-
-msgid "The text has be modified"
-msgstr ""
-
-msgid "Documents exchange"
-msgstr ""
-
-msgid "Private"
-msgstr ""
-
-msgid "Trash"
-msgstr ""
-
-msgid "my affected documents"
-msgstr ""
-
-msgid "my locked documents"
-msgstr ""
+msgid "file modification aborted"
+msgstr "modification du fichier abandonnée"
 
 #, fuzzy
-msgid "my documents to read"
-msgstr "Documents système pour l'espace de travail"
-
-msgid "my basket"
-msgstr ""
-
-msgid "Actions..."
-msgstr ""
-
-msgid "click and drag to move document"
-msgstr ""
-
-msgid "Add version"
-msgstr ""
-
-msgid "Create new version for the document"
-msgstr ""
-
-msgid "The current version will be archived with the version"
-msgstr ""
-
-msgid "A new document version will be created with the new name version"
-msgstr ""
-
-msgid "Version name is empty"
-msgstr ""
-
-msgid "Actual version"
-msgstr ""
-
-msgid "New version"
-msgstr ""
-
-msgid "Comment"
-msgstr ""
-
-msgid "Create new version"
-msgstr ""
-
-msgid "Cancel"
-msgstr ""
-
-msgid ""
-"The file will be downloaded in your personal computer. You need to save it "
-"in your personal space. Do not try to open it directly because you can loose "
-"it"
-msgstr ""
-
-msgid ""
-"When the file is saved, you can edit it with the appropriated application "
-"and save it at the same place"
-msgstr ""
-
-msgid ""
-"When the modification are done, you must go to web shared folder application "
-"and select the file"
-msgstr ""
-
-msgid "The name file must the same as previous name"
-msgstr ""
-
-msgid ""
-"On the context menu select 'upload file' to save modified file in the web "
-"shared folder"
-msgstr ""
-
-msgid "Folder"
-msgstr ""
-
-msgid "Click to modify title"
-msgstr ""
-
-msgid "Click to modify description"
-msgstr ""
-
-msgid "You must click on the Search... button to select the modified file "
-msgstr ""
-
-msgid "To prevent error, the filename must be the same as the previous name"
-msgstr ""
-
-msgid ""
-"If you want to change file, you need to abord the modification and choose "
-"'replace file' in the context menu"
-msgstr ""
-
-msgid "New file"
-msgstr ""
-
-msgid "Stay in edition mode ?"
-msgstr ""
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-
-msgid "You need to select the file"
-msgstr ""
-
-msgid "The name of the file must be the same as previous name"
-msgstr ""
-
-msgid "The version rename will not create new version"
-msgstr ""
-
-msgid "Download file for reading"
-msgstr ""
-
-msgid "Download"
-msgstr ""
-
-msgid "Put the modified file"
-msgstr ""
-
-msgid "Upload modified file"
-msgstr ""
-
-msgid "Abort modification and unlock document"
-msgstr ""
-
-msgid "Abord file modification"
-msgstr ""
-
-msgid "Download file for edit and modify it"
-msgstr ""
-
-msgid "Modify the file"
-msgstr ""
-
-msgid "View file inline"
-msgstr ""
-
-msgid "Display"
-msgstr ""
-
-msgid "Edit HTML file"
-msgstr ""
-
-msgid "Return to main view"
-msgstr ""
-
-msgid "Reload"
-msgstr ""
-
-msgid "Size"
-msgstr ""
-
-msgid "View file properties"
-msgstr ""
-
-msgid "Properties"
-msgstr ""
-
-msgid "Click to modify subject"
-msgstr ""
-
-msgid "Subject"
-msgstr ""
-
-msgid "Modify the abstract"
-msgstr ""
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Keywords"
-msgstr ""
-
-msgid "Rename the version"
-msgstr ""
-
-msgid "Version"
-msgstr ""
-
-msgid "Undefined"
-msgstr ""
-
-msgid "Double Click to recompute the thumbnail"
-msgstr ""
-
-msgid "Creation date"
-msgstr ""
-
-msgid "Modification date"
-msgstr ""
-
-msgid "File type "
-msgstr ""
-
-msgid "bytes"
-msgstr "octets"
-
-msgid "Last acces date"
-msgstr ""
-
-msgid "File type"
-msgstr "Type de fichier"
-
-msgid "Locked by"
-msgstr "Verrouillé par"
-
-msgid "File path"
-msgstr "Emplacement"
+msgid "Create new file"
+msgstr "Créer un dossier"
 
 #~ msgid "%s system"
 #~ msgstr "Système %s"

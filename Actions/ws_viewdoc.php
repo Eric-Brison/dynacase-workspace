@@ -3,7 +3,7 @@
  * View Document
  *
  * @author Anakeen 2000 
- * @version $Id: ws_viewdoc.php,v 1.1 2006/03/16 18:51:38 eric Exp $
+ * @version $Id: ws_viewdoc.php,v 1.2 2006/06/12 16:03:51 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -38,4 +38,5 @@ function ws_viewdoc(&$action) {
   $action->lay->set("CODE","OK");
   $action->lay->set("warning","");
   $action->lay->set("delay","1");
+  $a= _("object")
 }
