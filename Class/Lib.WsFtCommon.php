@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.5 2006/05/30 16:32:27 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.6 2006/06/13 15:48:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -115,6 +115,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	  $pdoc=new_doc($dbaccess,$pfldid);	 
 	  if (($adddoc->prelid == $pfldid) || ($pdoc->doctype=='S')) {
 	    $isnotfld=(strstr("SD", $adddoc->doctype) === false);
+	    if ($adddoc->doctype=='D')   $terr=$adddoc->deleteItems(); 
 	    $err=$adddoc->delete(); 
 	    if ($err=="") {
 	      $taction[]=array("actname"=>"TRASHFILE",

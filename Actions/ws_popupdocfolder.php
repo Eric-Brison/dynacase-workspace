@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.5 2006/06/09 15:08:29 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.6 2006/06/13 15:48:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -91,12 +91,21 @@ function ws_popupdocfolder(&$action) {
 				 "target"=>"",
 				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
+				 "barmenu"=>"false"),
+	       "restorefld"=>array( "descr"=>_("restore folder and its containt"),
+				 "jsfunction"=>"restoreFld(event,$docid)",
+				 "tconfirm"=>"",
+				 "confirm"=>"false",
+				 "target"=>"",
+				 "visibility"=>POPUP_INVISIBLE,
+				 "submenu"=>"",
 				 "barmenu"=>"false"));
   changeMenuVisibility($action,$tlink,$doc);
 
 
   if ($doc->doctype=='Z') {
-    $tlink["restore"]["visibility"]=POPUP_ACTIVE;
+    if ($doc->defDoctype == 'D')  $tlink["restorefld"]["visibility"]=POPUP_ACTIVE;
+    else     $tlink["restore"]["visibility"]=POPUP_ACTIVE;
     $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
   }
   

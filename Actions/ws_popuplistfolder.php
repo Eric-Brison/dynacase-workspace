@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.7 2006/06/08 16:07:56 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.8 2006/06/13 15:48:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -65,16 +65,16 @@ function ws_popuplistfolder(&$action) {
 				     "submenu"=>"",
 				     "barmenu"=>"false"),
 	       "sep1"=>array("separator"=>true),
-	       "test"=>array("descr"=>_("TEST"),
-			     "jsfunction"=>"alert('coucou')",
-			     "confirm"=>"false",
-			     "control"=>"false",
-			     "icon" => "Images/dossier.gif",
-			     "tconfirm"=>"",
-			     "target"=>"nresume",
-			     "visibility"=>POPUP_ACTIVE,
-			     "submenu"=>"",
-			     "barmenu"=>"false"));
+	       "properties"=>array("descr"=>_("Properties"),
+				     "url"=>"$surl&app=FDL&action=FDL_CARD&id=$docid",
+				     "confirm"=>"false",
+				     "control"=>"false",
+				     "icon" => "Images/directory.gif",
+				     "tconfirm"=>"",
+				     "target"=>"nresume",
+				     "visibility"=>POPUP_ACTIVE,
+				     "submenu"=>"",
+				     "barmenu"=>"false"));
 
 
   if  ( ($doc->Control("modify") != "") || ($doc->isLocked(true))) {

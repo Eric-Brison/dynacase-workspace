@@ -82,7 +82,10 @@ function emptytrash(event) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_EMPTYTRASH');
 }
 function restoreDoc(event,docid) {
-  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid);
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid)
+}
+function restoreFld(event,docid) {
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&containt=yes&id='+docid)
 }
 function deleteDoc(event,docid) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+docid+'&paddid='+CFLDID);
@@ -124,8 +127,8 @@ function begindrag(event,oul,osp,docid,pdocid) {
     DRAGDOC=docid;
     PDRAGDOC=pdocid;
    
-    
-    MICON.innerHTML=osp.innerHTML;
+    if (typeof(osp)=='string')  MICON.innerHTML=osp;  
+    else  MICON.innerHTML=osp.innerHTML;
     document.onmouseup=enddrag ;
     setTimeout('reallybegindrag()',200); // display dragging mode 200ms after
 
@@ -583,4 +586,11 @@ function receiptActionNotification(code,arg) {
   }
   
 
+}
+function cathtml(o1,o2) {
+  if (o1 && o2) {
+    return o1.innerHTML + o2.innerHTML;
+  }
+
+  return 'nothing in cat';
 }

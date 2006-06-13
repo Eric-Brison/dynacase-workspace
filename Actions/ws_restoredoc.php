@@ -3,7 +3,7 @@
  * UnTrash document
  *
  * @author Anakeen 2006
- * @version $Id: ws_restoredoc.php,v 1.1 2006/04/26 15:52:01 eric Exp $
+ * @version $Id: ws_restoredoc.php,v 1.2 2006/06/13 15:48:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -21,12 +21,14 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  * Get a doc from the trash
  * @param Action &$action current action
  * @global id Http var : document id to restore
+ * @global containt Http var : if 'yes' restore also folder items 
  */
 function ws_restoredoc(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
 
   $mb=microtime();
   $docid = GetHttpVars("id");
+  $containt = (GetHttpVars("containt")=="yes");
   $dbaccess = $action->GetParam("FREEDOM_DB");
 
   $action->lay->set("warning","");
@@ -46,6 +48,10 @@ function ws_restoredoc(&$action) {
 		     "actdocid"=>$doc->prelid);
     $taction[]=array("actname"=>"DELFILE",
 		     "actdocid"=>'trash');
+
+    if ($containt && $doc->doctype=="D") {
+      $terr=$doc->reviveItems();
+    }
   }
   $action->lay->setBlockData("ACTIONS",$taction);
   $action->lay->set("CODE","OK");

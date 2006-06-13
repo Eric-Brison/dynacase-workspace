@@ -82,7 +82,7 @@ function clipboardWaitEnd(o) {
 <body class="freedom" >
 <div id="col1" class="spaces">
 [BLOCK SPACES]
-<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="add" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>
+<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="copy" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>
