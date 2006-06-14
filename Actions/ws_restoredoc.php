@@ -3,7 +3,7 @@
  * UnTrash document
  *
  * @author Anakeen 2006
- * @version $Id: ws_restoredoc.php,v 1.2 2006/06/13 15:48:00 eric Exp $
+ * @version $Id: ws_restoredoc.php,v 1.3 2006/06/14 16:25:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -25,6 +25,7 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  */
 function ws_restoredoc(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
+  $action->lay->setEncoding("utf-8");
 
   $mb=microtime();
   $docid = GetHttpVars("id");

@@ -64,7 +64,7 @@ function clipboardWaitEnd(o) {
        if (c==0) {
 	 o.src='[IMG:none.png]'; 
 	 o.style.visibility='hidden';
-	 if (isIE) correctOnePNG(o);
+	 // if (isIE) correctOnePNG(o);
        }
        else {
 	 o.src='[IMG:b_down.png]'; 

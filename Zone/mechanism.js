@@ -35,8 +35,9 @@ function folderTreeSend(n,cible,adddocid,padddocid,addft) {
 
   if (adddocid) url = url+ "&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
   
-  requestUrlSend(cible,url);
-	  changedragft(null,'nothing');
+  var ret=requestUrlSend(cible,url);
+  changedragft(null,'');
+  return ret;
 }
 
 
@@ -74,7 +75,7 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   else url= CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key;
   if (adddocid) url+="&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
   requestUrlSend(cible,url);
-  changedragft(null,'nothing');
+  changedragft(null,'');
 }
 
 
@@ -296,7 +297,7 @@ function keydrag(event) {
 	  DRAGFT=false;
 	  //dump('\tkeydrag\n');
 	  if (CDROPZ) sendEvent(CDROPZ,"mouseover");
-	  else  changedragft(event,'nothing');
+	  else  changedragft(event,'');
       }
       
       PECTRL=lpe;
@@ -312,12 +313,12 @@ function enddrag(event) {
   document.onkeyup="" ;
   document.onkeydown="" ;
   var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
-
+  if (! DRAGFT) unglobalcursor();
   MICON.style.display='none';
   sendEvent(e,"mouseup");
   
-  //  document.body.style.cursor='auto';
-  unglobalcursor();
+  
+  
   DRAGGING=false;
   PECTRL=false;
   //  changedragft(event,'nothing');
@@ -341,8 +342,7 @@ function insertinclipboard(event,o,bid,kview) {
     var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
 
     //    alert("insertinclipboard"+bid+':'+kview+event.toString());
-    if (DRAGGING) {
-     
+    if (DRAGFT) {
       if (! isIE) DRAGGING=false;
 
       if (PDRAGDOC != bid) {
@@ -484,10 +484,12 @@ function postActionRefresh(action,docid,c) {
     
     break;
   case "ADDBRANCH":
-    //  alert("DELFILE:"+docid);
-    endexpandtree(EXPANDIMG,c);
+    endexpandtree(EXPANDIMG,1);
     EXPANDIMG=null;
-    
+    break;
+  case "EMPTYBRANCH":
+    endexpandtree(EXPANDIMG,0);
+    EXPANDIMG=null;    
     break;
   case "LOCKFILE":
   case "UNLOCKFILE":    
@@ -545,10 +547,10 @@ function  postAddFolder(docid) {
   
 }
 
-function postEmptyTrash() {
+function postEmptyTrash(docid) {
   var fldid;
   var o;
-  if (CFLDID == 'trash') {
+  if ((CFLDID == 'trash')||(CFLDID == docid)) {
     viewFolder(null,CFLDID)
   }
   o=document.getElementById('trashicon');

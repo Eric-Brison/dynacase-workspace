@@ -150,11 +150,13 @@ DIV.folders IMG.ilink {
   width:8px;
 }
 DIV.folders LI {
-  list-style:none;
-  list-style-position:inside;
+ list-style:none;
+ /*  list-style-position:inside;*/
   font-family:arial;
   font-size:9pt;  
   white-space:nowrap;
+  padding:0px;
+  margin:0px;
 }
 DIV.folders LI A {
   font-family:arial;
@@ -169,11 +171,13 @@ DIV.fldlist TH IMG {
 #firstul  {
   padding-left:0px;
   margin-left:0px;
+  margin-top:2px;
 }
 DIV.folders UL {
   padding-left:20px;
   margin-left:0px;
 }
+
 DIV.resume * {
   font-family:arial;
   font-size:9pt;

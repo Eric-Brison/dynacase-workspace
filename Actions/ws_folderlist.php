@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.12 2006/06/09 15:08:29 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.13 2006/06/14 16:25:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -29,6 +29,7 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  */
 function ws_folderlist(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
+  $action->lay->setEncoding("utf-8");
 
   $mb=microtime();
   $docid = GetHttpVars("id");
@@ -172,8 +173,8 @@ function ws_folderlist(&$action) {
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
   $action->lay->set("title",utf8_encode($doc->title));
   $action->lay->setBlockData("HEAD",$thead);
-  if (count($tc) > 0) $action->lay->set("nbdoc",utf8_encode(sprintf(_("%d documents"),count($tc))));
-  else $action->lay->set("nbdoc",utf8_encode(_("0 document")));
+  if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
+  else $action->lay->set("nbdoc",_("0 document"));
 					
 
 

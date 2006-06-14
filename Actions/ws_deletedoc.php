@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_deletedoc.php,v 1.4 2006/04/26 15:52:01 eric Exp $
+ * @version $Id: ws_deletedoc.php,v 1.5 2006/06/14 16:25:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -26,6 +26,7 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  */
 function ws_deletedoc(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
+  $action->lay->setEncoding("utf-8");
 
   $mb=microtime();
   $docid = GetHttpVars("id");

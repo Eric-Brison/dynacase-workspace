@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.8 2006/05/16 17:03:13 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.9 2006/06/14 16:25:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -27,6 +27,7 @@ include_once("WORKSPACE/Lib.WsFtCommon.php");
  */
 function ws_foldericon(&$action) {
   header('Content-type: text/xml; charset=utf-8'); 
+  $action->lay->setEncoding("utf-8");
 
   $mb=microtime();
   $docid = GetHttpVars("id");
