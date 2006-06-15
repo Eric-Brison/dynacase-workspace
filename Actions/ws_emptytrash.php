@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_emptytrash.php,v 1.2 2006/06/14 16:25:50 eric Exp $
+ * @version $Id: ws_emptytrash.php,v 1.3 2006/06/15 16:01:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -48,7 +48,7 @@ function ws_emptytrash(&$action) {
   }
 
   $err=movementDocument($action,$dbaccess,false,$docid,$pdocid,$addft);
-  if ($err) $action->lay->set("warning",utf8_encode($err));
+  if ($err) $action->lay->set("warning",$err);
  
   if ($err=="") $taction[]=array("actname"=>"EMPTYTRASH",
 				 "actdocid"=>$pdoc->initid);

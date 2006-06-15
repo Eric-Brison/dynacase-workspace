@@ -3,7 +3,7 @@
 <td style="width:60%" valign="top">
 <!-- TD 1 -->
 <table width="100%"><tr><td style="width:80px" > 
-<div name="dmain"><img align="left" width="80px" src="Images/[ICON]"  onclick="viewsimplefilemenu(event,[ID],this);return false;"></div>
+<div name="dmain"><a href="javascript:void(0)"><img align="left" width="80px" style="border:none" src="Images/[ICON]"  title="[TEXT:Clic to view menu]" onclick="viewsimplefilemenu(event,[ID]);return false;"></a></div>
 <div name="dview" style="display:none"><img align="left" width="40px" src="Images/[ICON]"></div></td>
   <td  valign="top" align="left"><B>[TITLE]</B> <B [IF canedit]title="[TEXT:Click to modify title]" id="sfi_title" onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" [ENDIF canedit]style="cursor:text;display:inline;margin-left:22px;">[thetitle]</B></div>
 <div   name="dmain">

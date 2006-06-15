@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_foldericon.php,v 1.9 2006/06/14 16:25:50 eric Exp $
+ * @version $Id: ws_foldericon.php,v 1.10 2006/06/15 16:01:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -54,7 +54,7 @@ function ws_foldericon(&$action) {
 
 
   $err=movementDocument($action,$dbaccess,$doc->id,$addid,$pdocid,$addft);
-  if ($err) $action->lay->set("warning",utf8_encode($err));
+  if ($err) $action->lay->set("warning",$err);
 
   $action->lay->set("pid",$docid);
   $action->lay->set("CODE","KO");
@@ -68,6 +68,7 @@ function ws_foldericon(&$action) {
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
+		  "folder"=>($v["doctype"]=='D'),
 		  "icon"=>$doc->getIcon($v["icon"]));
     }
 

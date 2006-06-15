@@ -70,6 +70,11 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
+   "name"		=>"WS_POPUPSIMPLEFOLDER",
+   "short_name"		=>N_("popup menu for simplefolder family"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
    "name"		=>"WS_EMPTYTRASH",
    "short_name"		=>N_("empty the user trash"),
    "acl"		=>"WORKSPACE_USER"

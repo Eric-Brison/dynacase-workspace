@@ -29,7 +29,7 @@ ATTR;SFI_MODFILE;;Modifier le fichier;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_
 ATTR;SFI_CANCELMODFILE;;Abandonner la modification;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_CANCELMODFILE&id=%I%;;::fileIsInEdition();;;ltarget=_self
 ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;ltarget=_self
 ATTR;SFI_ADDVERSION;;Créer une nouvelle version;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITADDVERSION&id=%I%;;::canVersionned();;;
-ATTR;SFI_RENVERSION;;(Re)nommer la version;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITVERSION&id=%I%;;;;;ltarget=_self
+ATTR;SFI_RENVERSION;;(Re)nommer la version;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITVERSION&id=%I%;;::canEditMenu();;;ltarget=_self
 END;;;;;;;;;;;;;;;
 BEGIN;DIR;répertoire;;;SIMPLEFOLDER;;;;;;;;;;
 TYPE;C;;;;;;;;;;;;;;

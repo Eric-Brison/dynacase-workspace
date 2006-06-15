@@ -224,7 +224,7 @@ function outdoc(o) {
 function changedragft(event,nft) {
   var oft=document.getElementById('miconft'); 
   if (!oft) {
-       MICON.innerHTML=MICON.innerHTML+'<span id="miconft">COUOU</span>';
+       MICON.innerHTML=MICON.innerHTML+'<br><span id="miconft">COUOU</span>';
        oft=document.getElementById('miconft');
     }
 

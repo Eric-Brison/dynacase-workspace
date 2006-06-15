@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.8 2006/06/13 15:48:00 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.9 2006/06/15 16:01:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -54,7 +54,7 @@ function ws_popuplistfolder(&$action) {
 				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
-	       "createfolder"=>array("descr"=>_("Create new folder"),
+	       "createfolder"=>array("descr"=>_("Create new directory"),
 				     "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFOLDER&&dirid=$docid",
 				     "confirm"=>"false",
 				     "control"=>"false",

@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.6 2006/06/13 15:48:00 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.7 2006/06/15 16:01:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -28,21 +28,30 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
       if ($cdocid) {
 	$adddoc=new_doc($dbaccess,$cdocid);
 	if ($adddoc->isAlive()) {
-	  $err=$doc->AddFile($adddoc->id);
-	  if ($err=="") {
-	    if (strstr("SD", $adddoc->doctype) === false) {
-	      $taction[]=array("actname"=>"ADDFILE",
-			       "actdocid"=>$doc->initid);
-	    } else {
-	      $taction[]=array("actname"=>"ADDFOLDER",
-			       "actdocid"=>$doc->initid);	    
-	    }
+	  if (($docft == "move")&& ($adddoc->doctype=='D')){
+	    // verify to not loop in folder : normaly it is permit but for this kind of application we don't permit this
+	    $prel=$doc->getMainPath();
+	    $prelid=array_keys($prel);
+	    if (in_array($adddoc->initid ,$prelid)) $err=sprintf(_("cannot move folder %s in %s cause loop"),$adddoc->title,$doc->title);
 	  }
-	  if (($err=="")&&($docft == "move")) {
-	    if ($adddoc->prelid == $pfldid) {
-	      // change primary relation
-	      $adddoc->prelid=$doc->initid;
-	      $adddoc->modify(true,array("prelid"),true);
+
+	  if ($err=="") {
+	    $err=$doc->AddFile($adddoc->id);
+	    if ($err=="") {
+	      if (strstr("SD", $adddoc->doctype) === false) {
+		$taction[]=array("actname"=>"ADDFILE",
+				 "actdocid"=>$doc->initid);
+	      } else {
+		$taction[]=array("actname"=>"ADDFOLDER",
+				 "actdocid"=>$doc->initid);	    
+	      }
+	    }
+	    if (($err=="")&&($docft == "move")) {
+	      if ($adddoc->prelid == $pfldid) {
+		// change primary relation
+		$adddoc->prelid=$doc->initid;
+		$adddoc->modify(true,array("prelid"),true);
+	      }
 	    }
 	  }
 	}
@@ -115,8 +124,9 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	  $pdoc=new_doc($dbaccess,$pfldid);	 
 	  if (($adddoc->prelid == $pfldid) || ($pdoc->doctype=='S')) {
 	    $isnotfld=(strstr("SD", $adddoc->doctype) === false);
-	    if ($adddoc->doctype=='D')   $terr=$adddoc->deleteItems(); 
-	    $err=$adddoc->delete(); 
+	    
+	    if ($adddoc->doctype=='D')   $err=$adddoc->deleteRecursive(); 
+	    else  $err=$adddoc->delete(); 
 	    if ($err=="") {
 	      $taction[]=array("actname"=>"TRASHFILE",
 			       "actdocid"=>$pdoc->initid);

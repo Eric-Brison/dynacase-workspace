@@ -1,10 +1,14 @@
-<img width="48px" src="Images/[ICON]"> [TEXT:Folder]<br>
+
+<table width="100%"><tr><td style="width:80px">
+<a href="javascript:void(0)"><img align="left" width="80px" style="border:none" src="Images/[ICON]"  title="[TEXT:Clic to view menu]" onclick="viewsimplefoldermenu(event,[ID]);return false;"></a></td>
+<td>[TEXT:Folder]<br>
   <b><P title="[TEXT:Click to modify title]" id="sfi_title" 
 	onclick="editattr(event,'[ID]','ba_title',document.getElementById('sfi_title'))" 
 	style="cursor:text;display:inline;margin-left:22px">[V_BA_TITLE]</P></b>
+</td></tr></table>
 
 
-<br><br>
+<hr>
        <a  title="[TEXT:Click to modify description]" 
                onclick="editattr(event,'[ID]','ba_desc',document.getElementById('sfi_subject'))"><U>[L_BA_DESC] :</U></a>
         <P id="sfi_subject"  onclick="editattr(event,'[ID]','ba_desc',document.getElementById('sfi_subject'))" style="cursor:text;text-align:justify">[V_BA_DESC]</P> 

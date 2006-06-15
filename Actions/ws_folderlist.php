@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.13 2006/06/14 16:25:50 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.14 2006/06/15 16:01:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -85,7 +85,7 @@ function ws_folderlist(&$action) {
   }
 
   $err=movementDocument($action,$dbaccess,$doc->id,$addid,$pdocid,$addft);
-  if ($err) $action->lay->set("warning",utf8_encode($err));
+  if ($err) $action->lay->set("warning",$err);
 
 
 
