@@ -1,17 +1,15 @@
 
-
+/*
 BODY {
   background-image:url('../Images/brushedgrey.png');
 }
-
+*/
 DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
   background-color:white;
   color:black;
 }
 
 DIV.spaces {
-  position:absolute;
-  
   margin:3px 0px  3px  3px;
 /*  -moz-border-radius:15px;*/
   border:inset 2px white;
@@ -38,23 +36,23 @@ DIV.space {
   border-color:white;
 }
 TABLE.tfldlist TH {
-  background-color:#F5F5F5;
-  border-left:#AAAAAA solid 1px;
+  background-color:[COLOR_A9];
+  border-left:[COLOR_A5] solid 1px;
 }
 TABLE.tfldlist TH.thover {
-  background-color:#9fd0f9;
+  background-color:[COLOR_C6];
 }
 TABLE.tfldlist TR.trhover {
-  background-color:#EEEEEE;
+  background-color:[COLOR_C6];
 }
 
 TABLE.tfldlist TR.headfirst TH {
-  background-color:#EEEEEE;
+  background-color:[COLOR_A8];
 /*  -moz-border-radius:15px 15px 0px 0px;*/
 }
 DIV.spaceselect  {
-  background-color:#9fd0f9;
-  border-color:#AAAAAA;
+  background-color:[COLOR_B5];
+  border-color:[COLOR_A5];
 }
 
 INPUT, TEXTAREA {  
@@ -65,12 +63,10 @@ INPUT, TEXTAREA {
 }*/
 
 DIV.tabclip SPAN {         
-  border-color : #aaaaaa;          
+  border-color : [COLOR_A5];          
   background-color : white;
 }
-A:hover {
-  background-color:#9fd0f9;
-}
+
 IMG.button {
   cursor:pointer;
   -moz-border-radius:15px;	
@@ -82,12 +78,12 @@ DIV.aspace TH {
 	
 }
 IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
-  background-color:#EEEEEE;
+  background-color:[COLOR_C5];
   cursor:pointer;
 }
 
 SPAN.folderhover {
-  background-color:#EEEEEE;
+  background-color:[COLOR_C5];
 }
 SPAN.folderselect, TR.docselect {
   background-color:#9fd0f9;
@@ -100,10 +96,10 @@ BUTTON {
 }
 /* pop up style */
 
-
+/*
 
 .popup {
-  background-color: #EEEEEE;  
+  background-color: [COLOR_A9];  
   border-color: #DDDDDD;
 }
 
@@ -114,7 +110,7 @@ BUTTON {
 }
 
  a.menuItemDisabled, a.menuItemDisabled:link,a.menuItemDisabled:visited,a.menuItemCtrlDisabled,a.menuItemCtrlDisabled:link,a.menuItemCtrlDisabled:visited {
-  color: #AAAAAA;
+  color: [COLOR_A5];
   font-size:7pt;
   font-weight: normal;
 }
@@ -132,7 +128,7 @@ a.separator:hover {
 }
 .popup a.menuItemDisabled:hover,.popup a.menuItemCtrlDisabled:hover {
   color: #777777!important;
-  background-color: #EEEEEE;	
+  background-color: [COLOR_A9];	
 }
 .popup a.menuItem:hover *,.popup a.menuItemCtrl:hover *  {
   background-color: #333333;  
@@ -141,3 +137,4 @@ a.separator:hover {
 .popup a.menuItemDisabled:hover *,.popup a.menuItemCtrlDisabled:hover * {
   color: white;
 }
+*/
