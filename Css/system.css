@@ -7,7 +7,7 @@ DIV.space, DIV.spaceselect {
   overflow:hidden;
   margin:0px;
   text-align:center;
-  font-size:9pt;
+  font-size:[SIZE_MEDIUM];
   cursor:pointer;
   border-width:2px;
 /*  -moz-border-radius:15px;*/
@@ -29,7 +29,7 @@ DIV.smallspace {
   float:left;
   text-align:center;
   font-family:arial;
-  font-size:8pt;
+  font-size:[SIZE_SMALL];
   overflow : hidden;
   cursor:pointer;
 }
@@ -122,7 +122,7 @@ SPAN.micon {
   white-space:nowrap;
   background-color:yellow;
   border:dashed 1px;
-  font-size:9pt;  
+  font-size:[SIZE_MEDIUM];  
 }
 DIV.fldlist  {
   position:absolute;
@@ -133,11 +133,11 @@ DIV.resume  {
   position:absolute;
   overflow:hidden;
   font-family:arial;
-  font-size:10pt;
+  font-size:[SIZE_LARGE];
   margin:3px;
 }
 DIV.folders IMG, SPAN.micon IMG.icon {
-  width:20px;
+  width:[SIZE_IMG-X-SMALL];
 }
 SPAN.micon IMG.ilink {
   position:relative;
@@ -154,20 +154,20 @@ DIV.folders LI {
  list-style:none;
  /*  list-style-position:inside;*/
   font-family:arial;
-  font-size:9pt;  
+  font-size:[SIZE_MEDIUM];  
   white-space:nowrap;
   padding:0px;
   margin:0px;
 }
 DIV.folders LI A {
   font-family:arial;
-  font-size:9pt;  
+  font-size:[SIZE_MEDIUM];  
   height:22px;
   overflow:hidden;
   white-space:nowrap;
 }
 DIV.fldlist TH IMG {
-  width:32px;
+  width:[SIZE_IMG-SMALL];
 }
 #firstul  {
   padding-left:0px;
@@ -181,7 +181,7 @@ DIV.folders UL {
 
 DIV.resume * {
   font-family:arial;
-  font-size:9pt;
+  font-size:[SIZE_MEDIUM];
 }
 DIV.resume P {
   margin:0px;
@@ -194,7 +194,7 @@ DIV.resume TD {
 }
 DIV.fldlist * {
   font-family:arial;
-  font-size:9pt;
+  font-size:[SIZE_MEDIUM];
 }
 DIV.fldlist P {
   margin:0px;
@@ -226,12 +226,12 @@ TABLE.tfldlist {
   width:100%;
 }
 TABLE.tfldlist IMG.icon{
-  width:16px;
-  height:16px;
+  width:[SIZE_IMG-X-SMALL];
+  height:[SIZE_IMG-X-SMALL];
 }
 TABLE.tfldlist TH IMG{
-  width:16px;
-  height:16px;
+  width:[SIZE_IMG-X-SMALL];
+  height:[SIZE_IMG-X-SMALL];
 }
 
 TABLE.tfldlist TH {
@@ -243,9 +243,4 @@ TABLE.tfldlist TR {
 TABLE.tfldlist TD {
   border-style:inherit;
   border-width:inherit;
-}
-BUTTON.binline {
-  border:none;
-  background:none;
-  cursor:pointer;
 }

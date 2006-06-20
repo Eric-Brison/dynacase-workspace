@@ -68,7 +68,6 @@
 <style>
 DIV.resume * {
   font-family:arial;
-  font-size:9pt;
 }
 DIV.resume TD {
   vertical-align:top;

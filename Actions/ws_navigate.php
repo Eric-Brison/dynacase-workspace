@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.6 2006/06/16 15:35:50 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.7 2006/06/20 16:18:54 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -34,7 +34,8 @@ function ws_navigate(&$action) {
 
 
     // css pour popup
-    $action->parent->AddCssRef("FDL:POPUP.CSS",true);
+  $action->parent->AddCssRef("FDL:POPUP.CSS",true);
+  $action->parent->AddCssRef("WORKSPACE:system.css",true);
   $action->parent->AddCssRef("WORKSPACE:default.css",true);
   
 
