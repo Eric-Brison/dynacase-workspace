@@ -5,35 +5,35 @@ BODY {
 }
 */
 DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
-  background-color:white;
-  color:black;
+  background-color:[CORE_WHITE];
+  color:[CORE_BLACK];
 }
 
 DIV.spaces {
   margin:3px 0px  3px  3px;
 /*  -moz-border-radius:15px;*/
-  border:inset 2px white;
+  border:inset 2px [CORE_WHITE];
 }
 
 DIV.clipboard {
 /*  -moz-border-radius:0 0 15 15;*/
   border-style:none inset inset inset;
   border-width:2px;
-  border-color:white;
+  border-color:[CORE_WHITE];
 }
 DIV.tabclip {
 
 /*  -moz-border-radius:15px 15px 0px 15px;*/
   border-style:inset inset none inset;
   border-width:2px;
-  border-color:white;
+  border-color:[CORE_WHITE];
 }
 DIV.folders,DIV.fldlist,DIV.resume {
 /*  -moz-border-radius:15px;*/
-  border:inset 2px white;
+  border:inset 2px [CORE_WHITE];
 }
 DIV.space {
-  border-color:white;
+  border-color:[CORE_WHITE];
 }
 TABLE.tfldlist TH {
   background-color:[COLOR_A9];
@@ -64,19 +64,20 @@ INPUT, TEXTAREA {
 
 DIV.tabclip SPAN {         
   border-color : [COLOR_A5];          
-  background-color : white;
+  background-color : [CORE_WHITE];
 }
 
 IMG.button {
   cursor:pointer;
   -moz-border-radius:15px;	
 }
-
+/*
 DIV.aspace TH {
   background-image:url('../Images/brushedbg.gif');
-/*  -moz-border-radius:15px 0px 15px 0px;*/
+  -moz-border-radius:15px 0px 15px 0px;
 	
 }
+*/
 IMG.button:hover, BUTTON:hover, TEXTAREA:hover,DIV.space:hover {
   background-color:[COLOR_C5];
   cursor:pointer;
@@ -86,11 +87,13 @@ SPAN.folderhover {
   background-color:[COLOR_C5];
 }
 SPAN.folderselect, TR.docselect {
-  background-color:#9fd0f9;
+  background-color:[COLOR_B7];
 }
+/*
 INPUT:focus, BUTTON:focus, A:focus, SELECT:focus, OPTION:focus, IMG.button:focus, TEXTAREA:focus {
-  background-color:#f9e19f;	
+  background-color:#f9e19f;
 }
+*/
 BUTTON {
   -moz-border-radius:5px ;	
 }
@@ -132,9 +135,9 @@ a.separator:hover {
 }
 .popup a.menuItem:hover *,.popup a.menuItemCtrl:hover *  {
   background-color: #333333;  
-  color: white;
+  color: [CORE_WHITE];
 }
 .popup a.menuItemDisabled:hover *,.popup a.menuItemCtrlDisabled:hover * {
-  color: white;
+  color: [CORE_WHITE];
 }
 */
