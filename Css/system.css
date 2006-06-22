@@ -120,7 +120,7 @@ DIV.folders {
 SPAN.micon {
   position:absolute;	
   white-space:nowrap;
-  background-color:yellow;
+  background-color:[COLOR_C5];
   border:dashed 1px;
   font-size:[SIZE_MEDIUM];  
 }

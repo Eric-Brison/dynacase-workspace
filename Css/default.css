@@ -5,7 +5,7 @@ BODY {
 }
 */
 DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
-  background-color:[CORE_WHITE];
+  background-color:[COLOR_WHITE];
   color:[COLOR_BLACK];
 }
 

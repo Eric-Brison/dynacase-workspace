@@ -13,7 +13,7 @@
 <br><a   title="[TEXT:Abort modification and unlock document]" href="[CORE_STANDURL]app=WORKSPACE&action=WS_CANCELMODFILE&id=[ID]">[TEXT:Abord file modification]</a>
 [ENDIF isinedition]
 [IF isnotinedition]
-<br><a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=%I%&id=[ID]')>[TEXT:Modify the file]</a>
+<br><a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=%I%&id=[ID]')>[TEXT:Modify the file]</a>    
 [ENDIF isnotinedition]
    [IF isinline]<br><a  href="javascript:void(0)" title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','dview','dmain')">[TEXT:Display]</a>[ENDIF isinline]
       [IF canedithtml]<br><a  href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit HTML file]</a>[ENDIF canedithtml]

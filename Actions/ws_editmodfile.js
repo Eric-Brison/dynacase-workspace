@@ -1,4 +1,4 @@
-
+var AUTODOWNLOAD=false;
 function verifydownload(docid) {
 
   var v=getdocvalue(docid,'sfi_inedition');
@@ -9,9 +9,14 @@ function verifydownload(docid) {
     window.opener.location.reload();
     document.getElementById('before').style.display='none';
     document.getElementById('after').style.display=''; 
+    if (AUTODOWNLOAD) window.setTimeout('self.close()',1000);
   }
 }
-
+function autodownload(event) {  
+  var v=document.getElementById('bdownload');
+  v.onclick.apply(v,[event]);
+  AUTODOWNLOAD=true;
+}
 var OURL;
 function ws_autoclose(event) {
   if ((! window.opener) || (window.opener.closed)) self.close();

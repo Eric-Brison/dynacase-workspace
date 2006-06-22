@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.9 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.10 2006/06/22 16:19:59 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -57,11 +57,11 @@ function ws_addfldbranch(&$action) {
     $action->lay->set("ulid",uniqid("ul"));
     $action->lay->set("CODE","OK"); 
     $taction=$action->lay->getBlockData("ACTIONS");
-    if (count($taction) == 0) {
+    
       $taction[]=array("actname"=>(count($tc)>0)?"ADDBRANCH":"EMPTYBRANCH",
 		       "actdocid"=>$doc->initid);
       $action->lay->setBlockData("ACTIONS",$taction);
-    }
+    
   } else {
     $action->lay->set("CODE","NOTALIVE");
   }
