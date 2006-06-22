@@ -86,7 +86,7 @@ DIV.clipboard {
 }
 DIV.tabclip {
   position:absolute;
-  overflow:auto;
+  overflow:hidden;
   margin:0px;
   text-align:right;
 }

@@ -20,6 +20,7 @@ var IEPARASITE=null; // to ignored unwanted event fire produced by IE
 var THECIBLE=false; // object where insert HTML code
 var INPROGRESS=false;
 var EXPANDIMG=false;
+var EXPWHERE=false; // use for expand tree
 var req;
 var CURSPACE=false; // current selected space object
 var CURSPACEID=false; // current selected space id
@@ -48,8 +49,10 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
   }
 
   if ((!img) || (where.childNodes.length==0)) {
+    //      where.style.display='';
     if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
       EXPANDIMG=img;
+      EXPWHERE=where;
       return 2;
     }
     else return -1;
@@ -484,11 +487,11 @@ function postActionRefresh(action,docid,c) {
     
     break;
   case "ADDBRANCH":
-    endexpandtree(EXPANDIMG,1);
+    endexpandtree(EXPANDIMG,EXPWHERE,1);
     EXPANDIMG=null;
     break;
   case "EMPTYBRANCH":
-    endexpandtree(EXPANDIMG,0);
+    endexpandtree(EXPANDIMG,EXPWHERE,0);
     EXPANDIMG=null;    
     break;
   case "LOCKFILE":
@@ -501,7 +504,20 @@ function postActionRefresh(action,docid,c) {
   }
   //   alert("ACTION:"+action+":"+docid);
 }
-
+function endexpandtree(o,w,c) {
+     if (o) {
+       if (c==0) {
+	 o.src='Images/none.png'; 
+	 o.style.visibility='hidden';
+	 // if (isIE) correctOnePNG(o);
+       }
+       else {
+	 o.src='Images/b_down.png';
+	 o.style.visibility='visible';
+	 if (w) w.style.display='';
+       }
+     }
+   }
 
 function postAddFile(docid) {
   var fldid;
@@ -596,3 +612,42 @@ function cathtml(o1,o2) {
 
   return 'nothing in cat';
 }
+
+// onlyview : if true display always not undisplays
+function clipviewornot(event,onlyview) {
+  var dclipboard=document.getElementById('clipboard');
+  var dfolders=document.getElementById('folders');
+  var dsearches=document.getElementById('searches');
+  var dtabclip=document.getElementById('tabclip');
+  var imgbutton=document.getElementById('imgclipbutton');
+  var ch=186;
+  var fh;// height folder
+  var sy,ty; // pos y for search
+
+  if (isIE) ch +=7; // values from displayws.js
+  if (dclipboard) {
+    fh=parseInt(dfolders.style.height);
+    sy=parseInt(dsearches.style.top);
+    ty=parseInt(dtabclip.style.top);
+    if (dclipboard.style.display=='none') {
+      dclipboard.style.display='';
+
+      dfolders.style.height=fh-ch;
+      dtabclip.style.top=ty-ch;
+      dsearches.style.top=sy-ch;
+      imgbutton.src='Images/b_down.png';
+      if (! CLIPCID) {
+	refreshClipBoard(IDBASKET,dclipboard);
+      }
+    } else if (! onlyview) {
+      dclipboard.style.display='none';
+
+      dfolders.style.height=fh+ch;
+      dtabclip.style.top=ty+ch;
+      dsearches.style.top=sy+ch;
+      imgbutton.src='Images/b_up.png';
+    }
+  }
+}
+
+addEvent(window,"load",clipviewornot);

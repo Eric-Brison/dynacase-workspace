@@ -6,34 +6,34 @@ BODY {
 */
 DIV.spaces, DIV.clipboard,DIV.folders,DIV.fldlist,DIV.resume,DIV.aspace,DIV.duser,A  {
   background-color:[CORE_WHITE];
-  color:[CORE_BLACK];
+  color:[COLOR_BLACK];
 }
 
 DIV.spaces {
   margin:3px 0px  3px  3px;
 /*  -moz-border-radius:15px;*/
-  border:inset 2px [CORE_WHITE];
+  border:inset 2px [COLOR_WHITE];
 }
 
 DIV.clipboard {
 /*  -moz-border-radius:0 0 15 15;*/
   border-style:none inset inset inset;
   border-width:2px;
-  border-color:[CORE_WHITE];
+  border-color:[COLOR_WHITE];
 }
 DIV.tabclip {
 
 /*  -moz-border-radius:15px 15px 0px 15px;*/
   border-style:inset inset none inset;
   border-width:2px;
-  border-color:[CORE_WHITE];
+  border-color:[COLOR_WHITE];
 }
 DIV.folders,DIV.fldlist,DIV.resume {
 /*  -moz-border-radius:15px;*/
-  border:inset 2px [CORE_WHITE];
+  border:inset 2px [COLOR_WHITE];
 }
 DIV.space {
-  border-color:[CORE_WHITE];
+  border-color:[COLOR_WHITE];
 }
 TABLE.tfldlist TH {
   background-color:[COLOR_A9];
@@ -64,7 +64,7 @@ INPUT, TEXTAREA {
 
 DIV.tabclip SPAN {         
   border-color : [COLOR_A5];          
-  background-color : [CORE_WHITE];
+  background-color : [COLOR_WHITE];
 }
 
 IMG.button {
@@ -135,9 +135,9 @@ a.separator:hover {
 }
 .popup a.menuItem:hover *,.popup a.menuItemCtrl:hover *  {
   background-color: #333333;  
-  color: [CORE_WHITE];
+  color: [COLOR_WHITE];
 }
 .popup a.menuItemDisabled:hover *,.popup a.menuItemCtrlDisabled:hover * {
-  color: [CORE_WHITE];
+  color: [COLOR_WHITE];
 }
 */
