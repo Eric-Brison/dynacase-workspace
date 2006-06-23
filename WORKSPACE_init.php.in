@@ -1,6 +1,6 @@
 <?php
 // ---------------------------------------------------------------
-// $Id: WORKSPACE_init.php.in,v 1.1 2005/09/13 14:47:16 eric Exp $
+// $Id: WORKSPACE_init.php.in,v 1.2 2006/06/23 09:50:52 eric Exp $
 // $Source: /home/cvsroot/anakeen/freedom/workspace/WORKSPACE_init.php.in,v $
 // ---------------------------------------------------------------
 //  O   Anakeen - 2001
@@ -27,6 +27,10 @@ global $app_const;
 $app_const= array(
   "INIT" => "yes",
   "VERSION" => "@VERSION@-@RELEASE@",
+  "WS_AUTODOWNLOAD"    =>array("val"=>"no",
+		       "descr"=>N_("do not see confirmation before download for edition"),
+		       "user"=>"Y",
+		       "kind"=>"enum(yes|no)"),
 );
 
 ?>
