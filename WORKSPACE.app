@@ -30,6 +30,11 @@ $action_desc = array (
    "root"		=>"Y"
   ),
   array( 
+   "name"		=>"ADMIN",
+   "short_name"		=>N_("interface to navigate in spaces"),
+   "acl"		=>"WORKSPACE_MASTER",
+  ),
+  array( 
    "name"		=>"WS_ADDFLDBRANCH",
    "short_name"		=>N_("add branch in folder tree"),
    "acl"		=>"WORKSPACE_USER"

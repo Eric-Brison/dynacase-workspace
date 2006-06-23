@@ -34,7 +34,7 @@ END;;;;;;;;;;;;;;;
 BEGIN;DIR;répertoire;;;SIMPLEFOLDER;;;;;;;;;;
 TYPE;C;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
-ICON;simplefolder.gif;;;;;;;;;;;;;;
+ICON;directory.gif;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 METHOD;Method.SimpleFolder.php;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
