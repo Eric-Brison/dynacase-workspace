@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-12 16:17+0200\n"
+"POT-Creation-Date: 2006-06-26 16:20+0200\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -14,6 +14,30 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
+
+#, c-format
+msgid "Group of users that can view files in %s space"
+msgstr ""
+
+#, c-format
+msgid "Group of users that can edit files in %s space"
+msgstr ""
+
+#, c-format
+msgid "%s files"
+msgstr ""
+
+#, c-format
+msgid "default profile for %s - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%s directories"
+msgstr ""
+
+#, c-format
+msgid "default profile for %s - %s - space directories"
+msgstr ""
 
 msgid " (copy)"
 msgstr ""
@@ -44,6 +68,10 @@ msgid "%.01f Mb"
 msgstr ""
 
 msgid "No title"
+msgstr ""
+
+#, c-format
+msgid "cannot move folder %s in %s cause loop"
 msgstr ""
 
 #, c-format
@@ -90,6 +118,9 @@ msgstr ""
 msgid "popup menu for simplefile family"
 msgstr ""
 
+msgid "popup menu for simplefolder family"
+msgstr ""
+
 msgid "empty the user trash"
 msgstr ""
 
@@ -123,6 +154,12 @@ msgstr ""
 msgid "duplicate a document"
 msgstr ""
 
+msgid "Actions..."
+msgstr ""
+
+msgid "click and drag to move document"
+msgstr ""
+
 msgid "Documents exchange"
 msgstr ""
 
@@ -150,7 +187,13 @@ msgstr ""
 msgid "my basket"
 msgstr ""
 
+msgid "display/undisplay"
+msgstr ""
+
 msgid "The text has be modified"
+msgstr ""
+
+msgid "Downloading file... "
 msgstr ""
 
 msgid ""
@@ -177,10 +220,7 @@ msgid ""
 "shared folder"
 msgstr ""
 
-msgid "Actions..."
-msgstr ""
-
-msgid "click and drag to move document"
+msgid "Don't view yet this information"
 msgstr ""
 
 msgid "Add version"
@@ -223,6 +263,9 @@ msgid "Click to modify title"
 msgstr ""
 
 msgid "Click to modify description"
+msgstr ""
+
+msgid "Clic to view menu"
 msgstr ""
 
 msgid "Download file for reading"
@@ -356,9 +399,6 @@ msgstr ""
 msgid "The name of the file must be the same as previous name"
 msgstr ""
 
-msgid "Download file"
-msgstr ""
-
 #, c-format
 msgid "Document %s is not alive"
 msgstr ""
@@ -440,10 +480,7 @@ msgstr ""
 msgid "Create new text"
 msgstr ""
 
-msgid "Create new folder"
-msgstr ""
-
-msgid "TEST"
+msgid "Create new directory"
 msgstr ""
 
 msgid "Empty trash"
@@ -501,29 +538,15 @@ msgstr ""
 msgid "History"
 msgstr ""
 
+msgid "restore folder and its containt"
+msgstr ""
+
 msgid "no file referenced"
 msgstr ""
 
-msgid "Change state"
+msgid "Delete the folder and its containt"
 msgstr ""
 
-msgid "Revise"
-msgstr ""
-
-msgid "Lock"
-msgstr ""
-
-msgid "Unlock"
-msgstr ""
-
-msgid "Change profile"
-msgstr ""
-
-msgid "goaccess"
-msgstr ""
-
-msgid "Search linked documents"
-msgstr ""
-
-msgid "Create new file"
+#, c-format
+msgid "Sure delete %s and its containt ?"
 msgstr ""

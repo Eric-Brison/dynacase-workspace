@@ -232,7 +232,25 @@ function changedragft(event,nft) {
     }
 
   if (oft) {
-    oft.innerHTML=nft;   
+    switch (nft) {
+    case 'copy':
+      oft.innerHTML='copier';   
+      break;
+    case 'link':
+      oft.innerHTML='lier';   
+      break;
+    case 'shortcut':
+      oft.innerHTML='raccourci';   
+      break;
+    case 'move':
+      oft.innerHTML='d&eacute;placer';   
+      break;
+    case 'del':
+      oft.innerHTML='supprimer';   
+      break;
+    default:
+      oft.innerHTML=nft;  
+    }
     DRAGFT=nft;
   }
 }
@@ -613,41 +631,4 @@ function cathtml(o1,o2) {
   return 'nothing in cat';
 }
 
-// onlyview : if true display always not undisplays
-function clipviewornot(event,onlyview) {
-  var dclipboard=document.getElementById('clipboard');
-  var dfolders=document.getElementById('folders');
-  var dsearches=document.getElementById('searches');
-  var dtabclip=document.getElementById('tabclip');
-  var imgbutton=document.getElementById('imgclipbutton');
-  var ch=186;
-  var fh;// height folder
-  var sy,ty; // pos y for search
 
-  if (isIE) ch +=7; // values from displayws.js
-  if (dclipboard) {
-    fh=parseInt(dfolders.style.height);
-    sy=parseInt(dsearches.style.top);
-    ty=parseInt(dtabclip.style.top);
-    if (dclipboard.style.display=='none') {
-      dclipboard.style.display='';
-
-      dfolders.style.height=fh-ch;
-      dtabclip.style.top=ty-ch;
-      dsearches.style.top=sy-ch;
-      imgbutton.src='Images/b_down.png';
-      if (! CLIPCID) {
-	refreshClipBoard(IDBASKET,dclipboard);
-      }
-    } else if (! onlyview) {
-      dclipboard.style.display='none';
-
-      dfolders.style.height=fh+ch;
-      dtabclip.style.top=ty+ch;
-      dsearches.style.top=sy+ch;
-      imgbutton.src='Images/b_up.png';
-    }
-  }
-}
-
-addEvent(window,"load",clipviewornot);

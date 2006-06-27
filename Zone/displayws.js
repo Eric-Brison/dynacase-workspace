@@ -1,4 +1,4 @@
-function redisplaywsdiv() {
+function redisplaywsdiv(event) {
   var dcol1=document.getElementById('col1');
   var drule2=document.getElementById('rule2');
   var dcol2=document.getElementById('col2');
@@ -51,9 +51,9 @@ function redisplaywsdiv() {
   dtabclip.style.width='198px';
   dtabclip.style.top=ch;
   dtabclip.style.left=0;
-   dtabclip.style.height='19px';
+  dtabclip.style.height='19px';
 
-   ch+=19;if (isIE) ch -=3;
+  ch+=19;if (isIE) ch -=3;
   dclipboard.style.width='198px';
   dclipboard.style.top=ch;
   dclipboard.style.left=0;
@@ -71,6 +71,17 @@ function redisplaywsdiv() {
   dfldlist.style.left=0;
   dfldlist.style.height=parseInt((wh-10)/2)-15; 
 
+  if (dclipboard.style.display=='none') {
+    // adapt size of clipboard in case of resize
+    var sy,ty,fh;
+    fh=parseInt(dfolders.style.height);
+    sy=parseInt(dsearches.style.top);
+    ty=parseInt(dtabclip.style.top);
+      dfolders.style.height=fh+ch;
+      dtabclip.style.top=ty+ch;
+      dsearches.style.top=sy+ch;
+  }
+
 
   ch=0; if (isIE) ch=6;
   if (isIE) dresume.style.borderStyle='none';
@@ -84,6 +95,43 @@ function redisplaywsdiv() {
   dtrash.style.top=wh-100;
   
 }
+// onlyview : if true display always not undisplays
+function clipviewornot(event,onlyview) {
+  var dclipboard=document.getElementById('clipboard');
+  var dfolders=document.getElementById('folders');
+  var dsearches=document.getElementById('searches');
+  var dtabclip=document.getElementById('tabclip');
+  var imgbutton=document.getElementById('imgclipbutton');
+  var ch=186;
+  var fh;// height folder
+  var sy,ty; // pos y for search
+
+  if (isIE) ch +=7; // values from displayws.js
+  if (dclipboard) {
+    fh=parseInt(dfolders.style.height);
+    sy=parseInt(dsearches.style.top);
+    ty=parseInt(dtabclip.style.top);
+    if (dclipboard.style.display=='none') {
+      dclipboard.style.display='';
+
+      dfolders.style.height=fh-ch;
+      dtabclip.style.top=ty-ch;
+      dsearches.style.top=sy-ch;
+      imgbutton.src='Images/b_down.png';
+      if (! CLIPCID) {
+	refreshClipBoard(IDBASKET,dclipboard);
+      }
+    } else if (! onlyview) {
+      dclipboard.style.display='none';
+
+      dfolders.style.height=fh+ch;
+      dtabclip.style.top=ty+ch;
+      dsearches.style.top=sy+ch;
+      imgbutton.src='Images/b_up.png';
+    }
+  }
+}
 
 addEvent(window,"load",redisplaywsdiv);
+addEvent(window,"load",clipviewornot);
 addEvent(window,"resize",redisplaywsdiv);

@@ -10,7 +10,7 @@
 [TEXT:When the modification are done, you must go to web shared folder application and select the file]</p>
 <p>[TEXT:The name file must the same as previous name]. [TEXT:On the context menu select 'upload file' to save modified file in the web shared folder].</p>
 </div>
-<input type="checkbox" onclick="if (this.checked) setparamu('[APPNAME]','WS_AUTODOWNLOAD','yes'); else setparamu('[APPNAME]','WS_AUTODOWNLOAD','no')"> [TEXT:Don't view yet this information]
+<input type="checkbox" style="cursor:pointer" onclick="if (this.checked) setparamu('[APPNAME]','WS_AUTODOWNLOAD','yes'); else setparamu('[APPNAME]','WS_AUTODOWNLOAD','no')"> [TEXT:Don't view yet this information]
 [ENDIF autodownload]
 <div style="text-align:center">
 <button id="bdownload" onclick="document.location.href='[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADEDITFILE&id=[docid]';this.disabled=true;window.setTimeout('verifydownload([docid])',2000);">[downloadtext]</button>
