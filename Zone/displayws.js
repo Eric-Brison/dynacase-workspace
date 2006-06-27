@@ -10,6 +10,8 @@ function redisplaywsdiv(event) {
   var dfolders=document.getElementById('folders');
   var dsearches=document.getElementById('searches');
   var dtrash=document.getElementById('itrash');
+  var dsecondul=document.getElementById('secondul');
+  var dsecondview=document.getElementById('secondview');
   var ww=getFrameWidth();
   var wh=getFrameHeight();
   var dx=0;
@@ -53,12 +55,23 @@ function redisplaywsdiv(event) {
   dtabclip.style.left=0;
   dtabclip.style.height='19px';
 
-  ch+=19;if (isIE) ch -=3;
-  dclipboard.style.width='198px';
-  dclipboard.style.top=ch;
-  dclipboard.style.left=0;
-  ch=186;if (isIE) ch +=7;
-  dclipboard.style.height=ch;
+  ch+=16;if (isIE) ch -=3;
+  dsecondview.style.width='198px';
+  dsecondview.style.top=ch;
+  dsecondview.style.left=0;
+  ch=184;if (isIE) ch +=7;
+  dsecondview.style.height=ch;
+
+  /*  dsecondul.style.top=dclipboard.style.top;
+  dsecondul.style.left=dclipboard.style.left;
+  dsecondul.style.width=dclipboard.style.width;
+  dsecondul.style.height=dclipboard.style.height;
+
+  dsecondview.style.top=dclipboard.style.top;
+  dsecondview.style.left=dclipboard.style.left;
+  dsecondview.style.width=dclipboard.style.width;
+  dsecondview.style.height=dclipboard.style.height;*/
+
 
   dx+=202; if (isIE) dx-=5;
   dcol3.style.width=ww-280;
@@ -71,7 +84,7 @@ function redisplaywsdiv(event) {
   dfldlist.style.left=0;
   dfldlist.style.height=parseInt((wh-10)/2)-15; 
 
-  if (dclipboard.style.display=='none') {
+  if (dsecondview.style.display=='none') {
     // adapt size of clipboard in case of resize
     var sy,ty,fh;
     fh=parseInt(dfolders.style.height);
@@ -97,7 +110,7 @@ function redisplaywsdiv(event) {
 }
 // onlyview : if true display always not undisplays
 function clipviewornot(event,onlyview) {
-  var dclipboard=document.getElementById('clipboard');
+  var dclipboard=document.getElementById('secondview');
   var dfolders=document.getElementById('folders');
   var dsearches=document.getElementById('searches');
   var dtabclip=document.getElementById('tabclip');
@@ -133,5 +146,5 @@ function clipviewornot(event,onlyview) {
 }
 
 addEvent(window,"load",redisplaywsdiv);
-addEvent(window,"load",clipviewornot);
+//addEvent(window,"load",clipviewornot);
 addEvent(window,"resize",redisplaywsdiv);

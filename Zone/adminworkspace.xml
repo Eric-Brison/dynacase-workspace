@@ -1,0 +1,14 @@
+
+[V_BA_TITLE]
+
+<table>
+<thead><tr><th>[nmembers]</th></tr></thead>
+<tbody>
+[BLOCK MEMBERS]
+<tr><td>[name]</td><td> <select>
+                 <option [viewselected] value="view">[TEXT:reader]</option>
+                 <option [editselected] value="edit">[TEXT:writer]</option>
+              </select>
+              <img src="[IMG:b_ministop.png]"></td></tr>
+[ENDBLOCK MEMBERS]
+</tbody></table>

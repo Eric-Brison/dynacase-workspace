@@ -1,6 +1,32 @@
-ORDER;IGROUP;;;ba_title;ba_desc;gui_color;grp_name;grp_role;grp_mail;grp_type;us_login;us_whatid;us_meid;us_iddomain;us_domain
-DOC;IGROUP;GWORKSPACE;;;;;Espace de travail;;;;group.workspace;;;1;local
-DOC;IGROUP;GWSPADMIN;GADMIN;;;;Administrateur des espaces de travail;;;;gadmin.workspace;;;1;local
+BEGIN;DIR;répertoire;;;SIMPLEFOLDER;;;;;;;;;;
+TYPE;C;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+ICON;directory.gif;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+METHOD;Method.SimpleFolder.php;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+END;;;;;;;;;;;;;;;
+// famille espace de travail;;;id;class;name;;;;;;;;;;
+BEGIN;DIR;espace de travail;;;WORKSPACE;;;;;;;;;;
+TYPE;C;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+ICON;folderwork.gif;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;
+//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
+ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;12;W;Y;;;;;;esize=10
+;;;;;;;;;;;;;;;
+END;;;;;;;;;;;;;;;
 // famille fichier;;;id;class;name;;;;;;;;;;
 BEGIN;0;fichier;;;SIMPLEFILE;;;;;;;;;;
 METHOD;Method.SimpleFile.php;;;;;;;;;;;;;;
@@ -31,32 +57,12 @@ ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GE
 ATTR;SFI_ADDVERSION;;Créer une nouvelle version;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITADDVERSION&id=%I%;;::canVersionned();;;
 ATTR;SFI_RENVERSION;;(Re)nommer la version;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITVERSION&id=%I%;;::canEditMenu();;;ltarget=_self
 END;;;;;;;;;;;;;;;
-BEGIN;DIR;répertoire;;;SIMPLEFOLDER;;;;;;;;;;
-TYPE;C;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-ICON;directory.gif;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-METHOD;Method.SimpleFolder.php;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-END;;;;;;;;;;;;;;;
-// famille espace de travail;;;id;class;name;;;;;;;;;;
-BEGIN;DIR;espace de travail;;;WORKSPACE;;;;;;;;;;
-TYPE;C;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-ICON;folderwork.gif;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;
-//;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
-ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;12;W;Y;;;;;;esize=10
-;;;;;;;;;;;;;;;
-END;;;;;;;;;;;;;;;
+ORDER;IGROUP;;;ba_title;ba_desc;gui_color;grp_name;grp_role;grp_mail;grp_type;us_login;us_whatid;us_meid;us_iddomain;us_domain;;;;;;;
+DOC;IGROUP;GWORKSPACE;;;;;Espace de travail;;;;group.workspace;;;1;local;;;;;;;
+DOC;IGROUP;GWSPADMIN;GADMIN;;;;Administrateur des espaces de travail;;;;gadmin.workspace;;;1;local;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+//FAM;recherche détaillée(DSEARCH);<specid>;<fldid>;titre;couleur intercalaire;à utiliser dans les menus;mot-clef;révision;différence majuscule/minuscule;famille;fid amille;dossier racine;dans la poubelle;profondeur de recherche;requête sql;id dossier père courant;dossier père courant;opérateur logique;Conditions;attributs;fonctions;mot-clefs
+ORDER;DSEARCH;;;ba_title;gui_color;se_memo;se_key;se_latest;se_case;se_fam;se_famid;se_idfld;se_trash;se_sublevel;se_sqlselect;se_idcfld;se_cfld;se_ol;se_t_detail;se_attrids;se_funcs;se_keys
+DOC;DSEARCH;WS_MYLOCKEDFILE;-;Mes fichiers verrouillés;;no;;yes;;fichier;SIMPLEFILE;;;;;;;and;;locked;=;::getWhatUserId()
+DOC;DSEARCH;WS_MYTRASHFILE;-;Ma corbeille;;no;;yes;;fichier;SIMPLEFILE;;only;;;;;and;;owner;=;::getWhatUserId()
+DOCICON;WS_MYTRASHFILE;bluetrash.png;;;;;;;;;;;;;;;;;;;;

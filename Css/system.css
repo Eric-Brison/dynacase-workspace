@@ -78,11 +78,15 @@ DIV.spaces {
   margin:3px 0px  3px  3px;
 
 }
-DIV.clipboard {
+#clipboard, #secondul {
   position:absolute;
   border:none;
   overflow:auto;
   margin:0px;
+}
+#clipboard, #secondul {
+  width:100%;
+  height:97%;
 }
 DIV.tabclip {
   position:absolute;
@@ -169,7 +173,7 @@ DIV.folders LI A {
 DIV.fldlist TH IMG {
   width:[SIZE_IMG-SMALL];
 }
-#firstul  {
+#firstul, #secondul  {
   padding-left:0px;
   margin-left:0px;
   margin-top:2px;

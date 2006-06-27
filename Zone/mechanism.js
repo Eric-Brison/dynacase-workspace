@@ -67,6 +67,50 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
   } 
 }
 
+function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
+  
+  var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid,padddocid,addft,reset);
+  if (r==1) {
+    oimg.src='Images/b_down.png'; 
+  } else if (r==0) {
+    oimg.src='Images/b_right.png';
+  } else if (r==2) {
+    oimg.src='Images/b_wait.png';
+  }
+  if (isIE) correctOnePNG(oimg);
+}
+function expandToptree(o,id,ulid) {
+  SYNCHRO=true;
+  viewFolder(null,id);
+  SYNCHRO=false;
+  if (o) { 
+    var ldiv=o.parentNode.getElementsByTagName("div");
+    for (var i=0;i<ldiv.length;i++) {
+      if (ldiv[i].className=='spaceselect') ldiv[i].className='space';
+    }
+    o.className="spaceselect";
+    CURSPACE=o;
+    CURSPACEID=id;
+  }
+  var r=viewfoldertree(null,id,ulid);
+  if (r==2) {
+    ulid.innerHTML='<table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="Images/b_wait.png"></tr></td></table>';
+  }
+}
+
+function expandPersoTree(o,id,where,reset) {
+  var dclipboard=document.getElementById('clipboard');
+  
+  if (dclipboard) dclipboard.style.display='none';
+  where.style.display='';
+  if ((where.firstChild.tagName=='TABLE') || reset) {    
+    var url;
+    url= CORE_STANDURL+'app=WORKSPACE&action=WS_ADDFLDBRANCH&itself=Y&id='+id; 
+    var ret=requestUrlSend(where,url);
+    changedragft(null,'');
+  }
+}
+
 // ----------------------------- view clipboard --------------------
 function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
 
@@ -112,6 +156,15 @@ function refreshClipBoard(bid,where) {
   CLIPCID=bid;
   folderSend(bid,where);
 }
+function displayClipboard(bid,where) {
+  var dsecondul=document.getElementById('secondul');
+
+  if (dsecondul) dsecondul.style.display='none';
+  where.style.display='';
+  refreshClipBoard(bid,where);
+}
+
+
 
 // ----------------------------- drag & drop --------------------
 MICON.className='MICON';

@@ -1,4 +1,21 @@
 <?php
+ 
+var $eviews=array("WORKSPACE:ADMINWORKSPACE");
+
+/**
+ * get view groupe name
+ */
+private function getViewGroupName() {
+  $ref=$this->getValue("WSP_REF");
+  return "GWS_V".strtoupper($ref);
+}
+/**
+ * get edit groupe name
+ */
+private function getEditGroupName() {
+  $ref=$this->getValue("WSP_REF");
+  return "GWS_E".strtoupper($ref);
+}
 
   /**
    * Create 2 groups : one for collect view user and other for edit user privilege
@@ -13,13 +30,13 @@ function postCreated() {
     $gv->setValue("us_login","gv.".$ref);
     $gv->setValue("grp_name","gv.".$ref);
     $gv->setValue("grp_role",sprintf(_("Group of users that can view files in %s space"),$this->title));
-    $gvname="GWS_V".strtoupper($ref);
+    $gvname=$this->getViewGroupName();
     $gv->name=$gvname;
 
     $ge->setValue("us_login","ge.".$ref);
     $ge->setValue("grp_name","ge.".$ref);
     $ge->setValue("grp_role",sprintf(_("Group of users that can edit files in %s space"),$this->title));
-    $gename="GWS_R".strtoupper($ref);
+    $gename=$this->getEditGroupName();
     $ge->name=$gename;
 
     $err=$gv->Add();
@@ -90,6 +107,26 @@ function postCreated() {
   return $err;
 }
 
+function adminworkspace() {
+  $this->editattr();
+  
+  $gv=new_doc($this->dbaccess,$this->getViewGroupName());
+  $ge=new_doc($this->dbaccess,$this->getEditGroupName());
 
+  if ($gv->isAlive()) {
+    $tuvid=$gv->getTValue("grp_idruser");
+    $tuv=$gv->getTValue("grp_ruser");
+    $tmv=array();
+    foreach ($tuvid as $k=>$v) {
+      $tmv[$k]=array("name"=>$tuv[$k],
+		     "iduser"=>$v,
+		     "viewselected"=>"",
+		     "editselected"=>"");
+      
+    }
+    $this->lay->setBlockData("MEMBERS",$tmv);
+  }
+
+}
 
 ?>

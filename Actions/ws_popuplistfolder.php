@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.9 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.10 2006/06/27 15:41:44 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -88,9 +88,9 @@ function ws_popuplistfolder(&$action) {
     $tlink["createfolder"]["visibility"]=POPUP_INVISIBLE;
     $tlink["createtext"]["visibility"]=POPUP_INVISIBLE;
   }
-  
+
          
-  if  (($doc->doctype != 'S') && (preg_match("/doctype='Z'/",$doc->getValue("se_sqlselect")))) {
+  if  ( (preg_match("/doctype[ ]*=[ ]*'Z'/",$doc->getValue("se_sqlselect")))) {
   $tlink["trash"]=array("descr"=>_("Empty trash"),
 			"jsfunction"=>"emptytrash(event)",
 			"confirm"=>"false",
