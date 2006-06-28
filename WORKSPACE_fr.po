@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-26 16:20+0200\n"
-"PO-Revision-Date: 2006-06-26 16:36+0200\n"
+"POT-Creation-Date: 2006-06-28 11:40+0200\n"
+"PO-Revision-Date: 2006-06-28 11:42+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,8 @@ msgstr "Groupe des utilisateurs qui peuvent voir les fichiers de l'espace %s"
 
 #, c-format
 msgid "Group of users that can edit files in %s space"
-msgstr "Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace %s"
+msgstr ""
+"Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace %s"
 
 #, c-format
 msgid "%s files"
@@ -65,7 +66,9 @@ msgstr "Pas de titre"
 
 #, c-format
 msgid "cannot move folder %s in %s cause loop"
-msgstr "le répertoire %s ne peut être déplacer dans %s car ce dernier est un dossier parent "
+msgstr ""
+"le répertoire %s ne peut être déplacer dans %s car ce dernier est un dossier "
+"parent "
 
 #, c-format
 msgid "duplication of %s "
@@ -147,12 +150,6 @@ msgstr "créer une nouvelle version"
 msgid "duplicate a document"
 msgstr "dupliquer un document"
 
-msgid "Actions..."
-msgstr "Actions..."
-
-msgid "click and drag to move document"
-msgstr "Clic et glisse pour déplacer le document "
-
 msgid "Documents exchange"
 msgstr "Echange de documents"
 
@@ -168,8 +165,8 @@ msgstr "nom du fichier à rechercher"
 msgid "Send searches"
 msgstr "Lancer la recherche"
 
-msgid "my affected documents"
-msgstr "mes documents affectés"
+msgid "private space"
+msgstr "espace privé"
 
 msgid "my locked documents"
 msgstr "mes documents verrouillés"
@@ -182,6 +179,12 @@ msgstr "mon panier"
 
 msgid "display/undisplay"
 msgstr "afficher/cacher"
+
+msgid "Actions..."
+msgstr "Actions..."
+
+msgid "click and drag to move document"
+msgstr "Clic et glisse pour déplacer le document "
 
 msgid "The text has be modified"
 msgstr "Le texte a été modifié"
@@ -217,12 +220,16 @@ msgid "The name file must the same as previous name"
 msgstr "Le nom du fichier doit être le même que le nom initial"
 
 msgid ""
-"On the context menu select 'upload file' to save modified file in the web "
-"shared folder"
-msgstr ""
+"On the document clic to 'upload file' to save modified file in the work space"
+msgstr "Sur le document cliquez sur 'Rapatrier le fichier' pour sauver le fichier modifié dans l'espace de travail"
 
 msgid "Don't view yet this information"
 msgstr "Ne plus voir cette information"
+
+msgid ""
+"On the context menu select 'upload file' to save modified file in the web "
+"shared folder"
+msgstr ""
 
 msgid "Add version"
 msgstr "Ajouter une version"
@@ -234,7 +241,9 @@ msgid "The current version will be archived with the version"
 msgstr "La version courante va être archivée avec la version"
 
 msgid "A new document version will be created with the new name version"
-msgstr "Une nouvelle version de document va être créée avec la nouvelle dénomination de la version"
+msgstr ""
+"Une nouvelle version de document va être créée avec la nouvelle dénomination "
+"de la version"
 
 msgid "Version name is empty"
 msgstr "Le nom de la version est vide"
@@ -250,6 +259,37 @@ msgstr "Commentaire"
 
 msgid "Create new version"
 msgstr "Créer une nouvelle version"
+
+msgid "You must click on the Search... button to select the modified file "
+msgstr ""
+"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
+"modifié"
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+"Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
+"du fichier original"
+
+msgid ""
+"If you want to change file, you need to abord the modification and choose "
+"'replace file' in the context menu"
+msgstr ""
+
+msgid "New file"
+msgstr "Nouveau fichier"
+
+msgid "Stay in edition mode ?"
+msgstr "Rester en mode édition ?"
+
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+"Sélectionner si vous vouler refaire des modifications après la sauvegarde"
+
+msgid "You need to select the file"
+msgstr "Vous devez selectionner un fichier"
+
+msgid "The name of the file must be the same as previous name"
+msgstr "Le nom du fichier doit être le même que l'original"
 
 msgid "The version rename will not create new version"
 msgstr "Le renommage de la version ne crée pas de nouvelle version"
@@ -362,36 +402,18 @@ msgstr "Verrouillé par"
 msgid "File path"
 msgstr "Emplacement"
 
-msgid "You must click on the Search... button to select the modified file "
-msgstr ""
-"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
-"modifié"
+msgid "reader"
+msgstr "lecteur"
 
-msgid "To prevent error, the filename must be the same as the previous name"
-msgstr ""
-"Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
-"du fichier original"
+msgid "writer"
+msgstr "écrivain"
 
-msgid ""
-"If you want to change file, you need to abord the modification and choose "
-"'replace file' in the context menu"
-msgstr ""
+msgid "My space"
+msgstr "Mon espace"
 
-msgid "New file"
-msgstr "Nouveau fichier"
-
-msgid "Stay in edition mode ?"
-msgstr "Rester en mode édition ?"
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-"Sélectionner si vous vouler refaire des modifications après la sauvegarde"
-
-msgid "You need to select the file"
-msgstr "Vous devez selectionner un fichier"
-
-msgid "The name of the file must be the same as previous name"
-msgstr "Le nom du fichier doit être le même que l'original"
+#, c-format
+msgid "personal space of %s"
+msgstr "espace personnel de %s"
 
 #, c-format
 msgid "Document %s is not alive"
@@ -443,7 +465,9 @@ msgstr "Télécharger le fichier <i>%s</i><br> pour modification"
 msgid ""
 "The file %s has been downloaded and the document has been locked and "
 "tagged : in edition"
-msgstr "Le file %s a été téléchargé et le document a été verrouillé et a été marqué : en édition"
+msgstr ""
+"Le file %s a été téléchargé et le document a été verrouillé et a été "
+"marqué : en édition"
 
 msgid "Add new file"
 msgstr "Ajouter un fichier"
@@ -497,6 +521,9 @@ msgstr "Supprimer le dossier et son contenu"
 #, c-format
 msgid "Sure delete %s and its containt ?"
 msgstr "Etes-vous sur de supprimer %s et son contenu ?"
+
+#~ msgid "my affected documents"
+#~ msgstr "mes documents affectés"
 
 #, fuzzy
 #~ msgid "Create new file"

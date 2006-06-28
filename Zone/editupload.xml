@@ -1,7 +1,6 @@
 <div class="normal">
 <p style="margin:0px"><img align="left" src="[IMG:database_co.png]"> [TEXT:You must click on the Search... button to select the modified file ]</p>
 <p style="margin:0px">[TEXT:To prevent error, the filename must be the same as the previous name]</p>
-<p style="margin:0px">[TEXT:If you want to change file, you need to abord the modification and choose 'replace file' in the context menu]</p>
 <table cellspacing="0" ><tr><td>
 [TEXT:New file] :  </td><td>[V_SFI_FILE]</td></tr>
 </table>
