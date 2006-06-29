@@ -6,85 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 14:42+0200\n"
-"PO-Revision-Date: 2006-06-29 14:43+0200\n"
+"POT-Creation-Date: 2006-06-29 16:24+0200\n"
+"PO-Revision-Date: 2006-06-29 16:25+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-msgid "WorkSpace"
-msgstr "Espace de travail"
-
-msgid "Documents Exchange"
-msgstr "Echange de documents"
-
-msgid "Access For Workspace edition"
-msgstr "Accès à l'édition des espaces de travail"
-
-msgid "Access for exchange documents"
-msgstr "Access à l'échange de documents"
-
-msgid "interface to navigate in spaces"
-msgstr "interface pour naviguer dans les espaces"
-
-msgid "add branch in folder tree"
-msgstr "ajouter une branche dans l'arbre des dossiers"
-
-msgid "to view clipboard"
-msgstr "pour voir le panier"
-
-msgid "to view folder"
-msgstr "pour voir un dossier"
-
-msgid "to view a document"
-msgstr "pour voir un document"
-
-msgid "popup menu global in folder list"
-msgstr "menu popup global pour la liste de dossier"
-
-msgid "popup menu in folder list"
-msgstr "menu popup pour le contenu de dossier"
-
-msgid "popup menu for simplefile family"
-msgstr "menu popup pour la famille simplefile"
-
-msgid "popup menu for simplefolder family"
-msgstr "menu popup pour la famille simplefolder"
-
-msgid "empty the user trash"
-msgstr "vider la corbeille"
-
-msgid "restore a document from the trash"
-msgstr "restaurer un document depuis la corbeille"
-
-msgid "download file from simplefile"
-msgstr "télécharger un fichier pour simplefile"
-
-msgid "edit HTML file"
-msgstr "éditer le fichier HTML"
-
-msgid "edit download file"
-msgstr "édition téléchargement de fichier"
-
-msgid "cancel download file"
-msgstr "annulation du téléchargement"
-
-msgid "edit for new version"
-msgstr "édition d'une nouvelle version"
-
-msgid "download file for edition"
-msgstr "téléchargement de fichier en édition"
-
-msgid "upload file for modification"
-msgstr "rapatrier le fichier pour modification"
-
-msgid "create a new version"
-msgstr "créer une nouvelle version"
-
-msgid "duplicate a document"
-msgstr "dupliquer un document"
 
 #, c-format
 msgid "Group of users that can view files in %s space"
@@ -150,8 +78,86 @@ msgstr "copie de %s"
 msgid "failed to copy document %s"
 msgstr "échec de la copie du document %s"
 
+msgid "WorkSpace"
+msgstr "Espace de travail"
+
+msgid "Documents Exchange"
+msgstr "Echange de documents"
+
+msgid "Access For Workspace edition"
+msgstr "Accès à l'édition des espaces de travail"
+
+msgid "Access for exchange documents"
+msgstr "Access à l'échange de documents"
+
+msgid "interface to navigate in spaces"
+msgstr "interface pour naviguer dans les espaces"
+
+msgid "add branch in folder tree"
+msgstr "ajouter une branche dans l'arbre des dossiers"
+
+msgid "to view clipboard"
+msgstr "pour voir le panier"
+
+msgid "to view folder"
+msgstr "pour voir un dossier"
+
+msgid "to view a document"
+msgstr "pour voir un document"
+
+msgid "popup menu global in folder list"
+msgstr "menu popup global pour la liste de dossier"
+
+msgid "popup menu in folder list"
+msgstr "menu popup pour le contenu de dossier"
+
+msgid "popup menu for simplefile family"
+msgstr "menu popup pour la famille simplefile"
+
+msgid "popup menu for simplefolder family"
+msgstr "menu popup pour la famille simplefolder"
+
+msgid "empty the user trash"
+msgstr "vider la corbeille"
+
+msgid "restore a document from the trash"
+msgstr "restaurer un document depuis la corbeille"
+
+msgid "download file from simplefile"
+msgstr "télécharger un fichier pour simplefile"
+
+msgid "edit HTML file"
+msgstr "éditer le fichier HTML"
+
+msgid "edit download file"
+msgstr "édition téléchargement de fichier"
+
 msgid "refresh count item of folder"
 msgstr "raffraichi le nombre d'item de dossier"
+
+msgid "cancel download file"
+msgstr "annulation du téléchargement"
+
+msgid "edit for new version"
+msgstr "édition d'une nouvelle version"
+
+msgid "download file for edition"
+msgstr "téléchargement de fichier en édition"
+
+msgid "upload file for modification"
+msgstr "rapatrier le fichier pour modification"
+
+msgid "create a new version"
+msgstr "créer une nouvelle version"
+
+msgid "duplicate a document"
+msgstr "dupliquer un document"
+
+msgid "Actions..."
+msgstr "Actions..."
+
+msgid "click and drag to move document"
+msgstr "Clic et glisse pour déplacer le document "
 
 msgid "Documents exchange"
 msgstr "Echange de documents"
@@ -168,6 +174,9 @@ msgstr "nom du fichier à rechercher"
 msgid "Send searches"
 msgstr "Lancer la recherche"
 
+msgid "alternate between private space and document basket"
+msgstr "alternance entre l'espace privé et le porte-documents"
+
 msgid "private space"
 msgstr "espace privé"
 
@@ -182,12 +191,6 @@ msgstr "mon panier"
 
 msgid "display/undisplay"
 msgstr "afficher/cacher"
-
-msgid "Actions..."
-msgstr "Actions..."
-
-msgid "click and drag to move document"
-msgstr "Clic et glisse pour déplacer le document "
 
 msgid "The text has be modified"
 msgstr "Le texte a été modifié"
@@ -260,11 +263,23 @@ msgstr "Commentaire"
 msgid "Create new version"
 msgstr "Créer une nouvelle version"
 
-msgid "Clic to view menu"
-msgstr "Cliquer pour voir le menu"
+msgid "The version rename will not create new version"
+msgstr "Le renommage de la version ne crée pas de nouvelle version"
 
 msgid "Click to modify title"
 msgstr "Cliquer pour modifier le titre"
+
+msgid "Click to modify description"
+msgstr "Cliquer pour modifier la description"
+
+msgid "Clic to view menu"
+msgstr "Cliquer pour voir le menu"
+
+msgid "View file inline"
+msgstr "Voir le fichier en ligne"
+
+msgid "Display"
+msgstr "Afficher"
 
 msgid "Download file for reading"
 msgstr "Télécharger le fichier pour le consulter"
@@ -290,14 +305,8 @@ msgstr "Télécharger le fichier afin de le modifier"
 msgid "Modify the file"
 msgstr "Modifier le fichier"
 
-msgid "View file inline"
-msgstr "Voir le fichier en ligne"
-
-msgid "Display"
-msgstr "Afficher"
-
-msgid "Edit HTML file"
-msgstr "Editer le fichier HTML"
+msgid "Edit inline"
+msgstr "Editer en ligne"
 
 msgid "Return to main view"
 msgstr "Retour à la vue principale"
@@ -343,15 +352,6 @@ msgstr "Historique"
 
 msgid "Double Click to recompute the thumbnail"
 msgstr "Double-cliquer pour mettre à jour la miniature"
-
-msgid "The version rename will not create new version"
-msgstr "Le renommage de la version ne crée pas de nouvelle version"
-
-msgid "Click to modify description"
-msgstr "Cliquer pour modifier la description"
-
-msgid "Edit inline"
-msgstr "Editer en ligne"
 
 msgid "bytes"
 msgstr "octets"
@@ -406,36 +406,6 @@ msgstr "lecteur"
 msgid "writer"
 msgstr "écrivain"
 
-msgid "Add new file"
-msgstr "Ajouter un fichier"
-
-msgid "Create new text"
-msgstr "Créer un texte"
-
-msgid "Create new directory"
-msgstr "Créer un répertoire"
-
-msgid "Empty trash"
-msgstr "Vider la corbeille"
-
-msgid "trash"
-msgstr "corbeille"
-
-msgid "Filename Menu"
-msgstr "Nom"
-
-msgid "Modification Date Menu"
-msgstr "Date de modification"
-
-msgid "File Size Menu"
-msgstr "Taille"
-
-msgid "File Type Menu"
-msgstr "Type"
-
-msgid "0 document"
-msgstr "0 document"
-
 msgid "My space"
 msgstr "Mon espace"
 
@@ -463,6 +433,24 @@ msgstr "le document %s ne peut pas être dupliqué"
 msgid "document %s does not exist"
 msgstr "Le document %s n'existe pas"
 
+msgid "trash"
+msgstr "corbeille"
+
+msgid "Filename Menu"
+msgstr "Nom"
+
+msgid "Modification Date Menu"
+msgstr "Date de modification"
+
+msgid "File Size Menu"
+msgstr "Taille"
+
+msgid "File Type Menu"
+msgstr "Type"
+
+msgid "0 document"
+msgstr "0 document"
+
 #, c-format
 msgid "document %s already in edition"
 msgstr "le document %s est déjà en édition"
@@ -478,6 +466,18 @@ msgid ""
 msgstr ""
 "Le file %s a été téléchargé et le document a été verrouillé et a été "
 "marqué : en édition"
+
+msgid "Add new file"
+msgstr "Ajouter un fichier"
+
+msgid "Create new text"
+msgstr "Créer un texte"
+
+msgid "Create new directory"
+msgstr "Créer un répertoire"
+
+msgid "Empty trash"
+msgstr "Vider la corbeille"
 
 #, c-format
 msgid "%s file downloaded by %s on %s"
@@ -519,6 +519,9 @@ msgstr "Supprimer le dossier et son contenu"
 #, c-format
 msgid "Sure delete %s and its containt ?"
 msgstr "Etes-vous sur de supprimer %s et son contenu ?"
+
+#~ msgid "Edit HTML file"
+#~ msgstr "Editer le fichier HTML"
 
 #~ msgid "my affected documents"
 #~ msgstr "mes documents affectés"

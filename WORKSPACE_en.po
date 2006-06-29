@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 14:42+0200\n"
+"POT-Creation-Date: 2006-06-29 16:24+0200\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -14,78 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
-
-msgid "WorkSpace"
-msgstr ""
-
-msgid "Documents Exchange"
-msgstr ""
-
-msgid "Access For Workspace edition"
-msgstr ""
-
-msgid "Access for exchange documents"
-msgstr ""
-
-msgid "interface to navigate in spaces"
-msgstr ""
-
-msgid "add branch in folder tree"
-msgstr ""
-
-msgid "to view clipboard"
-msgstr ""
-
-msgid "to view folder"
-msgstr ""
-
-msgid "to view a document"
-msgstr ""
-
-msgid "popup menu global in folder list"
-msgstr ""
-
-msgid "popup menu in folder list"
-msgstr ""
-
-msgid "popup menu for simplefile family"
-msgstr ""
-
-msgid "popup menu for simplefolder family"
-msgstr ""
-
-msgid "empty the user trash"
-msgstr ""
-
-msgid "restore a document from the trash"
-msgstr ""
-
-msgid "download file from simplefile"
-msgstr ""
-
-msgid "edit HTML file"
-msgstr ""
-
-msgid "edit download file"
-msgstr ""
-
-msgid "cancel download file"
-msgstr ""
-
-msgid "edit for new version"
-msgstr ""
-
-msgid "download file for edition"
-msgstr ""
-
-msgid "upload file for modification"
-msgstr ""
-
-msgid "create a new version"
-msgstr ""
-
-msgid "duplicate a document"
-msgstr ""
 
 #, c-format
 msgid "Group of users that can view files in %s space"
@@ -154,7 +82,85 @@ msgstr ""
 msgid "failed to copy document %s"
 msgstr ""
 
+msgid "WorkSpace"
+msgstr ""
+
+msgid "Documents Exchange"
+msgstr ""
+
+msgid "Access For Workspace edition"
+msgstr ""
+
+msgid "Access for exchange documents"
+msgstr ""
+
+msgid "interface to navigate in spaces"
+msgstr ""
+
+msgid "add branch in folder tree"
+msgstr ""
+
+msgid "to view clipboard"
+msgstr ""
+
+msgid "to view folder"
+msgstr ""
+
+msgid "to view a document"
+msgstr ""
+
+msgid "popup menu global in folder list"
+msgstr ""
+
+msgid "popup menu in folder list"
+msgstr ""
+
+msgid "popup menu for simplefile family"
+msgstr ""
+
+msgid "popup menu for simplefolder family"
+msgstr ""
+
+msgid "empty the user trash"
+msgstr ""
+
+msgid "restore a document from the trash"
+msgstr ""
+
+msgid "download file from simplefile"
+msgstr ""
+
+msgid "edit HTML file"
+msgstr ""
+
+msgid "edit download file"
+msgstr ""
+
 msgid "refresh count item of folder"
+msgstr ""
+
+msgid "cancel download file"
+msgstr ""
+
+msgid "edit for new version"
+msgstr ""
+
+msgid "download file for edition"
+msgstr ""
+
+msgid "upload file for modification"
+msgstr ""
+
+msgid "create a new version"
+msgstr ""
+
+msgid "duplicate a document"
+msgstr ""
+
+msgid "Actions..."
+msgstr ""
+
+msgid "click and drag to move document"
 msgstr ""
 
 msgid "Documents exchange"
@@ -172,6 +178,9 @@ msgstr ""
 msgid "Send searches"
 msgstr ""
 
+msgid "alternate between private space and document basket"
+msgstr ""
+
 msgid "private space"
 msgstr ""
 
@@ -185,12 +194,6 @@ msgid "my basket"
 msgstr ""
 
 msgid "display/undisplay"
-msgstr ""
-
-msgid "Actions..."
-msgstr ""
-
-msgid "click and drag to move document"
 msgstr ""
 
 msgid "The text has be modified"
@@ -255,10 +258,25 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "Clic to view menu"
+msgid "The version rename will not create new version"
+msgstr ""
+
+msgid "Folder"
 msgstr ""
 
 msgid "Click to modify title"
+msgstr ""
+
+msgid "Click to modify description"
+msgstr ""
+
+msgid "Clic to view menu"
+msgstr ""
+
+msgid "View file inline"
+msgstr ""
+
+msgid "Display"
 msgstr ""
 
 msgid "Download file for reading"
@@ -285,13 +303,7 @@ msgstr ""
 msgid "Modify the file"
 msgstr ""
 
-msgid "View file inline"
-msgstr ""
-
-msgid "Display"
-msgstr ""
-
-msgid "Edit HTML file"
+msgid "Edit inline"
 msgstr ""
 
 msgid "Return to main view"
@@ -345,18 +357,6 @@ msgstr ""
 msgid "Double Click to recompute the thumbnail"
 msgstr ""
 
-msgid "The version rename will not create new version"
-msgstr ""
-
-msgid "Folder"
-msgstr ""
-
-msgid "Click to modify description"
-msgstr ""
-
-msgid "Edit inline"
-msgstr ""
-
 msgid "bytes"
 msgstr ""
 
@@ -405,44 +405,6 @@ msgstr ""
 msgid "writer"
 msgstr ""
 
-msgid "Add new file"
-msgstr ""
-
-msgid "Create new text"
-msgstr ""
-
-msgid "Create new directory"
-msgstr ""
-
-msgid "Empty trash"
-msgstr ""
-
-msgid "trash"
-msgstr ""
-
-#, c-format
-msgid "search %s"
-msgstr ""
-
-msgid "Filename Menu"
-msgstr ""
-
-msgid "Modification Date Menu"
-msgstr ""
-
-msgid "File Size Menu"
-msgstr ""
-
-msgid "File Type Menu"
-msgstr ""
-
-#, c-format
-msgid "%d documents"
-msgstr ""
-
-msgid "0 document"
-msgstr ""
-
 msgid "My space"
 msgstr ""
 
@@ -485,6 +447,32 @@ msgstr ""
 msgid "modify [%s] attribute"
 msgstr ""
 
+msgid "trash"
+msgstr ""
+
+#, c-format
+msgid "search %s"
+msgstr ""
+
+msgid "Filename Menu"
+msgstr ""
+
+msgid "Modification Date Menu"
+msgstr ""
+
+msgid "File Size Menu"
+msgstr ""
+
+msgid "File Type Menu"
+msgstr ""
+
+#, c-format
+msgid "%d documents"
+msgstr ""
+
+msgid "0 document"
+msgstr ""
+
 #, c-format
 msgid "document %s already in edition"
 msgstr ""
@@ -497,6 +485,18 @@ msgstr ""
 msgid ""
 "The file %s has been downloaded and the document has been locked and "
 "tagged : in edition"
+msgstr ""
+
+msgid "Add new file"
+msgstr ""
+
+msgid "Create new text"
+msgstr ""
+
+msgid "Create new directory"
+msgstr ""
+
+msgid "Empty trash"
 msgstr ""
 
 #, c-format
