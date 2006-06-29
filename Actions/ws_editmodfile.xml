@@ -8,7 +8,7 @@
 <p><img align="left" src="[IMG:database_ci.png]">[TEXT:The file will be downloaded in your personal computer. You need to save it in your personal space. Do not try to open it directly because you can loose it].</p>
 <p>[TEXT:When the file is saved, you can edit it with the appropriated application and save it at the same place]
 [TEXT:When the modification are done, you must go to web shared folder application and select the file]</p>
-<p>[TEXT:The name file must the same as previous name]. [TEXT:On the context menu select 'upload file' to save modified file in the web shared folder].</p>
+<p>[TEXT:The name file must the same as previous name]. [TEXT:On the document clic to 'upload file' to save modified file in the work space].</p>
 </div>
 <input type="checkbox" style="cursor:pointer" onclick="if (this.checked) setparamu('[APPNAME]','WS_AUTODOWNLOAD','yes'); else setparamu('[APPNAME]','WS_AUTODOWNLOAD','no')"> [TEXT:Don't view yet this information]
 [ENDIF autodownload]

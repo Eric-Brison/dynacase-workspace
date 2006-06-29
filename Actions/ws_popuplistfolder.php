@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.10 2006/06/27 15:41:44 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.11 2006/06/29 14:23:33 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -69,7 +69,7 @@ function ws_popuplistfolder(&$action) {
 				     "url"=>"$surl&app=FDL&action=FDL_CARD&id=$docid",
 				     "confirm"=>"false",
 				     "control"=>"false",
-				     "icon" => "Images/directory.gif",
+				     "icon" => "Images/documentinfo.png",
 				     "tconfirm"=>"",
 				     "target"=>"nresume",
 				     "visibility"=>POPUP_ACTIVE,

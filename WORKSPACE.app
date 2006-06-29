@@ -115,6 +115,11 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
+   "name"		=>"WS_COUNTFOLDER",
+   "short_name"		=>N_("refresh count item of folder"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
    "name"		=>"WS_CANCELMODFILE",
    "short_name"		=>N_("cancel download file"),
    "acl"		=>"WORKSPACE_USER"

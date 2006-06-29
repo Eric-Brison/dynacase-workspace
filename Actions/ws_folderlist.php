@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.14 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.15 2006/06/29 14:23:33 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -173,6 +173,13 @@ function ws_folderlist(&$action) {
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
   $action->lay->set("title",utf8_encode($doc->title));
   $action->lay->setBlockData("HEAD",$thead);
+
+  /*
+  $taction=$action->lay->getBlockData("ACTIONS"); 
+  $taction[]=array("actname"=>"RENAMEBRANCH",
+		   "actdocid"=>'['.$doc->id.','."'".utf8_encode(sprintf("%s (%d)",$doc->title,count($tc)))."']");
+  $action->lay->setBlockData("ACTIONS",$taction);  
+  */ 
   if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
   else $action->lay->set("nbdoc",_("0 document"));
 					

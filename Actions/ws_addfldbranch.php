@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.11 2006/06/27 15:41:44 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.12 2006/06/29 14:23:33 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -45,42 +45,46 @@ function ws_addfldbranch(&$action) {
 
   $action->lay->set("pid",$doc->id);
   $action->lay->set("CODE","KO");
+  $top=false;
   if ($doc->isAlive()) {
     if ($itself) {
       $ls=array();
       $ls[$docid]=getTDoc($dbaccess,$docid);
       $trash=new_doc($dbaccess,"WS_MYTRASHFILE");
-      $ls[$trash->id]=getTDoc($dbaccess,"WS_MYTRASHFILE");
+      $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
+      $ls[$trash->id]["dropft"]='del';
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
       $trash=new_doc($dbaccess,"WS_MYLOCKEDFILE");
-      $ls[$trash->id]=getTDoc($dbaccess,"WS_MYLOCKEDFILE");
+      $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+      $trash=new_doc($dbaccess,$action->getParam("FREEDOM_IDBASKET"));
+      $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
+      $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+      $ls[$trash->id]["dropft"]='shortcut';
+      $top=true; // to not see link in top view
     } else {
       $ls=$doc->getContent(true,array("doctype ~ '^D|S$'"));
     }
     $tc=array();
     foreach ($ls as $k=>$v) {
-      $tc[]=array("title"=>utf8_encode($v["title"]),
+      $tc[]=array("title"=>ucfirst(utf8_encode($v["title"])),
 		  "id"=>$v["id"],
-		  "linkfld"=>($v["prelid"]==$doc->initid)?false:true,
-		  "droppable"=>($v["doctype"]=="D")?"yes":"no",
-		  "icon"=>$doc->getIcon($v["icon"]));
+		  "linkfld"=>($top || ($v["prelid"]==$doc->initid))?false:true,
+		  "droppable"=>(($v["doctype"]=="D") || $v["dropft"])?"yes":"no",
+		  "icon"=>$doc->getIcon($v["icon"]),
+		  "dropft"=>$v["dropft"]?$v["dropft"]:"move");
     }
 
     $action->lay->setBlockData("TREE",$tc);
     $action->lay->set("ulid",uniqid("ul"));
     $action->lay->set("CODE","OK"); 
-    $taction=$action->lay->getBlockData("ACTIONS");
-    
-      $taction[]=array("actname"=>(count($tc)>0)?"ADDBRANCH":"EMPTYBRANCH",
-		       "actdocid"=>$doc->initid);
-      $action->lay->setBlockData("ACTIONS",$taction);
-    
+    $taction=$action->lay->getBlockData("ACTIONS");    
+    $taction[]=array("actname"=>(count($tc)>0)?"ADDBRANCH":"EMPTYBRANCH",
+		     "actdocid"=>$doc->initid);
+    $action->lay->setBlockData("ACTIONS",$taction);    
   } else {
     $action->lay->set("CODE","NOTALIVE");
   }
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
-
-
 }

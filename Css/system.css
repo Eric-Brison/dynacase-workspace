@@ -16,6 +16,10 @@ DIV.space {
   border-style:solid;
   border-width:2px;
 }
+DIV.space IMG,DIV.spaceselect IMG { 
+  width:48px;
+
+}
 DIV.spaceselect { 
   border-style:inset;
 }
@@ -104,10 +108,10 @@ DIV.tabclip SPAN {
   height:20px;
   overflow:hidden;
   float:right;
-  border-width : 1px;
-  border-style :outset outset none outset;
+  border-style :none;
   padding:2px;
   cursor:pointer;
+  background-color:transparent!important;
 /*  -moz-border-radius: 8 8 0 0;	*/
   
 }

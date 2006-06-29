@@ -6,7 +6,7 @@
   <branch><![CDATA[
 [BLOCK TREE]
   <li title="[title]"><img id='il[ulid][id]' docid="[id]" onclick="DRAGFT='';expandtree(this,'[id]','[ulid][id]')" ondblclick="DRAGFT='';expandtree(this,'[id]','[ulid][id]',null,null,null,true)" class="button" src="[IMG:b_right.png]">
-   <span droppable="[droppable]" dropft="move"  
+   <span droppable="[droppable]" dropft="[dropft]"  
          onmouseover="overdragft(event,this)" 
 	 onmouseout="outdragft(event,this)" 
 	 onclick="viewFolder(event,'[id]',this)"   

@@ -107,3 +107,7 @@ function shortcutToFld(event,docid,idbasket) {
   requestUrlSend(null,corestandurl+'app=WORKSPACE&action=WS_FOLDERICON&id='+idbasket+'&addid='+docid+'&addft=shortcut');
 
 }
+
+function restoreDoc(event,docid) {
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid)
+}

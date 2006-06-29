@@ -19,7 +19,7 @@ END;;;;;;;;;;;;;;;
 BEGIN;DIR;espace de travail;;;WORKSPACE;;;;;;;;;;
 TYPE;C;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
-ICON;folderwork.gif;;;;;;;;;;;;;;
+ICON;folderwork.png;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
@@ -66,3 +66,4 @@ ORDER;DSEARCH;;;ba_title;gui_color;se_memo;se_key;se_latest;se_case;se_fam;se_fa
 DOC;DSEARCH;WS_MYLOCKEDFILE;-;Mes fichiers verrouillés;;no;;yes;;fichier;SIMPLEFILE;;;;;;;and;;locked;=;::getWhatUserId()
 DOC;DSEARCH;WS_MYTRASHFILE;-;Ma corbeille;;no;;yes;;fichier;SIMPLEFILE;;only;;;;;and;;owner;=;::getWhatUserId()
 DOCICON;WS_MYTRASHFILE;bluetrash.png;;;;;;;;;;;;;;;;;;;;
+DOCICON;WS_MYLOCKEDFILE;ylock.png;;;;;;;;;;;;;;;;;;;;

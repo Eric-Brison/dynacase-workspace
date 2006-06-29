@@ -33,7 +33,6 @@ var CORE_STANDURL=window.location.pathname+'?sole=Y&';
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
   var url;
   url= CORE_STANDURL+'app=WORKSPACE&action=WS_ADDFLDBRANCH&id='+n;
-
   if (adddocid) url = url+ "&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
   
   var ret=requestUrlSend(cible,url);
@@ -50,9 +49,9 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 
   if ((!img) || (where.childNodes.length==0)) {
     //      where.style.display='';
+    EXPWHERE=where;
     if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
       EXPANDIMG=img;
-      EXPWHERE=where;
       return 2;
     }
     else return -1;
@@ -98,7 +97,7 @@ function expandToptree(o,id,ulid) {
   }
 }
 
-function expandPersoTree(o,id,where,reset) {
+function expandPersoTree(id,where,reset) {
   var dclipboard=document.getElementById('clipboard');
   
   if (dclipboard) dclipboard.style.display='none';
@@ -146,7 +145,9 @@ function addToBasket(event,docid) {
 
   folderSend(IDBASKET,false,docid,false,'shortcut');
 }
-
+function sendRenameFolderTree(docid) {
+  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_COUNTFOLDER&id='+docid);
+}
 
 
 // ----------------------------- view context memnu --------------------
@@ -161,7 +162,7 @@ function displayClipboard(bid,where) {
 
   if (dsecondul) dsecondul.style.display='none';
   where.style.display='';
-  refreshClipBoard(bid,where);
+  if (bid != CLIPCID)  refreshClipBoard(bid,where);
 }
 
 
@@ -531,7 +532,9 @@ function viewfoldermenu(event,docid,source) {
 
 
 
-function postActionRefresh(action,docid,c) {  
+function postActionRefresh(action,arg) {
+  var docid=arg;
+
   switch (action) {
   case "ADDFOLDER":
   case "DELFOLDER":
@@ -561,6 +564,13 @@ function postActionRefresh(action,docid,c) {
     endexpandtree(EXPANDIMG,EXPWHERE,1);
     EXPANDIMG=null;
     break;
+  case "RENAMEBRANCH":
+    var targ=string2Array(arg);
+    docid=targ[0];
+    var title=targ[1];
+    renamebranch(docid,title);
+    //alert('arg:'+arg+'\nid:'+docid+' ,new title:'+title);
+    break;
   case "EMPTYBRANCH":
     endexpandtree(EXPANDIMG,EXPWHERE,0);
     EXPANDIMG=null;    
@@ -573,7 +583,7 @@ function postActionRefresh(action,docid,c) {
   default:    
     // alert("UNKNOW:"+action+":"+docid);
   }
-  //   alert("ACTION:"+action+":"+docid);
+  //  alert("ACTION:"+action+":"+docid);
 }
 function endexpandtree(o,w,c) {
      if (o) {
@@ -601,7 +611,7 @@ function postAddFile(docid) {
     refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
   }
   
-  
+  if (IDBASKET == docid)   sendRenameFolderTree(docid); 
   SYNCHRO=false;
   
 }
@@ -625,7 +635,11 @@ function  postAddFolder(docid) {
       img.style.border='solid 2px green';
       if (img.getAttribute('ondblclick')) {
 	//	expandtree(this,'[id]','[ulid][id]',null,null,null,true)
-	img.ondblclick.apply(img,[]);	 
+	img.ondblclick.apply(img,[]);
+	if (EXPWHERE) {
+	  EXPWHERE.style.display='';
+	  EXPWHERE=null;
+	}
       }      
     }
   }
@@ -634,6 +648,30 @@ function  postAddFolder(docid) {
   
 }
 
+function  renamebranch(docid,ntitle) {
+  var fldid;
+  var img;
+  var ttext;
+  var otext;
+ 
+    
+  for (var i=0; i<document.images.length; i++)   {
+    img=document.images[i];
+    fldid=img.getAttribute("docid");
+    if (docid==fldid) {
+      ttext=img.parentNode.getElementsByTagName('span');
+       otext=ttext[0];
+       var lc=otext.childNodes;
+       for (var j=0;j<lc.length;j++) {
+	 if (lc[j].nodeType == 3) lc[j].data=ntitle;
+       }
+       
+       //      otext.style.backgroundColor='yellow';
+    }
+  }
+  
+  
+}
 function postEmptyTrash(docid) {
   var fldid;
   var o;
@@ -641,7 +679,8 @@ function postEmptyTrash(docid) {
     viewFolder(null,CFLDID)
   }
   o=document.getElementById('trashicon');
-  if (o) o.src='Images/trashempty.png';    
+  if (o) o.src='Images/trashempty.png';   
+  sendRenameFolderTree('WS_MYTRASHFILE'); 
 }
 
 function postLocking(docid) {
@@ -653,6 +692,7 @@ function postLocking(docid) {
   if (CLIPCID == 'lock') {
     refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
   } 
+  sendRenameFolderTree('WS_MYLOCKEDFILE');
 }
 
 
@@ -663,19 +703,37 @@ function postTrashFile() {
     viewFolder(null,CFLDID)
   }
   o=document.getElementById('trashicon');
-  if (o) o.src='Images/trash.png';
-  
-  
+  if (o) o.src='Images/trash.png';    
+  sendRenameFolderTree('WS_MYTRASHFILE'); 
 }
+
 function receiptActionNotification(code,arg) {
-  
+  SYNCHRO=true;
   for (var i=0;i<code.length;i++) {
     //  alert(code[i]);
     postActionRefresh(code[i],arg[i]);
   }
-  
-
+  SYNCHRO=false;  
 }
+
+function altern_basket_private(event,o) {
+  var bo=document.getElementById('clipboard');
+
+  var tp=document.getElementById('tab_privatespace');
+  var tb=document.getElementById('tab_basket');
+  var ti=o.getElementsByTagName('img');
+  var i=ti[0];
+
+  if (bo.style.display=='none') {
+    // display clip
+    tb.onclick.apply(tb,[]);
+    i.src='Images/iconview.gif';
+  } else {
+    tp.onclick.apply(tp,[]);   
+    i.src='Images/treeview.gif';
+  }    
+}
+
 function cathtml(o1,o2) {
   if (o1 && o2) {
     return o1.innerHTML + o2.innerHTML;
@@ -684,4 +742,7 @@ function cathtml(o1,o2) {
   return 'nothing in cat';
 }
 
-
+function string2Array(string) {
+  eval('var result = ' + string);
+  return result;
+}

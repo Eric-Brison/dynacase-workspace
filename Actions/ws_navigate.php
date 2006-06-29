@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.7 2006/06/20 16:18:54 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.8 2006/06/29 14:23:33 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -51,7 +51,29 @@ function ws_navigate(&$action) {
   if (trashempty($dbaccess,$action->user->id)) $action->lay->set("imgtrash",$action->getImageUrl('trashempty.png'));
   else $action->lay->set("imgtrash",$action->getImageUrl('trash.png'));
 
+  $homename="WS_PERSOFLD_".Doc::getWhatUserId();
+  $perso=getTDoc($dbaccess,$homename);
+  if (! $perso) {
+    // create "my space" folder
+    
+    $perso = createDoc($dbaccess,"SIMPLEFOLDER",false);
+    $perso->name=$homename;
+    
+    $perso->setValue("ba_title",_("My space"));
+    $perso->setValue("ba_desc",sprintf(_("personal space of %s"),$perso->getUserName(true)));
+    $perso->icon='gnome-fs-home.png';
+    $err=$perso->Add();
+    if ($err != "") $action->addWarningMsg($err);
+    if ($err =="") {
+      $persofldid=$perso->id;
+      $home=$perso->getHome();
+      if ($home) $home->AddFile($persofldid);//add in general home
+    }
+  } else {    
+    $persofldid=$perso["id"];
+  }
 
+  $action->lay->set("persofldid",$persofldid);
 }
 
 function trashempty($dbaccess,$userid) {

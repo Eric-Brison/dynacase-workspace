@@ -110,7 +110,8 @@ function redisplaywsdiv(event) {
 }
 // onlyview : if true display always not undisplays
 function clipviewornot(event,onlyview) {
-  var dclipboard=document.getElementById('secondview');
+  var dsecondul=document.getElementById('secondview');
+  var dclipboard=document.getElementById('clipboard');
   var dfolders=document.getElementById('folders');
   var dsearches=document.getElementById('searches');
   var dtabclip=document.getElementById('tabclip');
@@ -120,12 +121,12 @@ function clipviewornot(event,onlyview) {
   var sy,ty; // pos y for search
 
   if (isIE) ch +=7; // values from displayws.js
-  if (dclipboard) {
+  if (dsecondul) {
     fh=parseInt(dfolders.style.height);
     sy=parseInt(dsearches.style.top);
     ty=parseInt(dtabclip.style.top);
-    if (dclipboard.style.display=='none') {
-      dclipboard.style.display='';
+    if (dsecondul.style.display=='none') {
+      dsecondul.style.display='';
 
       dfolders.style.height=fh-ch;
       dtabclip.style.top=ty-ch;
@@ -135,7 +136,7 @@ function clipviewornot(event,onlyview) {
 	refreshClipBoard(IDBASKET,dclipboard);
       }
     } else if (! onlyview) {
-      dclipboard.style.display='none';
+      dsecondul.style.display='none';
 
       dfolders.style.height=fh+ch;
       dtabclip.style.top=ty+ch;
@@ -144,7 +145,11 @@ function clipviewornot(event,onlyview) {
     }
   }
 }
-
+function displayprivate(event) {
+  var p=document.getElementById('tab_privatespace');
+  if (p) p.onclick.apply(p,[event]);
+}
 addEvent(window,"load",redisplaywsdiv);
+addEvent(window,"load",displayprivate);
 //addEvent(window,"load",clipviewornot);
 addEvent(window,"resize",redisplaywsdiv);
