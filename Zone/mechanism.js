@@ -556,9 +556,10 @@ function postActionRefresh(action,arg) {
     
     break;
   case "TRASHFILE":
-    postTrashFile(docid);
-    
-    
+    postTrashFile(docid);        
+    break;
+  case "UNTRASHFILE":
+    postTrashFile(docid,true);        
     break;
   case "ADDBRANCH":
     endexpandtree(EXPANDIMG,EXPWHERE,1);
@@ -680,7 +681,7 @@ function postEmptyTrash(docid) {
   }
   o=document.getElementById('trashicon');
   if (o) o.src='Images/trashempty.png';   
-  sendRenameFolderTree('WS_MYTRASHFILE'); 
+  sendRenameFolderTree('WS_MYTRASH'); 
 }
 
 function postLocking(docid) {
@@ -696,15 +697,19 @@ function postLocking(docid) {
 }
 
 
-function postTrashFile() {
+function postTrashFile(docid,untrash) {
   var fldid;
   var o;
-  if (CFLDID == 'trash') {
+  SYNCHRO=true;
+  if ((CFLDID == 'trash')||(CFLDID == docid)) {
     viewFolder(null,CFLDID)
   }
-  o=document.getElementById('trashicon');
-  if (o) o.src='Images/trash.png';    
-  sendRenameFolderTree('WS_MYTRASHFILE'); 
+  if (! untrash) {
+    o=document.getElementById('trashicon');
+    if (o) o.src='Images/trash.png';    
+  }
+  sendRenameFolderTree('WS_MYTRASH'); 
+  SYNCHRO=false;;
 }
 
 function receiptActionNotification(code,arg) {

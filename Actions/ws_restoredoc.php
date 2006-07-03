@@ -3,7 +3,7 @@
  * UnTrash document
  *
  * @author Anakeen 2006
- * @version $Id: ws_restoredoc.php,v 1.4 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_restoredoc.php,v 1.5 2006/07/03 12:14:09 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -47,8 +47,8 @@ function ws_restoredoc(&$action) {
   if ($err==""){
     $taction[]=array("actname"=>"ADDFILE",
 		     "actdocid"=>$doc->prelid);
-    $taction[]=array("actname"=>"DELFILE",
-		     "actdocid"=>'trash');
+    $taction[]=array("actname"=>"UNTRASHFILE",
+		     "actdocid"=>getIdFromName($dbaccess,"WS_MYTRASH"));
 
     if ($containt && $doc->doctype=="D") {
       $terr=$doc->reviveItems();
