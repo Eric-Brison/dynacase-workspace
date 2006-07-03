@@ -64,6 +64,11 @@ DOC;IGROUP;GWSPADMIN;GADMIN;;;;Administrateur des espaces de travail;;;;gadmin.w
 //FAM;recherche détaillée(DSEARCH);<specid>;<fldid>;titre;couleur intercalaire;à utiliser dans les menus;mot-clef;révision;différence majuscule/minuscule;famille;fid amille;dossier racine;dans la poubelle;profondeur de recherche;requête sql;id dossier père courant;dossier père courant;opérateur logique;Conditions;attributs;fonctions;mot-clefs
 ORDER;DSEARCH;;;ba_title;gui_color;se_memo;se_key;se_latest;se_case;se_fam;se_famid;se_idfld;se_trash;se_sublevel;se_sqlselect;se_idcfld;se_cfld;se_ol;se_t_detail;se_attrids;se_funcs;se_keys
 DOC;DSEARCH;WS_MYLOCKEDFILE;-;Mes fichiers verrouillés;;no;;yes;;fichier;SIMPLEFILE;;;;;;;and;;locked;=;::getWhatUserId()
-DOC;DSEARCH;WS_MYTRASHFILE;-;Ma corbeille;;no;;yes;;fichier;SIMPLEFILE;;only;;;;;and;;owner;=;::getWhatUserId()
+DOC;DSEARCH;WS_MYTRASHFOLDER;-;Ma corbeille de répertoires;;no;;yes;;répertoire;SIMPLEFOLDER;;only;;;;;and;;owner;=;::getWhatUserId()
+DOC;DSEARCH;WS_MYTRASHFILE;-;Ma corbeille de fichiers;;no;;yes;;fichier;SIMPLEFILE;;only;;;;;and;;owner;=;::getWhatUserId()
 DOCICON;WS_MYTRASHFILE;bluetrash.png;;;;;;;;;;;;;;;;;;;;
 DOCICON;WS_MYLOCKEDFILE;ylock.png;;;;;;;;;;;;;;;;;;;;
+ORDER;MSEARCH;;;ba_title;gui_color;se_memo;se_key;seg_t_cond;se_latest;seg_idcond;se_case;seg_cond;se_fam;se_famid;se_idfld;se_trash;se_sublevel;se_sqlselect;se_idcfld;se_cfld;;
+DOC;MSEARCH;WS_MYTRASH;-;Ma corbeille;;no;;;;WS_MYTRASHFILE\nWS_MYTRASHFOLDER;;Ma corbeille de fichiers\nMa corbeille de répertoires;;;;;;;;;;
+DOCICON;WS_MYTRASH;bluetrash.png;;;;;;;;;;;;;;;;;;;;
+DOCICON;WS_MYTRASHFOLDER;bluetrash.png;;;;;;;;;;;;;;;;;;;;

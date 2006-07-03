@@ -632,7 +632,7 @@ function  postAddFolder(docid) {
     img=document.images[i];
     fldid=img.getAttribute("docid");
     if (docid==fldid) {
-      img.style.border='solid 2px green';
+      //img.style.border='solid 2px green';
       if (img.getAttribute('ondblclick')) {
 	//	expandtree(this,'[id]','[ulid][id]',null,null,null,true)
 	img.ondblclick.apply(img,[]);
