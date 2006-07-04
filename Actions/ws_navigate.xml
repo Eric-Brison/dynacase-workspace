@@ -39,7 +39,7 @@
 <br>
 <div class="space" style="display:none" onclick="globalcursor('move')" oncontextmenu="unglobalcursor()" ><img src="[IMG:gnome-fs-home.png]"><span> [TEXT:Private]</span></div>
 <br>
-<div class="space" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]" id="trashicon"><span> [TEXT:Trash]</span></div>
+<div class="space" style="display:none" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]" id="trashicon"><span> [TEXT:Trash]</span></div>
 </div>
 
 <div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="[IMG:b_minileft.png]"></td></tr></table></div>
