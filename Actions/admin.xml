@@ -1,0 +1,78 @@
+[ZONE FDL:HTMLHEAD]
+<style>
+DIV.dspaces {
+  float:left;
+  width:150px;
+  height:70px;
+  -moz-border-radius:5px;
+  overflow:hidden;
+  text-align:center;
+  margin:1px;
+  background-color:[COLOR_A9];
+}
+DIV.ddspaces {
+  cursor:pointer;
+  width:150px;
+  height:50px;
+  display:inline; 
+  border : solid 1px
+}
+DIV.ddspaces:hover {
+  background-color:[COLOR_C7];
+}
+DIV.ddspaces img{
+  width:[SIZE_IMG-MEDIUM];
+}
+DIV.dspacesselect,DIV.dspacesselect:hover {
+  margin:0px;
+  background-color:[COLOR_B7];
+  border : inset 1px;
+}
+DIV.dspacesselect:hover {
+  background-color:[COLOR_B7];
+}
+</style>
+<script>
+function selectspace(event,o,idspace) {
+  var ifr=document.getElementById('ieditspace');
+
+  var tif = document.getElementsByTagName('div');
+  for (var i=0; i < tif.length; i++) {
+    if (tif[i].className.substr(0,7) == 'dspaces') {
+      tif[i].className='dspaces';
+    }
+  }
+  
+  o.className='dspaces dspacesselect';
+
+  //  ifr.src='[CORE_STANDURL]&app=GENERIC&action=GENERIC_EDIT&id='+idspace;
+  ifr.src='[CORE_STANDURL]&app=FDL&action=FDL_CARD&id='+idspace;
+  
+}
+function createspace(event,o) {
+  var ifr=document.getElementById('ieditspace');
+
+  var tif = document.getElementsByTagName('div');
+  for (var i=0; i < tif.length; i++) {
+    if (tif[i].className.substr(0,7) == 'dspaces') {
+      tif[i].className='dspaces';
+    }
+  }
+  
+  o.className='dspaces dspacesselect';
+
+  ifr.src='[CORE_STANDURL]&app=GENERIC&action=GENERIC_EDIT&classid=WORKSPACE';
+  
+}
+</script>
+<div class="dspaces" onclick="createspace(event,this)">
+<div class="ddspaces"><img src="[ficon]"></div>
+<br><b>[TEXT:Create new space]</b></div> 
+[BLOCK SPACES]
+<div class="dspaces" onclick="selectspace(event,this,'[id]')">
+<div class="ddspaces"><img  src="Images/[icon]">[title]</div>
+<br>&nbsp;[wsp_admin]</div> 
+[ENDBLOCK SPACES]
+<br style="clear:both">
+<iframe style="border:none;margin:0px;padding:0px;width:100%;height:550px" id="ieditspace"></iframe>
+[ZONE FDL:HTMLFOOT]

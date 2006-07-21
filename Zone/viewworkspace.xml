@@ -1,0 +1,11 @@
+<table class="transparent" style="width:100%"><tr><td>
+<img align="left" width="[SIZE_IMG-LARGE]" style="border:none" src="Images/[ICON]" ></td>
+<td>
+<b>[TEXT:Space] : [V_BA_TITLE]</b><br>
+[L_WSP_ADMIN] : [V_WSP_ADMIN]<br>
+
+[TEXT:Reference name] : [V_WSP_REF]
+<hr>
+[TEXT:Reader group] : <a title="[TEXT:view members of reader group]" href="javascript:void(0)"  onclick="subwindow(300,500,'viewgroup','[CORE_STANDURL]app=USERCARD&action=FADDBOOK_MAIN&dfam=IUSER&target=finfo2&etarget=finfo2&usedefaultview=N&cols=us_mail|us_phone&dirid=[gvid]')">[gvtitle]</a> - - 
+[TEXT:Redactor group] : <a title="[TEXT:view members of redactor group]" href="javascript:void(0)" onclick="subwindow(300,500,'viewgroup','[CORE_STANDURL]app=USERCARD&action=FADDBOOK_MAIN&dfam=IUSER&target=finfo2&etarget=finfo2&usedefaultview=N&cols=us_mail|us_phone&dirid=[geid]')">[getitle]</a>
+</td></tr></table>

@@ -1,7 +1,9 @@
 <?php
  
 public $eviews=array("WORKSPACE:ADMINWORKSPACE");
-public $defaultedit="WORKSPACE:ADMINWORKSPACE";
+public $cviews=array("WORKSPACE:VIEWWORKSPACE");
+
+public $defaultview="WORKSPACE:VIEWWORKSPACE:T";
 
 /**
  * get view groupe name
@@ -217,6 +219,22 @@ function adminworkspace() {
     $this->lay->setBlockData("MEMBERS",$tmv);
     $this->lay->set("nmembers",sprintf(_("%s members"),count($tmv)));
   }
+
+}
+function viewworkspace($target="_self",$ulink=true,$abstract=false) {  
+  $this->viewdefaultcard($target,$ulink,$abstract);
+
+  
+  $gvname=$this->getViewGroupName();
+  $gv=new_doc($this->dbaccess,$gvname);
+  
+  $gename=$this->getEditGroupName();
+  $ge=new_doc($this->dbaccess,$gename);
+
+  $this->lay->set("geid",$ge->id);
+  $this->lay->set("getitle",$ge->title);
+  $this->lay->set("gvid",$gv->id);
+  $this->lay->set("gvtitle",$gv->title);
 
 }
 

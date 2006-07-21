@@ -24,10 +24,11 @@ ICON;folderwork.png;;;;;;;;;;;;;;
 METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 //;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
-ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;10;W;Y;;;;;;esize=10
+ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;10;W;Y;;;;;;esize=10|elabel=nom court de l'espace : utilisé pour construire les groupes
 ATTR;WSP_IDADMIN;FR_BASIC;id administrateur;N;N;docid;20;H;;;;::getTitle(WSP_IDADMIN):WSP_ADMIN;;;
 ATTR;WSP_ADMIN;FR_BASIC;Administrateur;N;N;text;30;W;;%S%app=FDL&action=FDL_CARD&id=%WSP_IDADMIN%;fdl.php;lfamily(D,IUSER,WSP_ADMIN):WSP_IDADMIN,WSP_ADMIN;;;
-;;;;;;;;;;;;;;;
+ATTR;WSP_AFFECT;FR_BASIC;Affectation;N;N;action;;R;;;GENERIC;GENERIC_EDIT&id=%I%&zone=WORKSPACE:ADMINWORKSPACE;;::canEditMenu();ltarget=_self|llabel=Affecter de nouveaux utilisateurs à l'espace
+ATTR;GUI_COLOR;FR_BASIC;couleur intercalaire;N;N;color;30;H;;;;;;;
 END;;;;;;;;;;;;;;;
 // famille fichier;;;id;class;name;;;;;;;;;;
 BEGIN;0;fichier;;;SIMPLEFILE;;;;;;;;;;

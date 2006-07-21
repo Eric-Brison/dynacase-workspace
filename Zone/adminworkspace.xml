@@ -48,7 +48,7 @@ TR.modified {
 <tr id="trtemplate" class="modified" style="display:none;"><td>jsuname</td><td><input type="hidden" name="uchange[jsuid]" value="new">
               <select  name="uprof[jsuid]">
                  <option selected value="view">[TEXT:reader]</option>
-                 <option value="edit">[TEXT:writer]</option>
+                 <option value="edit">[TEXT:redactor]</option>
               </select>
               <img align="absbottom" style="cursor:pointer" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)" ></td></tr>
 
