@@ -148,6 +148,11 @@ $action_desc = array (
    "name"		=>"WS_COPYDOC",
    "short_name"		=>N_("duplicate a document"),
    "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_SEARCH",
+   "short_name"		=>N_("search a document"),
+   "acl"		=>"WORKSPACE_USER"
   ) 
 );
 

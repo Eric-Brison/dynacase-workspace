@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 16:24+0200\n"
+"POT-Creation-Date: 2006-07-20 12:18+0200\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -14,73 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
-
-#, c-format
-msgid "Group of users that can view files in %s space"
-msgstr ""
-
-#, c-format
-msgid "Group of users that can edit files in %s space"
-msgstr ""
-
-#, c-format
-msgid "%s files"
-msgstr ""
-
-#, c-format
-msgid "default profile for %s - %s - space files"
-msgstr ""
-
-#, c-format
-msgid "%s directories"
-msgstr ""
-
-#, c-format
-msgid "default profile for %s - %s - space directories"
-msgstr ""
-
-msgid " (copy)"
-msgstr ""
-
-msgid "undefined"
-msgstr ""
-
-msgid "fixed"
-msgstr ""
-
-msgid "nobody"
-msgstr ""
-
-#, c-format
-msgid "unknow user %s"
-msgstr ""
-
-#, c-format
-msgid "%d bytes"
-msgstr ""
-
-#, c-format
-msgid "%d kb"
-msgstr ""
-
-#, c-format
-msgid "%.01f Mb"
-msgstr ""
-
-msgid "No title"
-msgstr ""
-
-#, c-format
-msgid "cannot move folder %s in %s cause loop"
-msgstr ""
-
-#, c-format
-msgid "duplication of %s "
-msgstr ""
-
-#, c-format
-msgid "failed to copy document %s"
-msgstr ""
 
 msgid "WorkSpace"
 msgstr ""
@@ -157,6 +90,88 @@ msgstr ""
 msgid "duplicate a document"
 msgstr ""
 
+#, c-format
+msgid "Group of users that can view files in %s space"
+msgstr ""
+
+#, c-format
+msgid "Group of users that can edit files in %s space"
+msgstr ""
+
+#, c-format
+msgid "%s files"
+msgstr ""
+
+#, c-format
+msgid "default profile for %s - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%s directories"
+msgstr ""
+
+#, c-format
+msgid "default profile for %s - %s - space directories"
+msgstr ""
+
+#, c-format
+msgid "%s workspace profile"
+msgstr ""
+
+#, c-format
+msgid "workspace profile for %s - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%s members"
+msgstr ""
+
+msgid " (copy)"
+msgstr ""
+
+msgid "undefined"
+msgstr ""
+
+msgid "fixed"
+msgstr ""
+
+msgid "nobody"
+msgstr ""
+
+#, c-format
+msgid "unknow user %s"
+msgstr ""
+
+#, c-format
+msgid "%d bytes"
+msgstr ""
+
+#, c-format
+msgid "%d kb"
+msgstr ""
+
+#, c-format
+msgid "%.01f Mb"
+msgstr ""
+
+msgid "No title"
+msgstr ""
+
+#, c-format
+msgid "cannot move folder %s in %s cause loop"
+msgstr ""
+
+#, c-format
+msgid "duplication of %s "
+msgstr ""
+
+#, c-format
+msgid "failed to copy document %s"
+msgstr ""
+
+msgid "search a document"
+msgstr ""
+
 msgid "Actions..."
 msgstr ""
 
@@ -228,6 +243,9 @@ msgstr ""
 msgid "Don't view yet this information"
 msgstr ""
 
+msgid "No result"
+msgstr ""
+
 msgid "Add version"
 msgstr ""
 
@@ -256,6 +274,33 @@ msgid "Create new version"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "reader"
+msgstr ""
+
+msgid "writer"
+msgstr ""
+
+msgid "You must click on the Search... button to select the modified file "
+msgstr ""
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+
+msgid "New file"
+msgstr ""
+
+msgid "Stay in edition mode ?"
+msgstr ""
+
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+
+msgid "You need to select the file"
+msgstr ""
+
+msgid "The name of the file must be the same as previous name"
 msgstr ""
 
 msgid "The version rename will not create new version"
@@ -378,31 +423,16 @@ msgstr ""
 msgid "File path"
 msgstr ""
 
-msgid "You must click on the Search... button to select the modified file "
+msgid "Namespace"
 msgstr ""
 
-msgid "To prevent error, the filename must be the same as the previous name"
+msgid "type characters to filter users on it's name"
 msgstr ""
 
-msgid "New file"
+msgid "Send user searches"
 msgstr ""
 
-msgid "Stay in edition mode ?"
-msgstr ""
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-
-msgid "You need to select the file"
-msgstr ""
-
-msgid "The name of the file must be the same as previous name"
-msgstr ""
-
-msgid "reader"
-msgstr ""
-
-msgid "writer"
+msgid "suppress member"
 msgstr ""
 
 msgid "My space"
@@ -562,4 +592,7 @@ msgstr ""
 
 #, c-format
 msgid "Sure delete %s and its containt ?"
+msgstr ""
+
+msgid "do not see confirmation before download for edition"
 msgstr ""

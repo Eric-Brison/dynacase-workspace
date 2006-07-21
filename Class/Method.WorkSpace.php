@@ -1,6 +1,7 @@
 <?php
  
-var $eviews=array("WORKSPACE:ADMINWORKSPACE");
+public $eviews=array("WORKSPACE:ADMINWORKSPACE");
+public $defaultedit="WORKSPACE:ADMINWORKSPACE";
 
 /**
  * get view groupe name
@@ -95,19 +96,97 @@ function postCreated() {
 	$pdoc->addControl("GWSPADMIN","modify");
 	$pdoc->addControl("GWSPADMIN","open");
 	$pdoc->addControl("GWSPADMIN","viewacl");
-      }
-      
+      }      
     }
   }
   
+  // create this own profil
+  $pspace=createDoc($this->dbaccess,"PDIR",false);
+  $pspace->setValue("ba_title",sprintf(_("%s workspace profile"),$ref));
+  $pspace->setValue("prf_desc",sprintf(_("workspace profile for %s - %s - space files"),$this->title,$ref));
+  $pspace->setValue("dpdoc_famid",$this->fromid);
+  $err=$pspace->Add();
+  if ($err == "") {
+    $pspace->setControl(false);
+    $pspace->addControl("GWSPADMIN","view");
+    $pspace->addControl("GWSPADMIN","edit");
+    $pspace->addControl("GWSPADMIN","delete");
+    $pspace->addControl("GWSPADMIN","viewacl");
+    $pspace->addControl("GWSPADMIN","modifyacl");
+    $pspace->addControl($gvname,'view');
+    $pspace->addControl($gvname,'open');
+    $pspace->addControl("WSP_IDADMIN",'edit');
+    $pspace->addControl($gename,'modify');
 
+    $this->profid=$pspace->id;
+    $this->modify(true,array("profid"),true);
+  }
+  
 
 
   if ($err != "") print_r2($err);
   return $err;
 }
 
+/**
+ * suppress profil & associated groups
+ */
+function postDelete() {
+  $gename=$this->getEditGroupName();
+  $gvname=$this->getViewGroupName();
+
+  $g=new_doc($this->dbaccess,$gename);
+  if ($g->isAlive()) $g->delete();
+  $g=new_doc($this->dbaccess,$gvname);
+  if ($g->isAlive()) $g->delete();
+
+  
+}
+
+/**
+ * change groups members
+ * @global uchange Http var : array of document user id to indicate the change
+ * @global uprof Http var : array of document user id to indicate the new group
+ */
+function postModify() {
+  $gename=$this->getEditGroupName();
+  $gvname=$this->getViewGroupName();
+
+  $ge=new_doc($this->dbaccess,$gename);
+  $gv=new_doc($this->dbaccess,$gvname);
+
+
+  $changes=getHttpVars("uchange");
+  $uprofs=getHttpVars("uprof");
+  foreach ($changes as $duid=>$change) {
+    if ($change=="nochange") continue;
+    if ($change=="change") {
+      if ($uprofs[$duid]=="edit") {
+	$gv->delFile($duid);
+	$ge->addFile($duid);
+      } else {
+	$ge->delFile($duid);
+	$gv->addFile($duid);	
+      }
+    }
+    if ($change=="new") {
+      if ($uprofs[$duid]=="edit") {
+	$ge->addFile($duid);
+      } else {
+	$gv->addFile($duid);	
+      }
+    }
+    if ($change=="deleted") {
+	$ge->delFile($duid);
+	$gv->delFile($duid);      
+    }
+  }
+  
+}
 function adminworkspace() {
+  global $action;
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/adminworkspace.js");
   $this->editattr();
   
   $gv=new_doc($this->dbaccess,$this->getViewGroupName());
@@ -118,15 +197,29 @@ function adminworkspace() {
     $tuv=$gv->getTValue("grp_ruser");
     $tmv=array();
     foreach ($tuvid as $k=>$v) {
-      $tmv[$k]=array("name"=>$tuv[$k],
+      $tmv[$v]=array("name"=>$tuv[$k],
 		     "iduser"=>$v,
-		     "viewselected"=>"",
-		     "editselected"=>"");
-      
+		     "viewselected"=>"selected",
+		     "editselected"=>"");      
     }
+
+    if ($ge->isAlive()) {
+      $tuvid=$ge->getTValue("grp_idruser");
+      $tuv=$ge->getTValue("grp_ruser");
+      foreach ($tuvid as $k=>$v) {
+	$tmv[$v]=array("name"=>$tuv[$k],
+		       "iduser"=>$v,
+		       "viewselected"=>"",
+		       "editselected"=>"selected");      
+      }
+    }
+
     $this->lay->setBlockData("MEMBERS",$tmv);
+    $this->lay->set("nmembers",sprintf(_("%s members"),count($tmv)));
   }
 
 }
+
+
 
 ?>

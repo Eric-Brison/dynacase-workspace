@@ -24,7 +24,9 @@ ICON;folderwork.png;;;;;;;;;;;;;;
 METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 //;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
-ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;12;W;Y;;;;;;esize=10
+ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;10;W;Y;;;;;;esize=10
+ATTR;WSP_IDADMIN;FR_BASIC;id administrateur;N;N;docid;20;H;;;;::getTitle(WSP_IDADMIN):WSP_ADMIN;;;
+ATTR;WSP_ADMIN;FR_BASIC;Administrateur;N;N;text;30;W;;%S%app=FDL&action=FDL_CARD&id=%WSP_IDADMIN%;fdl.php;lfamily(D,IUSER,WSP_ADMIN):WSP_IDADMIN,WSP_ADMIN;;;
 ;;;;;;;;;;;;;;;
 END;;;;;;;;;;;;;;;
 // famille fichier;;;id;class;name;;;;;;;;;;
@@ -72,3 +74,7 @@ ORDER;MSEARCH;;;ba_title;gui_color;se_memo;se_key;seg_t_cond;se_latest;seg_idcon
 DOC;MSEARCH;WS_MYTRASH;-;Ma corbeille;;no;;;;WS_MYTRASHFILE\nWS_MYTRASHFOLDER;;Ma corbeille de fichiers\nMa corbeille de répertoires;;;;;;;;;;
 DOCICON;WS_MYTRASH;bluetrash.png;;;;;;;;;;;;;;;;;;;;
 DOCICON;WS_MYTRASHFOLDER;bluetrash.png;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+ACCESS;GWORKSPACE;WORKSPACE;WORKSPACE_USER;;;;;;;;;;;;;;;;;;;
+ACCESS;GWSPADMIN;WORKSPACE;WORKSPACE_USER;WORKSPACE_MASTER;;;;;;;;;;;;;;;;;;
+PROFIL;WORKSPACE;;;view=GWORKSPACE;create=GWSPADMIN;icreate=GWSPADMIN;edit=GADMIN;;;;;;;;;;;;;;;

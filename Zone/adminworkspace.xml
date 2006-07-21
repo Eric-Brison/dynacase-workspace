@@ -1,14 +1,59 @@
+<style>
+DIV.uresult {
+  border-bottom:solid 1px;
+  width:100%;
+  cursor:pointer;
+}
+DIV.uresult IMG {
+  vertical-align:bottom;
+  height:12px;
+}
+DIV.uresult:hover {
+  background-color:[COLOR_C7];
+}
+TABLE.tsearch {
+  border:solid 1px;
+}
+TABLE.tsearch TH {
+  background-color:[COLOR_A8];
+}
+#uresult {
+  vertical-align:top;  
+}
+TR.modified {
+  background-color:[COLOR_B9];
+}
+</style>
 
-[V_BA_TITLE]
-
+<center>
 <table>
-<thead><tr><th>[nmembers]</th></tr></thead>
+  <tr><td>[TEXT:Namespace] : </td><td style="width:100px">[V_BA_TITLE]</td><td>[L_WSP_ADMIN] : </td><td style="width:100px">[V_WSP_ADMIN]</td></tr>
+  <tr></tr>
+</table>
+<table style="display:none"><tr><td>[V_WSP_IDADMIN]</td></tr></table>
+<table class="tsearch">
+<thead><tr><th><input title="[TEXT:type characters to filter users on it's name]" type="text" id="ukey"><input type="image" class="button" title="[TEXT:Send user searches]" onclick="ws_searchUsers(event,document.getElementById('ukey').value,document.getElementById('uresult'));return false" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]"></th><th>[nmembers]</th></tr></thead>
 <tbody>
+<tr>
+<td id="uresult"></td>
+<td><table id="members">
 [BLOCK MEMBERS]
-<tr><td>[name]</td><td> <select>
+<tr><td>[name]</td><td><input type="hidden" name="uchange[[iduser]]" value="nochange">
+              <select onchange="ws_changeUProf(event,this,'[iduser]')" name="uprof[[iduser]]">
                  <option [viewselected] value="view">[TEXT:reader]</option>
-                 <option [editselected] value="edit">[TEXT:writer]</option>
+                 <option [editselected] value="edit">[TEXT:redactor]</option>
               </select>
-              <img src="[IMG:b_ministop.png]"></td></tr>
+              <input type="image" align="absbottom" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.form['uchange[[iduser]]'].value='deleted';this.parentNode.parentNode.style.display='none';return false"></td></tr>
 [ENDBLOCK MEMBERS]
+<tr id="trtemplate" class="modified" style="display:none;"><td>jsuname</td><td><input type="hidden" name="uchange[jsuid]" value="new">
+              <select  name="uprof[jsuid]">
+                 <option selected value="view">[TEXT:reader]</option>
+                 <option value="edit">[TEXT:writer]</option>
+              </select>
+              <img align="absbottom" style="cursor:pointer" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)" ></td></tr>
+
+
+
+</table></td></tr>
 </tbody></table>
+</center>
