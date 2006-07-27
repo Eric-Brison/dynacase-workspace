@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.6 2006/06/13 15:48:00 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.7 2006/07/27 16:07:27 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -55,7 +55,7 @@ function ws_popupdocfolder(&$action) {
 	       "delete"=>array( "descr"=>_("Delete"),
 				"jsfunction"=>"deleteDoc(event,$docid)",
 				"confirm"=>"true",
-				"tconfirm"=>sprintf(_("Sure delete %s ?"),$doc->title),
+				"tconfirm"=>sprintf(_("This document EDwill be dropped in the trash.\nSure delete %s ?"),$doc->title),
 				"target"=>"",
 				"visibility"=>POPUP_INACTIVE,
 				"submenu"=>"",

@@ -24,11 +24,10 @@ ICON;folderwork.png;;;;;;;;;;;;;;
 METHOD;Method.WorkSpace.php;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;
 //;idattr;idframe;label;T;A;type;ord;vis;need;link;phpfile;phpfunc;elink;constraint;option
-ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;10;W;Y;;;;;;esize=10|elabel=nom court de l'espace : utilisé pour construire les groupes
+ATTR;WSP_REF;FR_BASIC;Espace;N;N;text;10;W;Y;;;;;;esize=10
 ATTR;WSP_IDADMIN;FR_BASIC;id administrateur;N;N;docid;20;H;;;;::getTitle(WSP_IDADMIN):WSP_ADMIN;;;
 ATTR;WSP_ADMIN;FR_BASIC;Administrateur;N;N;text;30;W;;%S%app=FDL&action=FDL_CARD&id=%WSP_IDADMIN%;fdl.php;lfamily(D,IUSER,WSP_ADMIN):WSP_IDADMIN,WSP_ADMIN;;;
-ATTR;WSP_AFFECT;FR_BASIC;Affectation;N;N;action;;R;;;GENERIC;GENERIC_EDIT&id=%I%&zone=WORKSPACE:ADMINWORKSPACE;;::canEditMenu();ltarget=_self|llabel=Affecter de nouveaux utilisateurs à l'espace
-ATTR;GUI_COLOR;FR_BASIC;couleur intercalaire;N;N;color;30;H;;;;;;;
+;;;;;;;;;;;;;;;
 END;;;;;;;;;;;;;;;
 // famille fichier;;;id;class;name;;;;;;;;;;
 BEGIN;0;fichier;;;SIMPLEFILE;;;;;;;;;;
@@ -79,3 +78,14 @@ DOCICON;WS_MYTRASHFOLDER;bluetrash.png;;;;;;;;;;;;;;;;;;;;
 ACCESS;GWORKSPACE;WORKSPACE;WORKSPACE_USER;;;;;;;;;;;;;;;;;;;
 ACCESS;GWSPADMIN;WORKSPACE;WORKSPACE_USER;WORKSPACE_MASTER;;;;;;;;;;;;;;;;;;
 PROFIL;WORKSPACE;;;view=GWORKSPACE;create=GWSPADMIN;icreate=GWSPADMIN;edit=GADMIN;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+//FAM;recherche spécialisée(SSEARCH);<specid>;<fldid>;titre;à utiliser dans les menus;révision;différence majuscule/minuscule;dans la poubelle;fichier PHP;fonction PHP;;;;;;;;;;;;
+ORDER;SSEARCH;;;ba_title;se_memo;se_latest;se_case;se_trash;se_phpfile;se_phpfunc;;;;;;;;;;;;
+DOC;SSEARCH;WS_MYTOVIEWDOC;-;Mes documents à voir;no;yes;no;no;fdlsearches.php;mytoviewdoc;;;;;;;;;;;;
+DOC;SSEARCH;WS_MYAFFECTDOC;-;Mes documents affectés;no;yes;no;no;fdlsearches.php;myaffecteddoc;;;;;;;;;;;;
+PROFIL;WS_MYTOVIEWDOC;512;;;;;;;;;;;;;;;;;;;;
+PROFIL;WS_MYAFFECTDOC;512;;;;;;;;;;;;;;;;;;;;
+//FAM;Service Portail(PORTAL_SERVICE);<specid>;<fldid>;Title;Description;Consultation;Edition;Catégorie;Délai de rafraîchissement;Disponible;Modifiable;Obligatoire;Interactif;Application attendue;;;;;;;;
+ORDER;PORTAL_SERVICE;;;psvc_title;psvc_descr;psvc_vurl;psvc_eurl;psvc_categorie;psvc_refreshd;psvc_available;psvc_umode;psvc_mandatory;psvc_interactif;psvc_appneeded;;;;;;;;
+DOC;PORTAL_SERVICE;WS_SERV_MYTOVIEWDOC;-;Mes documents à voir;Liste de mes documents à voir;[CORE_BASEURL]app=WEBDESK&action=FREEDOM_SEARCH&s=WS_MYTOVIEWDOC;;3;15;1;1;0;0;WEBDESK;;;;;;;;
+DOC;PORTAL_SERVICE;WS_SERV_MYAFFECTEDDOC;-;Mes documents affectés;Liste de mes documents affectés;[CORE_BASEURL]app=WEBDESK&action=FREEDOM_SEARCH&s=WS_MYAFFECTDOC;;3;15;1;1;0;0;WEBDESK;;;;;;;;

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.13 2006/07/03 08:17:19 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.14 2006/07/27 16:07:27 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -50,13 +50,24 @@ function ws_addfldbranch(&$action) {
     if ($itself) {
       $ls=array();
       $ls[$docid]=getTDoc($dbaccess,$docid);
+
       $trash=new_doc($dbaccess,"WS_MYTRASH");
       $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["dropft"]='del';
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+
+      $trash=new_doc($dbaccess,"WS_MYTOVIEWDOC");
+      $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
+      $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+
+      $trash=new_doc($dbaccess,"WS_MYAFFECTDOC");
+      $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
+      $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+
       $trash=new_doc($dbaccess,"WS_MYLOCKEDFILE");
       $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+
       $trash=new_doc($dbaccess,$action->getParam("FREEDOM_IDBASKET"));
       $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";

@@ -82,6 +82,7 @@ function postCreated() {
       if ($err == "") {
 	$err=$pdoc->setControl(false); //activate the profile
 	$pdoc->addControl($gvname,'view');
+	$pdoc->addControl($gvname,'send');
 	$pdoc->addControl($gename,'edit');
 	$pdoc->addControl($gename,'delete');
 	$pdoc->addControl("GWSPADMIN","view");
@@ -117,6 +118,7 @@ function postCreated() {
     $pspace->addControl("GWSPADMIN","modifyacl");
     $pspace->addControl($gvname,'view');
     $pspace->addControl($gvname,'open');
+    $pspace->addControl("WSP_IDADMIN",'view');
     $pspace->addControl("WSP_IDADMIN",'edit');
     $pspace->addControl($gename,'modify');
 

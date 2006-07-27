@@ -1,6 +1,7 @@
 <?php
 
 var $defaultview= "WORKSPACE:VIEWSIMPLEFILE:T";
+var $defaultmview= "WORKSPACE:MAILSIMPLEFILE:T";
 //var $defaultedit= "WORKSPACE:EDITSIMPLEFILE:T";
 
 function postModify() {
@@ -257,6 +258,10 @@ function computeMime() {
   }
 }
 
+function mailsimplefile($target="_self",$ulink=true,$abstract=false) {
+  $this->viewsimplefile($target,$ulink,$abstract);
+  $this->lay->set("moddate",strftime("%A %d %B %Y %H:%M",$this->revdate));
+}
 
 function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
   $this->viewdefaultcard($target,$ulink,$abstract);
