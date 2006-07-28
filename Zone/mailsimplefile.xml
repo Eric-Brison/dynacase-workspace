@@ -1,41 +1,25 @@
-<div class="resume">
-<table width="100%"><tr>
-<td style="width:60%" valign="top">
-<!-- TD 1 -->
-<table width="100%"><tr><td style="width:80px" > 
-<div name="dmain"><img align="left" width="80px" style="border:none" src="Images/[ICON]"   ></div>
-</td>
-  <td  valign="top" align="left"><B>[TITLE]</B> <B style="cursor:text;display:inline;margin-left:22px;">[thetitle]</B>
-        <P>[TEXT:Size] : [dsize], <br>[TEXT:Modification date] : [moddate] </P>
+<div class="resume" style="width:500px">
+<center>
+<h1><img width="30px" src="Images/[ICON]" align="right"> [TITLE]</H1>
+<h2>[thetitle]<h2>
+</center>
+<div style="text-align:right;width:100%">
+<b>[TEXT:Version] : </b>[IF S_SFI_VERSION]<b>[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]
+     [IFNOT S_SFI_VERSION][TEXT:Undefined version][ENDIF S_SFI_VERSION]<br>
+[moddate]
+</div>
+<center>
+<P> [participate]</P>
+</center>
+        <P><U>[TEXT:Subject] :</U></p>
+	<p class="dborder">[V_SFI_SUBJECT]</P> 
+        <P><U>[TEXT:Keywords] :</U><p><p class="dborder"> [V_SFI_KEYWORD]</P>
+        <P ><U>[TEXT:Abstract] :</U><p><p class="dborder">[V_SFI_DESCRIPTION] </P>
+
 
 </div>
 
-        </td></tr></table>
-<div name="dmain">
-        <P><U>[TEXT:Subject] :</U><br>[V_SFI_SUBJECT]</P> 
-        <P>[TEXT:Participates] : [participate]</P>
-        <BR>        
-        <P ><U>[TEXT:Abstract] :</U><br>[V_SFI_DESCRIPTION] </P>
-
-        <P><U>[TEXT:Keywords] :</U> [V_SFI_KEYWORD]</P>
-     
 </div>
-
-</td>
-<td>
-<!-- TD 2 -->
-<div style="text-align:right">
-     <img  id="imglck" width="22px" src="[emblem]">
-     <b>[TEXT:Version] : </b>
-     [IF S_SFI_VERSION]<b id="sfi_version">[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]
-     [IFNOT S_SFI_VERSION]<b id="sfi_version">[TEXT:Undefined]</b>[ENDIF S_SFI_VERSION]</div>
-     <div name="dmain">
-     
-<div style="text-align:center">
-         [IF thumb]<img id="idimgthumb" src="[V_SFI_THUMB]">[ENDIF thumb]  </div>
-</td></tr>
-</table>
-</div></div>
 <span style="display:none">[V_SFI_FILE]</span>
 
 <style>
@@ -47,5 +31,16 @@ DIV.resume TD {
 }
 DIV.resume P {
   margin:0px;
+}
+DIV.resume P.dborder {
+  margin-left:10px;
+  border-left:solid 1px [COLOR_BLACK];
+  padding-left:3px;
+}
+H1 {
+  background-color:[COLOR_A5];
+}
+H2 {
+  background-color:[COLOR_A7];
 }
 </style>

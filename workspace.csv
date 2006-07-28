@@ -89,3 +89,4 @@ PROFIL;WS_MYAFFECTDOC;512;;;;;;;;;;;;;;;;;;;;
 ORDER;PORTAL_SERVICE;;;psvc_title;psvc_descr;psvc_vurl;psvc_eurl;psvc_categorie;psvc_refreshd;psvc_available;psvc_umode;psvc_mandatory;psvc_interactif;psvc_appneeded;;;;;;;;
 DOC;PORTAL_SERVICE;WS_SERV_MYTOVIEWDOC;-;Mes documents à voir;Liste de mes documents à voir;[CORE_BASEURL]app=WEBDESK&action=FREEDOM_SEARCH&s=WS_MYTOVIEWDOC;;3;15;1;1;0;0;WEBDESK;;;;;;;;
 DOC;PORTAL_SERVICE;WS_SERV_MYAFFECTEDDOC;-;Mes documents affectés;Liste de mes documents affectés;[CORE_BASEURL]app=WEBDESK&action=FREEDOM_SEARCH&s=WS_MYAFFECTDOC;;3;15;1;1;0;0;WEBDESK;;;;;;;;
+DOCICON;WS_MYAFFECTDOC;affectsearch.png;;;;;;;;;;;;;;;;;;;;

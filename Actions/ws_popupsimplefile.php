@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.2 2006/07/27 16:07:27 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.3 2006/07/28 15:03:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -61,7 +61,7 @@ function ws_popupsimplefile(&$action) {
 				"submenu"=>"",
 				"barmenu"=>"false"),
 	       "affect"=>array( "descr"=>_("Affect"),
-				"url"=>"$surl&app=FDL&action=TRANSMITDOC&id=$docid",
+				"url"=>"$surl&app=FDL&action=EDITTRANSMITDOC&id=$docid",
 				"confirm"=>"false",
 				"tconfirm"=>"",
 				"target"=>"_self",
