@@ -63,6 +63,7 @@ function postCreated() {
       $pdoc=createDoc($this->dbaccess,"PDOC",false);
       $pdoc->setValue("ba_title",sprintf(_("%s files"),$ref));
       $pdoc->setValue("prf_desc",sprintf(_("default profile for %s - %s - space files"),$this->title,$ref));
+      $pdoc->setValue("dpdoc_famid",$this->fromid);
       $err=$pdoc->Add();
       if ($err == "") {
 	$pfld=createDoc($this->dbaccess,"PDIR",false);
@@ -87,6 +88,7 @@ function postCreated() {
 	$pdoc->addControl($gename,'delete');
 	$pdoc->addControl("GWSPADMIN","view");
 	$pdoc->addControl("GWSPADMIN","edit");
+	$pdoc->addControl("GWSPADMIN","unlock");
 	$pdoc->addControl("GWSPADMIN","viewacl");
 	$err=$pfld->setControl(false); //activate the profile
 	$pfld->addControl($gvname,'view');
@@ -122,8 +124,9 @@ function postCreated() {
     $pspace->addControl("WSP_IDADMIN",'edit');
     $pspace->addControl($gename,'modify');
 
-    $this->profid=$pspace->id;
-    $this->modify(true,array("profid"),true);
+    //    $this->dprofid=$pspace->id;
+    $this->setprofil($pspace->id);
+    $this->modify(true,array("profid","dprofid"),true);
   }
   
 

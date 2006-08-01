@@ -5,7 +5,7 @@
 [ENDBLOCK ACTIONS]
   <branch><![CDATA[
 [BLOCK DOCS]
-<div class="uresult" onclick="ws_addUser(event,this,'[id]','[stitle]')"><img align="right" src="[IMG:minileft.gif]">[title][id]</div>
+<div class="uresult" onclick="ws_addUser(event,this,'[id]','[stitle]')"><img align="right" src="[IMG:minileft.gif]">[title]</div>
 [ENDBLOCK DOCS]
 [IFNOT count][TEXT:No result][ENDIF count]
 ]]></branch>

@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.3 2006/07/28 15:03:14 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.4 2006/08/01 15:13:54 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -61,11 +61,21 @@ function ws_popupsimplefile(&$action) {
 				"submenu"=>"",
 				"barmenu"=>"false"),
 	       "affect"=>array( "descr"=>_("Affect"),
-				"url"=>"$surl&app=FDL&action=EDITTRANSMITDOC&id=$docid",
+				"url"=>"$surl&app=FDL&action=EDITAFFECT&id=$docid",
+				"confirm"=>"false",
+				"tconfirm"=>"",
+				"target"=>"affect",
+				"visibility"=>POPUP_ACTIVE,
+				"submenu"=>"",
+				"mwidth"=>300,
+				"mheight"=>200,
+				"barmenu"=>"false"),
+	       "desaffect"=>array( "descr"=>_("Desaffect"),
+				"url"=>"$surl&app=FDL&action=DESAFFECT&id=$docid",
 				"confirm"=>"false",
 				"tconfirm"=>"",
 				"target"=>"_self",
-				"visibility"=>POPUP_ACTIVE,
+				"visibility"=>POPUP_INVISIBLE,
 				"submenu"=>"",
 				"barmenu"=>"false"),
 	       "delete"=>array( "descr"=>_("Delete"),
@@ -116,6 +126,15 @@ function ws_popupsimplefile(&$action) {
     $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
   }
   
+  if ($doc->hasUTag("AFFECTED")) {
+    $tlink["affect"]["descr"]=_("Reaffect");    
+    $tlink["desaffect"]["visibility"]=POPUP_ACTIVE;    
+  }
+  $err=$doc->CanLockFile();
+  if ($err) {
+    $tlink["affect"]["visibility"]=POPUP_INVISIBLE;  
+    $tlink["desaffect"]["visibility"]=POPUP_INVISIBLE;    
+  }
   
          
   if  (($doc->doctype != 'S') && (preg_match("/doctype='Z'/",$doc->getValue("se_sqlselect")))) {

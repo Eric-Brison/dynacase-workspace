@@ -85,6 +85,6 @@ DIV.resume UL {
 }
 DIV.resume LI {
   margin:0px;
-  list-style-image:url('Images/bblue10.gif');
+  list-style-image:url('Images/bullet10.png');
 }
 </style>
