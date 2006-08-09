@@ -29,6 +29,8 @@ var CLIPCID=false; // current folder for clipboard
 var REFRESH=false; // to indicate the the state is for resfresh one part
 var PREVVIEWDOCID=false; // to don't do twice teh same action
 var CORE_STANDURL=window.location.pathname+'?sole=Y&';
+var ALWAYSEXPAND=false; // set to true if you do not want the tree can be collapsed
+
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
   var url;
@@ -50,9 +52,10 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
   if ((!img) || (where.childNodes.length==0)) {
     //      where.style.display='';
     EXPWHERE=where;
+    EXPANDIMG=img;
     if (folderTreeSend(fldid,where,adddocid,padddocid,addft)) {
-      EXPANDIMG=img;
-      return 2;
+      if (SYNCHRO) return 1;
+      else return 2;
     }
     else return -1;
   } else {
@@ -60,6 +63,9 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
       where.style.display='';
       return 1;
     } else {
+      if (ALWAYSEXPAND) {
+	return 1;
+      }
       where.style.display='none';
       return 0;
     }
@@ -67,7 +73,6 @@ function viewfoldertree(img,fldid,where,adddocid,padddocid,addft,reset) {
 }
 
 function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
-  
   var r=viewfoldertree(oimg,id,document.getElementById(ulid),adddocid,padddocid,addft,reset);
   if (r==1) {
     oimg.src='Images/b_down.png'; 
@@ -79,9 +84,9 @@ function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
   if (isIE) correctOnePNG(oimg);
 }
 function expandToptree(o,id,ulid) {
-  SYNCHRO=true;
+  enableSynchro();
   viewFolder(null,id);
-  SYNCHRO=false;
+  disableSynchro();
   if (o) { 
     var ldiv=o.parentNode.getElementsByTagName("div");
     for (var i=0;i<ldiv.length;i++) {
@@ -471,6 +476,37 @@ function viewSearch(event,key) {
   folderSend('search',where,null,null,null,'list',key);
 }
 
+/**
+ * open and expand branch
+ */
+function openFolder(event,dirid) {
+  var  fld=document.getElementById('folders'); // list of folders tree
+  var lis=fld.getElementsByTagName('img');
+  var i,spano;
+  var docid;
+  var pcfldid=CFLDID;
+  enableSynchro();  
+  globalcursor('wait');
+  ALWAYSEXPAND=true;
+  for (i=0;i<lis.length;i++) {
+    docid=lis[i].getAttribute('docid');
+    if ((docid == dirid)||(docid == pcfldid)) {
+      lis[i].onclick.apply(lis[i],[]);
+      //alert('openFolder '+docid);
+    }
+    if ((docid == dirid)) {
+      lis[i].onclick.apply(lis[i],[]);
+      spano=lis[i].nextSibling;
+      while (spano && (spano.nodeType != 1)) spano = spano.nextSibling; //case TEXT node
+      //      alert('openFolder '+spano);
+    }
+  }
+  viewFolder(event,dirid,spano);
+  disableSynchro();
+  unglobalcursor();
+  ALWAYSEXPAND=false;
+}
+
 function trackCR(event) {
   var intKeyCode;
 
@@ -584,7 +620,7 @@ function postActionRefresh(action,arg) {
   default:    
     // alert("UNKNOW:"+action+":"+docid);
   }
-  //  alert("ACTION:"+action+":"+docid);
+  // alert("ACTION:"+action+":"+docid);
 }
 function endexpandtree(o,w,c) {
      if (o) {
@@ -604,7 +640,7 @@ function endexpandtree(o,w,c) {
 function postAddFile(docid) {
   var fldid;
   var img;
-  SYNCHRO=true;
+  enableSynchro();
   if (CFLDID == docid) {
     viewFolder(null,CFLDID)
   }
@@ -613,13 +649,13 @@ function postAddFile(docid) {
   }
   
   if (IDBASKET == docid)   sendRenameFolderTree(docid); 
-  SYNCHRO=false;
+  disableSynchro();
   
 }
 function  postAddFolder(docid) {
   var fldid;
   var img;
-  SYNCHRO=true;
+  enableSynchro();
  
   if (CURSPACEID == docid) {
     
@@ -645,7 +681,7 @@ function  postAddFolder(docid) {
     }
   }
   }
-  SYNCHRO=false;
+  disableSynchro();
   
 }
 
@@ -700,7 +736,7 @@ function postLocking(docid) {
 function postTrashFile(docid,untrash) {
   var fldid;
   var o;
-  SYNCHRO=true;
+  enableSynchro();
   if ((CFLDID == 'trash')||(CFLDID == docid)) {
     viewFolder(null,CFLDID)
   }
@@ -709,16 +745,16 @@ function postTrashFile(docid,untrash) {
     if (o) o.src='Images/trash.png';    
   }
   sendRenameFolderTree('WS_MYTRASH'); 
-  SYNCHRO=false;;
+  disableSynchro();;
 }
 
 function receiptActionNotification(code,arg) {
-  SYNCHRO=true;
+  enableSynchro();
   for (var i=0;i<code.length;i++) {
     //  alert(code[i]);
     postActionRefresh(code[i],arg[i]);
   }
-  SYNCHRO=false;  
+  disableSynchro();  
 }
 
 function altern_basket_private(event,o) {

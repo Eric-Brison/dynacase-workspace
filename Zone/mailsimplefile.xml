@@ -1,7 +1,7 @@
 <div class="resume" style="width:500px">
 <center>
 <h1><img width="30px" src="Images/[ICON]" align="right"> [TITLE]</H1>
-<h2>[thetitle]<h2>
+<h2>[thetitle]</h2>
 </center>
 <div style="text-align:right;width:100%">
 <b>[TEXT:Version] : </b>[IF S_SFI_VERSION]<b>[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.15 2006/06/29 14:23:33 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.16 2006/08/09 09:02:53 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -157,6 +157,7 @@ function ws_folderlist(&$action) {
       $tc[]=array("title"=>utf8_encode($v["title"]),
 		  "id"=>$v["id"],
 		  "linkfld"=>($dynfolder ||($v["prelid"]==$doc->initid))?false:true,
+		  "isfld"=>($v["doctype"]=='D')||($v["doctype"]=='S'),
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxtshort"),
 		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),
@@ -174,12 +175,14 @@ function ws_folderlist(&$action) {
   $action->lay->set("title",utf8_encode($doc->title));
   $action->lay->setBlockData("HEAD",$thead);
 
-  /*
-  $taction=$action->lay->getBlockData("ACTIONS"); 
-  $taction[]=array("actname"=>"RENAMEBRANCH",
-		   "actdocid"=>'['.$doc->id.','."'".utf8_encode(sprintf("%s (%d)",$doc->title,count($tc)))."']");
-  $action->lay->setBlockData("ACTIONS",$taction);  
-  */ 
+  if (($doc->doctype=='S') && ($doc->name != "")) {
+    // rename folder only if it is a named search
+    $taction=$action->lay->getBlockData("ACTIONS"); 
+    $taction[]=array("actname"=>"RENAMEBRANCH",
+		     "actdocid"=>'['.$doc->id.','."'".utf8_encode(sprintf("%s (%d)",$doc->title,count($tc)))."']");
+    $action->lay->setBlockData("ACTIONS",$taction);  
+  }
+  
   if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
   else $action->lay->set("nbdoc",_("0 document"));
 					
