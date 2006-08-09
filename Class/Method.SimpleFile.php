@@ -104,9 +104,10 @@ function computeThumbnail() {
       if ($vf->Show($reg[2], $info) == "") {
 
 	$convert=$this->canThumbnail();
+	$shadow="";
+	//	$shadow="\( +clone -background black -shadow 60x4+4+4  \)";
 
-
-	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic -crop 225x225+0+0  %s";
+	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 $shadow  +swap    -background none -mosaic -crop 225x225+0+0  %s";
 
 	//	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2   %s";
 	switch ($convert) {
@@ -199,7 +200,7 @@ function computeThumbnail() {
 
 
 	  $cible=uniqid("/tmp/thumb").".png";
-	  $convertcmd="convert  %s[0]  -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 60x4+4+4  \) +swap    -background none -mosaic  %s";
+	  $convertcmd="convert  %s[0]  -mattecolor black -frame 5x5+2+2 $shadow +swap    -background none -mosaic  %s";
 	
 	  $cmd = sprintf($convertcmd ,$ciblepng, $cible);
 	  system($cmd);
