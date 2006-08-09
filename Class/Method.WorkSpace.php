@@ -165,27 +165,29 @@ function postModify() {
 
   $changes=getHttpVars("uchange");
   $uprofs=getHttpVars("uprof");
-  foreach ($changes as $duid=>$change) {
-    if ($change=="nochange") continue;
-    if ($change=="change") {
-      if ($uprofs[$duid]=="edit") {
-	$gv->delFile($duid);
-	$ge->addFile($duid);
-      } else {
-	$ge->delFile($duid);
-	$gv->addFile($duid);	
+  if ($changes) {
+    foreach ($changes as $duid=>$change) {
+      if ($change=="nochange") continue;
+      if ($change=="change") {
+	if ($uprofs[$duid]=="edit") {
+	  $gv->delFile($duid);
+	  $ge->addFile($duid);
+	} else {
+	  $ge->delFile($duid);
+	  $gv->addFile($duid);	
+	}
       }
-    }
-    if ($change=="new") {
-      if ($uprofs[$duid]=="edit") {
-	$ge->addFile($duid);
-      } else {
-	$gv->addFile($duid);	
+      if ($change=="new") {
+	if ($uprofs[$duid]=="edit") {
+	  $ge->addFile($duid);
+	} else {
+	  $gv->addFile($duid);	
+	}
       }
-    }
-    if ($change=="deleted") {
+      if ($change=="deleted") {
 	$ge->delFile($duid);
 	$gv->delFile($duid);      
+      }
     }
   }
   
