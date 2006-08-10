@@ -8,6 +8,7 @@
         <tr><td align="right">[TEXT:File type]&nbsp;: </td><td>     [V_SFI_MIMESYS] - [V_SFI_MIMETXT]</td></tr>
         <tr><td align="right">[TEXT:Version]&nbsp;: </td><td>  [theversion]</td></tr>
         <tr><td align="right">[TEXT:Locked by]&nbsp;: </td><td>  [thelocker]</td></tr>
+        <tr><td align="right">[TEXT:Allocated to]&nbsp;: </td><td>  [theallocate]</td></tr>
         <tr><td align="right">[TEXT:File path]&nbsp;: </td><td>  [thepath]</td></tr>
 </table>
      

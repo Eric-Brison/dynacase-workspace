@@ -6,13 +6,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-01 08:34+0200\n"
-"PO-Revision-Date: 2006-08-01 11:24+0200\n"
+"POT-Creation-Date: 2006-08-10 17:39+0200\n"
+"PO-Revision-Date: 2006-08-10 17:39+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid " (copy)"
+msgstr " (copie)"
+
+msgid "undefined"
+msgstr "non défini"
+
+#, c-format
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
+
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#, c-format
+msgid "%d kb"
+msgstr "%d ko"
+
+#, c-format
+msgid "%.01f Mb"
+msgstr "%.01f Mo"
+
+msgid "No title"
+msgstr "Pas de titre"
 
 #, c-format
 msgid "Group of users that can view files in %s space"
@@ -50,31 +75,6 @@ msgstr "profil par défaut pour les fichiers de l'espace %s - %s "
 #, c-format
 msgid "%s members"
 msgstr "%s membres"
-
-msgid " (copy)"
-msgstr " (copie)"
-
-msgid "undefined"
-msgstr "non défini"
-
-#, c-format
-msgid "unknow user %s"
-msgstr "utilisateur inconnu %s"
-
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
-#, c-format
-msgid "%.01f Mb"
-msgstr "%.01f Mo"
-
-msgid "No title"
-msgstr "Pas de titre"
 
 #, c-format
 msgid "cannot move folder %s in %s cause loop"
@@ -168,12 +168,6 @@ msgstr "dupliquer un document"
 msgid "search a document"
 msgstr "rechercher un document"
 
-msgid "Actions..."
-msgstr "Actions..."
-
-msgid "click and drag to move document"
-msgstr "Clic et glisse pour déplacer le document "
-
 msgid "Documents exchange"
 msgstr "Echange de documents"
 
@@ -232,17 +226,28 @@ msgstr ""
 msgid ""
 "When the modification are done, you must go to web shared folder application "
 "and select the file"
-msgstr "Quand les modifications sont finies, vous devez aller sur l'application \"échange de documents\" afin de sélectionner le document pour replacer le fichier modifié"
+msgstr ""
+"Quand les modifications sont finies, vous devez aller sur l'application "
+"\"échange de documents\" afin de sélectionner le document pour replacer le "
+"fichier modifié"
 
 msgid "The name file must the same as previous name"
 msgstr "Le nom du fichier doit être le même que le nom initial"
 
 msgid ""
 "On the document clic to 'upload file' to save modified file in the work space"
-msgstr "Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier modifié dans l'espace de travail"
+msgstr ""
+"Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier "
+"modifié dans l'espace de travail"
 
 msgid "Don't view yet this information"
 msgstr "Ne plus voir cette information"
+
+msgid "Actions..."
+msgstr "Actions..."
+
+msgid "click and drag to move document"
+msgstr "Clic et glisse pour déplacer le document "
 
 msgid "No result"
 msgstr "Pas de résultat"
@@ -279,11 +284,41 @@ msgstr "Créer une nouvelle version"
 msgid "Create new space"
 msgstr "Créer un nouvel espace"
 
-msgid "Clic to view menu"
-msgstr "Cliquer pour voir le menu"
+msgid "Size"
+msgstr "Taille"
+
+msgid "bytes"
+msgstr "octets"
+
+msgid "Creation date"
+msgstr "Date de création"
+
+msgid "Modification date"
+msgstr "Date de dernière modification"
+
+msgid "Last acces date"
+msgstr "Date de dernier accès"
+
+msgid "File type"
+msgstr "Type de fichier"
+
+msgid "Locked by"
+msgstr "Verrouillé par"
+
+msgid "File path"
+msgstr "Emplacement"
+
+msgid "The version rename will not create new version"
+msgstr "Le renommage de la version ne crée pas de nouvelle version"
 
 msgid "Click to modify title"
 msgstr "Cliquer pour modifier le titre"
+
+msgid "Click to modify description"
+msgstr "Cliquer pour modifier la description"
+
+msgid "Clic to view menu"
+msgstr "Cliquer pour voir le menu"
 
 msgid "View file inline"
 msgstr "Voir le fichier en ligne"
@@ -324,9 +359,6 @@ msgstr "Retour à la vue principale"
 msgid "Reload"
 msgstr "Recharger"
 
-msgid "Size"
-msgstr "Taille"
-
 msgid "View file properties"
 msgstr "Voir les propriétés du fichier"
 
@@ -363,32 +395,8 @@ msgstr "Historique"
 msgid "Double Click to recompute the thumbnail"
 msgstr "Double-cliquer pour mettre à jour la miniature"
 
-msgid "The version rename will not create new version"
-msgstr "Le renommage de la version ne crée pas de nouvelle version"
-
-msgid "Click to modify description"
-msgstr "Cliquer pour modifier la description"
-
-msgid "bytes"
-msgstr "octets"
-
-msgid "Creation date"
-msgstr "Date de création"
-
-msgid "Modification date"
-msgstr "Date de dernière modification"
-
-msgid "Last acces date"
-msgstr "Date de dernier accès"
-
-msgid "File type"
-msgstr "Type de fichier"
-
-msgid "Locked by"
-msgstr "Verrouillé par"
-
-msgid "File path"
-msgstr "Emplacement"
+msgid "Allocated to"
+msgstr "Alloué à"
 
 msgid "You must click on the Search... button to select the modified file "
 msgstr ""
@@ -460,6 +468,9 @@ msgstr "Diffuser"
 msgid "Affect"
 msgstr "Affecter"
 
+msgid "Desaffect"
+msgstr "Désaffecter"
+
 #, c-format
 msgid "Sure delete %s ?"
 msgstr "Etes-vous sur de supprimer %s ?"
@@ -469,6 +480,9 @@ msgstr "Ajouter une note"
 
 msgid "restore"
 msgstr "restaurer"
+
+msgid "Reaffect"
+msgstr "Réaffecter"
 
 msgid "Empty trash"
 msgstr "Vider la corbeille"

@@ -288,6 +288,13 @@ function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
     } else {
       $this->lay->set("thelocker", sprintf(_("unknow user %s"),$uid));
     }
+    
+    $auid=abs($this->allocated);
+    if ($uid == $auid) {
+      $this->lay->set("theallocate", $this->lay->get("thelocker"));      
+    } else {
+      $this->lay->set("theallocate",_("nobody"));
+    }
   }
   
 
