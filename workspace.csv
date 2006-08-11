@@ -56,11 +56,11 @@ ATTR;SFI_FILESIZE;SFI_FRDESC;taille;N;N;double;210;R;;;;;;;
 ATTR;SFI_THUMB;SFI_FRDESC;miniature;N;N;image;230;R;;;;;;;
 ATTR;SFI_INEDITION;SFI_FRDESC;fichier en édition ?;N;N;text;250;H;;;;;;;
 ATTR;SFI_VERSION;SFI_FRDESC;version;N;N;text;270;W;;;;;;;version=yes
-ATTR;SFI_MODFILE;;Modifier le fichier;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITMODFILE&id=%I%;;::fileIsNotInEdition();;;
-ATTR;SFI_CANCELMODFILE;;Abandonner la modification;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_CANCELMODFILE&id=%I%;;::fileIsInEdition();;;ltarget=_self
-ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;ltarget=_self
-ATTR;SFI_ADDVERSION;;Créer une nouvelle version;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITADDVERSION&id=%I%;;::canVersionned();;;
-ATTR;SFI_RENVERSION;;(Re)nommer la version;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITVERSION&id=%I%;;::canEditMenu();;;ltarget=_self
+//ATTR;SFI_MODFILE;;Modifier le fichier;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITMODFILE&id=%I%;;::fileIsNotInEdition();;;
+//ATTR;SFI_CANCELMODFILE;;Abandonner la modification;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_CANCELMODFILE&id=%I%;;::fileIsInEdition();;;ltarget=_self
+//ATTR;SFI_UPLOADMODFILE;;Récupérer le fichier modifié;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=%I%;;::fileIsInEdition();;;ltarget=_self
+//ATTR;SFI_ADDVERSION;;Créer une nouvelle version;N;N;menu;0;W;;%S%&app=WORKSPACE&action=WS_EDITADDVERSION&id=%I%;;::canVersionned();;;
+//ATTR;SFI_RENVERSION;;(Re)nommer la version;N;N;menu;0;W;;%S%&app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITVERSION&id=%I%;;::canEditMenu();;;ltarget=_self
 END;;;;;;;;;;;;;;;
 ORDER;IGROUP;;;ba_title;ba_desc;gui_color;grp_name;grp_role;grp_mail;grp_type;us_login;us_whatid;us_meid;us_iddomain;us_domain;;;;;;;
 DOC;IGROUP;GWORKSPACE;;;;;Espace de travail;;;;group.workspace;;;1;local;;;;;;;

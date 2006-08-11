@@ -19,6 +19,13 @@ private function getEditGroupName() {
   $ref=$this->getValue("WSP_REF");
   return "GWS_E".strtoupper($ref);
 }
+/**
+ * get profil groupe name
+ */
+private function getProfilGroupName() {
+  $ref=$this->getValue("WSP_REF");
+  return "GWS_P".strtoupper($ref);
+}
 
   /**
    * Create 2 groups : one for collect view user and other for edit user privilege
@@ -63,7 +70,6 @@ function postCreated() {
       $pdoc=createDoc($this->dbaccess,"PDOC",false);
       $pdoc->setValue("ba_title",sprintf(_("%s files"),$ref));
       $pdoc->setValue("prf_desc",sprintf(_("default profile for %s - %s - space files"),$this->title,$ref));
-      $pdoc->setValue("dpdoc_famid",$this->fromid);
       $err=$pdoc->Add();
       if ($err == "") {
 	$pfld=createDoc($this->dbaccess,"PDIR",false);
@@ -110,6 +116,7 @@ function postCreated() {
   $pspace->setValue("ba_title",sprintf(_("%s workspace profile"),$ref));
   $pspace->setValue("prf_desc",sprintf(_("workspace profile for %s - %s - space files"),$this->title,$ref));
   $pspace->setValue("dpdoc_famid",$this->fromid);
+  $pspace->setValue("dpdoc_fam",$this->getTitle($this->fromid));
   $err=$pspace->Add();
   if ($err == "") {
     $pspace->setControl(false);
@@ -129,12 +136,50 @@ function postCreated() {
     $this->modify(true,array("profid","dprofid"),true);
   }
   
-
+  
+  $pigroup=createDoc($this->dbaccess,"PDIR",false);
+  $pigroup->setValue("ba_title",sprintf(_("%s group profile"),$ref));
+  $pigroup->setValue("prf_desc",sprintf(_("intranet group profile for %s - %s - space files"),$this->title,$ref));
+  $pigroup->name=$this->getProfilGroupName();
+  $err=$pigroup->Add();
+  if ($err == "") {
+    // create profil for igroup of the spaces
+    $pigroup->setControl(false);
+    $this->recomputeIGroupProfil();
+    $gv->setProfil($pigroup->id);
+    $gv->modify(true,array("profid"),true);
+    $ge->setProfil($pigroup->id);
+    $ge->modify(true,array("profid"),true);
+  }
 
   if ($err != "") print_r2($err);
   return $err;
 }
-
+function recomputeIGroupProfil() {
+  $p=new_doc($this->dbaccess,$this->getProfilGroupName());
+  if ($p->isAlive()) {
+    $p->RemoveControl();
+    $p->addControl("GWSPADMIN","view");
+    $p->addControl("GWSPADMIN","edit");
+    $p->addControl("GWSPADMIN","delete");
+    $p->addControl("GWSPADMIN","viewacl");
+    $p->addControl("GWSPADMIN","modifyacl");
+    $idadmin=$this->getValue("wsp_idadmin");
+    $ua=new_doc($this->dbaccess,$idadmin);
+    $uida=$ua->getValue("us_whatid");
+    if ($uida > 0) {      
+      $p->addControl($uida,'view');
+      $p->addControl($uida,'edit');
+      $p->addControl($uida,'open');
+      $p->addControl($uida,'modify');
+    }
+    $p->addControl($gvname,'view');
+    $p->addControl($gvname,'open');
+    $p->addControl($gename,'modify');
+    
+  }
+  
+}
 /**
  * suppress profil & associated groups
  */
@@ -191,6 +236,10 @@ function postModify() {
     }
   }
   
+  $fi=$this->getValue("wsp_idadmin");
+  $fiold=$this->getOldValue("wsp_idadmin");
+
+  if (($fiold!==false)&&($fi != $fiold)) $this->recomputeIGroupProfil();
 }
 function adminworkspace() {
   global $action;
