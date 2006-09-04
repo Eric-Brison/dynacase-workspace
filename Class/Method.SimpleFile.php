@@ -268,16 +268,16 @@ function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
   $this->viewdefaultcard($target,$ulink,$abstract);
   if ($this->revision == 0) {
     $cdate=FrenchDateToUnixTs($this->cdate);
-    $adate=FrenchDateToUnixTs($this->adate);
   } else {
     $idoc=new_doc($this->dbaccess,$this->initid);
     $cdate=FrenchDateToUnixTs($idoc->cdate);    
-    $adate=FrenchDateToUnixTs($idoc->adate);    
   }
+  $adate=FrenchDateToUnixTs($this->adate);
   $this->lay->set("createdate",strftime("%A %d %B %Y %H:%M",$cdate));
   $this->lay->set("accessdate",strftime("%A %d %B %Y %H:%M",$adate));
   $this->lay->set("moddate",strftime("%A %d %B %Y %H:%M",$this->revdate));
   $this->lay->set("theversion",($this->version!="")?$this->version:_("undefined"));
+  $this->lay->set("theallocate",_("nobody"));
   if ($this->locked == -1)  $this->lay->set("thelocker",_("fixed"));
   elseif ($this->locked == 0) $this->lay->set("thelocker",_("nobody"));
   else {
@@ -293,7 +293,12 @@ function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
     if ($uid == $auid) {
       $this->lay->set("theallocate", $this->lay->get("thelocker"));      
     } else {
-      $this->lay->set("theallocate",_("nobody"));
+      $u=new User("",$auid);
+      if ($u->isAffected()) {
+	$this->lay->set("theallocate", sprintf("%s %s",$u->firstname,$u->lastname));
+      } else {
+	$this->lay->set("theallocate", sprintf(_("unknow user %s"),$uid));
+      }
     }
   }
   

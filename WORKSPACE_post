@@ -16,7 +16,7 @@ fi
 #------------------------------
 if [ "$1" = "U" ] ; then
 
-  $wpub/wsh.php --api=freedom_import --file=$wpub/WORKSPACE/workspace.csv
+  $wpub/wsh.php --api=freedom_import --file=$wpub/WORKSPACE/workspace.ods
   
 
 fi
