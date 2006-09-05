@@ -1,28 +1,36 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.5 2006/06/09 15:08:29 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.6 2006/09/05 16:24:52 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
 #
 
 %define cerbere         %(rpm -q --queryformat '%{VENDOR}' rpm |grep -q 'none' && echo 1 || echo 0)
+%define pld		%(rpm -q --queryformat '%{VENDOR}' rpm |grep -q 'PLD' && echo 1 || echo 0)
+%define redhat	        %(rpm -q --queryformat '%{VENDOR}' rpm | grep -q 'Red Hat, Inc.' && echo 1 || echo 0)
 
 %if %{cerbere}
 %define destdir /home/httpd/what
 %define httpuser http
-%define ldapuser slapd
-%else
+%define releasepostfix %(echo)
+%endif
+%if %{pld}
+%define destdir /usr/share/what
+%define httpuser http
+%define releasepostfix cb
+%endif
+%if %{redhat}
 %define destdir /usr/share/what
 %define httpuser apache
-%define ldapuser ldap
+%define releasepostfix fc5
 %endif
 
 Summary: The Work Space to exchange files
 Name: @PACKAGE@
 Version: @VERSION@
-Release: @RELEASE@
+Release: @RELEASE@%{releasepostfix}
 License: GPL
 Group: Applications/Web
 Source: ftp://ftp.souillac.anakeen.com/pub/anakeen/%{name}-%{version}.tar.gz
@@ -32,7 +40,7 @@ URL: http://www.anakeen.com/
 Packager: Yannick Le Briquer <yannick.lebriquer@anakeen.com>
 BuildArchitectures: noarch
 BuildRoot: /tmp/anakeen-root
-Requires: FREEDOM-LIB >= 2.3.0
+Requires: FREEDOM-LIB >= 2.3.3
 Requires: FREEDOM-COMMON 
 Requires: FCKeditor
 Prereq: WHAT 

@@ -114,7 +114,7 @@ function computeThumbnail() {
 
 	case "convert":
 	  $pf=$info->path;
-	  $cible=uniqid("/tmp/thumb").".png";
+	  $cible=uniqid("/var/tmp/thumb").".png";
 
 	  $cmd = sprintf($convertcmd,$pf, $cible);
 	  system($cmd);
@@ -130,7 +130,7 @@ function computeThumbnail() {
 	  break;
 	case "abiword":
 	  $pf=$info->path;
-	  $ciblepng=uniqid("/tmp/thumb").".png";
+	  $ciblepng=uniqid("/var/tmp/thumb").".png";
 	  
 	  // $cmd = sprintf("abiword --to=pdf -o %s  %s",$ciblepdf, $pf );
 	  $cmd = sprintf('abiword --print="|convert -[0] %s" %s',$ciblepng, $pf);
@@ -141,7 +141,7 @@ function computeThumbnail() {
 
 
 
-	    $cible=uniqid("/tmp/thumb").".png";
+	    $cible=uniqid("/var/tmp/thumb").".png";
 	    //	    $cmd = sprintf("convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 4x4+4+4 \) +swap   -background none -mosaic  %s",$ciblepdf, $cible);
 	    $cmd = sprintf($convertcmd,$ciblepng, $cible);
 	  $c=system($cmd);
@@ -159,7 +159,7 @@ function computeThumbnail() {
 	  break;
 	case "xlhtml":
 	  $pf=$info->path;
-	  $ciblepdf=uniqid("/tmp/thumb").".html";
+	  $ciblepdf=uniqid("/var/tmp/thumb").".html";
 	  
 	  $cmd = sprintf("xlhtml -xp:0  %s > %s", $pf, $ciblepdf );
 	  system($cmd);
@@ -169,7 +169,7 @@ function computeThumbnail() {
 
 
 
-	  $cible=uniqid("/tmp/thumb").".png";
+	  $cible=uniqid("/var/tmp/thumb").".png";
 
 	  $cmd = sprintf($convertcmd ,$ciblepdf, $cible);
 	  system($cmd);
@@ -187,7 +187,7 @@ function computeThumbnail() {
 	  break;
 	case "unzip":
 	  $pf=$info->path;
-	  $cibledir=uniqid("/tmp/thumb");
+	  $cibledir=uniqid("/var/tmp/thumb");
 	  
 	  $cmd = sprintf("unzip -j %s Thumbnails/thumbnail.png -d %s >/dev/null", $pf, $cibledir );
 	  system($cmd);
@@ -199,7 +199,7 @@ function computeThumbnail() {
 
 
 
-	  $cible=uniqid("/tmp/thumb").".png";
+	  $cible=uniqid("/var/tmp/thumb").".png";
 	  $convertcmd="convert  %s[0]  -mattecolor black -frame 5x5+2+2 $shadow +swap    -background none -mosaic  %s";
 	
 	  $cmd = sprintf($convertcmd ,$ciblepng, $cible);
