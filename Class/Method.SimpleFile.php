@@ -293,11 +293,13 @@ function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
     if ($uid == $auid) {
       $this->lay->set("theallocate", $this->lay->get("thelocker"));      
     } else {
-      $u=new User("",$auid);
-      if ($u->isAffected()) {
-	$this->lay->set("theallocate", sprintf("%s %s",$u->firstname,$u->lastname));
-      } else {
-	$this->lay->set("theallocate", sprintf(_("unknow user %s"),$uid));
+      if ($auid > 0) {
+	$u=new User("",$auid);
+	if ($u->isAffected()) {
+	  $this->lay->set("theallocate", sprintf("%s %s",$u->firstname,$u->lastname));
+	} else {
+	  $this->lay->set("theallocate", sprintf(_("unknow user %s"),$uid));
+	}
       }
     }
   }
@@ -330,6 +332,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
 
 
   $this->viewdefaultcard($target,$ulink,$abstract);
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FREEDOM/Layout/fdl_tooltip.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/popupdoc.js");
@@ -375,7 +378,12 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   }
 
   $this->lay->set("participate",implode(", ",$parti));
+  $this->lay->set("thestate",$this->getState());
+  $this->lay->set("stateid",($this->state)?$this->state:false);
   $this->lay->setBlockData("comments",$tcomment);
+  $dstate=new_doc($this->dbaccess,$this->state);
+  $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));
+  
 
 }
 

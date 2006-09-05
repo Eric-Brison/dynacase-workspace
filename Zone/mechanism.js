@@ -539,9 +539,8 @@ function viewDoc(event,docid,o) {
   }
 
   where.src=CORE_STANDURL+'app=FDL&action=FDL_CARD&id='+docid;
-
-  
 }
+
 // to find the previous button to refresh branch in folder trre
 function getPrevLiButton(o) {
   var e=o.parentNode.parentNode.parentNode;
