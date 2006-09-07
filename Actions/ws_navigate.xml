@@ -67,7 +67,7 @@
 </div>
 
 <div id="col3" class="col3">
-<div id="fldlist" class="fldlist" droppable="yes" dropft="move" onmouseup="insertinclipboard(event,this,CFLDID,'list')" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
+<div id="fldlist" class="fldlist"  onmouseup="insertinclipboard(event,this,CFLDID,'list')" ><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
 </div>
 <div id="resume" class="resume">
 <iframe id="iresume" name="nresume" src="[CORE_STANDURL]app=CORE&action=BLANK" style="margin:0px;width:100%;height:99%"></iframe>

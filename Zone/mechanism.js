@@ -15,6 +15,7 @@ var PEDROP=null; // previous elt droppable
 var PECTRL=0; // previous hot key pushed (ctrl or shift)
 var CDROPZ=null; // current drop zone
 var IEPARASITE=null; // to ignored unwanted event fire produced by IE
+var DRAGNOMOVE=false; // to not move document : in case of dynamic folder -> only link or copy
 
 
 var THECIBLE=false; // object where insert HTML code
@@ -193,7 +194,7 @@ function begindrag(event,oul,osp,docid,pdocid) {
     if (typeof(osp)=='string')  MICON.innerHTML=osp;  
     else  MICON.innerHTML=osp.innerHTML;
     document.onmouseup=enddrag ;
-    setTimeout('reallybegindrag()',200); // display dragging mode 200ms after
+    setTimeout('reallybegindrag()',100); // display dragging mode 200ms after
 
       
     //    POUL=oul;
@@ -236,8 +237,11 @@ function overdragft(event,o) {
       var dft=DRAGFT;
       CDROPZ=o;
       if (!dft) {
-	var ft=o.getAttribute("dropft");
-	if (ft) dft=ft;
+	var ft=o.getAttribute("dropft");	
+	if (ft) {
+	  if ((ft=='move') && DRAGNOMOVE) ft='link';
+	  dft=ft;
+	}
       }
       changedragft(event,dft);  
       //      document.body.style.cursor='move';
@@ -367,7 +371,7 @@ function keydrag(event) {
     if (ctrl) lpe++;
     if (shift) lpe++;
     if (lpe != PECTRL) {
-      
+      if (DRAGFT) {
       if (ctrl && (!shift)) {   changedragft(event,'copy');	}
       else if (ctrl && shift) { changedragft(event,'link');	}
       else  if ((!ctrl) && shift) { changedragft(event,'move');	}
@@ -379,7 +383,7 @@ function keydrag(event) {
 	  if (CDROPZ) sendEvent(CDROPZ,"mouseover");
 	  else  changedragft(event,'');
       }
-      
+      }
       PECTRL=lpe;
     }    
     //    window.status= ':ft:['+DRAGFT+ ']:dropz['+CDROPZ;
@@ -398,7 +402,7 @@ function enddrag(event) {
   sendEvent(e,"mouseup");
   
   
-  
+  DRAGNOMOVE=false;
   DRAGGING=false;
   PECTRL=false;
   //  changedragft(event,'nothing');

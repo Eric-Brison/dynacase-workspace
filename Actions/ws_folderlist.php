@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.16 2006/08/09 09:02:53 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.17 2006/09/07 15:28:22 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -185,8 +185,8 @@ function ws_folderlist(&$action) {
   
   if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
   else $action->lay->set("nbdoc",_("0 document"));
-					
-
+  $action->lay->set("isdynamic",$dynfolder);
+  $action->lay->set("isdyn",$dynfolder?"true":"false");
 
 }
 function titlecmp($a,$b) {
