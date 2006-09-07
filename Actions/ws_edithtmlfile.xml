@@ -36,6 +36,7 @@ function submitfile(event,docid,attrid) {
 }
 
 var OURL;
+var AUTOCLOSE=false;;
 function ws_autoclose(event) {
   if ((! window.opener) || (window.opener.closed)) self.close();
 
@@ -45,11 +46,13 @@ function ws_autoclose(event) {
     a=window.opener.location.href;
   }
   catch(exception) {
+    AUTOCLOSE=true;
     self.close();
     return;
   }
-  
+  //  alert(OURL+'\n'+window.opener.location.href);
   if ( (! window.opener.location)  || (! window.opener.location.href) || (window.opener.location.href != OURL)) {
+    AUTOCLOSE=true;
     self.close();
   }  
 }
@@ -111,6 +114,7 @@ function cursorauto() {
     unglobalcursor(j.frames[0]);
 }
 function wsIsModified() {
+  if (AUTOCLOSE) return false;
   return FCKeditorAPI.GetInstance('wsfile').IsDirty();
 }
 </script>

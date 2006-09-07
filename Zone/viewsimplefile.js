@@ -84,7 +84,8 @@ function wsischanged(event) {
 	
 	  //      alert('wsischanged'+event.type);displayPropertyNames(event);
 	  if (WEDITHTML.wsIsModified()) {
-	    event.returnValue='HTML in edition';
+	    // event.returnValue='HTML editor will be closed';
+	    event.returnValue='L\'editeur HTML va etre ferme';
 	  }
 	}
       }
