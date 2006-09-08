@@ -3,7 +3,7 @@
 var $defaultview= "WORKSPACE:VIEWSIMPLEFILE:T";
 var $defaultmview= "WORKSPACE:MAILSIMPLEFILE:T";
 //var $defaultedit= "WORKSPACE:EDITSIMPLEFILE:T";
-
+var $specialmenu="WORKSPACE:WS_POPUPSIMPLEFILE";
 function postModify() {
   $this->computeMime();
 

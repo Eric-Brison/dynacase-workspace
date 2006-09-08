@@ -27,10 +27,6 @@
                onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))">[ENDIF canedit]<U>[TEXT:Subject] :</U>[IF canedit]</a>[ENDIF canedit]</P>
         <ul><li id="sfi_subject" [IF canedit] onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" [ENDIF canedit]style="cursor:text;text-align:justify">[V_SFI_SUBJECT]</li> </ul>
 
-
-
-
-
         <P>[IF canedit]<a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs">[ENDIF canedit]<U>[TEXT:Keywords] :</U>[IF canedit]</a>[ENDIF canedit]</P>
         <ul><li id="sfi_keyword" [IF canedit]style="cursor:text;" onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))"[ENDIF canedit] >[V_SFI_KEYWORD]</li></ul>
 
