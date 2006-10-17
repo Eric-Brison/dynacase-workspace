@@ -110,7 +110,7 @@ function getIconMimeFile($sysmime) {
 function getSysMimeFile($f,$fn="") {
   $sys = trim(`file -bi "$f"`);
   $txt=getTextMimeFile($f);
-
+  error_log("MIME:.file -bi [$f] [$sys]");
   // correct errors of file function
   if (preg_match('/Makefile/',$fn)) return 'text/x-makefile';
   if (preg_match('/ASCII C\+\+/',$txt)) {

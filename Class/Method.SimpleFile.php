@@ -41,7 +41,7 @@ function postCopy() {
 	  if ($err == "") {
 	    $pp=strrpos($info->name,'.');
 	    $base=substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
-	    $vf->Rename($base);
+	    $vf->Rename($vid,$base);
 	    $this->setValue("sfi_file",$reg[1]."|$vid");
 	    $this->modify();
 	  }
