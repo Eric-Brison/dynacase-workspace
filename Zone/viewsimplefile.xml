@@ -15,7 +15,8 @@
 [IF isnotinedition]
 <br><a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=[ID]')>[TEXT:Modify the file]</a>    
 [ENDIF isnotinedition]
-   
+   <br><a href='editdav:/\\\\malabar.tlse.i-cesam.com\vid-[ID]-[vaultid]\"[TITLE]"'>DIRECT DAV EDIT: [TITLE]</a><br>
+   <a href='asdav://malabar.tlse.i-cesam.com/vid-[ID]-[vaultid]/[TITLE]'>AS DAV EDIT: [TITLE]</a>
       [IF canedithtml]<br><a  href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit inline]</a>[ENDIF canedithtml]
         </div><div  style="display:none" name="dview"><a href="javascript:void(0)" id="brfull" onclick="viewinline(event,'','dmain','dview')">[TEXT:Return to main view]</a> <a href="javascript:void(0)"  id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></div></b>
         </td></tr></table>

@@ -383,7 +383,13 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->setBlockData("comments",$tcomment);
   $dstate=new_doc($this->dbaccess,$this->state);
   $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));
-  
+  $fvalue=$this->getValue("sfi_file");
+
+  if (ereg ("(.*)\|(.*)", $fvalue, $reg)) {
+    $vaultid= $reg[2];
+    $mimetype=$reg[1];
+    $this->lay->set("vaultid",$vaultid);	
+  }
 
 }
 
