@@ -337,6 +337,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefile.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/popupdoc.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/DAV/Layout/getsessionid.js");
 
 
   $this->lay->set("emblem",$this->getEmblem());
@@ -344,6 +345,10 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $thetitle=$this->getValue("sfi_titlew");
   if ($thetitle=="") $thetitle=sprintf(_("No title"));
   $this->lay->set("thetitle",$thetitle);
+
+
+  //$this->lay->set("SERVERURL",$_SERVER["HTTP_HOST"].dirname($_SERVER["REQUEST_URI"]));
+  $this->lay->set("SERVERURL","cubitus.tlse.i-cesam.com");
 
 
   $size=$this->getValue("sfi_filesize");

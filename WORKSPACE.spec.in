@@ -1,7 +1,7 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.7 2006/10/17 13:11:26 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.8 2006/10/31 16:37:18 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
@@ -83,7 +83,7 @@ ln -sf ../@PACKAGE@/Method*php .
 
 
 %files
-%defattr(-,root,root)
+%defattr(-,%{httpuser},%{httpuser})
 %dir %{destdir}/%{name}
 %{destdir}/%{name}/*
 %{destdir}/locale/*

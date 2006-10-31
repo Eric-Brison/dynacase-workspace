@@ -15,8 +15,9 @@
 [IF isnotinedition]
 <br><a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=[ID]')>[TEXT:Modify the file]</a>    
 [ENDIF isnotinedition]
-   <br><a href="editdav://martini.localdomain/vid-[ID]-[vaultid]/[ETITLE]">DIRECT DAV EDIT: [TITLE]</a><br>
-   <a href="asdav://martini.localdomain/vid-[ID]-[vaultid]/[ETITLE]">AS DAV EDIT: [TITLE]</a>
+   <br><a href="editdav://[SERVERURL]/vid-[ID]-[vaultid]/[ETITLE]">DIRECT DAV EDIT: [TITLE]</a><br>
+   <a  href="asdav://[SERVERURL]/vid-[ID]-[vaultid]/[ETITLE]">AS DAV EDIT: [TITLE]</a>
+   <a onclick="sid=getsessionid('[ID]','[vaultid]');this.href='asdav://[SERVERURL]/vid-'+sid+'/[ETITLE]'" href="#">SESSION DAV</a>
       [IF canedithtml]<br><a  href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit inline]</a>[ENDIF canedithtml]
         </div><div  style="display:none" name="dview"><a href="javascript:void(0)" id="brfull" onclick="viewinline(event,'','dmain','dview')">[TEXT:Return to main view]</a> <a href="javascript:void(0)"  id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></div></b>
         </td></tr></table>
