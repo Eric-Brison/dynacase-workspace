@@ -347,10 +347,6 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thetitle",$thetitle);
 
 
-  //$this->lay->set("SERVERURL",$_SERVER["HTTP_HOST"].dirname($_SERVER["REQUEST_URI"]));
-  $this->lay->set("SERVERURL","cubitus.tlse.i-cesam.com");
-
-
   $size=$this->getValue("sfi_filesize");
   if ($size < 0) $dsize="";
   else if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
@@ -369,6 +365,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("ETITLE",str_replace("\"","\"",$this->title));
 
   $this->lay->set("thumbrecompute",$this->canThumbnail());
+  $this->lay->set("DAV",getParam("FREEDAV_SERVEUR")!="");
 
 
   $h=$this->getHisto(true);

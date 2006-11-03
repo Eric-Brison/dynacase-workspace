@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.6 2006/08/11 16:05:40 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.7 2006/11/03 16:10:05 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -40,7 +40,7 @@ function ws_popupsimplefile(&$action) {
 			       "url"=>"$surl&app=FDL&action=FDL_CARD&latest=Y&id=$docid",
 			       "confirm"=>"false",
 			       "tconfirm"=>"",
-			       "target"=>"latest",
+			       "target"=>"_self",
 			       "visibility"=>POPUP_INVISIBLE,
 			       "submenu"=>"",
 			       "barmenu"=>"false"),
