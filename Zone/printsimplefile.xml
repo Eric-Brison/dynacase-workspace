@@ -1,0 +1,9 @@
+[ZONE FDL:VIEWCARD?zone=WORKSPACE:MAILSIMPLEFILE:T]
+
+[IF istext]
+<div>[filecontent]</div>
+[ENDIF istext]
+[IF isimg]
+<img style="width:100%" src="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]">
+[ENDIF isimg]
+

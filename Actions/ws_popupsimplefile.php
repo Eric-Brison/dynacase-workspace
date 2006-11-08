@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.7 2006/11/03 16:10:05 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.8 2006/11/08 09:29:20 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -119,7 +119,27 @@ function ws_popupsimplefile(&$action) {
 				 "target"=>"",
 				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
-				 "barmenu"=>"false"));
+				 "barmenu"=>"false"),
+	       "print"=>array( "descr"=>_("print"),
+				    "url"=>"$surl&app=FDL&action=IMPCARD&zone=WORKSPACE:PRINTSIMPLEFILE:T&id=$docid",
+				    "tconfirm"=>"",
+				    "confirm"=>"false",
+				    "target"=>"properties$docid",
+				    "mwidth"=>520,
+				    "mheight"=>300,
+				    "visibility"=>POPUP_ACTIVE,
+				    "submenu"=>"",
+			       "barmenu"=>"true"),
+	       "properties"=>array( "descr"=>_("properties"),
+				    "url"=>"$surl&app=FDL&action=IMPCARD&zone=WORKSPACE:VIEWSIMPLEPROP:T&id=$docid",
+				    "tconfirm"=>"",
+				    "confirm"=>"false",
+				    "target"=>"properties$docid",
+				    "mwidth"=>400,
+				    "mheight"=>300,
+				    "visibility"=>POPUP_ACTIVE,
+				    "submenu"=>"",
+				    "barmenu"=>"false"));
   changeMenuVisibility($action,$tlink,$doc);
 
 

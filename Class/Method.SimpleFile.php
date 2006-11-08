@@ -264,6 +264,28 @@ function mailsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("moddate",strftime("%A %d %B %Y %H:%M",$this->revdate));
 }
 
+function printsimplefile($target="_self",$ulink=true,$abstract=false) {
+  $this->viewdefaultcard($target,$ulink,$abstract);
+  
+  $istext=ereg("text",$this->getValue("sfi_mimesys"));
+  $this->lay->set("isimg",false);
+  $this->lay->set("istext",$istext);
+  if ($istext) {
+
+    $err=$this->getTextValueFromFile("sfi_file",$text);
+
+    if (ereg("text/html",$this->getValue("sfi_mimesys"))) {
+      $this->lay->set("filecontent",$text);
+    } else {
+      $this->lay->set("filecontent",nl2br(htmlentities($text)));
+    }
+  } else {
+    $isimg=ereg("image",$this->getValue("sfi_mimesys"));
+    $this->lay->set("isimg",$isimg);
+    
+    
+  }
+}
 function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
   $this->viewdefaultcard($target,$ulink,$abstract);
   if ($this->revision == 0) {
