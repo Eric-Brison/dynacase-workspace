@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.8 2006/11/08 09:29:20 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.9 2006/11/09 10:48:50 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -80,6 +80,24 @@ function ws_popupsimplefile(&$action) {
 				"visibility"=>POPUP_INVISIBLE,
 				"submenu"=>"",
 				"barmenu"=>"false"),
+	       "lockdoc"=>array( "descr"=>_("Lock"),
+				 "url"=>"$surl&app=FDL&action=LOCKFILE&id=$docid",
+				 "confirm"=>"false",
+				 "control"=>"false",
+				 "tconfirm"=>"",
+				 "target"=>"_self",
+				 "visibility"=>POPUP_ACTIVE,
+				 "submenu"=>"", 
+				 "barmenu"=>"false"),
+	       "unlockdoc"=>array( "descr"=>_("Unlock"),
+				   "url"=>"$surl&app=FDL&action=UNLOCKFILE&id=$docid",
+				   "confirm"=>"false",
+				   "control"=>"false",
+				   "tconfirm"=>"",
+				   "target"=>"_self",
+				   "visibility"=>POPUP_ACTIVE,
+				   "submenu"=>"",
+				   "barmenu"=>"false"),
 	       "delete"=>array( "descr"=>_("Delete"),
 				"url"=>"$surl&app=GENERIC&action=GENERIC_DEL&id=$docid",
 				"confirm"=>"true",

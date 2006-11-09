@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-07 11:45+0200\n"
+"POT-Creation-Date: 2006-11-08 11:42+0100\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -287,6 +287,21 @@ msgstr ""
 msgid "Create new space"
 msgstr ""
 
+msgid "Version"
+msgstr ""
+
+msgid "Undefined version"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Keywords"
+msgstr ""
+
+msgid "Abstract"
+msgstr ""
+
 msgid "The version rename will not create new version"
 msgstr ""
 
@@ -300,9 +315,6 @@ msgid "Click to modify description"
 msgstr ""
 
 msgid "Clic to view menu"
-msgstr ""
-
-msgid "State"
 msgstr ""
 
 msgid "View file inline"
@@ -335,6 +347,15 @@ msgstr ""
 msgid "Modify the file"
 msgstr ""
 
+msgid "Use external software editor to modify file"
+msgstr ""
+
+msgid "Open in editor"
+msgstr ""
+
+msgid "Use internal editor to modify file"
+msgstr ""
+
 msgid "Edit inline"
 msgstr ""
 
@@ -344,40 +365,10 @@ msgstr ""
 msgid "Reload"
 msgstr ""
 
-msgid "Size"
-msgstr ""
-
-msgid "View file properties"
-msgstr ""
-
-msgid "Properties"
+msgid "Double Click to recompute the thumbnail"
 msgstr ""
 
 msgid "Participates"
-msgstr ""
-
-msgid "Click to modify subject"
-msgstr ""
-
-msgid "Subject"
-msgstr ""
-
-msgid "Keywords"
-msgstr ""
-
-msgid "Modify the abstract"
-msgstr ""
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Rename the version"
-msgstr ""
-
-msgid "Version"
-msgstr ""
-
-msgid "Undefined version"
 msgstr ""
 
 msgid "View complete historic"
@@ -386,7 +377,31 @@ msgstr ""
 msgid "Historic"
 msgstr ""
 
-msgid "Double Click to recompute the thumbnail"
+msgid "State"
+msgstr ""
+
+msgid "Rename the version"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Click to modify subject"
+msgstr ""
+
+msgid "No subject"
+msgstr ""
+
+msgid "No keyword"
+msgstr ""
+
+msgid "Modify the abstract"
+msgstr ""
+
+msgid "No abstract"
+msgstr ""
+
+msgid "Size"
 msgstr ""
 
 msgid "bytes"
@@ -561,6 +576,9 @@ msgstr ""
 msgid "Create new directory"
 msgstr ""
 
+msgid "Properties"
+msgstr ""
+
 msgid "Empty trash"
 msgstr ""
 
@@ -603,6 +621,12 @@ msgid "Add to basket"
 msgstr ""
 
 msgid "restore"
+msgstr ""
+
+msgid "print"
+msgstr ""
+
+msgid "properties"
 msgstr ""
 
 msgid "Reaffect"

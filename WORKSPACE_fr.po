@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-07 11:45+0200\n"
-"PO-Revision-Date: 2006-09-07 11:46+0200\n"
+"POT-Creation-Date: 2006-11-08 11:42+0100\n"
+"PO-Revision-Date: 2006-11-08 11:44+0100\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
@@ -293,6 +293,18 @@ msgstr "Créer une nouvelle version"
 msgid "Create new space"
 msgstr "Créer un nouvel espace"
 
+msgid "Undefined version"
+msgstr "Non définie"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Keywords"
+msgstr "Mots-Clefs"
+
+msgid "Abstract"
+msgstr "Résumé"
+
 msgid "The version rename will not create new version"
 msgstr "Le renommage de la version ne crée pas de nouvelle version"
 
@@ -304,9 +316,6 @@ msgstr "Cliquer pour modifier la description"
 
 msgid "Clic to view menu"
 msgstr "Cliquer pour voir le menu"
-
-msgid "State"
-msgstr "État"
 
 msgid "View file inline"
 msgstr "Voir le fichier en ligne"
@@ -338,6 +347,15 @@ msgstr "Télécharger le fichier afin de le modifier"
 msgid "Modify the file"
 msgstr "Modifier le fichier"
 
+msgid "Use external software editor to modify file"
+msgstr "Utiliser votre éditeur pour modifier le fichier"
+
+msgid "Open in editor"
+msgstr "Ouvrir dans un éditeur"
+
+msgid "Use internal editor to modify file"
+msgstr "Utiliser l'éditeur interne pour modifier le fichier"
+
 msgid "Edit inline"
 msgstr "Editer en ligne"
 
@@ -347,35 +365,11 @@ msgstr "Retour à la vue principale"
 msgid "Reload"
 msgstr "Recharger"
 
-msgid "Size"
-msgstr "Taille"
-
-msgid "View file properties"
-msgstr "Voir les propriétés du fichier"
+msgid "Double Click to recompute the thumbnail"
+msgstr "Double-cliquer pour mettre à jour la miniature"
 
 msgid "Participates"
 msgstr "Participants"
-
-msgid "Click to modify subject"
-msgstr "Cliquer pour modifier le sujet"
-
-msgid "Subject"
-msgstr "Sujet"
-
-msgid "Keywords"
-msgstr "Mots-Clefs"
-
-msgid "Modify the abstract"
-msgstr "Modifier le résumé"
-
-msgid "Abstract"
-msgstr "Résumé"
-
-msgid "Rename the version"
-msgstr "Renommer la version"
-
-msgid "Undefined version"
-msgstr "Non définie"
 
 msgid "View complete historic"
 msgstr "Voir l'historique complet"
@@ -383,8 +377,29 @@ msgstr "Voir l'historique complet"
 msgid "Historic"
 msgstr "Historique"
 
-msgid "Double Click to recompute the thumbnail"
-msgstr "Double-cliquer pour mettre à jour la miniature"
+msgid "State"
+msgstr "État"
+
+msgid "Rename the version"
+msgstr "Renommer la version"
+
+msgid "Click to modify subject"
+msgstr "Cliquer pour modifier le sujet"
+
+msgid "No subject"
+msgstr "Pas de sujet"
+
+msgid "No keyword"
+msgstr "Pas de mots-clefs"
+
+msgid "Modify the abstract"
+msgstr "Modifier le résumé"
+
+msgid "No abstract"
+msgstr "Pas de résumé"
+
+msgid "Size"
+msgstr "Taille"
 
 msgid "bytes"
 msgstr "octets"
@@ -566,6 +581,9 @@ msgstr "Ajouter une note"
 
 msgid "restore"
 msgstr "restaurer"
+
+msgid "properties"
+msgstr "Propriétés"
 
 msgid "Reaffect"
 msgstr "Réaffecter"

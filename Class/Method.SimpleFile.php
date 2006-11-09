@@ -310,20 +310,19 @@ function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
     } else {
       $this->lay->set("thelocker", sprintf(_("unknow user %s"),$uid));
     }
-    
-    $auid=abs($this->allocated);
-    if ($uid == $auid) {
-      $this->lay->set("theallocate", $this->lay->get("thelocker"));      
-    } else {
-      if ($auid > 0) {
-	$u=new User("",$auid);
-	if ($u->isAffected()) {
-	  $this->lay->set("theallocate", sprintf("%s %s",$u->firstname,$u->lastname));
-	} else {
-	  $this->lay->set("theallocate", sprintf(_("unknow user %s"),$uid));
-	}
+  }
+  $auid=abs($this->allocated);
+  if ($uid == $auid) {
+    $this->lay->set("theallocate", $this->lay->get("thelocker"));      
+  } else {
+    if ($auid > 0) {
+      $u=new User("",$auid);
+      if ($u->isAffected()) {
+	$this->lay->set("theallocate", sprintf("%s %s",$u->firstname,$u->lastname));
+      } else {
+	$this->lay->set("theallocate", sprintf(_("unknow user %s"),$uid));
       }
-    }
+    }    
   }
   
 
@@ -363,6 +362,12 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
 
 
   $this->lay->set("emblem",$this->getEmblem());
+  $this->lay->set("locker","");
+  $uid=abs($this->locked);
+  if (($uid>0) && ($uid!=$this->userid)) {
+    $u= new User("",$uid);
+    $this->lay->set("locker",sprintf(_("locked by %s %s"),$u->firstname,$u->lastname));
+  }
 
   $thetitle=$this->getValue("sfi_titlew");
   if ($thetitle=="") $thetitle=sprintf(_("No title"));

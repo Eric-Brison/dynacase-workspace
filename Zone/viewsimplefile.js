@@ -2,8 +2,8 @@ var WEDITHTML=null; // window of HTML editor
 
 function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById('iinline');
-  var dview=getElementsByNameTag(document,toview,'div');
-  var dcache=getElementsByNameTag(document,tocache,'div');
+  var dview=getElementsByNameTag(document,'toview','div');
+  var dcache=getElementsByNameTag(document,'tocache','div');
 
   var i;
 
@@ -59,6 +59,7 @@ function receiptActionNotification(code,arg) {
     case "UNLOCKFILE":
       var ilck=document.getElementById('imglck');
       if (ilck) ilck.src='Images/1x1.gif';
+      displayemptyvalue();
       break;
     
     case "MODATTR":
@@ -95,7 +96,37 @@ function wsischanged(event) {
     }
   }
 }
+
+
+function LTrim(STRING){
+  while ((STRING.charAt(0)==" ")||(STRING.charCodeAt(0)==13)||(STRING.charCodeAt(0)==10)) {
+    STRING = STRING.replace(STRING.charAt(0),"");
+  }
+  return STRING;
+}
+
+function displayemptyvalue() {
+  var dattr=getElementsByNameTag(document,'attrvalue','div');
+  var i;
+  var emptytext;
+  var s;
+
+  for (i=0;i<dattr.length;i++) {
+    emptytext=dattr[i].getAttribute('emptytext');
+    if (!emptytext) emptytext='no text';
+
+    s=LTrim(dattr[i].innerHTML);   
+    if ((s=='')||(dattr[i].innerHTML==emptytext)) {     
+      dattr[i].innerHTML=emptytext;      
+      dattr[i].className='attrempty';
+    } else {      
+      dattr[i].className='attrvalue';
+    }
+  }  
+}
+
 addEvent(window,"beforeunload",wsischanged)
+addEvent(window,"load",displayemptyvalue)
 
 function viewsimplefilemenu(event,docid,source) {
   var corestandurl=window.location.pathname+'?sole=Y&';
