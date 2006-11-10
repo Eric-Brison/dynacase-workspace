@@ -389,7 +389,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("canversionned",($this->canVersionned()==MENU_ACTIVE));
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
   $this->lay->set("isinline",ereg("html|image|plain|text/xml",$this->getValue("sfi_mimesys")));
-  $this->lay->set("ETITLE",str_replace("\"","\"",$this->title));
+  $this->lay->set("ETITLE",str_replace("'","\'",$this->title));
 
   $this->lay->set("thumbrecompute",$this->canThumbnail());
   $this->lay->set("DAV",getParam("FREEDAV_SERVEUR")!="");
