@@ -12,7 +12,7 @@
 [ENDIF isinedition]
 [IF isnotinedition]
  - <a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=[ID]')>[TEXT:Modify the file]</a>  
-   [IF DAV][IF canedit] - <a title="[TEXT:Use external software editor to modify file]" onclick="var sid=getsessionid('[ID]','[vaultid]');this.href='asdav://[FREEDAV_SERVEUR]/freedav/vid-'+sid+'/[ETITLE]'" href="#">[TEXT:Open in editor]</a>[ENDIF canedit][ENDIF DAV]
+   [IF DAV][IF canedit] - <a style="white-space:nowrap" title="[TEXT:Use external software editor to modify file]" onclick="var sid=getsessionid('[ID]','[vaultid]');this.href='asdav://[FREEDAV_SERVEUR]/freedav/vid-'+sid+'/[ETITLE]'" href="#">[TEXT:Open in editor]</a>[ENDIF canedit][ENDIF DAV]
 [ENDIF isnotinedition]
       [IF canedithtml] - <a style="white-space:nowrap" title="[TEXT:Use internal editor to modify file]" href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit inline]</a>[ENDIF canedithtml]
         </div><div  style="display:none" name="dview"><a href="javascript:void(0)" id="brfull" onclick="viewinline(event,'','dmain','dview')">[TEXT:Return to main view]</a> <a href="javascript:void(0)"  id="brreload" onclick="wsreload(event,'iinline')">[TEXT:Reload]</a></div>

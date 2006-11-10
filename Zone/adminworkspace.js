@@ -20,6 +20,7 @@ function ws_addUser(event,o,uid,uname) {
     ntable.appendChild(ntr);
     if (o) o.style.display='none';
     //    alert(ntr.innerHTML);
+    
   }
 }
 

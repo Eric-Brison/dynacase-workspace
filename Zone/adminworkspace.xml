@@ -36,7 +36,7 @@ TR.modified {
 <tbody>
 <tr>
 <td id="uresult"></td>
-<td><table id="members">
+<td><table ><tbody id="members">
 [BLOCK MEMBERS]
 <tr><td>[name]</td><td><input type="hidden" name="uchange[[iduser]]" value="nochange">
               <select onchange="ws_changeUProf(event,this,'[iduser]')" name="uprof[[iduser]]">
@@ -52,7 +52,7 @@ TR.modified {
               </select>
               <img align="absbottom" style="cursor:pointer" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)" ></td></tr>
 
-
+</tbody>
 
 </table></td></tr>
 </tbody></table>
