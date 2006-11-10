@@ -2,8 +2,8 @@ var WEDITHTML=null; // window of HTML editor
 
 function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById('iinline');
-  var dview=getElementsByNameTag(document,'toview','div');
-  var dcache=getElementsByNameTag(document,'tocache','div');
+  var dview=getElementsByNameTag(document,toview,'div');
+  var dcache=getElementsByNameTag(document,tocache,'div');
 
   var i;
 
