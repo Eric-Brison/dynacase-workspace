@@ -60,6 +60,11 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   ) ,
   array( 
+   "name"		=>"WS_RENAMEFILE",
+   "short_name"		=>N_("rename file name"),
+   "acl"		=>"WORKSPACE_USER"
+  ) ,
+  array( 
    "name"		=>"WS_POPUPLISTFOLDER",
    "short_name"		=>N_("popup menu global in folder list"),
    "acl"		=>"WORKSPACE_USER"

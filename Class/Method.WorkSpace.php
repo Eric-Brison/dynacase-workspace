@@ -161,6 +161,8 @@ function recomputeIGroupProfil() {
     $p->RemoveControl();
     $p->addControl("GWSPADMIN","view");
     $p->addControl("GWSPADMIN","edit");
+    $p->addControl("GWSPADMIN","modify");
+    $p->addControl("GWSPADMIN","open");
     $p->addControl("GWSPADMIN","delete");
     $p->addControl("GWSPADMIN","viewacl");
     $p->addControl("GWSPADMIN","modifyacl");

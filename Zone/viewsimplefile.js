@@ -141,5 +141,14 @@ function shortcutToFld(event,docid,idbasket) {
 }
 
 function restoreDoc(event,docid) {
-  requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid)
+  var corestandurl=window.location.pathname+'?sole=Y&';
+  requestUrlSend(null,corestandurl+'app=WORKSPACE&action=WS_RESTOREDOC&id='+docid)
+}
+
+function renameFile(event,docid,attrid,newname) {
+  var corestandurl=window.location.pathname+'?sole=Y&';
+  enableSynchro();
+  requestUrlSend(null,corestandurl+'app=WORKSPACE&action=WS_RENAMEFILE&id='+docid+'&newname='+newname);
+  disableSynchro();
+  cancelattr(event,docid,attrid);
 }

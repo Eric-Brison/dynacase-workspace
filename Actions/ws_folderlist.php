@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.18 2006/11/10 11:24:09 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.19 2006/11/13 16:01:26 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -111,6 +111,7 @@ function ws_folderlist(&$action) {
 
 
   $action->lay->set("pid",$doc->initid);
+  $action->lay->set("docid",$doc->id);
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
     //    $ls=$doc->getContent();
@@ -135,10 +136,10 @@ function ws_folderlist(&$action) {
       $thead["title"]["issort"]=true;  
     }
     if ($dorder){
-      $action->lay->set("orderimg",$action->getImageUrl('b_down.png'));
+      $action->lay->set("orderimg",$action->getImageUrl('b_up.png'));
     } else {
       $ls=array_reverse($ls);
-      $action->lay->set("orderimg",$action->getImageUrl('b_up.png'));
+      $action->lay->set("orderimg",$action->getImageUrl('b_down.png'));
     }
 
     $dynfolder=($doc->doctype!='D');

@@ -3,6 +3,7 @@
 [BLOCK ACTIONS]
 <action name="[actname]" docid="[actdocid]"></action>
 [ENDBLOCK ACTIONS]
+<action name="GETRDOCID" docid="[docid]"></action>
   <branch><![CDATA[
 
 

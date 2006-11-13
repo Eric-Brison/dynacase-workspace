@@ -43,12 +43,12 @@
      
 <div name="dmain">
 
-<B style="font-size:150%">[TITLE]</B> [dsize] <br/>
+<B style="font-size:150%" id="sfi_title" onclick="editattr(event,'[ID]','sfi_title',document.getElementById('sfi_title'),'renameFile')" >[TITLE]</B> [dsize] <br/>
 
 <table style="width:100%">
 <tr><td style="width:70px" class="FREEDOMLabel">[IF canedit]<a  title="[TEXT:Click to modify title]" 
-               onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))">[ENDIF canedit]<U>[TEXT:Title]&nbsp;:</U>[IF canedit]</a>[ENDIF canedit]</td>
-    <td class="FREEDOMText"><div id="sfi_title"  emptytext="[TEXT:No title]" [IF canedit] onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_title'))" [ENDIF canedit]class="attrvalue" name="attrvalue">[V_SFI_TITLEW]</div></td></tr>
+               onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_titlew')">[ENDIF canedit]<U>[TEXT:Title]&nbsp;:</U>[IF canedit]</a>[ENDIF canedit]</td>
+    <td class="FREEDOMText"><div id="sfi_titlew"  emptytext="[TEXT:No title]" [IF canedit] onclick="editattr(event,'[ID]','sfi_titlew',document.getElementById('sfi_titlew'))" [ENDIF canedit]class="attrvalue" name="attrvalue">[V_SFI_TITLEW]</div></td></tr>
 <tr><td  class="FREEDOMLabel">[IF canedit]<a  title="[TEXT:Click to modify subject]" 
                onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))">[ENDIF canedit]<U>[TEXT:Subject]&nbsp;:</U>[IF canedit]</a>[ENDIF canedit]</td>
     <td class="FREEDOMText"><div id="sfi_subject" emptytext="[TEXT:No subject]" [IF canedit] onclick="editattr(event,'[ID]','sfi_subject',document.getElementById('sfi_subject'))" [ENDIF canedit]class="attrvalue" name="attrvalue">[V_SFI_SUBJECT]</div></td></tr>

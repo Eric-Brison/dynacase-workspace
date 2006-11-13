@@ -26,6 +26,7 @@ var req;
 var CURSPACE=false; // current selected space object
 var CURSPACEID=false; // current selected space id
 var CFLDID=false; // current folder doc id
+var RCFLDID=false; // real id  (get by the server) of current folder doc id
 var CLIPCID=false; // current folder for clipboard
 var REFRESH=false; // to indicate the the state is for resfresh one part
 var PREVVIEWDOCID=false; // to don't do twice teh same action
@@ -148,12 +149,12 @@ function copyDoc(event,docid) {
 }
 
 function addToBasket(event,docid) {
-
   folderSend(IDBASKET,false,docid,false,'shortcut');
 }
 function sendRenameFolderTree(docid) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_COUNTFOLDER&id='+docid);
 }
+
 
 
 // ----------------------------- view context memnu --------------------
@@ -527,7 +528,7 @@ function changeOrder(event,norder) {
     CORDER=norder;
     CDESCORDER=true;
   }
-  viewFolder(event,CFLDID);
+  viewFolder(event,RCFLDID);
 }
 
 
@@ -618,6 +619,10 @@ function postActionRefresh(action,arg) {
   case "LOCKFILE":
   case "UNLOCKFILE":    
    postLocking(docid);
+        
+    break;
+  case "GETRDOCID":
+   RCFLDID=docid;
         
     break;
   default:    
