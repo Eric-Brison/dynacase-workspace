@@ -1,5 +1,5 @@
 <table class="transparent" style="width:100%"><tr><td>
-<img align="left" width="[SIZE_IMG-LARGE]" style="border:none" src="Images/[ICON]" ></td>
+<img align="left" width="[SIZE_IMG-LARGE]" style="border:none" src="[icon]" ></td>
 <td>
 <b>[TEXT:Space] : [V_BA_TITLE]</b><br>
 [L_WSP_ADMIN] : [V_WSP_ADMIN]<br>

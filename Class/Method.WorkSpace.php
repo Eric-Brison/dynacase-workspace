@@ -294,6 +294,7 @@ function viewworkspace($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("gvid",$gv->id);
   $this->lay->set("gvtitle",$gv->title);
 
+  $this->lay->set("icon",$this->getIcon());
 }
 
 

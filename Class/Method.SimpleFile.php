@@ -161,7 +161,7 @@ function computeThumbnail() {
 	  $pf=$info->path;
 	  $ciblepdf=uniqid("/var/tmp/thumb").".html";
 	  
-	  $cmd = sprintf("xlhtml -xp:0 -xr:0-100  %s > %s", $pf, $ciblepdf );
+	  $cmd = sprintf("xlhtml -xp:0 -xr:0-50  %s > %s", $pf, $ciblepdf );
 	  system($cmd);
 	  //  print ($cmd);
 	  if (file_exists($ciblepdf)) {

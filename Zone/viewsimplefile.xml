@@ -43,7 +43,7 @@
      
 <div name="dmain">
 
-<B style="font-size:150%" id="sfi_title" onclick="editattr(event,'[ID]','sfi_title',document.getElementById('sfi_title'),'renameFile')" >[TITLE]</B> [dsize] <br/>
+<B style="font-size:150%;cursor:text;" id="sfi_title" [IF canedit]title="[TEXT:Click to rename file]" onclick="editattr(event,'[ID]','sfi_title',document.getElementById('sfi_title'),'renameFile')"[ENDIF canedit] >[TITLE]</B> [dsize] <br/>
 
 <table style="width:100%">
 <tr><td style="width:70px" class="FREEDOMLabel">[IF canedit]<a  title="[TEXT:Click to modify title]" 
