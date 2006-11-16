@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.14 2006/07/27 16:07:27 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.15 2006/11/16 17:31:47 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -77,6 +77,8 @@ function ws_addfldbranch(&$action) {
       $ls=$doc->getContent(true,array("doctype ~ '^D|S$'"));
     }
     $tc=array();
+    uasort($ls,"titlesort");
+
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>ucfirst(utf8_encode($v["title"])),
 		  "id"=>$v["id"],
@@ -99,3 +101,8 @@ function ws_addfldbranch(&$action) {
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
 }
+function titlesort($a,$b) {
+  return strcasecmp($a["title"],$b["title"]);
+}
+
+?>
