@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.8 2006/07/28 15:03:14 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.9 2006/11/17 16:12:42 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -19,11 +19,13 @@ function ws_popupdocfolder(&$action) {
   // -----------------------------------
   // define accessibility
   $docid = GetHttpVars("id");
+  $dirid = GetHttpVars("dirid");
   $abstract = (GetHttpVars("abstract",'N') == "Y");
   $zone = GetHttpVars("zone"); // special zone
 
   $dbaccess = $action->GetParam("FREEDOM_DB");
   $doc = new_Doc($dbaccess, $docid);
+  $fld = new_Doc($dbaccess, $dirid);
 
   //  if ($doc->doctype=="C") return; // not for familly
 
@@ -109,7 +111,11 @@ function ws_popupdocfolder(&$action) {
     $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
   }
   
-  
+  if ($fld->doctype != 'D') {
+    $tlink["delete"]["visibility"]=POPUP_INVISIBLE;
+    $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
+    
+  }
          
   if  (($doc->doctype != 'S') && (preg_match("/doctype='Z'/",$doc->getValue("se_sqlselect")))) {
     $tlink["trash"]=array("descr"=>_("Empty trash"),

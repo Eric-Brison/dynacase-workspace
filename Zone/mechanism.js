@@ -192,6 +192,7 @@ function begindrag(event,oul,osp,docid,pdocid) {
     DRAGDOC=docid;
     PDRAGDOC=pdocid;
    
+    document.onmousemove=waitdrag ;
     if (typeof(osp)=='string')  MICON.innerHTML=osp;  
     else  MICON.innerHTML=osp.innerHTML;
     document.onmouseup=enddrag ;
@@ -210,9 +211,9 @@ function reallybegindrag(event) {
   if (DRAGGING) {
     MICON.style.display='';
     DRAGFT=false;
-    document.onmousemove=movedrag ;
     document.onkeydown=keydrag ;
     document.onkeyup=keydrag ;
+    document.onmousemove=movedrag ;
 
     //    document.body.style.cursor='no-drop';
     globalcursor('no-drop');
@@ -317,6 +318,9 @@ function changedragft(event,nft) {
     }
     DRAGFT=nft;
   }
+}
+function waitdrag(event) {
+    return false;
 }
 function movedrag(event) {
   if (DRAGGING) {
@@ -558,8 +562,8 @@ function getPrevLiButton(o) {
 }
 
 
-function viewdetailmenu(event,docid,source) {
-  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid;
+function viewdetailmenu(event,docid,dirid,source) {
+  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid+'&dirid='+dirid;
   viewmenu(event,menuurl,source);
 }
 

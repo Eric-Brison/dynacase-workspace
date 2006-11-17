@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.15 2006/11/16 17:31:47 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.16 2006/11/17 16:12:41 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -75,9 +75,9 @@ function ws_addfldbranch(&$action) {
       $top=true; // to not see link in top view
     } else {
       $ls=$doc->getContent(true,array("doctype ~ '^D|S$'"));
+      uasort($ls,"titlesort");
     }
     $tc=array();
-    uasort($ls,"titlesort");
 
     foreach ($ls as $k=>$v) {
       $tc[]=array("title"=>ucfirst(utf8_encode($v["title"])),
