@@ -1,7 +1,7 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.9 2006/11/16 17:32:09 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.10 2006/11/17 09:00:09 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
@@ -47,14 +47,14 @@ Requires: FCKeditor
 %if %{pld}
 Requires: xlhtml
 Requires: html2ps
-Requires: ImageMagick-coder-jpeg2-6.2.9.1-2
-Requires: ImageMagick-coder-ps2-6.2.9.1-2
-Requires: ImageMagick-coder-png-6.2.9.1-2
-Requires: ImageMagick-coder-pdf-6.2.9.1-2
-Requires: ImageMagick-coder-svg-6.2.9.1-2
-Requires: ImageMagick-coder-jpeg-6.2.9.1-2
-Requires: ImageMagick-coder-url-6.2.9.1-2
-Requires: ImageMagick-coder-tiff-6.2.9.1-2
+Requires: ImageMagick-coder-jpeg2
+Requires: ImageMagick-coder-ps2
+Requires: ImageMagick-coder-png
+Requires: ImageMagick-coder-pdf
+Requires: ImageMagick-coder-svg
+Requires: ImageMagick-coder-jpeg
+Requires: ImageMagick-coder-url
+Requires: ImageMagick-coder-tiff
 %endif
 Prereq: WHAT 
 Prereq: php-cgi 
