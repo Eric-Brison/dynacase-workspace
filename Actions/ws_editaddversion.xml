@@ -1,4 +1,29 @@
 [ZONE FDL:HTMLHEAD?title=[TEXT:Add version]]
+
+<script>
+function viewstatedescription(o) {
+  var os=o.options[o.selectedIndex];
+  var sd=document.getElementById('sdescription');
+  if (os && sd) {
+    var d=os.getAttribute('desc');
+    sd.innerHTML=d;
+  }
+  
+}
+
+function activestate(event,o) {
+  var ds=document.getElementById('dstate');
+  if (o.value != '') {
+    if (isIE) ds.style.filter="alpha(opacity=100)"
+    else ds.style.opacity=1;
+  } else {
+     if (isIE) ds.style.filter="alpha(opacity=50)"
+    else ds.style.opacity=0.5;
+  }
+}
+addEvent(window,'load',function z() {viewstatedescription(document.getElementById('selectstate'));});
+</script>
+
 <div id="before">
 <div style="text-align:center">
 <H2><img align="left" src="[IMG:version.png]"> [TEXT:Create new version for the document]</H2>
@@ -15,15 +40,29 @@
        action="[CORE_STANDURL]&app=WORKSPACE&action=WS_ADDVERSION" >
 
 <div style="text-align:center">
-[TEXT:Actual version] : <b>[version]</b><hr>
-<b>[TEXT:New version]</b> : <input id="iversion" type="text"  name="newversion">
-[TEXT:Comment]:<textarea style="vertical-align:text-top" name="comversion"></textarea>
-</div><hr>
-<div style="text-align:right">
+[TEXT:Actual version] : <b>[version]</b><hr></div>
+<table width="100%"><tr><td width="50%" style="vertical-align:text-top">
+<b>[TEXT:New version]</b> : <input id="iversion" type="text" onkeyup="activestate(event,this)" name="newversion">
+
+<hr width="50%"><table style="display:inline"><tr><td style="vertical-align:text-top"> 
+<b style="vertical-align:text-top;white-space:nowrap">[TEXT:New state]</b>
+</td>
+<td id="dstate" style="vertical-align:text-top;[IFNOT ISIE]opacity:0.5[ENDIF ISIE][IF ISIE]filter:alpha(opacity=50);[ENDIF ISIE]"> :[textstate]
+	<select id="selectstate" name="newstate" onchange="viewstatedescription(this)">
+	<option selected value="-1" desc="[TEXT:the state will be unchanged]">[TEXT:unchanged state]</option>
+	<option value="0" desc="[TEXT:the state will be removed]">[TEXT:no state]</option>
+	[BLOCK freestate]
+	<option  value="[fstate]" desc="[dstate]">[lstate]</option>
+	[ENDBLOCK freestate]
+	</select><br> <i><span id="sdescription">-</span></i></td></tr></table>
+
+</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea><br><br><div style="text-align:right">
 <input type="hidden" name="id" value="[docid]">
 <input type="submit" onsubmit="window.setTimeout('verifydownload([docid])',2000);" value="[TEXT:Create new version]">
 <input type="reset" onclick="self.close()" value="[TEXT:Cancel]">
 </div>
+</td></tr></table>
+
 </div>
 
 </form>

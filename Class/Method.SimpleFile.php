@@ -363,12 +363,16 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
 
   $this->lay->set("emblem",$this->getEmblem());
   $this->lay->set("locker","");
+  $this->lay->set("todo","");
   $uid=abs($this->locked);
   if (($uid>0) && ($uid!=$this->userid)) {
     $u= new User("",$uid);
     $this->lay->set("locker",sprintf(_("locked by %s %s"),$u->firstname,$u->lastname));
   }
-
+  $todo=$this->getUTag("AFFECTED");
+  if ($todo) {
+    $this->lay->set("todo",nl2br($todo->comment));
+  }
   $thetitle=$this->getValue("sfi_titlew");
   if ($thetitle=="") $thetitle=sprintf(_("No title"));
   $this->lay->set("thetitle",$thetitle);
