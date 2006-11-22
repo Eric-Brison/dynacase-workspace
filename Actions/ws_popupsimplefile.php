@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.9 2006/11/09 10:48:50 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.10 2006/11/22 15:57:22 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -131,10 +131,10 @@ function ws_popupsimplefile(&$action) {
 				  "submenu"=>"",
 				  "barmenu"=>"false"),
 	       "restore"=>array( "descr"=>_("restore"),
-				 "jsfunction"=>"restoreDoc(event,$docid)",
+				 "url"=>"$surl&app=WORKSPACE&action=WS_RESTOREDOC&id=$docid&reload=Y",
 				 "tconfirm"=>"",
 				 "confirm"=>"false",
-				 "target"=>"",
+				 "target"=>"_self",
 				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
 				 "barmenu"=>"false"),

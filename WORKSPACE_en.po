@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-08 11:42+0100\n"
+"POT-Creation-Date: 2006-11-21 16:49+0100\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -14,6 +14,41 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
+
+msgid " (copy)"
+msgstr ""
+
+msgid "undefined"
+msgstr ""
+
+msgid "nobody"
+msgstr ""
+
+msgid "fixed"
+msgstr ""
+
+#, c-format
+msgid "unknow user %s"
+msgstr ""
+
+#, c-format
+msgid "%d bytes"
+msgstr ""
+
+#, c-format
+msgid "%d kb"
+msgstr ""
+
+#, c-format
+msgid "%.01f Mb"
+msgstr ""
+
+#, c-format
+msgid "locked by %s %s"
+msgstr ""
+
+msgid "No title"
+msgstr ""
 
 #, c-format
 msgid "Group of users that can view files in %s space"
@@ -59,37 +94,6 @@ msgstr ""
 msgid "%s members"
 msgstr ""
 
-msgid " (copy)"
-msgstr ""
-
-msgid "undefined"
-msgstr ""
-
-msgid "nobody"
-msgstr ""
-
-msgid "fixed"
-msgstr ""
-
-#, c-format
-msgid "unknow user %s"
-msgstr ""
-
-#, c-format
-msgid "%d bytes"
-msgstr ""
-
-#, c-format
-msgid "%d kb"
-msgstr ""
-
-#, c-format
-msgid "%.01f Mb"
-msgstr ""
-
-msgid "No title"
-msgstr ""
-
 #, c-format
 msgid "cannot move folder %s in %s cause loop"
 msgstr ""
@@ -127,6 +131,9 @@ msgid "to view folder"
 msgstr ""
 
 msgid "to view a document"
+msgstr ""
+
+msgid "rename file name"
 msgstr ""
 
 msgid "popup menu global in folder list"
@@ -275,6 +282,24 @@ msgstr ""
 msgid "New version"
 msgstr ""
 
+msgid "New state"
+msgstr ""
+
+msgid "the state will be unchanged"
+msgstr ""
+
+msgid "unchanged state"
+msgstr ""
+
+msgid "the state will be removed"
+msgstr ""
+
+msgid "no state"
+msgstr ""
+
+msgid "Revision comment"
+msgstr ""
+
 msgid "Comment"
 msgstr ""
 
@@ -383,6 +408,9 @@ msgstr ""
 msgid "Rename the version"
 msgstr ""
 
+msgid "Click to rename file"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
@@ -485,6 +513,65 @@ msgstr ""
 msgid "suppress member"
 msgstr ""
 
+#, c-format
+msgid "document [%s] not found"
+msgstr ""
+
+msgid "View latest"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Diffuse"
+msgstr ""
+
+msgid "Workflow"
+msgstr ""
+
+msgid "Desaffect"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+#, c-format
+msgid "Sure delete %s ?"
+msgstr ""
+
+msgid "Add a note"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Sure duplicate ?"
+msgstr ""
+
+msgid "Add to basket"
+msgstr ""
+
+msgid "restore"
+msgstr ""
+
+msgid "print"
+msgstr ""
+
+msgid "properties"
+msgstr ""
+
+msgid "Reaffect"
+msgstr ""
+
+msgid "Empty trash"
+msgstr ""
+
 msgid "My space"
 msgstr ""
 
@@ -508,11 +595,19 @@ msgstr ""
 msgid "cannot duplicate %s document"
 msgstr ""
 
+#, c-format
+msgid "From %s state to"
+msgstr ""
+
 msgid "object"
 msgstr ""
 
 #, c-format
 msgid "document %s does not exist"
+msgstr ""
+
+#, c-format
+msgid "document %s has the new state %s"
 msgstr ""
 
 #, c-format
@@ -567,6 +662,10 @@ msgid ""
 "tagged : in edition"
 msgstr ""
 
+#, c-format
+msgid "Rename file as %s"
+msgstr ""
+
 msgid "Add new file"
 msgstr ""
 
@@ -579,67 +678,14 @@ msgstr ""
 msgid "Properties"
 msgstr ""
 
-msgid "Empty trash"
-msgstr ""
-
 #, c-format
 msgid "%s file downloaded by %s on %s"
-msgstr ""
-
-msgid "View latest"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Diffuse"
-msgstr ""
-
-msgid "Workflow"
-msgstr ""
-
-msgid "Desaffect"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-#, c-format
-msgid "Sure delete %s ?"
-msgstr ""
-
-msgid "Add a note"
-msgstr ""
-
-msgid "Duplicate"
-msgstr ""
-
-msgid "Sure duplicate ?"
-msgstr ""
-
-msgid "Add to basket"
-msgstr ""
-
-msgid "restore"
-msgstr ""
-
-msgid "print"
-msgstr ""
-
-msgid "properties"
-msgstr ""
-
-msgid "Reaffect"
 msgstr ""
 
 msgid "the trash cannot be empty"
 msgstr ""
 
 msgid "no user defined"
-msgstr ""
-
-#, c-format
-msgid "document [%s] not found"
 msgstr ""
 
 #, c-format

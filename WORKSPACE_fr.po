@@ -6,13 +6,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-08 11:42+0100\n"
-"PO-Revision-Date: 2006-11-08 11:44+0100\n"
+"POT-Creation-Date: 2006-11-21 16:49+0100\n"
+"PO-Revision-Date: 2006-11-21 16:51+0100\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid " (copy)"
+msgstr " (copie)"
+
+msgid "undefined"
+msgstr "non défini"
+
+#, c-format
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
+
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#, c-format
+msgid "%d kb"
+msgstr "%d ko"
+
+#, c-format
+msgid "%.01f Mb"
+msgstr "%.01f Mo"
+
+#, c-format
+msgid "locked by %s %s"
+msgstr "Verrouillé par %s %s"
+
+msgid "No title"
+msgstr "Pas de titre"
 
 #, c-format
 msgid "Group of users that can view files in %s space"
@@ -60,31 +89,6 @@ msgstr ""
 msgid "%s members"
 msgstr "%s membres"
 
-msgid " (copy)"
-msgstr " (copie)"
-
-msgid "undefined"
-msgstr "non défini"
-
-#, c-format
-msgid "unknow user %s"
-msgstr "utilisateur inconnu %s"
-
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
-#, c-format
-msgid "%.01f Mb"
-msgstr "%.01f Mo"
-
-msgid "No title"
-msgstr "Pas de titre"
-
 #, c-format
 msgid "cannot move folder %s in %s cause loop"
 msgstr ""
@@ -125,6 +129,9 @@ msgstr "pour voir un dossier"
 
 msgid "to view a document"
 msgstr "pour voir un document"
+
+msgid "rename file name"
+msgstr "renommer le fichier"
 
 msgid "popup menu global in folder list"
 msgstr "menu popup global pour la liste de dossier"
@@ -284,6 +291,9 @@ msgstr "Version actuelle"
 msgid "New version"
 msgstr "Nouvelle version"
 
+msgid "Revision comment"
+msgstr "Commentaire de révision"
+
 msgid "Comment"
 msgstr "Commentaire"
 
@@ -382,6 +392,9 @@ msgstr "État"
 
 msgid "Rename the version"
 msgstr "Renommer la version"
+
+msgid "Click to rename file"
+msgstr "Cliquer pour renommer le fichier"
 
 msgid "Click to modify subject"
 msgstr "Cliquer pour modifier le sujet"
@@ -489,6 +502,35 @@ msgstr "rédacteur"
 msgid "suppress member"
 msgstr "enlever un membre"
 
+#, c-format
+msgid "document [%s] not found"
+msgstr "document [%s] pas trouvé"
+
+msgid "Diffuse"
+msgstr "Diffuser"
+
+msgid "Desaffect"
+msgstr "Désaffecter"
+
+#, c-format
+msgid "Sure delete %s ?"
+msgstr "Etes-vous sur de supprimer %s ?"
+
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+msgid "restore"
+msgstr "restaurer"
+
+msgid "properties"
+msgstr "Propriétés"
+
+msgid "Reaffect"
+msgstr "Réaffecter"
+
+msgid "Empty trash"
+msgstr "Vider la corbeille"
+
 msgid "My space"
 msgstr "Mon espace"
 
@@ -550,6 +592,10 @@ msgstr ""
 "Le file %s a été téléchargé et le document a été verrouillé et a été "
 "marqué : en édition"
 
+#, c-format
+msgid "Rename file as %s"
+msgstr "Renommer le fichier en %s"
+
 msgid "Add new file"
 msgstr "Ajouter un fichier"
 
@@ -559,44 +605,15 @@ msgstr "Créer un texte"
 msgid "Create new directory"
 msgstr "Créer un répertoire"
 
-msgid "Empty trash"
-msgstr "Vider la corbeille"
-
 #, c-format
 msgid "%s file downloaded by %s on %s"
 msgstr "fichier %s téléchargé par %s sur %s"
-
-msgid "Diffuse"
-msgstr "Diffuser"
-
-msgid "Desaffect"
-msgstr "Désaffecter"
-
-#, c-format
-msgid "Sure delete %s ?"
-msgstr "Etes-vous sur de supprimer %s ?"
-
-msgid "Add a note"
-msgstr "Ajouter une note"
-
-msgid "restore"
-msgstr "restaurer"
-
-msgid "properties"
-msgstr "Propriétés"
-
-msgid "Reaffect"
-msgstr "Réaffecter"
 
 msgid "the trash cannot be empty"
 msgstr "La corbeille ne peut pas être vidée"
 
 msgid "no user defined"
 msgstr "pas d'utilisateur défini"
-
-#, c-format
-msgid "document [%s] not found"
-msgstr "document [%s] pas trouvé"
 
 #, c-format
 msgid "document %s is not in edition"
