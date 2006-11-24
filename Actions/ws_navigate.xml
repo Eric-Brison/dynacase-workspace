@@ -30,7 +30,7 @@
 
  </head>
 
-<body class="freedom" >
+<body class="freedom"style="background-color:[COLOR_A9]" >
 <div id="col1" class="spaces">
 [BLOCK SPACES]
 <div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="copy" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>

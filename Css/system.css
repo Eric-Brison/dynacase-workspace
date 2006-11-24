@@ -252,3 +252,6 @@ TABLE.tfldlist TD {
   border-style:inherit;
   border-width:inherit;
 }
+DIV.folders SPAN {
+  cursor:default;
+}

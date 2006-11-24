@@ -32,20 +32,25 @@ private function getProfilGroupName() {
    * set profil to itself : computed with admin prilege
    */
 function postCreated() {
-  $ref=$this->getValue("WSP_REF");
+  if ($this->revision > 0) return;
+  $ref=unaccent($this->title);
+  $ref=ereg_replace("[[:punct:]]","",$ref);
+  $ref=strtolower(str_replace(" ","_",$ref));
+  $this->setValue("WSP_REF",$ref);
+  $this->modify();
   if ($ref != "") {
     $gv=createDoc($this->dbaccess,"IGROUP",false);
     $ge=createDoc($this->dbaccess,"IGROUP",false);
     
     $gv->setValue("us_login","gv.".$ref);
-    $gv->setValue("grp_name","gv.".$ref);
-    $gv->setValue("grp_role",sprintf(_("Group of users that can view files in %s space"),$this->title));
+    $gv->setValue("grp_name",sprintf(_("%s readers"),$this->title));
+    $gv->setValue("grp_role",sprintf(_("Group of users that can view files in [ADOC %d] space"),$this->id));
     $gvname=$this->getViewGroupName();
     $gv->name=$gvname;
 
     $ge->setValue("us_login","ge.".$ref);
-    $ge->setValue("grp_name","ge.".$ref);
-    $ge->setValue("grp_role",sprintf(_("Group of users that can edit files in %s space"),$this->title));
+    $ge->setValue("grp_name",sprintf(_("%s writers"),$this->title));
+    $ge->setValue("grp_role",sprintf(_("Group of users that can edit files in [ADOC %d] space"),$this->id));
     $gename=$this->getEditGroupName();
     $ge->name=$gename;
 
@@ -69,12 +74,12 @@ function postCreated() {
       // create 2 profil
       $pdoc=createDoc($this->dbaccess,"PDOC",false);
       $pdoc->setValue("ba_title",sprintf(_("%s files"),$ref));
-      $pdoc->setValue("prf_desc",sprintf(_("default profile for %s - %s - space files"),$this->title,$ref));
+      $pdoc->setValue("prf_desc",sprintf(_("default profile for [ADOC %d] - %s - space files"),$this->id,$ref));
       $err=$pdoc->Add();
       if ($err == "") {
 	$pfld=createDoc($this->dbaccess,"PDIR",false);
 	$pfld->setValue("ba_title",sprintf(_("%s directories"),$ref));
-	$pfld->setValue("prf_desc",sprintf(_("default profile for %s - %s - space directories"),$this->title,$ref));
+	$pfld->setValue("prf_desc",sprintf(_("default profile for [ADOC %d] - %s - space directories"),$this->id,$ref));
 	$err=$pfld->Add();
       }
       if ($err == "") {
@@ -114,7 +119,7 @@ function postCreated() {
   // create this own profil
   $pspace=createDoc($this->dbaccess,"PDIR",false);
   $pspace->setValue("ba_title",sprintf(_("%s workspace profile"),$ref));
-  $pspace->setValue("prf_desc",sprintf(_("workspace profile for %s - %s - space files"),$this->title,$ref));
+  $pspace->setValue("prf_desc",sprintf(_("workspace profile for [ADOC %d] - %s - space files"),$this->id,$ref));
   $pspace->setValue("dpdoc_famid",$this->fromid);
   $pspace->setValue("dpdoc_fam",$this->getTitle($this->fromid));
   $err=$pspace->Add();
@@ -139,7 +144,7 @@ function postCreated() {
   
   $pigroup=createDoc($this->dbaccess,"PDIR",false);
   $pigroup->setValue("ba_title",sprintf(_("%s group profile"),$ref));
-  $pigroup->setValue("prf_desc",sprintf(_("intranet group profile for %s - %s - space files"),$this->title,$ref));
+  $pigroup->setValue("prf_desc",sprintf(_("intranet group profile for [ADOC %d] - %s - space files"),$this->id,$ref));
   $pigroup->name=$this->getProfilGroupName();
   $err=$pigroup->Add();
   if ($err == "") {
