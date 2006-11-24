@@ -40,15 +40,15 @@ TR.modified {
 [BLOCK MEMBERS]
 <tr><td>[name]</td><td><input type="hidden" name="uchange[[iduser]]" value="nochange">
               <select onchange="ws_changeUProf(event,this,'[iduser]')" name="uprof[[iduser]]">
-                 <option [viewselected] value="view">[TEXT:reader]</option>
                  <option [editselected] value="edit">[TEXT:redactor]</option>
+                 <option [viewselected] value="view">[TEXT:reader]</option>
               </select>
               <input type="image" align="absbottom" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.form['uchange[[iduser]]'].value='deleted';this.parentNode.parentNode.style.display='none';return false"></td></tr>
 [ENDBLOCK MEMBERS]
 <tr id="trtemplate" class="modified" style="display:none;"><td>jsuname</td><td><input type="hidden" name="uchange[jsuid]" value="new">
               <select  name="uprof[jsuid]">
-                 <option selected value="view">[TEXT:reader]</option>
-                 <option value="edit">[TEXT:redactor]</option>
+                 <option selected value="edit">[TEXT:redactor]</option>
+                 <option value="view">[TEXT:reader]</option>
               </select>
               <img align="absbottom" style="cursor:pointer" src="[IMG:b_ministop.png]" title="[TEXT:suppress member]" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)" ></td></tr>
 

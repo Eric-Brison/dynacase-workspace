@@ -2,7 +2,17 @@
 
 function ws_searchUsers(event,uname,where) {
   var corestandurl=window.location.pathname+'?sole=Y&';
+  enableSynchro();
+
   requestUrlSend(where,corestandurl+'app=WORKSPACE&action=WS_SEARCH&famid=IUSER&key='+uname+'&noids='+ws_implodeInputKeyValues('uchange'))
+    disableSynchro();
+  var n=where.getElementsByTagName('div').length;
+  if (n==1) {
+    var ld=where.getElementsByTagName('div');
+    var d=ld[0];
+    d.onclick.apply(d,[event]);
+    
+  }
 }
 
 function ws_addUser(event,o,uid,uname) {
@@ -20,6 +30,8 @@ function ws_addUser(event,o,uid,uname) {
     ntable.appendChild(ntr);
     if (o) o.style.display='none';
     //    alert(ntr.innerHTML);
+    document.getElementById('ukey').value='';
+    document.getElementById('ukey').focus();
     
   }
 }
