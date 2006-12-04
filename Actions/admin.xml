@@ -70,7 +70,7 @@ function createspace(event,o) {
 <br><b>[TEXT:Create new space]</b></div> 
 [BLOCK SPACES]
 <div class="dspaces" onclick="selectspace(event,this,'[id]')">
-<div class="ddspaces"><img  src="Images/[icon]">[title]</div>
+<div class="ddspaces"><img  src="[ICON]">[title]</div>
 <br>&nbsp;[wsp_admin]</div> 
 [ENDBLOCK SPACES]
 <br style="clear:both">
