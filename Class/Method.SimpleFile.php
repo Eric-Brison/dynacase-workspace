@@ -444,10 +444,10 @@ function postCreated() {
   $html=getHttpVars("wscreatefile");
 
   if (($this->getValue("sfi_file")=="")  && $html) {
-    $this->SetTextValueInFile("sfi_file",$html,$this->getValue("sfi_titlew").".html");
-    $this->modify();
+    $err=$this->SetTextValueInFile("sfi_file",$html,$this->getValue("sfi_titlew").".html");
+    if ($err=="") $err=$this->modify();
   }
-  
+  return $err;
 }
 
 /**
