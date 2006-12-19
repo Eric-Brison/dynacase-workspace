@@ -222,7 +222,7 @@ function reallybegindrag(event) {
 
 var DEBUG=0;
 function overdragft(event,o) {  
-  if (DRAGGING) {
+  if (DRAGGING && DRAGDOC) {
     var e = (event.target) ? event.target : ((event.srcElement) ? event.srcElement : null);
 
     if (IEPARASITE == o) return;
@@ -406,7 +406,7 @@ function enddrag(event) {
   MICON.style.display='none';
   sendEvent(e,"mouseup");
   
-  
+  DRAGDOC=false;
   DRAGNOMOVE=false;
   DRAGGING=false;
   PECTRL=false;
@@ -798,4 +798,54 @@ function cathtml(o1,o2) {
 function string2Array(string) {
   eval('var result = ' + string);
   return result;
+}
+// ------------- RESIZE DIV ------------
+var COL3H1=-1;
+function col3dragbegin(event) {
+  if (! event) event=window.event;
+  if (! DRAGGING) {
+   
+    var cacheres=document.getElementById('cacheresume');
+    var res=document.getElementById('resume');
+    document.onmousemove=col3dragmove ;
+  
+    document.onmouseup=col3dragend ;      
+    stopPropagation(event);
+    DRAGGING=true;
+    col3dragmove(event);
+    cacheres.style.top=res.style.top;
+    cacheres.style.width=res.style.width;
+    cacheres.style.left=res.style.left;
+    cacheres.style.height=res.style.height;
+    cacheres.style.display='';
+  }
+  return false;  
+}
+
+function col3dragmove(event) {
+  if (DRAGGING) {
+    var bscroll3=document.getElementById('bscroll3');
+    var delta=2;
+    if (! event) event=window.event;
+    GetXY(event);
+    delta=2;
+    bscroll3.style.top=Ypos-delta;
+    col3resize(Ypos-delta);   
+    stopPropagation(event);
+    return false;
+  }
+}
+
+function col3dragend(event) {  
+  if (! event) event=window.event;
+  document.onmousemove= "";
+  document.onmouseup="" ;
+  GetXY(event);
+  COL3H1=Ypos-2;
+  redisplaywsdiv(event);
+  DRAGGING=false;
+  unglobalcursor();
+  var cacheres=document.getElementById('cacheresume');
+    cacheres.style.display='none';
+  setparamu('WORKSPACE','WS_COL3H1',COL3H1);
 }

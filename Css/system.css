@@ -255,3 +255,7 @@ TABLE.tfldlist TD {
 DIV.folders SPAN {
   cursor:default;
 }
+.bvresize {
+  position:absolute;
+  cursor:n-resize;
+}

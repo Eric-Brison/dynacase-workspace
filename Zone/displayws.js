@@ -12,6 +12,7 @@ function redisplaywsdiv(event) {
   var dtrash=document.getElementById('itrash');
   var dsecondul=document.getElementById('secondul');
   var dsecondview=document.getElementById('secondview');
+  var bscroll3=document.getElementById('bscroll3');
   var ww=getFrameWidth();
   var wh=getFrameHeight();
   var dx=0;
@@ -79,10 +80,7 @@ function redisplaywsdiv(event) {
   dcol3.style.left=dx;
   dcol3.style.height=wh-4; // 2 x border of 3px
 
-  dfldlist.style.width=ww-283;
-  dfldlist.style.top='0px';
-  dfldlist.style.left=0;
-  dfldlist.style.height=parseInt((wh-10)/2)-15; 
+  
 
   if (dsecondview.style.display=='none') {
     // adapt size of clipboard in case of resize
@@ -97,17 +95,47 @@ function redisplaywsdiv(event) {
 
 
   ch=0; if (isIE) ch=6;
+
+
+  dfldlist.style.width=ww-283;
+  dfldlist.style.top='0px';
+  dfldlist.style.left=0;
+  if (COL3H1 && (COL3H1>0)) ch=COL3H1;
+  else ch=parseInt((wh-10)/2)-15;
+  dfldlist.style.height=ch; 
+
+  ch+=8;
+  if (isIE) ch-=4;
+  bscroll3.style.width=ww-283;
+  bscroll3.style.height=8;
+  bscroll3.style.top=ch;
+  bscroll3.style.left=0;
+
   if (isIE) dresume.style.borderStyle='none';
   dresume.style.width=ww-283;
-  dresume.style.top=parseInt((wh-10)/2)-7-ch; 
+  dresume.style.top=ch; 
   dresume.style.left=0;
-  ch=0; if (isIE) ch=6;
-  dresume.style.height=parseInt((wh-10)/2)+8+ch;
+  
+  dresume.style.height=wh-ch-20;
 
   dtrash.style.position='absolute';
   dtrash.style.top=wh-100;
   
 }
+// h new h size of dfldlist
+function col3resize(h) {
+  var dfldlist=document.getElementById('fldlist');
+  var dresume=document.getElementById('resume');
+  var wh=getFrameHeight();
+  var delta=6;
+  h-=10;
+
+  dfldlist.style.height=h;
+
+  dresume.style.top=h+10+4+delta; 
+  dresume.style.height=parseInt(wh-h-30-delta);
+}
+
 // onlyview : if true display always not undisplays
 function clipviewornot(event,onlyview) {
   var dsecondul=document.getElementById('secondview');
