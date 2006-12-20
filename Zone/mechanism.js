@@ -800,6 +800,7 @@ function string2Array(string) {
   return result;
 }
 // ------------- RESIZE DIV ------------
+//----- COL3 ----------
 var COL3H1=-1;
 function col3dragbegin(event) {
   if (! event) event=window.event;
@@ -830,7 +831,7 @@ function col3dragmove(event) {
     GetXY(event);
     delta=2;
     bscroll3.style.top=Ypos-delta;
-    col3resize(Ypos-delta);   
+    //col3resize(Ypos-delta);   
     stopPropagation(event);
     return false;
   }
@@ -848,4 +849,96 @@ function col3dragend(event) {
   var cacheres=document.getElementById('cacheresume');
     cacheres.style.display='none';
   setparamu('WORKSPACE','WS_COL3H1',COL3H1);
+}
+
+//----- COL2 ----------
+var COL2H1=-1;
+function col2dragbegin(event) {
+  if (! event) event=window.event;
+  if (! DRAGGING) {
+   
+    document.onmousemove=col2dragmove ;  
+    document.onmouseup=col2dragend ;      
+    stopPropagation(event);
+    DRAGGING=true;
+    col2dragmove(event);
+    
+  }
+  return false;  
+}
+
+function col2dragmove(event) {
+  if (DRAGGING) {
+    var bscroll2=document.getElementById('bscroll2');
+    var delta=2;
+    if (! event) event=window.event;
+    GetXY(event);
+    delta=2;
+    bscroll2.style.top=Ypos-delta;
+    //col2resize(Ypos-delta);   
+    stopPropagation(event);
+    return false;
+  }
+}
+
+function col2dragend(event) {  
+  if (! event) event=window.event;
+  document.onmousemove= "";
+  document.onmouseup="" ;
+  GetXY(event);
+  COL2H1=Ypos-2;
+  redisplaywsdiv(event);
+  DRAGGING=false;
+  unglobalcursor();
+  setparamu('WORKSPACE','WS_COL2H1',COL2H1);
+}
+//----- ROW2 ----------
+var ROW2H1=-1;
+function row2dragbegin(event) {
+  if (! event) event=window.event;
+  if (! DRAGGING) {
+   
+    var cacheres=document.getElementById('cacheresume');
+    var res=document.getElementById('resume');
+    document.onmousemove=row2dragmove ;
+  
+    document.onmouseup=row2dragend ;      
+    stopPropagation(event);
+    DRAGGING=true;
+    row2dragmove(event);
+    cacheres.style.top=res.style.top;
+    cacheres.style.width=res.style.width;
+    cacheres.style.left=res.style.left;
+    cacheres.style.height=res.style.height;
+    cacheres.style.display='';
+  }
+  return false;  
+}
+
+function row2dragmove(event) {
+  if (DRAGGING) {
+    var bscroll1=document.getElementById('bscroll1');
+    var delta=2;
+    if (! event) event=window.event;
+    GetXY(event);
+    delta=2;
+    bscroll1.style.left=Xpos-delta;
+    //row2resize(Xpos-delta);   
+    stopPropagation(event);
+    return false;
+  }
+}
+
+function row2dragend(event) {  
+  if (! event) event=window.event;
+  document.onmousemove= "";
+  document.onmouseup="" ;
+  GetXY(event);
+  ROW2W1=Xpos-2;
+  redisplaywsdiv(event);
+  DRAGGING=false;
+  unglobalcursor();
+  var cacheres=document.getElementById('cacheresume');
+    cacheres.style.display='none';
+  setparamu('WORKSPACE','WS_ROW2W1',ROW2W1);
 }

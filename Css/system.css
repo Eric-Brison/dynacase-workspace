@@ -258,4 +258,10 @@ DIV.folders SPAN {
 .bvresize {
   position:absolute;
   cursor:n-resize;
+  z-index:10;
+}
+.bhresize {
+  position:absolute;
+  cursor:e-resize;
+  z-index:10;
 }
