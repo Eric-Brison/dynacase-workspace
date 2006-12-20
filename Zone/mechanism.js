@@ -826,6 +826,7 @@ function col3dragbegin(event) {
 function col3dragmove(event) {
   if (DRAGGING) {
     var bscroll3=document.getElementById('bscroll3');
+    bscroll3.className='viewvscroll';
     var delta=2;
     if (! event) event=window.event;
     GetXY(event);
@@ -839,6 +840,8 @@ function col3dragmove(event) {
 
 function col3dragend(event) {  
   if (! event) event=window.event;
+  var bscroll3=document.getElementById('bscroll3');
+  bscroll3.className='bvresize';
   document.onmousemove= "";
   document.onmouseup="" ;
   GetXY(event);
@@ -846,8 +849,9 @@ function col3dragend(event) {
   redisplaywsdiv(event);
   DRAGGING=false;
   unglobalcursor();
+
   var cacheres=document.getElementById('cacheresume');
-    cacheres.style.display='none';
+  cacheres.style.display='none';
   setparamu('WORKSPACE','WS_COL3H1',COL3H1);
 }
 
@@ -857,6 +861,8 @@ function col2dragbegin(event) {
   if (! event) event=window.event;
   if (! DRAGGING) {
    
+    var bscroll2=document.getElementById('bscroll2');
+    bscroll2.className='viewvscroll';
     document.onmousemove=col2dragmove ;  
     document.onmouseup=col2dragend ;      
     stopPropagation(event);
@@ -883,6 +889,8 @@ function col2dragmove(event) {
 
 function col2dragend(event) {  
   if (! event) event=window.event;
+  var bscroll2=document.getElementById('bscroll2');
+  bscroll2.className='bvresize';
   document.onmousemove= "";
   document.onmouseup="" ;
   GetXY(event);
@@ -898,6 +906,8 @@ function row2dragbegin(event) {
   if (! event) event=window.event;
   if (! DRAGGING) {
    
+  var bscroll1=document.getElementById('bscroll1');
+  bscroll1.className='viewhscroll';
     var cacheres=document.getElementById('cacheresume');
     var res=document.getElementById('resume');
     document.onmousemove=row2dragmove ;
@@ -931,6 +941,8 @@ function row2dragmove(event) {
 
 function row2dragend(event) {  
   if (! event) event=window.event;
+  var bscroll1=document.getElementById('bscroll1');
+  bscroll1.className='bhresize';
   document.onmousemove= "";
   document.onmouseup="" ;
   GetXY(event);

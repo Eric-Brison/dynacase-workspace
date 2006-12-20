@@ -259,9 +259,39 @@ DIV.folders SPAN {
   position:absolute;
   cursor:n-resize;
   z-index:10;
+  padding:0px;
+  margin:0px;
+  background-color:transparent;
+  font-size:0px;
+  border:none;
 }
 .bhresize {
   position:absolute;
   cursor:e-resize;
   z-index:10;
+  background-color:transparent;
+  border:none;
+}
+
+
+.viewvscroll {
+  position:absolute;
+  cursor:n-resize;
+  font-size:0px;
+  z-index:10;
+  padding:0px;
+  margin:0px;
+  display:inline;
+  border:none;
+  background-color:[COLOR_B6];
+}
+.viewhscroll {
+  position:absolute;
+  cursor:e-resize;
+  padding:0px;
+  margin:0px;
+  display:inline;
+  z-index:10;
+  border:none;
+  background-color:[COLOR_B6];
 }

@@ -36,23 +36,23 @@ function redisplaywsdiv(event) {
   drule2.style.left=dx;
   drule2.style.height=wh-10; // 2 x border of 3px
 
-  dx+=7; if (isIE) dx-=0;
-  dcol2.style.width='200px';
+  if (COL2H1 && (COL2H1>0)) ch=COL2H1;
+  else ch=wh-250;
+  if (ROW2W1 && (ROW2W1>0)) {
+    if (ROW2W1<55) ROW2W1=55;
+    wcol2=ROW2W1-parseInt(dcol1.style.width);
+    wcol3=ww-ROW2W1-30;
+  } else {
+    wcol2=198;
+    wcol3=ww-280;
+  }
+  if (wcol2 < 50) wcol2=50;
+  dx+=7; if (isIE) dx-=7;
+  dcol2.style.width=wcol2+2;
   dcol2.style.top='0px';
   dcol2.style.left=dx;
   dcol2.style.height=wh-4; // no border
 
-
-
-  if (COL2H1 && (COL2H1>0)) ch=COL2H1;
-  else ch=wh-250;
-  if (ROW2W1 && (ROW2W1>0)) {
-    wcol2=ROW2W1-parseInt(dcol1.style.width);
-    wcol3=ww-ROW2W1-25;
-  } else {
-    wcol2='198px';
-    wcol3=ww-280;
-  }
   dfolders.style.width=wcol2;
   dfolders.style.top=0;
   dfolders.style.left=0;
@@ -60,13 +60,14 @@ function redisplaywsdiv(event) {
 
   if (isIE) ch -=3;
 
-  bscroll2.style.width=wcol2-5;
-  bscroll2.style.height=8;
-  bscroll2.style.top=ch-2;
+  bscroll2.style.width=wcol2;
+  bscroll2.style.height=4;
+  bscroll2.style.top=ch+6;
   bscroll2.style.left=0;
 
-  dsearches.style.width=wcol2;
-  dsearches.style.top=ch+4;
+  ch+=8;
+  dsearches.style.width=wcol2;  
+  dsearches.style.top=ch+4; 
   dsearches.style.left=(isIE)?1:2;
   dsearches.style.height='30px';
 
@@ -94,13 +95,15 @@ function redisplaywsdiv(event) {
   dsecondview.style.height=dclipboard.style.height;*/
 
   dx+=202; 
-  if (ROW2W1 && (ROW2W1>0)) dx=ROW2W1+13;
-  if (isIE) dx-=0;
+  if (ROW2W1 && (ROW2W1>0)) dx=ROW2W1+16;
 
-  bscroll1.style.width=8;
+  if (dx < 50) dx=50;
+  if (isIE) dx-=12;
+
+  bscroll1.style.width=4;
   bscroll1.style.height=wh-10;
   bscroll1.style.top=0;
-  bscroll1.style.left=dx-4;
+  bscroll1.style.left=dx;
 
   if (isIE) wcol3-=14;
   dcol3.style.width=wcol3
@@ -135,7 +138,7 @@ function redisplaywsdiv(event) {
   ch+=8;
   if (isIE) ch-=4;
   bscroll3.style.width=wcol3+3;
-  bscroll3.style.height=8;
+  bscroll3.style.height=4;
   bscroll3.style.top=ch;
   bscroll3.style.left=0;
 
