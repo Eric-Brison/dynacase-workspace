@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.19 2006/11/13 16:01:26 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.20 2006/12/21 18:06:28 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -63,8 +63,9 @@ function ws_folderlist(&$action) {
     // search
     if (seems_utf8($key)) $keyword=utf8_decode($key);
     else $keyword=$key;
+        
     $doc=createTmpDoc($dbaccess,5);
-    $doc->title=sprintf(_("search %s"),$key);
+    $doc->title=sprintf(_("search %s"),$keyword);
     $doc->Add();
     $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
 

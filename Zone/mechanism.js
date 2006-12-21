@@ -100,7 +100,7 @@ function expandToptree(o,id,ulid) {
   }
   var r=viewfoldertree(null,id,ulid);
   if (r==2) {
-    ulid.innerHTML='<table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE6) correctOnePNG(this)" src="Images/b_wait.png"></tr></td></table>';
+    ulid.innerHTML='<table style="width:100%;height:80%"><tr><td align="center"><img style="width:30px" src="Images/loading.gif"></tr></td></table>';    
   }
 }
 

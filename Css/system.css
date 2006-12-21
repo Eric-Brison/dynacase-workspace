@@ -238,10 +238,13 @@ TABLE.tfldlist IMG.icon{
   height:[SIZE_IMG-X-SMALL];
 }
 TABLE.tfldlist TH IMG{
-  width:[SIZE_IMG-X-SMALL];
-  height:[SIZE_IMG-X-SMALL];
+  width:20px;
+  height:20px;
 }
-
+DIV.folders IMG.button {
+  width:20px;
+  height:20px;	
+}
 TABLE.tfldlist TH {
   cursor:pointer;
 }
