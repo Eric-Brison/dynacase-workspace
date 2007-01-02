@@ -2,17 +2,14 @@ var WEDITHTML=null; // window of HTML editor
 
 function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById('iinline');
-  var dview=getElementsByNameTag(document,toview,'div');
-  var dcache=getElementsByNameTag(document,tocache,'div');
+  var ds=document.getElementById('summary');
+  var ogid=document.getElementById('ogident');
+  var ogin=document.getElementById('oginline');
 
   var i;
 
-  for (i=0;i<dcache.length;i++) {
-    dcache[i].style.display='none';
-  }
-  for (i=0;i<dview.length;i++) {
-    dview[i].style.display='';
-  }
+  ds.style.display='none';
+
   
   if (ov ) {
     if (toview=='dview') ov.style.display='';
@@ -27,8 +24,21 @@ function viewinline(event,url,toview,tocache) {
 
     resizeIurl(ov.id);
   }
+  ogid.className='';
+  ogin.className='active';
 }
 
+function unviewinline(event) {
+  var ov=document.getElementById('iinline');
+  var ds=document.getElementById('summary');
+  var ogid=document.getElementById('ogident');
+  var ogin=document.getElementById('oginline');
+  ov.style.display='none';
+  ds.style.display='';
+  ogid.className='active';
+  ogin.className='';
+  
+}
 function wsreload(event,toreload) {
   var ov=window.winline;
   if (ov ) {
@@ -40,11 +50,11 @@ var eiurl=document.getElementById(iurl);
 var xy=getAnchorPosition(iurl);
 var hiurl=getFrameHeight();
 var wiurl=getFrameWidth();
-var nh=hiurl - xy.y - 22; // offset for scrollbar
+var nh=hiurl - xy.y - 30; // offset for scrollbar
 // alert(xy.y+'--'+hiurl+'--'+nh);
 
 eiurl.height=nh;
-eiurl.width=wiurl-10;
+eiurl.width=wiurl-50;
 }
 
 function receiptActionNotification(code,arg) {
@@ -151,4 +161,29 @@ function renameFile(event,docid,attrid,newname) {
   requestUrlSend(null,corestandurl+'app=WORKSPACE&action=WS_RENAMEFILE&id='+docid+'&newname='+newname);
   disableSynchro();
   cancelattr(event,docid,attrid);
+}
+function viewthumbnail() {
+  var dt=document.getElementById('dthumbnail');
+  var da=document.getElementById('dabstract');
+  var ot=document.getElementById('ogthumbnail');
+  var oa=document.getElementById('ogabstract');
+  if (da && dt) {
+    dt.style.display='';
+    da.style.display='none';
+    oa.className='';
+    ot.className='active';
+  }
+}
+function viewabstract() {
+  var dt=document.getElementById('dthumbnail');
+  var da=document.getElementById('dabstract');
+  var ot=document.getElementById('ogthumbnail');
+  var oa=document.getElementById('ogabstract');
+  if (da && dt) {
+    dt.style.display='none';
+    da.style.display='';
+    oa.className='active';
+    ot.className='';
+    
+  }
 }

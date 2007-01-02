@@ -1,22 +1,17 @@
 html {
-  background-color:#e3e3e3;
+  background-color:[COLOR_A9];
 }
 body {
-  background-color:#fff;
-  font-size:69%;
-  font-family: verdana, sans-serif;
+  background-color:[COLOR_WHITE];  
   padding:10px;
   margin:10px;
-  border:1px solid #a3a3a3;
+  border:1px solid [COLOR_A5];
 }
 
 a, a:visited, a:hover {
   text-decoration:none;
 }
-input {
-  background-color:#ffdd3f;
-  border:1px solid #545454;
-}
+
 div, ul, li {
   padding:0;
   margin:0;
@@ -36,222 +31,157 @@ img {
 DIV.simpletitle TD,DIV.simpletitle TR {
   background-color:transparent;
 }
-#tabsum ul {
+
+div.summary {
+  margin-top:10px;
+  padding:0px;  
   clear:both;
-  height:1.8em;
-  float:left;
 }
-#tabsum li {
-  float:left; 
-  list-style-type : none;
-}
-#tabsum li a, #tabsum li a:hover, #tabsum li a:visited {
-  background-color:#d3d3d3;
-  color:#545454;
-  padding:3px 6px 3px 6px;
-  border-width:1px;
-  border-style:solid;
-  border-color: #f3f3f3 #c3c3c3 #545454 #f3f3f3;
-  text-transform:lowercase;
-  -moz-border-radius:0px 10px 0px 0px;
-}
-#tabsum li a:hover {
-  color:#fff;
-  background-color:#a3a3a3;
-  border-width:1px;
-  border-style:solid;
-  border-color: #545454 #c3c3c3 #c3c3c3 #545454;
-}
-#tabsum li a.active {
-  color:#fff;
-  background-color:#a3a3a3;
-  border-width:1px;
-  border-style:solid;
-  border-color: #545454 #c3c3c3 #c3c3c3 #545454;
-}
-#summary {
-  padding:5px;
-  border-top:1px solid #545454;  
-}
-#summary div {
+div.summary div {
   padding:5px;
   text-align:justify;
 }
-#summary .lcol {
+div.summary .lcol {
   display:inline;
   width:48%;
   float:left;
 }
-#summary .rcol {
+div.summary .rcol {
   display:inline;
   width:48%;
   float:left;
 }
-#doccontent  {
-  clear:both;
-  padding:  5px;
-  text-align:justify;
-  border-top:1px solid #545454;  
-}
+
 #menu ul {
-  height:1.8em;
+  /*height:1.3em;*/
+  font-size:80%;
 }
 #menu li {
   float:right; 
   list-style-type : none;
 }
 #menu li a, #menu li a:hover, #menu li a:visited {
-  text-transform:lowercase;
  
   padding:1px 3px 1px 3px;
-  border-left:1px solid #c3c3c3;
-/*   background-color:#d3d3d3;
-  border-width:1px;
-  border-style:solid;
-  border-color: #f3f3f3 #c3c3c3 #c3c3c3 #f3f3f3;
- */}
+  border-left:1px solid [COLOR_A6];
+}
 #menu li a:hover {
   text-decoration:underline;
 }
-#tabrub ul {
+
+div.tabs ul {
   clear:both;
+  font-size:80%;
 }
-#tabrub li {
+div.tabs li {
   float:left; 
   list-style-type : none;
 }
-#tabrub li a, #tabrub li a:hover, #tabrub li a:visited {
- clear:both;
- float:left;
- font-size:85%;
- font-style:italic;
- text-transform:lowercase;
- color:#fff;
- background-color:#c3c3c3; 
- padding:1px 5px;
- margin:0;
- border-width:1px;
- border-style:solid;
- border-color: #fff;
-}
-#tabrub li a:hover {
- color:#000;
- background-color:#a3a3a3; 
- border-color: #000;
-}
-#tabrub li a.active {
- color:#000;
- background-color:#a3a3a3; 
- border-color: #fff;
-}
-#tabs ul {
-  clear:both;
-}
-#tabs li {
-  float:left; 
-  list-style-type : none;
-}
-#tabs li a, #tabs li a:hover, #tabs li a:visited {
-  background-color:#dedede;
-  color:#fff;
+div.tabs li a, div.tabs li a:hover  {
+  background-color:[COLOR_A8];
+  color:[COLOR_A2];
   padding:1px 6px 1px 6px;
-  border-left:1px solid #fff;
-  text-transform:lowercase;
-  border-color:#C3C3C3 #C3C3C3 #545454 #C3C3C3;
-  border-style:solid;
+  border-left:1px solid [COLOR_WHITE];
+  border-color:[COLOR_A6] [COLOR_A6] [COLOR_A8] [COLOR_A6] ;
+  border-style:solid solid solid solid;
   border-width:1px;
   -moz-border-radius:0px 10px 0px 0px;
 }
-#tabs li a:hover {
-  background-color:#545454;
-  border-left:1px solid #A3A3A3;
+div.tabs li a:hover {
+  background-color:[COLOR_C8];
+  border-left:1px solid [COLOR_A5];
 }
-#tabs li a.active {
-  background-color:#f3f3f3;
-  color:#000;
-  border-color:#545454 #545454 #f3f3f3 #545454;
+div.tabs li a.active, li a.active {
+  background-color:[COLOR_A9];
+  color:[COLOR_BLACK];
+  border-color:[COLOR_A3] [COLOR_A3] [COLOR_A9] [COLOR_A3];
   border-style:solid;
   border-width:1px;
 }
-#tabs #content {
+div.tabs div.content {
   clear:both;
-  background-color:#f3f3f3;
-  border:1px solid #545454;
+  background-color:[COLOR_A9];
+  border:1px solid [COLOR_A3];
   padding:5px;
   text-align:justify;
 }
-#srub-border {
-  border:1px solid #e3e3e3;
+div.srub-border {
+  border:1px solid [COLOR_A7];
   padding:2px;
   margin:0 0 5px 0;
 }
-#srub {
+div.srub {
  margin:0;
   padding:2px;
- background-color:#e3e3e3; 
+ background-color:[COLOR_A9]; 
 }
 span.version {
   font-weight:bold;
   font-size:120%;
 }
-#rub {
- padding:0;
- margin:0;
-}
-#rub .simpletitle {
+
+div.simpletitle {
  font-size:90%;
  font-style:italic;
- color:#888888;
  text-transform:lowercase;
  padding:0;
  margin:0;
- border-bottom:1px solid #888888;
+ border-bottom:1px solid [COLOR_A4];
 }
-#rub #content {
-  padding:0 0 0 5px;
-  margin:0;
+
+
+
+DIV.resume * {
+  font-family:arial;
 }
-#rubtitle {
- clear:both;
- float:left;
- font-size:85%;
- font-style:italic;
- text-transform:lowercase;
- color:#fff;
- background-color:#c3c3c3; 
- padding:1px 5px;
- margin:0;
+DIV.resume TD {
+  vertical-align:top;
 }
-#rubcontent {
- clear:both;
-  margin: -5px 0px 5px 10px;
-  border:1px solid #dedede;
+DIV.resume P {
+  margin:0px;
+}
+DIV.resume UL {
+  margin-top:0px;
+  margin-bottom:0px;
+  padding-top:0px;
+  padding-bottom:0px;
+  
+}
+DIV.resume LI {
+  margin:0px;
+  list-style-image:url('Images/bullet10.png');
+}
+DIV.attrvalue {
+  cursor:text;
   text-align:justify;
 }
-#rubcontent:hover {
- background-color:#efefef; 
+DIV.attrempty {
+  cursor:text;
+  text-align:justify;
+  color:[COLOR_A5];
 }
+
 .zfloat {
   padding:20px;
-  background-color:#efefef;
+  background-color:[COLOR_A8];
   position:absolute;
-  border:1px solid #e3e3e3;
+  border:1px solid [COLOR_A7];
   margin:10px;
 }
 .zfloat .content {
   padding:20px;
-  background-color:#fff;
-  border:1px solid #c3c3c3;
+  background-color:[COLOR_WHITE];
+  border:1px solid [COLOR_A6];
 }
 #form-bzone {
   text-align:right;
-  border-top:1px solid #545454;
+  border-top:1px solid [COLOR_A8];
   margin-top:5px;
   padding:5px 0px;
 }
 #form-bzone img {
   margin:0px 0px 0px 10px;
-  border:1px solid #c3c3c3;
+  border:1px solid [COLOR_A6];
 }
 #zone-msg {
   background-color:#E2FFEB;
@@ -283,7 +213,7 @@ span.version {
   background-color:#efefef; 
 }
 #zcomment .date {
-  color:#545454; 
+  color:[COLOR_A8]; 
 }
 #zcomment #comment .content {
   margin : 5px 0 0 5px;
