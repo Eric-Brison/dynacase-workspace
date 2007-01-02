@@ -1,16 +1,14 @@
 html {
   background-color:[COLOR_A9];
 }
-body {
+body, body.freedom {
   background-color:[COLOR_WHITE];  
   padding:10px;
   margin:10px;
   border:1px solid [COLOR_A5];
 }
 
-a, a:visited, a:hover {
-  text-decoration:none;
-}
+
 
 div, ul, li {
   padding:0;
@@ -52,6 +50,8 @@ div.summary .rcol {
   float:left;
 }
 
+
+
 #menu ul {
   /*height:1.3em;*/
   font-size:80%;
@@ -60,13 +60,10 @@ div.summary .rcol {
   float:right; 
   list-style-type : none;
 }
-#menu li a, #menu li a:hover, #menu li a:visited {
- 
+#menu li a,  #menu li a:visited {
+  text-decoration:none;
   padding:1px 3px 1px 3px;
   border-left:1px solid [COLOR_A6];
-}
-#menu li a:hover {
-  text-decoration:underline;
 }
 
 div.tabs ul {
@@ -82,6 +79,7 @@ div.tabs li a, div.tabs li a:hover  {
   color:[COLOR_A2];
   padding:1px 6px 1px 6px;
   border-left:1px solid [COLOR_WHITE];
+  text-decoration:none;
   border-color:[COLOR_A6] [COLOR_A6] [COLOR_A8] [COLOR_A6] ;
   border-style:solid solid solid solid;
   border-width:1px;
@@ -90,6 +88,7 @@ div.tabs li a, div.tabs li a:hover  {
 div.tabs li a:hover {
   background-color:[COLOR_C8];
   border-left:1px solid [COLOR_A5];
+  text-decoration:none;
 }
 div.tabs li a.active, li a.active {
   background-color:[COLOR_A9];
@@ -145,7 +144,6 @@ DIV.resume UL {
   margin-bottom:0px;
   padding-top:0px;
   padding-bottom:0px;
-  
 }
 DIV.resume LI {
   margin:0px;
