@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 <!-- title   -->
 <div class="srub-border" >
   <div class="srub">
@@ -10,7 +21,7 @@
 <div >
 <div class="tabs">
   <ul >
-    <li><a href="#" id="ogident" onclick="unviewinline();" class="active">[TEXT:Identification]</a></li>
+    <li><a href="javascript:void(0)" id="ogident" onclick="unviewinline();" class="active">[TEXT:Identification]</a></li>
 
     [IF isinline]<li><a  id="oginline" href="javascript:void(0)" title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','dview','dmain')">[TEXT:Display]</a></li>[ENDIF isinline]
     
@@ -19,12 +30,12 @@
 
 <div id="menu">
   <ul>
-    <li style="display:none"><a href="#">autres <img src="[IMG:b_down.png]"></a></li>
+    <li style="display:none"><a href="javascript:void(0)">autres <img src="[IMG:b_down.png]"></a></li>
     [IF canedit][IF canedithtml]<li><a style="white-space:nowrap" title="[TEXT:Use internal editor to modify file]" href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITHTMLFILE&id=[ID]')"   >[TEXT:Edit inline]</a></li>[ENDIF canedithtml][ENDIF canedit]
 
 [IF isnotinedition]
     <li><a   href="javascript:void(0)" title="[TEXT:Download file for edit and modify it]" onclick=subwindow(300,500,'editfile','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITMODFILE&id=[ID]')>[TEXT:Modify the file]</a></li>
-    [IF DAV][IF canedit]<li><a style="white-space:nowrap" title="[TEXT:Use external software editor to modify file]" onclick="var sid=getsessionid('[ID]','[vaultid]');this.href='asdav://[FREEDAV_SERVEUR]/freedav/vid-'+sid+'/[ETITLE]'" href="#">[TEXT:Open in editor]</a></li>[ENDIF canedit][ENDIF DAV]
+    [IF DAV][IF canedit]<li><a style="white-space:nowrap" title="[TEXT:Use external software editor to modify file]" onclick="var sid=getsessionid('[ID]','[vaultid]');this.href='asdav://[FREEDAV_SERVEUR]/freedav/vid-'+sid+'/[ETITLE]'" href="javascript:void(0)">[TEXT:Open in editor]</a></li>[ENDIF canedit][ENDIF DAV]
     <li></li>
     <li></li>
   [ENDIF isnotinedition]
@@ -43,8 +54,8 @@
 
 <!-- Summary -->
 <div id="summary" class="summary" >
+<table  width="100%"><tr><td width="50%">
 
-<div class="lcol">
 
 <div class="srub-border">
 <div class="srub">[IF canedit]<a  href="javascript:void(0)" onclick="editattr(event,'[ID]','sfi_version',document.getElementById('sfi_version'))" title="[TEXT:Rename the version]">[ENDIF canedit]<b>[TEXT:Version] : </b>[IF canedit]</a>[ENDIF canedit] 
@@ -60,14 +71,13 @@
 <div class="simpletitle">[IF canedit]<a  onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))" title="Modifier les mots-clefs">[ENDIF canedit]<span>[TEXT:Keywords]&nbsp;</span>[IF canedit]</a>[ENDIF canedit]</div><div class="content"><div id="sfi_keyword" emptytext="[TEXT:No keyword]" [IF canedit]class="attrvalue" name="attrvalue" onclick="editattr(event,'[ID]','sfi_keyword',document.getElementById('sfi_keyword'))"[ENDIF canedit] >[V_SFI_KEYWORD]</div></div>
 <div id="rub"><div class="simpletitle">[TEXT:Contributors]</div><div class="content">[participate]</div></div>
 
-</div>
+</td><td valign="top">
 
-<div class="rcol">
 <div class="tabs">
 <ul>
-<li><a href="#" id="ogthumbnail" onclick="viewthumbnail()" class="active">[TEXT:ImaggePreview]</a></li>
+<li><a href="javascript:void(0)" id="ogthumbnail" onclick="viewthumbnail()" class="active">[TEXT:ImaggePreview]</a></li>
 
-<li><a href="#" id="ogabstract" onclick="viewabstract()">[TEXT:Abstract]</a></li>
+<li><a href="javascript:void(0)" id="ogabstract" onclick="viewabstract()">[TEXT:Abstract]</a></li>
 <li><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N')" target="histo" title="[TEXT:View complete historic]">[TEXT:Historic]</a></li>
 </ul>
 <div class="content" style="clear:both">
@@ -79,11 +89,10 @@
   [IF thumbrecompute][IF canedit]</a>[ENDIF canedit][ENDIF thumbrecompute] </div>
   <div id="dabstract" style="display:none">
      <div id="sfi_description" emptytext="[TEXT:No abstract]" [IF canedit] onclick="editattr(event,'[ID]','sfi_description',document.getElementById('sfi_description'))"[ENDIF canedit] class="attrvalue" name="attrvalue">[V_SFI_DESCRIPTION]</div></div>
-  </div>
-</div>
 </div>
 
-<div style="clear:both; margin:1px"></div>
+</td></tr></table>
+
 </div><!-- EOF Summary -->
 
 

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.20 2006/12/21 18:06:28 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.21 2007/01/03 19:45:06 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -186,8 +186,13 @@ function ws_folderlist(&$action) {
     $action->lay->setBlockData("ACTIONS",$taction);  
   }
   
-  if (count($tc) > 0) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
-  else $action->lay->set("nbdoc",_("0 document"));
+  if (count($tc) > 0) {
+    $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
+    $taction=$action->lay->getBlockData("ACTIONS"); 
+    $taction[]=array("actname"=>"IMGRESIZE",
+		     "actdocid"=>$doc->id);
+    $action->lay->setBlockData("ACTIONS",$taction);  
+  } else $action->lay->set("nbdoc",_("0 document"));
   $action->lay->set("isdynamic",$dynfolder);
   $action->lay->set("isdyn",$dynfolder?"true":"false");
 

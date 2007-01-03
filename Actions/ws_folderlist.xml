@@ -21,7 +21,7 @@
 <tbody class="folder">
 [BLOCK TREE]
 <tr oncontextmenu="viewdetailmenu(event,[id],[docid],this);return false;"  [IFNOT isfld]onclick="viewDoc(event,'[id]',this);" ondblclick="PREVVIEWDOCID=0;viewDoc(event,'[id]',this);"[ENDIF isfld] [IF isfld]onclick="openFolder(event,'[id]');"[ENDIF isfld] onmouseover="overdoc(this)" onmouseout="outdoc(this)" 
-   onmousedown="DRAGNOMOVE=[isdyn];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')"><td><img title="[TEXT:click and drag to move document]"  class="icon" src="[icon]" >
+   onmousedown="DRAGNOMOVE=[isdyn];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')"><td><img title="[TEXT:click and drag to move document]"  class="icon" needresize="1" src="[icon]" >
   [IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td align="right">[mdate]</td><td align="right">[size]</td><td align="left">[mime]</td></tr>
 [ENDBLOCK TREE]  
 </tbody>

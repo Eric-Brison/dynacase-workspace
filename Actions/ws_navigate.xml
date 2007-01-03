@@ -35,7 +35,7 @@ ROW2W1=parseInt('[WS_ROW2W1]');
 <body class="freedom"style="background-color:[COLOR_A8]" >
 <div id="col1" class="spaces">
 [BLOCK SPACES]
-<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="copy" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img src="[sicon]"><span> [stitle]</span></div>
+<div class="space" onclick="expandToptree(this,'[sid]',document.getElementById('firstul'))" droppable="yes"   dropft="copy" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="insertinspace(event,this,'[sid]')"><img needresize="1" src="[sicon]"><span> [stitle]</span></div>
 [ENDBLOCK SPACES]
 <br style="clear:both">
 <br>

@@ -10,7 +10,7 @@
          onmouseover="overdragft(event,this)" 
 	 onmouseout="outdragft(event,this)" 
 	 onclick="viewFolder(event,'[id]',this)"   
-	 onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,getPrevLiButton(this),this.parentNode,'[id]','[pid]')"  id="img[ulid][id]"  src="[icon]">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld][title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
+	 onmouseup="insertinfolder(event,this,'il[ulid][id]','[id]','[ulid][id]')"><img class="icon" onmousedown="begindrag(event,getPrevLiButton(this),this.parentNode,'[id]','[pid]')"  id="img[ulid][id]"  needresize="1" src="[icon]">[IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld][title]</span><ul id="[ulid][id]" style="display:none"></ul></li>
 [ENDBLOCK TREE]  
 
 

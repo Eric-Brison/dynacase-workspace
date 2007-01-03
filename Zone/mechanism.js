@@ -629,6 +629,10 @@ function postActionRefresh(action,arg) {
    RCFLDID=docid;
         
     break;
+  case "IMGRESIZE":
+    resizeImages();
+        
+    break;
   default:    
     // alert("UNKNOW:"+action+":"+docid);
   }
@@ -954,3 +958,6 @@ function row2dragend(event) {
     cacheres.style.display='none';
   setparamu('WORKSPACE','WS_ROW2W1',ROW2W1);
 }
+
+
+

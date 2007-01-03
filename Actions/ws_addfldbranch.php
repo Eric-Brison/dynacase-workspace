@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.16 2006/11/17 16:12:41 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.17 2007/01/03 19:45:06 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -93,6 +93,8 @@ function ws_addfldbranch(&$action) {
     $action->lay->set("CODE","OK"); 
     $taction=$action->lay->getBlockData("ACTIONS");    
     $taction[]=array("actname"=>(count($tc)>0)?"ADDBRANCH":"EMPTYBRANCH",
+		     "actdocid"=>$doc->initid);
+    $taction[]=array("actname"=>"IMGRESIZE",
 		     "actdocid"=>$doc->initid);
     $action->lay->setBlockData("ACTIONS",$taction);    
   } else {
