@@ -4,6 +4,7 @@ function viewinline(event,url,toview,tocache) {
   var ov=document.getElementById('iinline');
   var ds=document.getElementById('summary');
   var ogid=document.getElementById('ogident');
+  var ogreload=document.getElementById('ogreload');
   var ogin=document.getElementById('oginline');
 
   var i;
@@ -26,6 +27,7 @@ function viewinline(event,url,toview,tocache) {
   }
   ogid.className='';
   ogin.className='active';
+  ogreload.style.display='';
 }
 
 function unviewinline(event) {
@@ -33,10 +35,12 @@ function unviewinline(event) {
   var ds=document.getElementById('summary');
   var ogid=document.getElementById('ogident');
   var ogin=document.getElementById('oginline');
+  var ogreload=document.getElementById('ogreload');
   ov.style.display='none';
   ds.style.display='';
   ogid.className='active';
   ogin.className='';
+  ogreload.style.display='none';
   
 }
 function wsreload(event,toreload) {
