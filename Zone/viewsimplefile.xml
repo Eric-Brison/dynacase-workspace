@@ -5,6 +5,7 @@
 
 
 
+<div class="mainview" >
 
 
 
@@ -64,7 +65,7 @@
 <div class="srub">[IF canedit]<a  href="javascript:void(0)" onclick="editattr(event,'[ID]','sfi_version',document.getElementById('sfi_version'))" title="[TEXT:Rename the version]">[ENDIF canedit]<b>[TEXT:Version] : </b>[IF canedit]</a>[ENDIF canedit] 
   [IF S_SFI_VERSION]<b id="sfi_version">[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]
      [IFNOT S_SFI_VERSION]<b id="sfi_version">[TEXT:Undefined version]</b>[ENDIF S_SFI_VERSION][IF canedit]<a href="javascript:void(0)" onclick="subwindow(350,600,'version','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITADDVERSION&id=[ID]')"><img width="22px" needresize="1" style="border:none[IFNOT canversionned];display:none[ENDIF canversionned]" title="[TEXT:Create new version]" id="imgver" src="[IMG:version.gif]"></a>[ENDIF canedit]
-<span style="white-space:nowrap">[IF stateid] - [TEXT:State] : <a class="tooltip"  title="[thestatedesc]"><i style="cursor:pointer" onclick="subwindow(300,500,'viewstate','[CORE_STANDURL]app=FDL&action=IMPCARD&id=[stateid]')">[thestate]</i></a> [ENDIF stateid]</span> </div>
+<span style="white-space:nowrap;border-color:[statecolor]" class="statetext">[IF stateid] - [TEXT:State] : <a class="tooltip"  title="[thestatedesc]"><i style="cursor:pointer" onclick="subwindow(300,500,'viewstate','[CORE_STANDURL]app=FDL&action=IMPCARD&id=[stateid]')">[thestate]</i></a> [ENDIF stateid]</span> </div>
 </div>
 
 <div class="simpletitle">[IF canedit]<a  title="[TEXT:Click to modify title]" 
@@ -108,3 +109,4 @@
 
 [IF ISIE]<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF ISIE]
       [IF isinline]<iframe id="iinline" name="winline"  style="display:none"   src="about:blank"></iframe>  [ENDIF isinline]
+</div>
