@@ -1,20 +1,31 @@
 var WEDITHTML=null; // window of HTML editor
 
-function viewinline(event,url,toview,tocache) {
-  var ov=document.getElementById('iinline');
+function viewinline(event,url,ifr) {
+  var ov=document.getElementById('i'+ifr);
   var ds=document.getElementById('summary');
   var ogid=document.getElementById('ogident');
   var ogreload=document.getElementById('ogreload');
-  var ogin=document.getElementById('oginline');
-
+  var ogin=document.getElementById('og'+ifr);
+  var ov1,og1,og2;
   var i;
 
   ds.style.display='none';
-
+  if (ifr=='histo') {
+     ov1=document.getElementById('iinline');  
+     og1=document.getElementById('oginline');  
+     og2=document.getElementById('ogreload');    
+  } else {
+     ov1=document.getElementById('ihisto');  
+     og1=document.getElementById('oghisto');    
+     if (ogreload) ogreload.style.display='';  
+  }
+  if (ov1) ov1.style.display='none';
+  if (og1) og1.className='';
+  if (og2) og2.style.display='none';
   
   if (ov ) {
-    if (toview=='dview') ov.style.display='';
-    else  ov.style.display='none';
+     ov.style.display='';
+   
     
     if (url != '') {
       if  (  (ov.src == 'about:blank')   )  {
@@ -27,20 +38,23 @@ function viewinline(event,url,toview,tocache) {
   }
   ogid.className='';
   ogin.className='active';
-  ogreload.style.display='';
 }
 
 function unviewinline(event) {
-  var ov=document.getElementById('iinline');
+  var ov1=document.getElementById('iinline');
+  var ov2=document.getElementById('ihisto');
   var ds=document.getElementById('summary');
   var ogid=document.getElementById('ogident');
   var ogin=document.getElementById('oginline');
+  var oghi=document.getElementById('oghisto');
   var ogreload=document.getElementById('ogreload');
-  ov.style.display='none';
-  ds.style.display='';
-  ogid.className='active';
-  ogin.className='';
-  ogreload.style.display='none';
+  if (ov1) ov1.style.display='none';
+  if (ov2) ov2.style.display='none';
+  if (ds) ds.style.display='';
+  if (ogid) ogid.className='active';
+  if (ogin) ogin.className='';
+  if (oghi) oghi.className='';
+  if (ogreload) ogreload.style.display='none';
   
 }
 function wsreload(event,toreload) {

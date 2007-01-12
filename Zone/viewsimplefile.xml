@@ -24,7 +24,8 @@
   <ul >
     <li><a href="javascript:void(0)" id="ogident" onclick="unviewinline();" class="active">[TEXT:Identification]</a></li>
 
-    [IF isinline]<li><a  id="oginline" href="javascript:void(0)" title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','dview','dmain')">[TEXT:Display]</a></li>
+    <li><a href="javascript:void(0)" id="oghisto"  title="[TEXT:View historic]"  onclick="viewinline(event,'[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N','histo')">[TEXT:Historic]</a></li>
+    [IF isinline]<li><a  id="oginline" href="javascript:void(0)" title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','inline')">[TEXT:Display]</a></li>
     <li><a href="javascript:void(0)" id="ogreload"  style="display:none" title="[TEXT:Reload file]" onclick="wsreload(event,'iinline')" >[TEXT:Reload]</a></li>
 
 [ENDIF isinline]
@@ -82,7 +83,7 @@
 <li><a href="javascript:void(0)" id="ogthumbnail" onclick="viewthumbnail()" class="active">[TEXT:ImaggePreview]</a></li>
 
 <li><a href="javascript:void(0)" id="ogabstract" onclick="viewabstract()">[TEXT:Abstract]</a></li>
-<li><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N')" target="histo" title="[TEXT:View complete historic]">[TEXT:Historic]</a></li>
+<li style="display:none"><a onclick="subwindow(300,500,'histo','[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N')" target="histo" title="[TEXT:View complete historic]">[TEXT:Historic]</a></li>
 </ul>
 <div class="content" style="clear:both">
 
@@ -109,4 +110,5 @@
 
 [IF ISIE]<script>addEvent(window,'load',function () {correctOnePNG(document.getElementById('idimgthumb'),true);})</script>[ENDIF ISIE]
       [IF isinline]<iframe id="iinline" name="winline"  style="display:none"   src="about:blank"></iframe>  [ENDIF isinline]
+      <iframe id="ihisto" name="winline"  style="display:none"   src="about:blank"></iframe>  
 </div>
