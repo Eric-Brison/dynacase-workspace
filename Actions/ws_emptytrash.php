@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_emptytrash.php,v 1.3 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_emptytrash.php,v 1.4 2007/01/15 11:37:34 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -40,7 +40,7 @@ function ws_emptytrash(&$action) {
 
   if ($uid > 0) {
     $q=new QueryDb($dbaccess,"Doc");
-    $lq=$q->Query(0,0,"TABLE","delete from doc where doctype='Z' and owner=$uid");
+    $lq=$q->Query(0,0,"TABLE","begin;delete from docvaultindex where docid in (select id from doc where doctype='Z' and owner=$uid);delete from doc where doctype='Z' and owner=$uid;commit");
 
     if (! $lq) $err=_("the trash cannot be empty");
   } else {
