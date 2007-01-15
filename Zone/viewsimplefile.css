@@ -107,10 +107,11 @@ div.tabs div.content {
 div.srub-border {
   border:1px solid [COLOR_A7];
   padding:2px;
-  margin:0 0 5px 0;
+  margin:0px 0px 5px 0px;
+  text-align:left;
 }
 div.srub {
- margin:0;
+ margin:0px;
   padding:2px;
  background-color:[COLOR_A9]; 
 }
@@ -122,8 +123,8 @@ span.version {
 div.simpletitle {
  font-size:90%;
  font-style:italic;
- padding:0;
- margin:0;
+ padding:0px;
+ margin:0px;
  border-bottom:1px solid [COLOR_A4];
 }
 
