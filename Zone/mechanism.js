@@ -728,9 +728,9 @@ function  renamebranch(docid,ntitle) {
 function postEmptyTrash(docid) {
   var fldid;
   var o;
-  if ((CFLDID == 'trash')||(CFLDID == docid)) {
-    viewFolder(null,CFLDID)
-  }
+  // if ((CFLDID == 'trash')||(CFLDID == docid)) {
+  viewFolder(null,CFLDID);
+      // }
   o=document.getElementById('trashicon');
   if (o) o.src='Images/trashempty.png';   
   sendRenameFolderTree('WS_MYTRASH'); 
