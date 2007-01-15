@@ -49,6 +49,11 @@ function postCopy() {
       }
     }
   }
+
+
+  $this->deleteValue('sfi_inedition');
+  $err=$this->modify();
+
   return $err;
 }
 function specRefresh() {
@@ -493,5 +498,6 @@ function editupload() {
 function editversion() {
   $this->editattr();  
 }
+
 
 ?>
