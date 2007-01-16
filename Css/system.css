@@ -298,3 +298,9 @@ DIV.folders SPAN {
   border:none;
   background-color:[COLOR_B6];
 }
+
+TBODY.folder TD.fixe {
+  text-align:right;
+  white-space:nowrap;
+  
+}
