@@ -8,7 +8,13 @@
 [JS:REF]
 <script>
 [JS:CODE]
-
+function stopPropagation(event) {
+  if (!event) event=window.event;
+  if (event.stopPropagation) event.stopPropagation();
+  else event.cancelBubble=true;
+  if (event.preventDefault) event.preventDefault();
+  else event.returnValue=true;  
+}
 function submitfile(event,docid,attrid) {
   if (window.opener) {
     if (window.opener.attributeSend) {
@@ -117,6 +123,30 @@ function wsIsModified() {
   if (AUTOCLOSE) return false;
   return FCKeditorAPI.GetInstance('wsfile').IsDirty();
 }
+
+function trackKeysQuickSave(event) {
+  var intKeyCode,ctrlKey;
+
+  if (!event) event=window.event;
+ 
+  intKeyCode = event.which;
+  if (!intKeyCode) intKeyCode= event.keyCode;
+  //alert(intKeyCode);
+  ctrlKey = event.ctrlKey;
+  if (((intKeyCode == 115)||(intKeyCode == 83)) && ( ctrlKey)) {
+    // Ctrl-S
+    submitfile(event,'[docid]','[attrid]');
+    
+    if (stopPropagation) stopPropagation(event);
+    else if (window.parent.stopPropagation) window.parent.stopPropagation(event);    
+  } 
+}
+function trackQS() {
+  var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
+
+  if (oEditor.EditorDocument) addEvent(oEditor.EditorDocument,"keydown",trackKeysQuickSave);
+  else window.setTimeout( trackQS, 1000 ) ;
+}
 </script>
 <style>
 body {
@@ -127,8 +157,7 @@ body {
 	</head>
 
 	<body onunload="wscanceledit(event);return false"
-	onbeforeunload="if (wsIsModified()) return '[TEXT:The text has be modified]'" >
-		
+	onbeforeunload="if (wsIsModified()) return '[TEXT:The text has be modified]'" >		
 		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false" style="display:inline">
 		<input type="hidden" name="id" value="[docid]">
 		<input type="hidden" name="attrid" value="[attrid]">
@@ -146,8 +175,13 @@ oFCKeditor.Config['SkinPath'] =  'skins/silver/';
 [IFNOT BIG]oFCKeditor.Value='[fullhtml]';[ENDIF BIG]
 oFCKeditor.Height='100%';
 oFCKeditor.Width='100%';
-[IF BIG]getHTMLFile(oFCKeditor)[ENDIF BIG]
+[IF BIG]getHTMLFile(oFCKeditor);
+
+[ENDIF BIG]
 oFCKeditor.Create();
+
+
+addEvent(window,"load",trackQS);
 
 //-->
 			</script>
