@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.21 2007/01/03 19:45:06 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.22 2007/01/16 09:01:28 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -116,7 +116,8 @@ function ws_folderlist(&$action) {
   $action->lay->set("CODE","KO");
   if ($doc->isAlive()) {
     //    $ls=$doc->getContent();
-    $ls = getChildDoc($dbaccess, $doc->initid ,0,"ALL", $filter, $action->user->id, "TABLE");
+    $slice=$action->GetParam("FDL_FOLDERMAXITEM",1000);
+    $ls = getChildDoc($dbaccess, $doc->initid ,0,$slice, $filter, $action->user->id, "TABLE");
    
     $tc=array();
     switch ($order) {
