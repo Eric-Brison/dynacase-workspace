@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.9 2006/11/17 16:12:42 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.10 2007/01/22 13:58:12 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -101,7 +101,17 @@ function ws_popupdocfolder(&$action) {
 				 "target"=>"",
 				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
-				 "barmenu"=>"false"));
+				 "barmenu"=>"false"),
+	       "properties"=>array( "descr"=>_("properties"),
+				    "url"=>"$surl&app=FDL&action=IMPCARD&zone=".((method_exists($doc,"viewsimpleprop"))?"WORKSPACE:VIEWSIMPLEPROP:T":"FDL:VIEWPROPERTIES:T")."&id=$docid",
+				    "tconfirm"=>"",
+				    "confirm"=>"false",
+				    "target"=>"properties$docid",
+				    "mwidth"=>400,
+				    "mheight"=>300,
+				    "visibility"=>POPUP_ACTIVE,
+				    "submenu"=>"",
+				    "barmenu"=>"false"));
   changeMenuVisibility($action,$tlink,$doc);
 
 
