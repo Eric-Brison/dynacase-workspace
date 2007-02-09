@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.25 2007/02/09 14:48:40 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.26 2007/02/09 15:40:07 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -191,9 +191,9 @@ function ws_folderlist(&$action) {
 		     "actdocid"=>$doc->id);
     $action->lay->setBlockData("ACTIONS",$taction);  
   } 
-  if (count($tc) > 1) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
-  elseif (count($tc) == 1) $action->lay->set("nbdoc",_("1 document"));
-  else $action->lay->set("nbdoc",_("0 document"));
+  if (count($tc) > 1) $action->lay->set("nbdoc",sprintf(_("%d items"),count($tc)));
+  elseif (count($tc) == 1) $action->lay->set("nbdoc",_("1 item"));
+  else $action->lay->set("nbdoc",_("0 item"));
   $action->lay->set("isdynamic",$dynfolder);
   $action->lay->set("isreadonly",($doc->control("modify")!="")?"true":"false");
 
