@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.24 2007/02/09 14:45:47 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.25 2007/02/09 14:48:40 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -89,9 +89,6 @@ function ws_folderlist(&$action) {
   $err=movementDocument($action,$dbaccess,$doc->id,$addid,$pdocid,$addft);
   if ($err) $action->lay->set("warning",$err);
 
-
-
-
   //--------------------------------------------------
   // construct header
   $thead=array("title"=>array("htitle"=>_("Filename Menu"),
@@ -109,8 +106,6 @@ function ws_folderlist(&$action) {
 
   //--------------------------------------------------
   // construct body
-
-
   $action->lay->set("pid",$doc->initid);
   $action->lay->set("docid",$doc->id);
   $action->lay->set("CODE","KO");
