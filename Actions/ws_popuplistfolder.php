@@ -3,7 +3,7 @@
  * Specific menu for family
  *
  * @author Anakeen 2000 
- * @version $Id: ws_popuplistfolder.php,v 1.11 2006/06/29 14:23:33 eric Exp $
+ * @version $Id: ws_popuplistfolder.php,v 1.12 2007/02/09 14:46:32 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -34,7 +34,7 @@ function ws_popuplistfolder(&$action) {
 
   $surl=$action->getParam("CORE_STANDURL");
 
-  $tlink=array("createfile"=>array("descr"=>_("Add new file"),
+  $tlink=array("createfile"=>array("descr"=>_("New file"),
 				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid",
 				   "confirm"=>"false",
 				   "control"=>"false",
@@ -44,7 +44,7 @@ function ws_popuplistfolder(&$action) {
 				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
-	       "createtext"=>array("descr"=>_("Create new text"),
+	       "createtext"=>array("descr"=>_("New text"),
 				   "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFILE&&dirid=$docid&zone=WORKSPACE:CREATETEXT:T",
 				   "confirm"=>"false",
 				   "control"=>"false",
@@ -54,22 +54,11 @@ function ws_popuplistfolder(&$action) {
 				   "visibility"=>POPUP_ACTIVE,
 				   "submenu"=>"",
 				   "barmenu"=>"false"),
-	       "createfolder"=>array("descr"=>_("Create new directory"),
+	       "createfolder"=>array("descr"=>_("New directory"),
 				     "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFOLDER&&dirid=$docid",
 				     "confirm"=>"false",
 				     "control"=>"false",
 				     "icon" => "Images/directory.gif",
-				     "tconfirm"=>"",
-				     "target"=>"nresume",
-				     "visibility"=>POPUP_ACTIVE,
-				     "submenu"=>"",
-				     "barmenu"=>"false"),
-	       "sep1"=>array("separator"=>true),
-	       "properties"=>array("descr"=>_("Properties"),
-				     "url"=>"$surl&app=FDL&action=FDL_CARD&id=$docid",
-				     "confirm"=>"false",
-				     "control"=>"false",
-				     "icon" => "Images/documentinfo.png",
 				     "tconfirm"=>"",
 				     "target"=>"nresume",
 				     "visibility"=>POPUP_ACTIVE,
@@ -101,6 +90,17 @@ function ws_popuplistfolder(&$action) {
 			"barmenu"=>"false");
   }
 
+  $tlink+=array("sep1"=>array("separator"=>true),
+		"properties"=>array("descr"=>_("Properties"),
+				     "url"=>"$surl&app=FDL&action=FDL_CARD&id=$docid",
+				     "confirm"=>"false",
+				     "control"=>"false",
+				     "icon" => "Images/documentinfo.png",
+				     "tconfirm"=>"",
+				     "target"=>"nresume",
+				     "visibility"=>POPUP_ACTIVE,
+				     "submenu"=>"",
+				     "barmenu"=>"false"));
   popupdoc($action,$tlink,$tsubmenu);
 }
 
