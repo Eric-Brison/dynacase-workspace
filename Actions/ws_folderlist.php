@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.23 2007/02/09 08:37:13 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.24 2007/02/09 14:45:47 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -144,11 +144,14 @@ function ws_folderlist(&$action) {
       $action->lay->set("orderimg",$action->getImageUrl('b_down.png'));
     }
 
+    $folder=array_filter($ls,"isfolder");
+    $notfolder=array_filter($ls,"isnotfolder");
+    $ls=array_merge($folder,$notfolder);
     $dynfolder=($doc->doctype!='D');
     foreach ($ls as $k=>$v) {
       $size=getv($v,"sfi_filesize",-1);
       if ($size < 0) $dsize="";
-      else if ($size < 1024) $dsize=sprintf(_("%d bytes"),$size);
+      else if ($size < 1024) $dsize=_("<1 kb");
       else if ($size < 1048576) $dsize=sprintf(_("%d kb"),$size/1024);
       else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
    //    $icon=getv($v,"sfi_mimeicon");
@@ -187,13 +190,15 @@ function ws_folderlist(&$action) {
     $action->lay->setBlockData("ACTIONS",$taction);  
   }
   
-  if (count($tc) > 0) {
-    $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
+  if (count($tc) > 0) {    
     $taction=$action->lay->getBlockData("ACTIONS"); 
     $taction[]=array("actname"=>"IMGRESIZE",
 		     "actdocid"=>$doc->id);
     $action->lay->setBlockData("ACTIONS",$taction);  
-  } else $action->lay->set("nbdoc",_("0 document"));
+  } 
+  if (count($tc) > 1) $action->lay->set("nbdoc",sprintf(_("%d documents"),count($tc)));
+  elseif (count($tc) == 1) $action->lay->set("nbdoc",_("1 document"));
+  else $action->lay->set("nbdoc",_("0 document"));
   $action->lay->set("isdynamic",$dynfolder);
   $action->lay->set("isreadonly",($doc->control("modify")!="")?"true":"false");
 
@@ -219,6 +224,12 @@ function mimecmp($a,$b) {
   $ta=getv($a,"sfi_mimetxt");
   $tb=getv($b,"sfi_mimetxt");
   return strcmp($ta,$tb);
+}
+function isfolder($a) {  
+  return $a['doctype']!='F';
+}
+function isnotfolder($a) {  
+  return $a['doctype']=='F';
 }
 
 ?>
