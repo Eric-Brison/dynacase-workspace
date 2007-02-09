@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.8 2007/02/09 08:37:14 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.9 2007/02/09 08:46:39 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -129,7 +129,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	$adddoc=new_doc($dbaccess,$cdocid);
 	if ($adddoc->isAlive()) {
 	  $pdoc=new_doc($dbaccess,$pfldid);	 
-	  if (($adddoc->prelid == $pfldid) || ($pdoc->doctype=='S')) {
+	  if (($adddoc->prelid == $pfldid) || ($pdoc->defDoctype=='S')) {
 	    $isnotfld=(strstr("SD", $adddoc->doctype) === false);
 	    
 	    if ($adddoc->doctype=='D')   $err=$adddoc->deleteRecursive(); 
