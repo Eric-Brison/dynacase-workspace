@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.7 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.8 2007/02/09 08:37:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -21,6 +21,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 
   //  $action->lay->set("warning","prel:$dbaccess,$cfldid,$cdocid,$pfldid,$docft");
   $doc=new_doc($dbaccess,$cfldid);
+  $pdoc=new_doc($dbaccess,$pfldid);
   $taction=array();
 
   if (($docft == "move") || ($docft == "link")|| ($docft == "shortcut") ) {
@@ -34,7 +35,6 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	    $prelid=array_keys($prel);
 	    if (in_array($adddoc->initid ,$prelid)) $err=sprintf(_("cannot move folder %s in %s cause loop"),$adddoc->title,$doc->title);
 	  }
-
 	  if ($err=="") {
 	    $err=$doc->AddFile($adddoc->id);
 	    if ($err=="") {
@@ -47,7 +47,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	      }
 	    }
 	    if (($err=="")&&($docft == "move")) {
-	      if ($adddoc->prelid == $pfldid) {
+	      if (($adddoc->prelid == $pfldid) || ($pdoc->defDoctype=='S')) {
 		// change primary relation
 		$adddoc->prelid=$doc->initid;
 		$adddoc->modify(true,array("prelid"),true);
@@ -58,6 +58,8 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
       }
     }
   }
+
+  if ($err!="") return $err;
 
   if ($docft == "copy") {
     if ($doc->isAlive()) {
@@ -101,8 +103,8 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
   
   if ($err=="") {
     if (($docft == "move")) {
-      $pdoc=new_doc($dbaccess,$pfldid);
       if ($pdoc->isAlive()) {
+	if ($pdoc->defDoctype=="D") {
 	$err=$pdoc->DelFile($adddoc->id);
 	if ($err=="") {
 	  if (strstr("SD", $adddoc->doctype) === false) {
@@ -112,6 +114,11 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	    $taction[]=array("actname"=>"DELFOLDER",
 			     "actdocid"=>$pdoc->initid);	    
 	  }
+	}
+	} else {
+	  if ($pdoc->defDoctype=="S") {
+	    // nothing to do	    
+	  }	  
 	}
       }
     }

@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.22 2007/01/16 09:01:28 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.23 2007/02/09 08:37:13 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -195,7 +195,7 @@ function ws_folderlist(&$action) {
     $action->lay->setBlockData("ACTIONS",$taction);  
   } else $action->lay->set("nbdoc",_("0 document"));
   $action->lay->set("isdynamic",$dynfolder);
-  $action->lay->set("isdyn",$dynfolder?"true":"false");
+  $action->lay->set("isreadonly",($doc->control("modify")!="")?"true":"false");
 
 }
 function titlecmp($a,$b) {
