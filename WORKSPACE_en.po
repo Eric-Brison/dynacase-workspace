@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-09 16:36+0100\n"
+"POT-Creation-Date: 2007-02-12 11:49+0100\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -15,26 +15,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
 
-msgid "trash"
+msgid " (copy)"
+msgstr ""
+
+msgid "undefined"
+msgstr ""
+
+msgid "nobody"
+msgstr ""
+
+msgid "fixed"
 msgstr ""
 
 #, c-format
-msgid "search %s"
+msgid "unknow user %s"
 msgstr ""
 
-msgid "Filename Menu"
-msgstr ""
-
-msgid "Modification Date Menu"
-msgstr ""
-
-msgid "File Size Menu"
-msgstr ""
-
-msgid "File Type Menu"
-msgstr ""
-
-msgid "<1 kb"
+#, c-format
+msgid "%d bytes"
 msgstr ""
 
 #, c-format
@@ -46,204 +44,74 @@ msgid "%.01f Mb"
 msgstr ""
 
 #, c-format
-msgid "%d documents"
+msgid "locked by %s %s"
 msgstr ""
 
-msgid "1 document"
-msgstr ""
-
-msgid "0 document"
+msgid "No title"
 msgstr ""
 
 #, c-format
-msgid "document %s does not exist"
+msgid "%s readers"
 msgstr ""
 
 #, c-format
-msgid "document %s has the new state %s"
+msgid "Group of users that can view files in [ADOC %d] space"
 msgstr ""
 
 #, c-format
-msgid "document %s is not in edition"
-msgstr ""
-
-msgid "file modification aborted"
+msgid "%s writers"
 msgstr ""
 
 #, c-format
-msgid "cannot duplicate %s document"
+msgid "Group of users that can edit files in [ADOC %d] space"
 msgstr ""
 
 #, c-format
-msgid "%s file downloaded by %s on %s"
-msgstr ""
-
-msgid "no file referenced"
+msgid "%s files"
 msgstr ""
 
 #, c-format
-msgid "Document %s is not alive"
+msgid "default profile for [ADOC %d] - %s - space files"
 msgstr ""
 
 #, c-format
-msgid "From %s state to"
-msgstr ""
-
-msgid "New state"
+msgid "%s directories"
 msgstr ""
 
 #, c-format
-msgid "%s attribute is not a file"
+msgid "default profile for [ADOC %d] - %s - space directories"
 msgstr ""
 
 #, c-format
-msgid "%s : edit HTML file"
+msgid "%s workspace profile"
 msgstr ""
 
 #, c-format
-msgid "document %s already in edition"
+msgid "workspace profile for [ADOC %d] - %s - space files"
 msgstr ""
 
 #, c-format
-msgid "Download <i>%s</i> file<br> for modification"
+msgid "%s group profile"
 msgstr ""
 
 #, c-format
-msgid ""
-"The file %s has been downloaded and the document has been locked and "
-"tagged : in edition"
-msgstr ""
-
-msgid "the trash cannot be empty"
-msgstr ""
-
-msgid "no user defined"
+msgid "intranet group profile for [ADOC %d] - %s - space files"
 msgstr ""
 
 #, c-format
-msgid "%d items"
-msgstr ""
-
-msgid "1 item"
-msgstr ""
-
-msgid "0 item"
+msgid "%s members"
 msgstr ""
 
 #, c-format
-msgid "unknown attribute %s for document %s"
+msgid "cannot move folder %s in %s cause loop"
 msgstr ""
 
 #, c-format
-msgid "visibility %s does not allow modify attribute %s for document %s"
+msgid "duplication of %s "
 msgstr ""
 
 #, c-format
-msgid "modify [%s] attribute"
-msgstr ""
-
-msgid "My space"
-msgstr ""
-
-#, c-format
-msgid "personal space of %s"
-msgstr ""
-
-msgid "View latest"
-msgstr ""
-
-msgid "Edit"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-#, c-format
-msgid ""
-"This document will be dropped in the trash.\n"
-"Sure delete %s ?"
-msgstr ""
-
-msgid "History"
-msgstr ""
-
-msgid "Duplicate"
-msgstr ""
-
-msgid "Sure duplicate ?"
-msgstr ""
-
-msgid "Add to basket"
-msgstr ""
-
-msgid "restore"
-msgstr ""
-
-msgid "restore folder and its containt"
-msgstr ""
-
-msgid "properties"
-msgstr ""
-
-msgid "Empty trash"
-msgstr ""
-
-msgid "New file"
-msgstr ""
-
-msgid "New text"
-msgstr ""
-
-msgid "New directory"
-msgstr ""
-
-msgid "Properties"
-msgstr ""
-
-msgid "Diffuse"
-msgstr ""
-
-msgid "Workflow"
-msgstr ""
-
-msgid "Desaffect"
-msgstr ""
-
-msgid "Lock"
-msgstr ""
-
-msgid "Unlock"
-msgstr ""
-
-#, c-format
-msgid "Sure delete %s ?"
-msgstr ""
-
-msgid "Add a note"
-msgstr ""
-
-msgid "print"
-msgstr ""
-
-msgid "Reaffect"
-msgstr ""
-
-msgid "Delete the folder and its containt"
-msgstr ""
-
-#, c-format
-msgid "Sure delete %s and its containt ?"
-msgstr ""
-
-#, c-format
-msgid "document [%s] not found"
-msgstr ""
-
-msgid "object"
-msgstr ""
-
-#, c-format
-msgid "Rename file as %s"
+msgid "failed to copy document %s"
 msgstr ""
 
 msgid "WorkSpace"
@@ -327,95 +195,226 @@ msgstr ""
 msgid "search a document"
 msgstr ""
 
-#, c-format
-msgid "cannot move folder %s in %s cause loop"
+msgid "View latest"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
 msgstr ""
 
 #, c-format
-msgid "duplication of %s "
+msgid ""
+"This document will be dropped in the trash.\n"
+"Sure delete %s ?"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Sure duplicate ?"
+msgstr ""
+
+msgid "Add to basket"
+msgstr ""
+
+msgid "restore"
+msgstr ""
+
+msgid "restore folder and its containt"
+msgstr ""
+
+msgid "properties"
+msgstr ""
+
+msgid "Empty trash"
+msgstr ""
+
+msgid "My space"
 msgstr ""
 
 #, c-format
-msgid "failed to copy document %s"
-msgstr ""
-
-msgid " (copy)"
-msgstr ""
-
-msgid "undefined"
-msgstr ""
-
-msgid "nobody"
-msgstr ""
-
-msgid "fixed"
+msgid "personal space of %s"
 msgstr ""
 
 #, c-format
-msgid "unknow user %s"
+msgid "Document %s is not alive"
 msgstr ""
 
 #, c-format
-msgid "%d bytes"
+msgid "%s attribute is not a file"
 msgstr ""
 
 #, c-format
-msgid "locked by %s %s"
-msgstr ""
-
-msgid "No title"
+msgid "%s : edit HTML file"
 msgstr ""
 
 #, c-format
-msgid "%s readers"
+msgid "cannot duplicate %s document"
 msgstr ""
 
 #, c-format
-msgid "Group of users that can view files in [ADOC %d] space"
+msgid "From %s state to"
+msgstr ""
+
+msgid "New state"
+msgstr ""
+
+msgid "object"
 msgstr ""
 
 #, c-format
-msgid "%s writers"
+msgid "document %s does not exist"
 msgstr ""
 
 #, c-format
-msgid "Group of users that can edit files in [ADOC %d] space"
+msgid "document %s has the new state %s"
 msgstr ""
 
 #, c-format
-msgid "%s files"
+msgid "unknown attribute %s for document %s"
 msgstr ""
 
 #, c-format
-msgid "default profile for [ADOC %d] - %s - space files"
+msgid "visibility %s does not allow modify attribute %s for document %s"
 msgstr ""
 
 #, c-format
-msgid "%s directories"
+msgid "modify [%s] attribute"
+msgstr ""
+
+msgid "trash"
 msgstr ""
 
 #, c-format
-msgid "default profile for [ADOC %d] - %s - space directories"
+msgid "search %s"
+msgstr ""
+
+msgid "Filename Menu"
+msgstr ""
+
+msgid "Modification Date Menu"
+msgstr ""
+
+msgid "File Size Menu"
+msgstr ""
+
+msgid "File Type Menu"
+msgstr ""
+
+msgid "<1 kb"
 msgstr ""
 
 #, c-format
-msgid "%s workspace profile"
+msgid "%d items"
+msgstr ""
+
+msgid "1 item"
+msgstr ""
+
+msgid "0 item"
 msgstr ""
 
 #, c-format
-msgid "workspace profile for [ADOC %d] - %s - space files"
+msgid "document %s already in edition"
 msgstr ""
 
 #, c-format
-msgid "%s group profile"
+msgid "Download <i>%s</i> file<br> for modification"
 msgstr ""
 
 #, c-format
-msgid "intranet group profile for [ADOC %d] - %s - space files"
+msgid ""
+"The file %s has been downloaded and the document has been locked and "
+"tagged : in edition"
 msgstr ""
 
 #, c-format
-msgid "%s members"
+msgid "Rename file as %s"
+msgstr ""
+
+msgid "New file"
+msgstr ""
+
+msgid "New text"
+msgstr ""
+
+msgid "New directory"
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+#, c-format
+msgid "%s file downloaded by %s on %s"
+msgstr ""
+
+msgid "Diffuse"
+msgstr ""
+
+msgid "Workflow"
+msgstr ""
+
+msgid "Desaffect"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
+#, c-format
+msgid "Sure delete %s ?"
+msgstr ""
+
+msgid "Add a note"
+msgstr ""
+
+msgid "print"
+msgstr ""
+
+msgid "Reaffect"
+msgstr ""
+
+msgid "the trash cannot be empty"
+msgstr ""
+
+msgid "no user defined"
+msgstr ""
+
+#, c-format
+msgid "document [%s] not found"
+msgstr ""
+
+#, c-format
+msgid "document %s is not in edition"
+msgstr ""
+
+msgid "file modification aborted"
+msgstr ""
+
+msgid "Delete link"
+msgstr ""
+
+#, c-format
+msgid ""
+"This link will be deleted.\n"
+"Sure delete %s ?"
+msgstr ""
+
+msgid "no file referenced"
+msgstr ""
+
+msgid "Delete the folder and its containt"
+msgstr ""
+
+#, c-format
+msgid "Sure delete %s and its containt ?"
 msgstr ""
 
 msgid "do not see confirmation before download for edition"
@@ -430,7 +429,78 @@ msgstr ""
 msgid "width of folder tree box"
 msgstr ""
 
+msgid "Documents exchange"
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
+msgid "Trash"
+msgstr ""
+
+msgid "input file name to search"
+msgstr ""
+
+msgid "Send searches"
+msgstr ""
+
+msgid "alternate between private space and document basket"
+msgstr ""
+
+msgid "private space"
+msgstr ""
+
+msgid "my locked documents"
+msgstr ""
+
+msgid "my documents to read"
+msgstr ""
+
+msgid "my basket"
+msgstr ""
+
+msgid "display/undisplay"
+msgstr ""
+
 msgid "The text has be modified"
+msgstr ""
+
+msgid "Downloading file... "
+msgstr ""
+
+msgid ""
+"The file will be downloaded in your personal computer. You need to save it "
+"in your personal space. Do not try to open it directly because you can loose "
+"it"
+msgstr ""
+
+msgid ""
+"When the file is saved, you can edit it with the appropriated application "
+"and save it at the same place"
+msgstr ""
+
+msgid ""
+"When the modification are done, you must go to web shared folder application "
+"and select the file"
+msgstr ""
+
+msgid "The name file must the same as previous name"
+msgstr ""
+
+msgid ""
+"On the document clic to 'upload file' to save modified file in the work space"
+msgstr ""
+
+msgid "Don't view yet this information"
+msgstr ""
+
+msgid "Actions..."
+msgstr ""
+
+msgid "click and drag to move document"
+msgstr ""
+
+msgid "No result"
 msgstr ""
 
 msgid "Add version"
@@ -478,126 +548,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-msgid "Downloading file... "
-msgstr ""
-
-msgid ""
-"The file will be downloaded in your personal computer. You need to save it "
-"in your personal space. Do not try to open it directly because you can loose "
-"it"
-msgstr ""
-
-msgid ""
-"When the file is saved, you can edit it with the appropriated application "
-"and save it at the same place"
-msgstr ""
-
-msgid ""
-"When the modification are done, you must go to web shared folder application "
-"and select the file"
-msgstr ""
-
-msgid "The name file must the same as previous name"
-msgstr ""
-
-msgid ""
-"On the document clic to 'upload file' to save modified file in the work space"
-msgstr ""
-
-msgid "Don't view yet this information"
-msgstr ""
-
-msgid "Actions..."
-msgstr ""
-
-msgid "click and drag to move document"
-msgstr ""
-
-msgid "Documents exchange"
-msgstr ""
-
-msgid "Private"
-msgstr ""
-
-msgid "Trash"
-msgstr ""
-
-msgid "input file name to search"
-msgstr ""
-
-msgid "Send searches"
-msgstr ""
-
-msgid "alternate between private space and document basket"
-msgstr ""
-
-msgid "private space"
-msgstr ""
-
-msgid "my locked documents"
-msgstr ""
-
-msgid "my documents to read"
-msgstr ""
-
-msgid "my basket"
-msgstr ""
-
-msgid "display/undisplay"
-msgstr ""
-
-msgid "No result"
-msgstr ""
-
 msgid "Create new space"
-msgstr ""
-
-msgid "Namespace"
-msgstr ""
-
-msgid "type characters to filter users on it's name"
-msgstr ""
-
-msgid "Send user searches"
-msgstr ""
-
-msgid "redactor"
-msgstr ""
-
-msgid "reader"
-msgstr ""
-
-msgid "suppress member"
-msgstr ""
-
-msgid "Folder"
-msgstr ""
-
-msgid "Click to modify title"
-msgstr ""
-
-msgid "Click to modify description"
-msgstr ""
-
-msgid "You must click on the Search... button to select the modified file "
-msgstr ""
-
-msgid "To prevent error, the filename must be the same as the previous name"
-msgstr ""
-
-msgid "Stay in edition mode ?"
-msgstr ""
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-
-msgid "You need to select the file"
-msgstr ""
-
-msgid "The name of the file must be the same as previous name"
-msgstr ""
-
-msgid "The version rename will not create new version"
 msgstr ""
 
 msgid "Click to rename file"
@@ -672,6 +623,9 @@ msgstr ""
 msgid "State"
 msgstr ""
 
+msgid "Click to modify title"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 
@@ -708,6 +662,15 @@ msgstr ""
 msgid "No abstract"
 msgstr ""
 
+msgid "The version rename will not create new version"
+msgstr ""
+
+msgid "Folder"
+msgstr ""
+
+msgid "Click to modify description"
+msgstr ""
+
 msgid "Clic to view menu"
 msgstr ""
 
@@ -741,6 +704,24 @@ msgstr ""
 msgid "File path"
 msgstr ""
 
+msgid "You must click on the Search... button to select the modified file "
+msgstr ""
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+
+msgid "Stay in edition mode ?"
+msgstr ""
+
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+
+msgid "You need to select the file"
+msgstr ""
+
+msgid "The name of the file must be the same as previous name"
+msgstr ""
+
 msgid "Space"
 msgstr ""
 
@@ -757,4 +738,22 @@ msgid "Redactor group"
 msgstr ""
 
 msgid "view members of redactor group"
+msgstr ""
+
+msgid "Namespace"
+msgstr ""
+
+msgid "type characters to filter users on it's name"
+msgstr ""
+
+msgid "Send user searches"
+msgstr ""
+
+msgid "redactor"
+msgstr ""
+
+msgid "reader"
+msgstr ""
+
+msgid "suppress member"
 msgstr ""

@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupdocfolder.php,v 1.10 2007/01/22 13:58:12 eric Exp $
+ * @version $Id: ws_popupdocfolder.php,v 1.11 2007/02/12 10:52:00 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -32,6 +32,7 @@ function ws_popupdocfolder(&$action) {
   
 
   $tsubmenu=array();
+  $islink=($doc->prelid!=$fld->initid);
 
   // -------------------- Menu menu ------------------
 
@@ -54,10 +55,10 @@ function ws_popupdocfolder(&$action) {
 				 "visibility"=>POPUP_ACTIVE,
 				 "submenu"=>"",
 				 "barmenu"=>"false"),
-	       "delete"=>array( "descr"=>_("Delete"),
+	       "delete"=>array( "descr"=>$islink?_("Delete link"):_("Delete"),
 				"jsfunction"=>"deleteDoc(event,$docid)",
-				"confirm"=>"true",
-				"tconfirm"=>sprintf(_("This document will be dropped in the trash.\nSure delete %s ?"),$doc->title),
+				"confirm"=>$islink?"false":"true",
+				"tconfirm"=>$islink?sprintf(_("This link will be deleted.\nSure delete %s ?"),$doc->title):sprintf(_("This document will be dropped in the trash.\nSure delete %s ?"),$doc->title),
 				"target"=>"",
 				"visibility"=>POPUP_INACTIVE,
 				"submenu"=>"",
