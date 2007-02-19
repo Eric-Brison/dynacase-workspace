@@ -239,7 +239,7 @@ function computeMime() {
     if (ereg ("(.*)\|(.*)", $f, $reg)) {
       if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
-	include_once ("WORKSPACE/Lib.FileMime.php");
+	include_once ("WHAT/Lib.FileMime.php");
 
 	$this->setValue("sfi_mimetxt",getTextMimeFile($info->path));
 	$short=strtok($this->getValue("sfi_mimetxt"),",");
