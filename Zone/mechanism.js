@@ -784,10 +784,10 @@ function altern_basket_private(event,o) {
   if (bo.style.display=='none') {
     // display clip
     tb.onclick.apply(tb,[]);
-    i.src='Images/iconview.gif';
+    i.src='Images/treeview.gif';
   } else {
     tp.onclick.apply(tp,[]);   
-    i.src='Images/treeview.gif';
+    i.src='Images/iconview.gif';
   }    
 }
 

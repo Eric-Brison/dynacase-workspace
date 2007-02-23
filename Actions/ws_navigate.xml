@@ -44,7 +44,7 @@ ROW2W1=parseInt('[WS_ROW2W1]');
 <div class="space" style="display:none" id="itrash" onclick="viewFolder(event,'trash');" droppable="yes"   dropft="del" onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)" onmouseup="deleteinspace(event,this)"><img src="[imgtrash]" id="trashicon"><span> [TEXT:Trash]</span></div>
 </div>
 
-<div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img  class="button" src="[IMG:b_minileft.png]"></td></tr></table></div>
+<div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img style="display:none" class="button" src="[IMG:b_minileft.png]"></td></tr></table></div>
 <div id="col2" class="col2">
 <div id="folders" class="folders">
 <ul class="firstul" id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
@@ -54,7 +54,7 @@ ROW2W1=parseInt('[WS_ROW2W1]');
 <input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" style="border:1px [COLOR_BLACK] solid" onkeypress="if (trackCR(event)) viewSearch(event,this.value);"></input><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value);" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]">
 </div>
 <div id="tabclip"  ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">
-  <span  title="[TEXT:alternate between private space and document basket]" onclick="altern_basket_private(event,this)" ondblclick="expandPersoTree('[persofldid]',document.getElementById('secondul'),true)"><img src="[IMG:treeview.gif]"></span>
+  <span  title="[TEXT:alternate between private space and document basket]" onclick="altern_basket_private(event,this)" ondblclick="expandPersoTree('[persofldid]',document.getElementById('secondul'),true)"><img src="[IMG:iconview.gif]"></span>
   <span  title="[TEXT:private space]"  style="display:none" id="tab_privatespace" onclick="expandPersoTree('[persofldid]',document.getElementById('secondul'))" ondblclick="expandPersoTree('[persofldid]',document.getElementById('secondul'),true)"><img src="[IMG:treeview.gif]"></span>
   <span title="[TEXT:my locked documents]" style="display:none"  onclick="clipviewornot(event,true);displayClipboard('lock',document.getElementById('clipboard'))"><img  src="[IMG:ylock.png]"></span>
   <span style="display:none" title="[TEXT:my documents to read]"><img src="[IMG:button-yellow.png]"></span>
