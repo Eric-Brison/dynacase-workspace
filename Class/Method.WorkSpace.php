@@ -66,7 +66,7 @@ function postCreated() {
 
 	if ($gw->isAlive()) {
 	  $err=$gw->AddFile($gv->id);
-	  $err=$gv->AddFile($ge->id);
+	  $err.=$gv->AddFile($ge->id);
 	}
       }
     }    
@@ -116,48 +116,49 @@ function postCreated() {
     }
   }
   
-  // create this own profil
-  $pspace=createDoc($this->dbaccess,"PDIR",false);
-  $pspace->setValue("ba_title",sprintf(_("%s workspace profile"),$ref));
-  $pspace->setValue("prf_desc",sprintf(_("workspace profile for [ADOC %d] - %s - space files"),$this->id,$ref));
-  $pspace->setValue("dpdoc_famid",$this->fromid);
-  $pspace->setValue("dpdoc_fam",$this->getTitle($this->fromid));
-  $err=$pspace->Add();
-  if ($err == "") {
-    $pspace->setControl(false);
-    $pspace->addControl("GWSPADMIN","view");
-    $pspace->addControl("GWSPADMIN","edit");
-    $pspace->addControl("GWSPADMIN","delete");
-    $pspace->addControl("GWSPADMIN","viewacl");
-    $pspace->addControl("GWSPADMIN","modifyacl");
-    $pspace->addControl($gvname,'view');
-    $pspace->addControl($gvname,'open');
-    $pspace->addControl("WSP_IDADMIN",'view');
-    $pspace->addControl("WSP_IDADMIN",'edit');
-    $pspace->addControl($gename,'modify');
+  if ($err=="") {
+    // create this own profil
+    $pspace=createDoc($this->dbaccess,"PDIR",false);
+    $pspace->setValue("ba_title",sprintf(_("%s workspace profile"),$ref));
+    $pspace->setValue("prf_desc",sprintf(_("workspace profile for [ADOC %d] - %s - space files"),$this->id,$ref));
+    $pspace->setValue("dpdoc_famid",$this->fromid);
+    $pspace->setValue("dpdoc_fam",$this->getTitle($this->fromid));
+    $err=$pspace->Add();
+    if ($err == "") {
+      $pspace->setControl(false);
+      $pspace->addControl("GWSPADMIN","view");
+      $pspace->addControl("GWSPADMIN","edit");
+      $pspace->addControl("GWSPADMIN","delete");
+      $pspace->addControl("GWSPADMIN","viewacl");
+      $pspace->addControl("GWSPADMIN","modifyacl");
+      $pspace->addControl($gvname,'view');
+      $pspace->addControl($gvname,'open');
+      $pspace->addControl("WSP_IDADMIN",'view');
+      $pspace->addControl("WSP_IDADMIN",'edit');
+      $pspace->addControl($gename,'modify');
 
-    //    $this->dprofid=$pspace->id;
-    $this->setprofil($pspace->id);
-    $this->modify(true,array("profid","dprofid"),true);
-  }
+      //    $this->dprofid=$pspace->id;
+      $this->setprofil($pspace->id);
+      $this->modify(true,array("profid","dprofid"),true);
+    }
   
   
-  $pigroup=createDoc($this->dbaccess,"PDIR",false);
-  $pigroup->setValue("ba_title",sprintf(_("%s group profile"),$ref));
-  $pigroup->setValue("prf_desc",sprintf(_("intranet group profile for [ADOC %d] - %s - space files"),$this->id,$ref));
-  $pigroup->name=$this->getProfilGroupName();
-  $err=$pigroup->Add();
-  if ($err == "") {
-    // create profil for igroup of the spaces
-    $pigroup->setControl(false);
-    $this->recomputeIGroupProfil();
-    $gv->setProfil($pigroup->id);
-    $gv->modify(true,array("profid"),true);
-    $ge->setProfil($pigroup->id);
-    $ge->modify(true,array("profid"),true);
+    $pigroup=createDoc($this->dbaccess,"PDIR",false);
+    $pigroup->setValue("ba_title",sprintf(_("%s group profile"),$ref));
+    $pigroup->setValue("prf_desc",sprintf(_("intranet group profile for [ADOC %d] - %s - space files"),$this->id,$ref));
+    $pigroup->name=$this->getProfilGroupName();
+    $err=$pigroup->Add();
+    if ($err == "") {
+      // create profil for igroup of the spaces
+      $pigroup->setControl(false);
+      $this->recomputeIGroupProfil();
+      $gv->setProfil($pigroup->id);
+      $gv->modify(true,array("profid"),true);
+      $ge->setProfil($pigroup->id);
+      $ge->modify(true,array("profid"),true);
+    }
   }
 
-  if ($err != "") print_r2($err);
   return $err;
 }
 function recomputeIGroupProfil() {
