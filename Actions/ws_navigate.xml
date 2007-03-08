@@ -47,7 +47,7 @@ ROW2W1=parseInt('[WS_ROW2W1]');
 <div id="rule2" class="rule2"><table cellspacing="0"><tr ><td ><img style="display:none" class="button" src="[IMG:b_minileft.png]"></td></tr></table></div>
 <div id="col2" class="col2">
 <div id="folders" class="folders">
-<ul class="firstul" id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
+<ul class="firstul" id="firstul"><table style="width:100%;height:80%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:logofreedom.png]"></tr></td></table></ul>
 </div>
 <div  id="bscroll2"  style="border-bottom:inset 1px [COLOR_BLACK]" onmousedown="col2dragbegin(event)" class="bvresize" ></div>
 <div id="searches" class="searches">
@@ -62,14 +62,14 @@ ROW2W1=parseInt('[WS_ROW2W1]');
   <span style="float:left;border:none;background-color:transparent;display:none" title="[TEXT:display/undisplay]" onclick="clipviewornot(event)"><img id="imgclipbutton" src="[IMG:b_down.png]"></span></div>
 <div id="secondview"class="folders">
 <div id="clipboard" style="display:none" onmouseup="insertinclipboard(event,this,CLIPCID)" >
-<table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
+<table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:logofreedom.png]"></tr></td></table>
 </div>
-<ul class="firstul" id="secondul"><table style="width:70%;"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table></ul>
+<ul class="firstul" id="secondul"><table style="width:70%;"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:logofreedom.png]"></tr></td></table></ul>
 </div>
 </div>
 </div>
 <div id="col3" class="col3">
-<div id="fldlist" class="fldlist"  onmouseup="insertinclipboard(event,this,CFLDID,'list')" ><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:b_init.png]"></tr></td></table>
+<div id="fldlist" class="fldlist"  onmouseup="insertinclipboard(event,this,CFLDID,'list')" ><table style="width:100%;height:100%"><tr><td align="center"><img style="width:48px" onload="if (isIE) correctOnePNG(this)" src="[IMG:logofreedom.png]"></tr></td></table>
 </div><div  id="bscroll3"  onmousedown="col3dragbegin(event)" class="bvresize" ></div>
 
 <div id="resume" class="resume">
