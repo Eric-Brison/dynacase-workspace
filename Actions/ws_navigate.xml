@@ -15,8 +15,6 @@
 
 [JS:REF]
 
-<script type="text/javascript" src="[APPNAME]/Layout/displayws.js"></script>
-<script type="text/javascript" src="[APPNAME]/Layout/mechanism.js"></script>
 
    <script language="JavaScript">
   <!--

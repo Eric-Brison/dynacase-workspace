@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.10 2007/01/03 19:45:06 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.11 2007/03/12 09:06:48 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -33,6 +33,8 @@ function ws_navigate(&$action) {
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/DHTMLapi.js");
   $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/setparamu.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/displayws.js");
+  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/mechanism.js");
 
 
     // css pour popup
