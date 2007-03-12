@@ -13,6 +13,7 @@
 
 var oFCKeditor = new FCKeditor( 'wscreatefile' ) ;
 oFCKeditor.BasePath = 'fckeditor/';
+oFCKeditor.Config["CustomConfigurationsPath"] = "../../WORKSPACE/Layout/ws_fckeditor.js"  ;
 
 oFCKeditor.ToolbarSet = 'ws';
 

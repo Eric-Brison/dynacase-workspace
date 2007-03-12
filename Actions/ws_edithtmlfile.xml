@@ -166,7 +166,7 @@ body {
 
 
 oFCKeditor.BasePath = 'fckeditor/';
-
+oFCKeditor.Config["CustomConfigurationsPath"] = "../../WORKSPACE/Layout/ws_fckeditor.js"  ;
 
 oFCKeditor.ToolbarSet = 'ws';
 oFCKeditor.Config['FullPage'] = true ;
