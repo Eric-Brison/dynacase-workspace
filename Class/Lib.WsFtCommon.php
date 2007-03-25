@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.9 2007/02/09 08:46:39 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.10 2007/03/25 15:28:54 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -92,6 +92,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 
 		
 	      }
+	      if ($copy->doctype=='D') $terr=$adddoc->copyItems($copy->id);
 	    }
 	  } else {
 	    $err=sprintf(_("failed to copy document %s"),$doc->title);
