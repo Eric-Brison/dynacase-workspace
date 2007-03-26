@@ -3,7 +3,7 @@
  * Common function for move/add/del document
  *
  * @author Anakeen 2006
- * @version $Id: Lib.WsFtCommon.php,v 1.10 2007/03/25 15:28:54 eric Exp $
+ * @version $Id: Lib.WsFtCommon.php,v 1.11 2007/03/26 08:57:03 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -82,6 +82,7 @@ function movementDocument(&$action,$dbaccess,$cfldid,$cdocid,$pfldid,$docft) {
 	      }
 
 	      if ($err == "") {
+		if (method_exists($copy,"renameCopy")) $copy->renameCopy();
 		$copy->title = sprintf(_("duplication of %s "),$copy->title);
 		$copy->prelid=$doc->initid;
 		

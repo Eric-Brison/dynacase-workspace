@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_copydoc.php,v 1.4 2006/06/15 16:01:42 eric Exp $
+ * @version $Id: ws_copydoc.php,v 1.5 2007/03/26 08:57:03 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -40,9 +40,10 @@ function ws_copydoc(&$action) {
   $copy= $doc->copy();
   if (is_object($copy)) {
     $copy->refresh();
+    if (method_exists($copy,"renameCopy")) $copy->renameCopy();
     $copy->postmodify();
     $err=$copy->modify();
-    
+
   } else {
     
     $err=sprintf(_("cannot duplicate %s document"),$doc->title);

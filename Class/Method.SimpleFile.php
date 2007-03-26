@@ -38,13 +38,11 @@ function postCopy() {
 	$cible=$info->path;
 	if (file_exists($cible)) {
 	  $err=$vf->Store($cible, false , $vid);
-	  if ($err == "") {
+	  if ($err == "") {	 
 	    $pp=strrpos($info->name,'.');
-	    $base=substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
-	    $vf->Rename($vid,$base);
+	    $base=$info->name;//substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
+	    $vf->Rename($vid,$base);   
 	    $this->setValue("sfi_file",$reg[1]."|$vid");
-	    $this->refresh();
-	    $this->postmodify();
 	    $this->modify();
 	  }
 	}
@@ -58,6 +56,32 @@ function postCopy() {
 
   return $err;
 }
+/**
+ * rename file copy after un single copy
+ */
+function renameCopy() {
+  $f=$this->getValue("sfi_file");
+  if ($f) {
+    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+      $vf = newFreeVaultFile($this->dbaccess);
+      $vid=$reg[2];
+      if ($vf->Show($vid, $info) == "") {
+	$cible=$info->path;
+	if (file_exists($cible)) {	  
+	  if ($err == "") {
+	    $pp=strrpos($info->name,'.');
+	    $base=substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
+	    $vf->Rename($vid,$base);
+	    $this->refresh();
+	    $this->modify();
+	  }
+	}
+      }
+    }
+  }
+
+}
+
 function specRefresh() {
   // $this->computeMime();
   //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
