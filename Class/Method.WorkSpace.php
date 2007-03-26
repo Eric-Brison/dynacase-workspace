@@ -189,18 +189,57 @@ function recomputeIGroupProfil() {
   
 }
 /**
+ * suppress content before
+ * if all content are not deleted the workspace is not deleted
+ */
+function preDelete() {
+  // delete content
+  $terr=$this->deleteItems();
+  if (count($terr) >0) {
+    $dc=0;
+    foreach ($terr as $docid=>$docerr) {
+      if ($docerr == '') $dc++;
+      else $err.=sprintf("%d : %s\n",$docid,$docerr);
+    }
+    addWarningMsg(sprintf(_("%d documents deleted"),$dc));
+  }
+  if ($err) return $err;
+
+ 
+}
+
+/**
  * suppress profil & associated groups
  */
 function postDelete() {
   $gename=$this->getEditGroupName();
   $gvname=$this->getViewGroupName();
 
-  $g=new_doc($this->dbaccess,$gename);
-  if ($g->isAlive()) $g->delete();
-  $g=new_doc($this->dbaccess,$gvname);
-  if ($g->isAlive()) $g->delete();
 
-  
+  // delete groups
+  $g=new_doc($this->dbaccess,$gename);
+  if ($g->isAlive()) $err=$g->delete();
+  if ($err) return $err;
+
+  $g=new_doc($this->dbaccess,$gvname);
+  if ($g->isAlive()) $err=$g->delete();
+  if ($err) return $err;
+ 
+
+  // delete profile
+  $pid=$this->getValue("fld_pdocid");
+  if ($pid) {
+    $pdoc=new_doc($this->dbaccess,$pid);
+    if ($pdoc->isAlive()) $err=$pdoc->delete();
+    if ($err) return $err;
+  }
+  $pid=$this->getValue("fld_pdirid");
+  if ($pid) {
+    $pdoc=new_doc($this->dbaccess,$pid);
+    if ($pdoc->isAlive()) $err=$pdoc->delete();
+    if ($err) return $err;
+  }
+  return $err;
 }
 
 /**
