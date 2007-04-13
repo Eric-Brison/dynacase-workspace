@@ -205,3 +205,7 @@ function viewabstract() {
     
   }
 }
+function popdiv(event,url,divtitle,x,y,w,h) {
+  var ddov=newPopdiv(event,divtitle,x,y,w,h);    
+  requestUrlSend(ddov,url);
+}

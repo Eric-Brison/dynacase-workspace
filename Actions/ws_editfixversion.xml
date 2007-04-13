@@ -1,0 +1,61 @@
+
+
+<form  id="ifversion"  
+       class="fborder" 
+       name="fversion" style="display:inline"
+       onsubmit="if (this.newversion.value=='') {alert('[TEXT:Version name is empty]');return false;}"
+       method="POST" ENCTYPE="multipart/form-data" 
+       action="[CORE_STANDURL]&app=WORKSPACE&action=WS_FIXVERSION" >
+
+<table ><tr><td width="50%" style="vertical-align:text-top">
+
+<img align="left" width="48px" src="[IMG:version.png]"> <b>[TEXT:Fix document with version]</b> : <input id="iversion" type="text" onkeyup="activestate(event,this)"  name="newversion" value="[version]">
+
+
+
+</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea>
+
+</td></tr></table>
+<hr width="50%"><table style="display:inline"><tr><td style="vertical-align:text-top"> 
+<b style="vertical-align:text-top;white-space:nowrap">[TEXT:Fix state]</b>
+</td>
+<td id="dstate" style="text-align:left;vertical-align:text-top;[IFNOT ISIE]opacity:0.5[ENDIF ISIE][IF ISIE]filter:alpha(opacity=50);[ENDIF ISIE]"> :
+	<select id="selectstate" name="newstate" onchange="viewstatedescription(this)">
+	<option value="0" >[TEXT:no state]</option>
+	[BLOCK freestate]
+	<option [sstate]  value="[fstate]" desc="[dstate]">[lstate]</option>
+	[ENDBLOCK freestate]
+	</select></td><td> <i><span id="sdescription">-</span></i></td></tr></table>
+
+
+<div style="text-align:right">
+<input type="hidden" name="id" value="[docid]">
+<input id="subbutton" type="submit"  value="[TEXT:Fix version]">
+</div>
+</form>
+
+
+
+<script>
+document.viewstatedescription=function(o) {
+  var os=o.options[o.selectedIndex];
+  var sd=document.getElementById('sdescription');
+  if (os && sd) {
+    var d=os.getAttribute('desc');
+    sd.innerHTML=d;
+  }  
+}
+
+document.activestate= function(event,o) {
+  var ds=document.getElementById('dstate');
+  if (o.value != '') {
+    if (isIE) ds.style.filter="alpha(opacity=100)"
+    else ds.style.opacity=1;
+  } else {
+     if (isIE) ds.style.filter="alpha(opacity=50)"
+    else ds.style.opacity=0.5;
+  }
+}
+document.getElementById('iversion').focus();
+
+</script>

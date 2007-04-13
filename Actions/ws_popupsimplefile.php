@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.10 2006/11/22 15:57:22 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.11 2007/04/13 15:40:59 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -46,6 +46,14 @@ function ws_popupsimplefile(&$action) {
 			       "barmenu"=>"false"),
 	       "editdoc"=>array( "descr"=>_("Edit"),
 				 "url"=>"$surl&app=GENERIC&action=GENERIC_EDIT&rzone=$zone&id=$docid",
+				 "confirm"=>"false",
+				 "tconfirm"=>"",
+				 "target"=>"_self",
+				 "visibility"=>POPUP_ACTIVE,
+				 "submenu"=>"",
+				 "barmenu"=>"false"),
+	       "reserve"=>array( "descr"=>_("Reserve"),
+				 "jsfunction"=>"subwindow(300,500,'editfile','$surl&app=WORKSPACE&action=WS_EDITMODFILE&id=$docid')",
 				 "confirm"=>"false",
 				 "tconfirm"=>"",
 				 "target"=>"_self",
@@ -166,6 +174,8 @@ function ws_popupsimplefile(&$action) {
     $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
   }
   
+  $tlink["reserve"]["visibility"]=($doc->fileIsNotInEdition()==MENU_ACTIVE)?POPUP_ACTIVE:POPUP_INVISIBLE;
+
   if ($doc->hasUTag("AFFECTED")) {
     $tlink["affect"]["descr"]=_("Reaffect");    
     $tlink["desaffect"]["visibility"]=POPUP_ACTIVE;    

@@ -131,7 +131,12 @@ $action_desc = array (
   )  ,
   array( 
    "name"		=>"WS_EDITADDVERSION",
-   "short_name"		=>N_("edit for new version"),
+   "short_name"		=>N_("edit for add new version"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_EDITFIXVERSION",
+   "short_name"		=>N_("edit for fix new version"),
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
@@ -147,6 +152,11 @@ $action_desc = array (
   array( 
    "name"		=>"WS_ADDVERSION",
    "short_name"		=>N_("create a new version"),
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
+   "name"		=>"WS_FIXVERSION",
+   "short_name"		=>N_("fix a new version"),
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 

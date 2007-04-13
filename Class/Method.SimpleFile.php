@@ -83,12 +83,12 @@ function renameCopy() {
 }
 
 function specRefresh() {
-  // $this->computeMime();
+  $this->computeFileSize();
   //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
 }
 
 /**
- * return the converter for thumbnail based of mime type
+ * return the converter for thumbnail based on mime type
  * @return string empty if no converter found
  */
 function canThumbnail() {
@@ -138,7 +138,7 @@ function computeThumbnail() {
 	$shadow="";
 	//	$shadow="\( +clone -background black -shadow 60x4+4+4  \)";
 
-	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor black -frame 5x5+2+2 $shadow  +swap    -background none -mosaic -crop 225x225+0+0  %s";
+	$convertcmd="convert -thumbnail 200\\> %s[0] -crop 205x205+0+0 -mattecolor grey -frame 4x4+2+2 $shadow  +swap    -background none -mosaic -crop 225x225+0+0  %s";
 
 	//	$convertcmd="convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2   %s";
 	switch ($convert) {
@@ -231,7 +231,7 @@ function computeThumbnail() {
 
 
 	  $cible=uniqid("/var/tmp/thumb").".png";
-	  $convertcmd="convert  %s[0]  -mattecolor black -frame 5x5+2+2 $shadow +swap    -background none -mosaic  %s";
+	  $convertcmd="convert  %s[0]  -mattecolor  grey -frame 4x4+2+2 $shadow +swap    -background none -mosaic  %s";
 	
 	  $cmd = sprintf($convertcmd ,$ciblepng, $cible);
 	  system($cmd);
@@ -290,6 +290,23 @@ function computeMime() {
   }
 }
 
+  /**
+   * compute only file size
+   */
+function computeFileSize() {
+  static $vf;
+  $f=$this->getValue("sfi_file");
+  if ($f) {
+    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+      if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
+      if ($vf->Show($reg[2], $info) == "") {
+	include_once ("WHAT/Lib.FileMime.php");
+	$this->setValue("sfi_filesize",$info->size);
+      }
+    }
+  }
+}
+
 function mailsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->viewsimplefile($target,$ulink,$abstract);
   $this->lay->set("moddate",strftime("%A %d %B %Y %H:%M",$this->revdate));
@@ -318,6 +335,9 @@ function printsimplefile($target="_self",$ulink=true,$abstract=false) {
   }
 }
 function viewsimpleprop($target="_self",$ulink=true,$abstract=false) {
+  $this->computeMime();
+  $this->modify();
+
   $this->viewdefaultcard($target,$ulink,$abstract);
   if ($this->revision == 0) {
     $cdate=FrenchDateToUnixTs($this->cdate);
@@ -444,9 +464,11 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
     }      
   }
 
+  $this->lay->set("noversiontext",($this->locked==-1)?_("undefined version"):_("current version"));
   $this->lay->set("participate",implode(", ",$parti));
   $this->lay->set("thestate",$this->getState());
   $this->lay->set("stateid",($this->state)?$this->state:false);
+  $this->lay->set("viewabstract",(($this->getValue('sfi_description')!="")&&($this->getValue('sfi_thumb')=="")));
   $this->lay->setBlockData("comments",$tcomment);
   $dstate=new_doc($this->dbaccess,$this->state);
   $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));

@@ -6,113 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-12 11:49+0100\n"
-"PO-Revision-Date: 2007-02-12 11:50+0100\n"
+"POT-Creation-Date: 2007-04-13 16:04+0200\n"
+"PO-Revision-Date: 2007-04-13 16:06+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-msgid " (copy)"
-msgstr " (copie)"
-
-msgid "undefined"
-msgstr "non défini"
-
-#, c-format
-msgid "unknow user %s"
-msgstr "utilisateur inconnu %s"
-
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
-#, c-format
-msgid "%.01f Mb"
-msgstr "%.01f Mo"
-
-#, c-format
-msgid "locked by %s %s"
-msgstr "Verrouillé par %s %s"
-
-msgid "No title"
-msgstr "Pas de titre"
-
-#, c-format
-msgid "%s readers"
-msgstr "lecteur de %s"
-
-#, c-format
-msgid "Group of users that can view files in [ADOC %d] space"
-msgstr ""
-"Groupe des utilisateurs qui peuvent voir les fichiers de l'espace [ADOC %d]"
-
-#, c-format
-msgid "%s writers"
-msgstr "rédacteur de %s"
-
-#, c-format
-msgid "Group of users that can edit files in [ADOC %d] space"
-msgstr ""
-"Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace [ADOC %"
-"d]"
-
-#, c-format
-msgid "%s files"
-msgstr "fichiers %s"
-
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space files"
-msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] -%s "
-
-#, c-format
-msgid "%s directories"
-msgstr "dossiers %s"
-
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space directories"
-msgstr "profil par défaut pour les répertoires de l'espace [ADOC %d] -%s"
-
-#, c-format
-msgid "%s workspace profile"
-msgstr "profil de l'espace %s"
-
-#, c-format
-msgid "workspace profile for [ADOC %d] - %s - space files"
-msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] - %s "
-
-#, c-format
-msgid "%s group profile"
-msgstr "profil du groupe %s"
-
-#, c-format
-msgid "intranet group profile for [ADOC %d] - %s - space files"
-msgstr ""
-"profil par défaut pour les groupes lecteur / rédaceteur de l'espace [ADOC %"
-"d] - %s "
-
-#, c-format
-msgid "%s members"
-msgstr "%s membres"
-
-#, c-format
-msgid "cannot move folder %s in %s cause loop"
-msgstr ""
-"le répertoire %s ne peut être déplacer dans %s car ce dernier est un dossier "
-"parent "
-
-#, c-format
-msgid "duplication of %s "
-msgstr "copie de %s"
-
-#, c-format
-msgid "failed to copy document %s"
-msgstr "échec de la copie du document %s"
 
 msgid "WorkSpace"
 msgstr "Espace de travail"
@@ -195,22 +95,142 @@ msgstr "dupliquer un document"
 msgid "search a document"
 msgstr "rechercher un document"
 
+msgid " (copy)"
+msgstr " (copie)"
+
+msgid "undefined"
+msgstr "non défini"
+
 #, c-format
-msgid ""
-"This document will be dropped in the trash.\n"
-"Sure delete %s ?"
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
+
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#, c-format
+msgid "%d kb"
+msgstr "%d ko"
+
+#, c-format
+msgid "%.01f Mb"
+msgstr "%.01f Mo"
+
+#, c-format
+msgid "locked by %s %s"
+msgstr "Verrouillé par %s %s"
+
+msgid "No title"
+msgstr "Pas de titre"
+
+msgid "undefined version"
+msgstr "non définie"
+
+msgid "current version"
+msgstr "courante"
+
+#, c-format
+msgid "%s readers"
+msgstr "lecteur de %s"
+
+#, c-format
+msgid "Group of users that can view files in [ADOC %d] space"
 msgstr ""
-"Ce document va être mis dans la poubelle\n"
-"Êtes vous certain de vouloir supprimer %s"
+"Groupe des utilisateurs qui peuvent voir les fichiers de l'espace [ADOC %d]"
+
+#, c-format
+msgid "%s writers"
+msgstr "rédacteur de %s"
+
+#, c-format
+msgid "Group of users that can edit files in [ADOC %d] space"
+msgstr ""
+"Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace [ADOC %"
+"d]"
+
+#, c-format
+msgid "%s files"
+msgstr "fichiers %s"
+
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space files"
+msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] -%s "
+
+#, c-format
+msgid "%s directories"
+msgstr "dossiers %s"
+
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space directories"
+msgstr "profil par défaut pour les répertoires de l'espace [ADOC %d] -%s"
+
+#, c-format
+msgid "%s workspace profile"
+msgstr "profil de l'espace %s"
+
+#, c-format
+msgid "workspace profile for [ADOC %d] - %s - space files"
+msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] - %s "
+
+#, c-format
+msgid "%s group profile"
+msgstr "profil du groupe %s"
+
+#, c-format
+msgid "intranet group profile for [ADOC %d] - %s - space files"
+msgstr ""
+"profil par défaut pour les groupes lecteur / rédaceteur de l'espace [ADOC %"
+"d] - %s "
+
+#, c-format
+msgid "%d documents deleted"
+msgstr "%d documents supprimés"
+
+#, c-format
+msgid "%s members"
+msgstr "%s membres"
+
+#, c-format
+msgid "cannot move folder %s in %s cause loop"
+msgstr ""
+"le répertoire %s ne peut être déplacer dans %s car ce dernier est un dossier "
+"parent "
+
+#, c-format
+msgid "duplication of %s "
+msgstr "copie de %s"
+
+#, c-format
+msgid "failed to copy document %s"
+msgstr "échec de la copie du document %s"
+
+msgid "edit for add new version"
+msgstr "édition d'une nouvelle version"
+
+msgid "edit for fix new version"
+msgstr "édition pour figer la version"
+
+msgid "fix a new version"
+msgstr "figer la version"
+
+msgid "Diffuse"
+msgstr "Diffuser"
+
+msgid "Desaffect"
+msgstr "Désaffecter"
+
+msgid "Add a note"
+msgstr "Ajouter une note"
 
 msgid "restore"
 msgstr "restaurer"
 
-msgid "restore folder and its containt"
-msgstr "Restaurer le dossier et son contenu"
-
 msgid "properties"
 msgstr "Propriétés"
+
+msgid "Reaffect"
+msgstr "Réaffecter"
 
 msgid "Empty trash"
 msgstr "Vider la corbeille"
@@ -303,17 +323,8 @@ msgstr "Nouveau répertoire"
 msgid "%s file downloaded by %s on %s"
 msgstr "fichier %s téléchargé par %s sur %s"
 
-msgid "Diffuse"
-msgstr "Diffuser"
-
-msgid "Desaffect"
-msgstr "Désaffecter"
-
-msgid "Add a note"
-msgstr "Ajouter une note"
-
-msgid "Reaffect"
-msgstr "Réaffecter"
+msgid "Reserve"
+msgstr "Réserver"
 
 msgid "the trash cannot be empty"
 msgstr "La corbeille ne peut pas être vidée"
@@ -342,6 +353,17 @@ msgid ""
 msgstr ""
 "Ce lien va être supprimé.\n"
 "Êtes vous certain de vouloir supprimer %s"
+
+#, c-format
+msgid ""
+"This document will be dropped in the trash.\n"
+"Sure delete %s ?"
+msgstr ""
+"Ce document va être mis dans la poubelle\n"
+"Êtes vous certain de vouloir supprimer %s"
+
+msgid "restore folder and its containt"
+msgstr "Restaurer le dossier et son contenu"
 
 msgid "Delete the folder and its containt"
 msgstr "Supprimer le dossier et son contenu"
@@ -481,6 +503,15 @@ msgstr "Créer une nouvelle version"
 msgid "Create new space"
 msgstr "Créer un nouvel espace"
 
+msgid "Fix document with version"
+msgstr "Figer le document avec la version"
+
+msgid "Fix state"
+msgstr "État pour la version"
+
+msgid "Fix version"
+msgstr "Figer la version"
+
 msgid "Click to rename file"
 msgstr "Cliquer pour renommer le fichier"
 
@@ -597,6 +628,21 @@ msgstr "Cliquer pour voir le menu"
 
 msgid "Directory"
 msgstr "Répertoire"
+
+msgid "Click to view menu"
+msgstr "Cliquer pour voir le menu"
+
+msgid "Reserve the file"
+msgstr "Réserver le fichier"
+
+msgid "Name the version"
+msgstr "Nommer la version"
+
+msgid "Fix"
+msgstr "Figer"
+
+msgid "Modify keywords"
+msgstr "Modifier les mots-clefs"
 
 msgid "Size"
 msgstr "Taille"

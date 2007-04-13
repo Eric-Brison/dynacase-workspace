@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-12 11:49+0100\n"
+"POT-Creation-Date: 2007-04-13 16:04+0200\n"
 "PO-Revision-Date: 2001-03-14 00:54-0500\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: english-anakeen <distrib@anakeen.com>\n"
@@ -14,105 +14,6 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "\n"
-
-msgid " (copy)"
-msgstr ""
-
-msgid "undefined"
-msgstr ""
-
-msgid "nobody"
-msgstr ""
-
-msgid "fixed"
-msgstr ""
-
-#, c-format
-msgid "unknow user %s"
-msgstr ""
-
-#, c-format
-msgid "%d bytes"
-msgstr ""
-
-#, c-format
-msgid "%d kb"
-msgstr ""
-
-#, c-format
-msgid "%.01f Mb"
-msgstr ""
-
-#, c-format
-msgid "locked by %s %s"
-msgstr ""
-
-msgid "No title"
-msgstr ""
-
-#, c-format
-msgid "%s readers"
-msgstr ""
-
-#, c-format
-msgid "Group of users that can view files in [ADOC %d] space"
-msgstr ""
-
-#, c-format
-msgid "%s writers"
-msgstr ""
-
-#, c-format
-msgid "Group of users that can edit files in [ADOC %d] space"
-msgstr ""
-
-#, c-format
-msgid "%s files"
-msgstr ""
-
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space files"
-msgstr ""
-
-#, c-format
-msgid "%s directories"
-msgstr ""
-
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space directories"
-msgstr ""
-
-#, c-format
-msgid "%s workspace profile"
-msgstr ""
-
-#, c-format
-msgid "workspace profile for [ADOC %d] - %s - space files"
-msgstr ""
-
-#, c-format
-msgid "%s group profile"
-msgstr ""
-
-#, c-format
-msgid "intranet group profile for [ADOC %d] - %s - space files"
-msgstr ""
-
-#, c-format
-msgid "%s members"
-msgstr ""
-
-#, c-format
-msgid "cannot move folder %s in %s cause loop"
-msgstr ""
-
-#, c-format
-msgid "duplication of %s "
-msgstr ""
-
-#, c-format
-msgid "failed to copy document %s"
-msgstr ""
 
 msgid "WorkSpace"
 msgstr ""
@@ -195,22 +96,153 @@ msgstr ""
 msgid "search a document"
 msgstr ""
 
+msgid " (copy)"
+msgstr ""
+
+msgid "undefined"
+msgstr ""
+
+msgid "nobody"
+msgstr ""
+
+msgid "fixed"
+msgstr ""
+
+#, c-format
+msgid "unknow user %s"
+msgstr ""
+
+#, c-format
+msgid "%d bytes"
+msgstr ""
+
+#, c-format
+msgid "%d kb"
+msgstr ""
+
+#, c-format
+msgid "%.01f Mb"
+msgstr ""
+
+#, c-format
+msgid "locked by %s %s"
+msgstr ""
+
+msgid "No title"
+msgstr ""
+
+msgid "undefined version"
+msgstr ""
+
+msgid "current version"
+msgstr ""
+
+#, c-format
+msgid "%s readers"
+msgstr ""
+
+#, c-format
+msgid "Group of users that can view files in [ADOC %d] space"
+msgstr ""
+
+#, c-format
+msgid "%s writers"
+msgstr ""
+
+#, c-format
+msgid "Group of users that can edit files in [ADOC %d] space"
+msgstr ""
+
+#, c-format
+msgid "%s files"
+msgstr ""
+
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%s directories"
+msgstr ""
+
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space directories"
+msgstr ""
+
+#, c-format
+msgid "%s workspace profile"
+msgstr ""
+
+#, c-format
+msgid "workspace profile for [ADOC %d] - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%s group profile"
+msgstr ""
+
+#, c-format
+msgid "intranet group profile for [ADOC %d] - %s - space files"
+msgstr ""
+
+#, c-format
+msgid "%d documents deleted"
+msgstr ""
+
+#, c-format
+msgid "%s members"
+msgstr ""
+
+#, c-format
+msgid "cannot move folder %s in %s cause loop"
+msgstr ""
+
+#, c-format
+msgid "duplication of %s "
+msgstr ""
+
+#, c-format
+msgid "failed to copy document %s"
+msgstr ""
+
+msgid "edit for add new version"
+msgstr ""
+
+msgid "edit for fix new version"
+msgstr ""
+
+msgid "fix a new version"
+msgstr ""
+
 msgid "View latest"
 msgstr ""
 
 msgid "Edit"
 msgstr ""
 
+msgid "Diffuse"
+msgstr ""
+
+msgid "Workflow"
+msgstr ""
+
+msgid "Desaffect"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Unlock"
+msgstr ""
+
 msgid "Delete"
 msgstr ""
 
 #, c-format
-msgid ""
-"This document will be dropped in the trash.\n"
-"Sure delete %s ?"
+msgid "Sure delete %s ?"
 msgstr ""
 
-msgid "History"
+msgid "Add a note"
 msgstr ""
 
 msgid "Duplicate"
@@ -225,10 +257,13 @@ msgstr ""
 msgid "restore"
 msgstr ""
 
-msgid "restore folder and its containt"
+msgid "print"
 msgstr ""
 
 msgid "properties"
+msgstr ""
+
+msgid "Reaffect"
 msgstr ""
 
 msgid "Empty trash"
@@ -353,32 +388,7 @@ msgstr ""
 msgid "%s file downloaded by %s on %s"
 msgstr ""
 
-msgid "Diffuse"
-msgstr ""
-
-msgid "Workflow"
-msgstr ""
-
-msgid "Desaffect"
-msgstr ""
-
-msgid "Lock"
-msgstr ""
-
-msgid "Unlock"
-msgstr ""
-
-#, c-format
-msgid "Sure delete %s ?"
-msgstr ""
-
-msgid "Add a note"
-msgstr ""
-
-msgid "print"
-msgstr ""
-
-msgid "Reaffect"
+msgid "Reserve"
 msgstr ""
 
 msgid "the trash cannot be empty"
@@ -405,6 +415,18 @@ msgstr ""
 msgid ""
 "This link will be deleted.\n"
 "Sure delete %s ?"
+msgstr ""
+
+#, c-format
+msgid ""
+"This document will be dropped in the trash.\n"
+"Sure delete %s ?"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "restore folder and its containt"
 msgstr ""
 
 msgid "no file referenced"
@@ -551,6 +573,15 @@ msgstr ""
 msgid "Create new space"
 msgstr ""
 
+msgid "Fix document with version"
+msgstr ""
+
+msgid "Fix state"
+msgstr ""
+
+msgid "Fix version"
+msgstr ""
+
 msgid "Click to rename file"
 msgstr ""
 
@@ -675,6 +706,24 @@ msgid "Clic to view menu"
 msgstr ""
 
 msgid "Directory"
+msgstr ""
+
+msgid "Click to view menu"
+msgstr ""
+
+msgid "Others"
+msgstr ""
+
+msgid "Reserve the file"
+msgstr ""
+
+msgid "Name the version"
+msgstr ""
+
+msgid "Fix"
+msgstr ""
+
+msgid "Modify keywords"
 msgstr ""
 
 msgid "Size"
