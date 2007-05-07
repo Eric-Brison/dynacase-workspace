@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.26 2007/02/09 15:40:07 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.27 2007/05/07 09:47:36 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -162,7 +162,7 @@ function ws_folderlist(&$action) {
 		  "isfld"=>($v["doctype"]=='D')||($v["doctype"]=='S'),
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxtshort"),
-		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate"))),
+		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate",0))),
 		  "icon"=>$icon);
     }
     $action->lay->setBlockData("TREE",$tc);
