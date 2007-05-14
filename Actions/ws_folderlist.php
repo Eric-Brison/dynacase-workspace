@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.27 2007/05/07 09:47:36 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.28 2007/05/14 12:41:22 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -69,8 +69,8 @@ function ws_folderlist(&$action) {
     $doc->Add();
     $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
 
-
-    $sqlfilter=$doc->getSqlGeneralFilters($keyword,"yes",false);
+    $full=true;
+    $sqlfilter=$doc->getSqlGeneralFilters($keyword,"yes",false,$full);
   
     $sdirid = 0;
     $query=getSqlSearchDoc($dbaccess, 
