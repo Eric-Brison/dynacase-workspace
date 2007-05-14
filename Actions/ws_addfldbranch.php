@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_addfldbranch.php,v 1.17 2007/01/03 19:45:06 eric Exp $
+ * @version $Id: ws_addfldbranch.php,v 1.18 2007/05/14 12:40:54 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -85,6 +85,7 @@ function ws_addfldbranch(&$action) {
 		  "linkfld"=>($top || ($v["prelid"]==$doc->initid))?false:true,
 		  "droppable"=>(($v["doctype"]=="D") || $v["dropft"])?"yes":"no",
 		  "icon"=>$doc->getIcon($v["icon"]),
+		  "haschild"=>hasChildFld($dbaccess,$v["initid"],($v["doctype"] == 'S')),
 		  "dropft"=>$v["dropft"]?$v["dropft"]:"move");
     }
 
