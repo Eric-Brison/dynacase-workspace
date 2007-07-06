@@ -7,7 +7,7 @@
 #   as published by the Free Software Foundation; either version
 #   2 of the License, or (at your option) any later version.
 #
-AC_REVISION($Id: configure.in,v 1.1 2005/09/13 14:47:16 eric Exp $)
+AC_REVISION($Id: configure.in,v 1.2 2007/07/06 12:28:18 yannick Exp $)
 dnl
 dnl Process this file with autoconf to produce a configure script.
 dnl
@@ -53,4 +53,4 @@ AC_ARG_WITH(dbport,
 [  --with-dbport=port number  the database port (default 5432)], DBPORT=$withval)
 
 
-AC_OUTPUT(Makefile:Makefile.in WORKSPACE_init.php:WORKSPACE_init.php.in WORKSPACE.spec:WORKSPACE.spec.in)
+AC_OUTPUT(Makefile:Makefile.in WORKSPACE_init.php:WORKSPACE_init.php.in WORKSPACE.spec:WORKSPACE.spec.in debian/changelog)
