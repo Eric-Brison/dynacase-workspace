@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_renamefile.php,v 1.2 2006/11/16 17:32:09 eric Exp $
+ * @version $Id: ws_renamefile.php,v 1.3 2007/07/25 08:36:01 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -49,9 +49,8 @@ function ws_renamefile(&$action) {
     $doc->postModify();
     $err=$doc->modify();
   }
-
   if ($err != "") {    
-    $action->lay->set("warning",utf8_encode($err));
+    $action->lay->set("warning",$err);
     $action->lay->set("CODE","KO");
   } else {  
     $action->lay->set("CODE","OK");
