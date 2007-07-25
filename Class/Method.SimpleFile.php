@@ -456,7 +456,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $parti=array();
   $tcomment=array();
   foreach ($h as $k=>$v) {
-    $parti[$v["uname"]]=$v["uname"];
+    if (($v["code"]=="MODATTR") || ($v["code"]=="MODIFY") || ($v["code"]=="CREATE")) $parti[$v["uname"]]=$v["uname"];
     if (($v["level"] == HISTO_INFO)||($v["level"] == HISTO_MESSAGE)) {      
       $tcomment[$k]=$v;
       $tcomment[$k]["jdate"]=strtok($v["date"]," ");
