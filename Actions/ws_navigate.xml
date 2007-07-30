@@ -23,6 +23,18 @@
 COL3H1=parseInt('[WS_COL3H1]');
 COL2H1=parseInt('[WS_COL2H1]');
 ROW2W1=parseInt('[WS_ROW2W1]');
+function changeMode(o) {
+  var mode=document.getElementById('searchmode').value;
+  if (mode=='FULL') {
+    document.getElementById('searchmode').value='REGEXP';
+    o.value='~';
+    o.title="[TEXT:Search containing characters]";
+  } else {
+    document.getElementById('searchmode').value='FULL';
+    o.title="[TEXT:Search Words]";
+    o.value='*';
+  }
+}
   //-->
    </script>   
 
@@ -49,7 +61,9 @@ ROW2W1=parseInt('[WS_ROW2W1]');
 </div>
 <div  id="bscroll2"  style="border-bottom:inset 1px [COLOR_BLACK]" onmousedown="col2dragbegin(event)" class="bvresize" ></div>
 <div id="searches" class="searches">
-<input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" style="border:1px [COLOR_BLACK] solid" onkeypress="if (trackCR(event)) viewSearch(event,this.value);"></input><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value);" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]">
+<input id="searchmode" name="mode" type="hidden" value="REGEXP">
+<input id="searchbutton" title="[TEXT:Search containing characters]" type="button" value="~" onclick="changeMode(this)">
+[IF FULLMODE]<script>changeMode(document.getElementById('searchbutton'))</script>[ENDIF FULLMODE]<input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" style="border:1px [COLOR_BLACK] solid" onkeypress="if (trackCR(event)) viewSearch(event,this.value,document.getElementById('searchmode').value);"></input><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value,document.getElementById('searchmode').value);" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]">
 </div>
 <div id="tabclip"  ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">
   <span  title="[TEXT:alternate between private space and document basket]" onclick="altern_basket_private(event,this)" ondblclick="expandPersoTree('[persofldid]',document.getElementById('secondul'),true)"><img src="[IMG:iconview.gif]"></span>

@@ -12,6 +12,7 @@ function redisplaywsdiv(event) {
   var dtrash=document.getElementById('itrash');
   var dsecondul=document.getElementById('secondul');
   var dsecondview=document.getElementById('secondview');
+  var ikey=document.getElementById('ikey');
   var bscroll1=document.getElementById('bscroll1');
   var bscroll2=document.getElementById('bscroll2');
   var bscroll3=document.getElementById('bscroll3');
@@ -70,6 +71,7 @@ function redisplaywsdiv(event) {
   dsearches.style.top=ch+4; 
   dsearches.style.left=(isIE)?1:2;
   dsearches.style.height='30px';
+  ikey.style.width=wcol2-60;
 
   ch+=30;if (isIE) ch -=3;
   dtabclip.style.width=wcol2;

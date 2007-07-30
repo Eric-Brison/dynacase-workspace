@@ -456,12 +456,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $parti=array();
   $tcomment=array();
   foreach ($h as $k=>$v) {
-    if (($v["code"]=="MODATTR") || ($v["code"]=="MODIFY") || ($v["code"]=="CREATE")) $parti[$v["uname"]]=$v["uname"];
-    if (($v["level"] == HISTO_INFO)||($v["level"] == HISTO_MESSAGE)) {      
-      $tcomment[$k]=$v;
-      $tcomment[$k]["jdate"]=strtok($v["date"]," ");
-      if (count($tcomment) > 1) break;
-    }      
+    if (($v["code"]=="MODATTR") || ($v["code"]=="MODIFY") || ($v["code"]=="CREATE")) $parti[$v["uname"]]=$v["uname"];       
   }
 
   $this->lay->set("noversiontext",($this->locked==-1)?_("undefined version"):_("current version"));
@@ -469,7 +464,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thestate",$this->getState());
   $this->lay->set("stateid",($this->state)?$this->state:false);
   $this->lay->set("viewabstract",(($this->getValue('sfi_description')!="")&&($this->getValue('sfi_thumb')=="")));
-  $this->lay->setBlockData("comments",$tcomment);
+
   $dstate=new_doc($this->dbaccess,$this->state);
   $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));
   $fvalue=$this->getValue("sfi_file");

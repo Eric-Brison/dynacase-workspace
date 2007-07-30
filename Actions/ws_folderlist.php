@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_folderlist.php,v 1.28 2007/05/14 12:41:22 eric Exp $
+ * @version $Id: ws_folderlist.php,v 1.29 2007/07/30 16:03:37 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -38,6 +38,7 @@ function ws_folderlist(&$action) {
   $addft = GetHttpVars("addft");
   $order = GetHttpVars("order");
   $key = GetHttpVars("key");
+  $smode = GetHttpVars("searchmode");
   $dorder = (GetHttpVars("dorder","true")=="true");
   $dbaccess = $action->GetParam("FREEDOM_DB");
 
@@ -60,6 +61,7 @@ function ws_folderlist(&$action) {
     $doc->addQuery("select * from doc where doctype='Z' and owner = ".$action->user->id);
     break;
   case "search":
+    include_once("GENERIC/generic_util.php"); 
     // search
     if (seems_utf8($key)) $keyword=utf8_decode($key);
     else $keyword=$key;
@@ -69,7 +71,8 @@ function ws_folderlist(&$action) {
     $doc->Add();
     $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
 
-    $full=true;
+    setSearchMode($action,$famid,$smode);
+    $full=($smode=="FULL");
     $sqlfilter=$doc->getSqlGeneralFilters($keyword,"yes",false,$full);
   
     $sdirid = 0;

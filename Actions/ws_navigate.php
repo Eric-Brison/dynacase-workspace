@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.11 2007/03/12 09:06:48 eric Exp $
+ * @version $Id: ws_navigate.php,v 1.12 2007/07/30 16:03:37 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -14,6 +14,7 @@
 
 
 include_once("FDL/Lib.Dir.php");
+include_once("GENERIC/generic_util.php");
 
 
 /**
@@ -50,6 +51,9 @@ function ws_navigate(&$action) {
 			"sicon"=>$doc->getIcon(),
 			"sid"=>$doc->id);
   }
+  $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
+  $mode=getSearchMode($action,$famid);
+  $action->lay->Set("FULLMODE",($mode=="FULL"));
 
   $action->lay->setBlockData("SPACES",$tlayspaces);
   if (trashempty($dbaccess,$action->user->id)) $action->lay->set("imgtrash",$action->getImageUrl('trashempty.png'));

@@ -210,8 +210,18 @@ DIV.fldlist P {
 DIV.fldlist TD,DIV.fldlist TH  {
   padding:0px 2px 0px 2px;
 }
-DIV.searches INPUT {
+DIV.searches INPUT.ikey {
   width:160px;
+}
+DIV.searches input[type="button"] {
+  -moz-border-radius:0px;
+}
+DIV.searches input:hover {
+  border:none;
+}
+DIV.searches input:focus {
+  border:none;
+  width:[SIZE_LARGE];
 }
 DIV.searches A {
   background-color:transparent;

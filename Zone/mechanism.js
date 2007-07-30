@@ -478,11 +478,11 @@ function viewFolder(event,dirid,o) {
   CFLDID=dirid;
   folderSend(dirid,where,null,null,null,'list');
 }
-function viewSearch(event,key) {
+function viewSearch(event,key,smode) {
   var  where=document.getElementById('fldlist');
  
   CFLDID=null;
-  folderSend('search',where,null,null,null,'list',key);
+  folderSend('search',where,null,null,null,'list',key+'&searchmode='+smode);
 }
 
 /**
