@@ -6,13 +6,171 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-13 16:04+0200\n"
-"PO-Revision-Date: 2007-04-13 16:06+0200\n"
+"POT-Creation-Date: 2007-08-13 11:13+0200\n"
+"PO-Revision-Date: 2007-08-13 11:13+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "trash"
+msgstr "corbeille"
+
+msgid "Filename Menu"
+msgstr "Nom"
+
+msgid "Modification Date Menu"
+msgstr "Date de modification"
+
+msgid "File Size Menu"
+msgstr "Taille"
+
+msgid "File Type Menu"
+msgstr "Type"
+
+msgid "<1 kb"
+msgstr "<1 ko"
+
+#, c-format
+msgid "%d kb"
+msgstr "%d ko"
+
+#, c-format
+msgid "%.01f Mb"
+msgstr "%.01f Mo"
+
+#, c-format
+msgid "%d items"
+msgstr "%d éléments"
+
+msgid "1 item"
+msgstr "1 élément"
+
+msgid "0 item"
+msgstr "0 élément"
+
+msgid "Reserve"
+msgstr "Réserver"
+
+msgid "Diffuse"
+msgstr "Diffuser"
+
+msgid "Desaffect"
+msgstr "Désaffecter"
+
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+msgid "properties"
+msgstr "Propriétés"
+
+msgid "Reaffect"
+msgstr "Réaffecter"
+
+msgid "Empty trash"
+msgstr "Vider la corbeille"
+
+#, c-format
+msgid "document %s does not exist"
+msgstr "Le document %s n'existe pas"
+
+#, c-format
+msgid "document %s is not in edition"
+msgstr "le document %s n'est pas en édition"
+
+msgid "file modification aborted"
+msgstr "modification du fichier abandonnée"
+
+#, c-format
+msgid "cannot duplicate %s document"
+msgstr "le document %s ne peut pas être dupliqué"
+
+#, c-format
+msgid "%s file downloaded by %s on %s"
+msgstr "fichier %s téléchargé par %s sur %s"
+
+#, c-format
+msgid "%s attribute is not a file"
+msgstr "L'attribut %s n'est pas du type fichier"
+
+#, c-format
+msgid "%s : edit HTML file"
+msgstr "%s : édition du fichier HTML"
+
+#, c-format
+msgid "document %s already in edition"
+msgstr "le document %s est déjà en édition"
+
+#, c-format
+msgid "Download <i>%s</i> file<br> for modification"
+msgstr "Télécharger le fichier <i>%s</i><br> pour modification"
+
+#, c-format
+msgid ""
+"The file %s has been downloaded and the document has been locked and "
+"tagged : in edition"
+msgstr ""
+"Le file %s a été téléchargé et le document a été verrouillé et a été "
+"marqué : en édition"
+
+msgid "the trash cannot be empty"
+msgstr "La corbeille ne peut pas être vidée"
+
+msgid "no user defined"
+msgstr "pas d'utilisateur défini"
+
+msgid "My space"
+msgstr "Mon espace"
+
+#, c-format
+msgid "personal space of %s"
+msgstr "espace personnel de %s"
+
+msgid "Delete link"
+msgstr "Supprimer le lien"
+
+#, c-format
+msgid ""
+"This link will be deleted.\n"
+"Sure delete %s ?"
+msgstr ""
+"Ce lien va être supprimé.\n"
+"Êtes vous certain de vouloir supprimer %s"
+
+#, c-format
+msgid ""
+"This document will be dropped in the trash.\n"
+"Sure delete %s ?"
+msgstr ""
+"Ce document va être mis dans la poubelle\n"
+"Êtes vous certain de vouloir supprimer %s"
+
+msgid "restore folder and its containt"
+msgstr "Restaurer le dossier et son contenu"
+
+msgid "New file"
+msgstr "Nouveau fichier"
+
+msgid "New text"
+msgstr "Nouveau texte"
+
+msgid "New directory"
+msgstr "Nouveau répertoire"
+
+msgid "Edit file"
+msgstr "Editer le fichier"
+
+msgid "Delete the folder and its containt"
+msgstr "Supprimer le dossier et son contenu"
+
+#, c-format
+msgid "Sure delete %s and its containt ?"
+msgstr "Etes-vous sur de supprimer %s et son contenu ?"
+
+#, c-format
+msgid "Rename file as %s"
+msgstr "Renommer le fichier en %s"
 
 msgid "WorkSpace"
 msgstr "Espace de travail"
@@ -77,8 +235,11 @@ msgstr "raffraichi le nombre d'item de dossier"
 msgid "cancel download file"
 msgstr "annulation du téléchargement"
 
-msgid "edit for new version"
+msgid "edit for add new version"
 msgstr "édition d'une nouvelle version"
+
+msgid "edit for fix new version"
+msgstr "édition pour figer la version"
 
 msgid "download file for edition"
 msgstr "téléchargement de fichier en édition"
@@ -89,46 +250,14 @@ msgstr "replacer le fichier"
 msgid "create a new version"
 msgstr "créer une nouvelle version"
 
+msgid "fix a new version"
+msgstr "figer la version"
+
 msgid "duplicate a document"
 msgstr "dupliquer un document"
 
 msgid "search a document"
 msgstr "rechercher un document"
-
-msgid " (copy)"
-msgstr " (copie)"
-
-msgid "undefined"
-msgstr "non défini"
-
-#, c-format
-msgid "unknow user %s"
-msgstr "utilisateur inconnu %s"
-
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
-#, c-format
-msgid "%.01f Mb"
-msgstr "%.01f Mo"
-
-#, c-format
-msgid "locked by %s %s"
-msgstr "Verrouillé par %s %s"
-
-msgid "No title"
-msgstr "Pas de titre"
-
-msgid "undefined version"
-msgstr "non définie"
-
-msgid "current version"
-msgstr "courante"
 
 #, c-format
 msgid "%s readers"
@@ -184,10 +313,6 @@ msgstr ""
 "d] - %s "
 
 #, c-format
-msgid "%d documents deleted"
-msgstr "%d documents supprimés"
-
-#, c-format
 msgid "%s members"
 msgstr "%s membres"
 
@@ -205,172 +330,36 @@ msgstr "copie de %s"
 msgid "failed to copy document %s"
 msgstr "échec de la copie du document %s"
 
-msgid "edit for add new version"
-msgstr "édition d'une nouvelle version"
+msgid " (copy)"
+msgstr " (copie)"
 
-msgid "edit for fix new version"
-msgstr "édition pour figer la version"
-
-msgid "fix a new version"
-msgstr "figer la version"
-
-msgid "Diffuse"
-msgstr "Diffuser"
-
-msgid "Desaffect"
-msgstr "Désaffecter"
-
-msgid "Add a note"
-msgstr "Ajouter une note"
-
-msgid "restore"
-msgstr "restaurer"
-
-msgid "properties"
-msgstr "Propriétés"
-
-msgid "Reaffect"
-msgstr "Réaffecter"
-
-msgid "Empty trash"
-msgstr "Vider la corbeille"
-
-msgid "My space"
-msgstr "Mon espace"
+msgid "undefined"
+msgstr "non défini"
 
 #, c-format
-msgid "personal space of %s"
-msgstr "espace personnel de %s"
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
 
 #, c-format
-msgid "Document %s is not alive"
-msgstr "Le document %s n'est pas en vie"
+msgid "%d bytes"
+msgstr "%d octets"
 
 #, c-format
-msgid "%s attribute is not a file"
-msgstr "L'attribut %s n'est pas du type fichier"
+msgid "locked by %s %s"
+msgstr "Verrouillé par %s %s"
+
+msgid "No title"
+msgstr "Pas de titre"
+
+msgid "undefined version"
+msgstr "non définie"
+
+msgid "current version"
+msgstr "courante"
 
 #, c-format
-msgid "%s : edit HTML file"
-msgstr "%s : édition du fichier HTML"
-
-#, c-format
-msgid "cannot duplicate %s document"
-msgstr "le document %s ne peut pas être dupliqué"
-
-#, c-format
-msgid "document %s does not exist"
-msgstr "Le document %s n'existe pas"
-
-msgid "trash"
-msgstr "corbeille"
-
-msgid "Filename Menu"
-msgstr "Nom"
-
-msgid "Modification Date Menu"
-msgstr "Date de modification"
-
-msgid "File Size Menu"
-msgstr "Taille"
-
-msgid "File Type Menu"
-msgstr "Type"
-
-msgid "<1 kb"
-msgstr "<1 ko"
-
-#, c-format
-msgid "%d items"
-msgstr "%d éléments"
-
-msgid "1 item"
-msgstr "1 élément"
-
-msgid "0 item"
-msgstr "0 élément"
-
-#, c-format
-msgid "document %s already in edition"
-msgstr "le document %s est déjà en édition"
-
-#, c-format
-msgid "Download <i>%s</i> file<br> for modification"
-msgstr "Télécharger le fichier <i>%s</i><br> pour modification"
-
-#, c-format
-msgid ""
-"The file %s has been downloaded and the document has been locked and "
-"tagged : in edition"
-msgstr ""
-"Le file %s a été téléchargé et le document a été verrouillé et a été "
-"marqué : en édition"
-
-#, c-format
-msgid "Rename file as %s"
-msgstr "Renommer le fichier en %s"
-
-msgid "New file"
-msgstr "Nouveau fichier"
-
-msgid "New text"
-msgstr "Nouveau texte"
-
-msgid "New directory"
-msgstr "Nouveau répertoire"
-
-#, c-format
-msgid "%s file downloaded by %s on %s"
-msgstr "fichier %s téléchargé par %s sur %s"
-
-msgid "Reserve"
-msgstr "Réserver"
-
-msgid "the trash cannot be empty"
-msgstr "La corbeille ne peut pas être vidée"
-
-msgid "no user defined"
-msgstr "pas d'utilisateur défini"
-
-#, c-format
-msgid "document [%s] not found"
-msgstr "document [%s] pas trouvé"
-
-#, c-format
-msgid "document %s is not in edition"
-msgstr "le document %s n'est pas en édition"
-
-msgid "file modification aborted"
-msgstr "modification du fichier abandonnée"
-
-msgid "Delete link"
-msgstr "Supprimer le lien"
-
-#, c-format
-msgid ""
-"This link will be deleted.\n"
-"Sure delete %s ?"
-msgstr ""
-"Ce lien va être supprimé.\n"
-"Êtes vous certain de vouloir supprimer %s"
-
-#, c-format
-msgid ""
-"This document will be dropped in the trash.\n"
-"Sure delete %s ?"
-msgstr ""
-"Ce document va être mis dans la poubelle\n"
-"Êtes vous certain de vouloir supprimer %s"
-
-msgid "restore folder and its containt"
-msgstr "Restaurer le dossier et son contenu"
-
-msgid "Delete the folder and its containt"
-msgstr "Supprimer le dossier et son contenu"
-
-#, c-format
-msgid "Sure delete %s and its containt ?"
-msgstr "Etes-vous sur de supprimer %s et son contenu ?"
+msgid "%d documents deleted"
+msgstr "%d documents supprimés"
 
 msgid "do not see confirmation before download for edition"
 msgstr "ne plus voir la confirmation avant de télécharger en édition"
@@ -384,38 +373,37 @@ msgstr "hauteur du cadre de l'arborescence des fichiers"
 msgid "width of folder tree box"
 msgstr "largeur du cadre dans l'arborescence des fichiers"
 
-msgid "Documents exchange"
-msgstr "Echange de documents"
+msgid "Add version"
+msgstr "Ajouter une version"
 
-msgid "Private"
-msgstr "Privé"
+msgid "Create new version for the document"
+msgstr "Créer une nouvelle version pour le document"
 
-msgid "Trash"
-msgstr "Corbeille"
+msgid "The current version will be archived with the version"
+msgstr "La version courante va être archivée avec la version"
 
-msgid "input file name to search"
-msgstr "nom du fichier à rechercher"
+msgid "A new document version will be created with the new name version"
+msgstr ""
+"Une nouvelle version de document va être créée avec la nouvelle dénomination "
+"de la version"
 
-msgid "Send searches"
-msgstr "Lancer la recherche"
+msgid "Version name is empty"
+msgstr "Le nom de la version est vide"
 
-msgid "alternate between private space and document basket"
-msgstr "alternance entre l'espace privé et le porte-documents"
+msgid "Actual version"
+msgstr "Version actuelle"
 
-msgid "private space"
-msgstr "espace privé"
+msgid "New version"
+msgstr "Nouvelle version"
 
-msgid "my locked documents"
-msgstr "mes documents verrouillés"
+msgid "Revision comment"
+msgstr "Commentaire de révision"
 
-msgid "my documents to read"
-msgstr "mes documents à lire"
+msgid "Comment"
+msgstr "Commentaire"
 
-msgid "my basket"
-msgstr "mon panier"
-
-msgid "display/undisplay"
-msgstr "afficher/cacher"
+msgid "Create new version"
+msgstr "Créer une nouvelle version"
 
 msgid "The text has be modified"
 msgstr "Le texte a été modifié"
@@ -465,40 +453,38 @@ msgstr "Actions..."
 msgid "click and drag to move document"
 msgstr "Clic et glisse pour déplacer le document "
 
-msgid "No result"
-msgstr "Pas de résultat"
+msgid "Documents exchange"
+msgstr "Echange de documents"
 
-msgid "Add version"
-msgstr "Ajouter une version"
+msgid "Private"
+msgstr "Privé"
 
-msgid "Create new version for the document"
-msgstr "Créer une nouvelle version pour le document"
+msgid "Trash"
+msgstr "Corbeille"
 
-msgid "The current version will be archived with the version"
-msgstr "La version courante va être archivée avec la version"
+msgid "input file name to search"
+msgstr "nom du fichier à rechercher"
 
-msgid "A new document version will be created with the new name version"
-msgstr ""
-"Une nouvelle version de document va être créée avec la nouvelle dénomination "
-"de la version"
+msgid "Send searches"
+msgstr "Lancer la recherche"
 
-msgid "Version name is empty"
-msgstr "Le nom de la version est vide"
+msgid "alternate between private space and document basket"
+msgstr "alternance entre l'espace privé et le porte-documents"
 
-msgid "Actual version"
-msgstr "Version actuelle"
+msgid "private space"
+msgstr "espace privé"
 
-msgid "New version"
-msgstr "Nouvelle version"
+msgid "my locked documents"
+msgstr "mes documents verrouillés"
 
-msgid "Revision comment"
-msgstr "Commentaire de révision"
+msgid "my documents to read"
+msgstr "mes documents à lire"
 
-msgid "Comment"
-msgstr "Commentaire"
+msgid "my basket"
+msgstr "mon panier"
 
-msgid "Create new version"
-msgstr "Créer une nouvelle version"
+msgid "display/undisplay"
+msgstr "afficher/cacher"
 
 msgid "Create new space"
 msgstr "Créer un nouvel espace"
@@ -545,8 +531,8 @@ msgstr "Editer en ligne"
 msgid "Download file for edit and modify it"
 msgstr "Télécharger le fichier afin de le modifier"
 
-msgid "Modify the file"
-msgstr "Modifier le fichier"
+msgid "Reserve the file"
+msgstr "Réserver le fichier"
 
 msgid "Use external software editor to modify file"
 msgstr "Utiliser votre éditeur pour modifier le fichier"
@@ -572,11 +558,11 @@ msgstr "Télécharger le fichier pour le consulter"
 msgid "Download"
 msgstr "Télécharger"
 
-msgid "Rename the version"
-msgstr "Renommer la version"
+msgid "Name the version"
+msgstr "Nommer la version"
 
-msgid "Undefined version"
-msgstr "Non définie"
+msgid "Fix"
+msgstr "Figer"
 
 msgid "State"
 msgstr "État"
@@ -592,6 +578,9 @@ msgstr "Sujet"
 
 msgid "No subject"
 msgstr "Pas de sujet"
+
+msgid "Modify keywords"
+msgstr "Modifier les mots-clefs"
 
 msgid "Keywords"
 msgstr "Mots-Clefs"
@@ -617,32 +606,60 @@ msgstr "Double-cliquer pour mettre à jour la miniature"
 msgid "No abstract"
 msgstr "Pas de résumé"
 
-msgid "The version rename will not create new version"
-msgstr "Le renommage de la version ne crée pas de nouvelle version"
+msgid "Namespace"
+msgstr "Nom de l'espace"
+
+msgid "type characters to filter users on it's name"
+msgstr ""
+"Saisissez les caractères pour filtrer sur le nom de l'utilisateur à "
+"rechercher"
+
+msgid "Send user searches"
+msgstr "Lancer la recherche d'utilisateurs à insérer"
+
+msgid "redactor"
+msgstr "rédacteur"
+
+msgid "reader"
+msgstr "lecteur"
+
+msgid "suppress member"
+msgstr "enlever un membre"
 
 msgid "Click to modify description"
 msgstr "Cliquer pour modifier la description"
+
+msgid "You must click on the Search... button to select the modified file "
+msgstr ""
+"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
+"modifié"
+
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+"Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
+"du fichier original"
+
+msgid "Stay in edition mode ?"
+msgstr "Rester en mode édition ?"
+
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+"Sélectionner si vous vouler refaire des modifications après la sauvegarde"
+
+msgid "You need to select the file"
+msgstr "Vous devez selectionner un fichier"
+
+msgid "The name of the file must be the same as previous name"
+msgstr "Le nom du fichier doit être le même que l'original"
+
+msgid "The version rename will not create new version"
+msgstr "Le renommage de la version ne crée pas de nouvelle version"
 
 msgid "Clic to view menu"
 msgstr "Cliquer pour voir le menu"
 
 msgid "Directory"
 msgstr "Répertoire"
-
-msgid "Click to view menu"
-msgstr "Cliquer pour voir le menu"
-
-msgid "Reserve the file"
-msgstr "Réserver le fichier"
-
-msgid "Name the version"
-msgstr "Nommer la version"
-
-msgid "Fix"
-msgstr "Figer"
-
-msgid "Modify keywords"
-msgstr "Modifier les mots-clefs"
 
 msgid "Size"
 msgstr "Taille"
@@ -671,28 +688,8 @@ msgstr "Affecté à"
 msgid "File path"
 msgstr "Emplacement"
 
-msgid "You must click on the Search... button to select the modified file "
-msgstr ""
-"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
-"modifié"
-
-msgid "To prevent error, the filename must be the same as the previous name"
-msgstr ""
-"Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
-"du fichier original"
-
-msgid "Stay in edition mode ?"
-msgstr "Rester en mode édition ?"
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-"Sélectionner si vous vouler refaire des modifications après la sauvegarde"
-
-msgid "You need to select the file"
-msgstr "Vous devez selectionner un fichier"
-
-msgid "The name of the file must be the same as previous name"
-msgstr "Le nom du fichier doit être le même que l'original"
+msgid "Undefined version"
+msgstr "Non définie"
 
 msgid "Space"
 msgstr "Espace"
@@ -712,25 +709,14 @@ msgstr "Groupe rédacteur"
 msgid "view members of redactor group"
 msgstr "voir les membres du groupe rédacteur"
 
-msgid "Namespace"
-msgstr "Nom de l'espace"
+#~ msgid "edit for new version"
+#~ msgstr "édition d'une nouvelle version"
 
-msgid "type characters to filter users on it's name"
-msgstr ""
-"Saisissez les caractères pour filtrer sur le nom de l'utilisateur à "
-"rechercher"
+#~ msgid "Modify the file"
+#~ msgstr "Modifier le fichier"
 
-msgid "Send user searches"
-msgstr "Lancer la recherche d'utilisateurs à insérer"
-
-msgid "redactor"
-msgstr "rédacteur"
-
-msgid "reader"
-msgstr "lecteur"
-
-msgid "suppress member"
-msgstr "enlever un membre"
+#~ msgid "Rename the version"
+#~ msgstr "Renommer la version"
 
 #~ msgid "1 document"
 #~ msgstr "1 document"

@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.11 2007/04/13 15:40:59 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.12 2007/08/13 13:09:56 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -30,6 +30,14 @@ function ws_popupsimplefile(&$action) {
   
 
   $tsubmenu=array();
+  $davserver=$action->getParam("FREEDAV_SERVEUR");
+  if ($davserver) {
+    $fvalue=$doc->getValue("sfi_file");
+    if (ereg ("(.*)\|(.*)", $fvalue, $reg)) {
+      $vid= $reg[2];
+      $mimetype=$reg[1];
+    }
+  }
 
   // -------------------- Menu menu ------------------
 
@@ -50,6 +58,14 @@ function ws_popupsimplefile(&$action) {
 				 "tconfirm"=>"",
 				 "target"=>"_self",
 				 "visibility"=>POPUP_ACTIVE,
+				 "submenu"=>"",
+				 "barmenu"=>"false"),
+	       "openineditor"=>array( "descr"=>_("Edit file"),
+				 "jsfunction"=>"getDavUrl(this,'$docid','$vid','$davserver');",
+				 "confirm"=>"false",
+				 "tconfirm"=>"",
+				 "target"=>"_self",
+				 "visibility"=>POPUP_INVISIBLE,
 				 "submenu"=>"",
 				 "barmenu"=>"false"),
 	       "reserve"=>array( "descr"=>_("Reserve"),
@@ -173,7 +189,10 @@ function ws_popupsimplefile(&$action) {
     $tlink["restore"]["visibility"]=POPUP_ACTIVE;
     $tlink["duplicate"]["visibility"]=POPUP_INVISIBLE;
   }
-  
+  if ($davserver) {
+    $tlink["openineditor"]["visibility"]=POPUP_ACTIVE;
+    
+  }
   $tlink["reserve"]["visibility"]=($doc->fileIsNotInEdition()==MENU_ACTIVE)?POPUP_ACTIVE:POPUP_INVISIBLE;
 
   if ($doc->hasUTag("AFFECTED")) {
@@ -184,6 +203,7 @@ function ws_popupsimplefile(&$action) {
   if ($err) {
     $tlink["affect"]["visibility"]=POPUP_INVISIBLE;  
     $tlink["desaffect"]["visibility"]=POPUP_INVISIBLE;    
+    $tlink["openineditor"]["visibility"]=POPUP_INVISIBLE;    
   }
   
          

@@ -209,3 +209,10 @@ function popdiv(event,url,divtitle,x,y,w,h) {
   var ddov=newPopdiv(event,divtitle,x,y,w,h);    
   requestUrlSend(ddov,url);
 }
+
+
+function getDavUrl(th,docid,vid,davaddr) {
+  var aurl;
+  var sid=getsessionid(docid,vid);
+  th.href='asdav://'+davaddr+'/freedav/vid-'+sid+'/'+document.getElementById('sfi_title').innerHTML  
+}
