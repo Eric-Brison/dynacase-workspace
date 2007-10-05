@@ -3,7 +3,7 @@
  * Display editor to modify HTML file
  *
  * @author Anakeen 2006
- * @version $Id: ws_edithtmlfile.php,v 1.4 2006/06/01 12:57:20 eric Exp $
+ * @version $Id: ws_edithtmlfile.php,v 1.5 2007/10/05 15:57:14 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -22,7 +22,7 @@ include_once("FDL/Lib.Dir.php");
  * @global id Http var : document id to edi
  * @global attrid Http var : id of file attribute
  */
-function ws_edithtmlfile(&$action) {
+function ws_edithtmlfile(&$action,$istext=false) {
   $docid = GetHttpVars("id");
   $aid = GetHttpVars("attrid");
 
@@ -66,7 +66,10 @@ function ws_edithtmlfile(&$action) {
 
     $big=(strlen($content) > 100000);
 
-    if (! $big) $action->lay->set("fullhtml",str_replace(array("'","\n","\r"),array("\\'","\\\n",""),$content));
+    if (! $big) {
+      if ($istext) $action->lay->set("fullhtml",$content);
+      else $action->lay->set("fullhtml",str_replace(array("'","\n","\r"),array("\\'","\\\n",""),$content));
+    }
 
     
   } else {
@@ -78,3 +81,8 @@ function ws_edithtmlfile(&$action) {
   $action->lay->set("attrid",$aid);
   $action->lay->set("BIG",$big);
 }
+
+function ws_edittextfile(&$action) {
+  ws_edithtmlfile($action,true);
+}
+?>

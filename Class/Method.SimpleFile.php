@@ -438,8 +438,12 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
   $this->lay->set("dsize",$dsize);
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
+  $this->lay->set("istext",false);
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
-  $this->lay->set("canedithtml",($this->getValue("sfi_mimesys")=="text/html")&&($this->getValue('sfi_inedition') != 1));
+  if (! $this->lay->get("ishtml")) $this->lay->set("istext",ereg('^text/',$this->getValue("sfi_mimesys")));
+
+  $this->lay->set("canedithtml",(ereg('^text/',$this->getValue("sfi_mimesys"))&&($this->getValue('sfi_inedition') != 1)));
+
   $this->lay->set("isinedition",($this->fileIsInEdition()==MENU_ACTIVE));
   $this->lay->set("isnotinedition",($this->fileIsNotInEdition()==MENU_ACTIVE));
   $this->lay->set("canedit",($this->canEdit()==""));

@@ -105,6 +105,13 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
+   "name"		=>"WS_EDITTEXTFILE",
+   "short_name"		=>N_("edit TEXT file"),
+   "script"		=>"ws_edithtmlfile.php",
+   "function"           =>"ws_edittextfile",
+   "acl"		=>"WORKSPACE_USER"
+  )  ,
+  array( 
    "name"		=>"WS_MODHTMLFILE",
    "short_name"		=>N_("edit HTML file"),
    "acl"		=>"WORKSPACE_USER"

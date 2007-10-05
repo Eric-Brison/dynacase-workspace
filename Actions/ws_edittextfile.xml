@@ -1,13 +1,7 @@
-<html>
-	<head>
-		<title>[edittitle]</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="robots" content="noindex, nofollow">
-		<script type="text/javascript" src="fckeditor/fckeditor.js"></script>
-
-[JS:REF]
+[ZONE FDL:HTMLHEAD]
 <script>
-[JS:CODE]
+
+var TEXTISMODIFIED=false;
 function stopPropagation(event) {
   if (!event) event=window.event;
   if (event.stopPropagation) event.stopPropagation();
@@ -18,24 +12,15 @@ function stopPropagation(event) {
 function submitfile(event,docid,attrid) {
   if (window.opener) {
     if (window.opener.attributeSend) {
-
        cursorwait();
-      // Get the editor instance that we want to interact with.
-	var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
-
-	// Get the editor contents in XHTML.
-
-	var newval= oEditor.GetXHTML( true );
-
-	// var newval='<html>'+oEditor.EditorDocument.body.innerHTML+'</html>';
-
-
-	var menuurl='';
-	if (isNetscape) menuurl='../../';
+     
+       var newval= document.getElementById('textfile').value;       
+       var menuurl='';
+	//	if (isNetscape) menuurl='../../';
 	menuurl=menuurl+'[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
       
        window.opener.attributeSend(event,menuurl,null,newval);
-       oEditor.ResetIsDirty();
+       TEXTISMODIFIED=false;
        cursorauto();
     }
   }
@@ -73,7 +58,7 @@ function wscanceledit(event) {
   
 }
 
-function getHTMLFile(oed) {
+function getTEXTFile() {
   var regfile;
 
     // branch for native XMLHttpRequest object
@@ -92,9 +77,8 @@ function getHTMLFile(oed) {
       if(regfile.status == 200) {
 	   
 	if (regfile.responseText) {
-	  //var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
-	  //oEditor.SetHTML(regfile.responseText);
-	  oed.Value=regfile.responseText;
+	  
+	  document.getElementById('textfile').value=regfile.responseText;
 	}
 	else {
 	  alert('no txt\n'+regfile.responseText);
@@ -104,25 +88,21 @@ function getHTMLFile(oed) {
      
     }    
 }
-var oFCKeditor = new FCKeditor( 'wsfile' ) ;
+
 
 
 function cursorwait() {
-  var j=window.frames[0];
+ 
   
-   globalcursor('progress',j);
-     globalcursor('progress',j.frames[0]);
+   globalcursor('progress');
+
 }
 function cursorauto() {
-  var j=window.frames[0];
 
-   unglobalcursor(j);
-    unglobalcursor(j.frames[0]);
+   unglobalcursor();
+
 }
-function wsIsModified() {
-  if (AUTOCLOSE) return false;
-  return FCKeditorAPI.GetInstance('wsfile').IsDirty();
-}
+
 
 function trackKeysQuickSave(event) {
   var intKeyCode,ctrlKey;
@@ -139,13 +119,12 @@ function trackKeysQuickSave(event) {
     
     if (stopPropagation) stopPropagation(event);
     else if (window.parent.stopPropagation) window.parent.stopPropagation(event);    
-  } 
+  } else {
+    if (!ctrlKey) TEXTISMODIFIED=true;
+  }
 }
-function trackQS() {
-  var oEditor = FCKeditorAPI.GetInstance('wsfile') ;
-
-  if (oEditor.EditorDocument) addEvent(oEditor.EditorDocument,"keydown",trackKeysQuickSave);
-  else window.setTimeout( trackQS, 1000 ) ;
+function wsIsModified() {
+  return TEXTISMODIFIED;
 }
 </script>
 <style>
@@ -154,38 +133,14 @@ body {
   margin:0px;
 }
 </style>
-	</head>
-
-	<body onunload="wscanceledit(event);return false"
-	onbeforeunload="if (wsIsModified()) return '[TEXT:The text has be modified]'" >		
-		<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false" style="display:inline">
-		<input type="hidden" name="id" value="[docid]">
-		<input type="hidden" name="attrid" value="[attrid]">
-			<script type="text/javascript">
-<!--
-
-
-oFCKeditor.BasePath = 'fckeditor/';
-oFCKeditor.Config["CustomConfigurationsPath"] = "../../WORKSPACE/Layout/ws_fckeditor.js"  ;
-
-oFCKeditor.ToolbarSet = 'ws';
-oFCKeditor.Config['FullPage'] = true ;
-oFCKeditor.Config['BrowserContextMenuOnCtrl'] = true ;
-oFCKeditor.Config['FirefoxSpellChecker']		= true ;
-oFCKeditor.Config['SkinPath'] =  'skins/silver/';
-[IFNOT BIG]oFCKeditor.Value='[fullhtml]';[ENDIF BIG]
-oFCKeditor.Height='100%';
-oFCKeditor.Width='100%';
-[IF BIG]getHTMLFile(oFCKeditor);
-
-[ENDIF BIG]
-oFCKeditor.Create();
-
-
-addEvent(window,"load",trackQS);
-
-//-->
-			</script>
-		</form>
-	</body>
+</head>
+<body onunload="wscanceledit(event);return false"
+	onbeforeunload="if (wsIsModified()) return '[TEXT:The text has be modified]'"style="margin:0px;padding:0px" >		
+	<form action="[CORE_STANDURL]app=WORKSPACE&action=WS_MODHTMLFILE" method="post" target="_blank" onsubmit="submitfile(event,'[docid]','[attrid]');return false" style="display:inline">
+	<input type="hidden" name="id" value="[docid]">
+	<input type="hidden" name="attrid" value="[attrid]">		
+[IFNOT BIG]<textarea style="width:100%;height:99%" onkeypress="trackKeysQuickSave(event)" id="textfile">[fullhtml]</textarea>[ENDIF BIG]
+[IF BIG]<script>getTEXTFile();</script>
+[ENDIF BIG]		</form>
+</body>
 </html>
