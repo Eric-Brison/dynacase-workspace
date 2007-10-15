@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: admin.php,v 1.2 2006/12/04 11:32:28 eric Exp $
+ * @version $Id: admin.php,v 1.3 2007/10/15 16:34:25 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -36,5 +36,5 @@ function admin(&$action) {
 
   $action->lay->setBlockData("SPACES",$ls);
   $action->lay->set("ficon",$fdoc->geticon());
-
 }
+?>
