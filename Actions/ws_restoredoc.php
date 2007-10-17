@@ -3,7 +3,7 @@
  * UnTrash document
  *
  * @author Anakeen 2006
- * @version $Id: ws_restoredoc.php,v 1.6 2006/11/22 15:57:22 eric Exp $
+ * @version $Id: ws_restoredoc.php,v 1.7 2007/10/17 12:17:32 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -72,3 +72,4 @@ function ws_restoredoc(&$action) {
   $action->lay->set("delay",microtime_diff(microtime(),$mb));					
 
 }
+?>
