@@ -1,7 +1,7 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.22 2007/10/17 08:22:05 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.23 2007/11/14 16:58:28 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
@@ -81,7 +81,7 @@ Requires: ImageMagick-coder-jpeg
 Requires: ImageMagick-coder-url
 Requires: ImageMagick-coder-tiff
 %endif
-Prereq: WHAT 
+Prereq: WHAT >= 2.9.3
 Prereq: gettext
 
 
