@@ -1,14 +1,15 @@
 # ============================================
-# $Id: Makefile.in,v 1.6 2007/07/06 12:28:22 yannick Exp $
+# $Id: Makefile.in,v 1.7 2008/02/08 08:04:25 eric Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
 utildir=@PUBRULE@
 appname = @PACKAGE@
+applib=FDL
 pubdir = @prefix@
 srcdir = @srcdir@
 
-export pubdir utildir appname
+export pubdir utildir appname applib
 
 TAR = gtar
 GZIP_ENV = --best

@@ -1,7 +1,7 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.23 2007/11/14 16:58:28 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.24 2008/02/08 08:04:25 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
@@ -100,9 +100,7 @@ The freedom WorkSpace is use to exchange file document between members of groups
 autoconf
 ./configure --with-pubrule=`pwd`
 make  pubdir=$RPM_BUILD_ROOT%{destdir} 
-install -d $RPM_BUILD_ROOT/%{destdir}/FDL
-cd $RPM_BUILD_ROOT/%{destdir}/FDL
-ln -s ../@PACKAGE@/Method.*.php  .
+
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
