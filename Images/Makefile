@@ -1,9 +1,9 @@
 # ============================================
-# $Id: Makefile,v 1.4 2006/06/20 08:00:38 eric Exp $
+# $Id: Makefile,v 1.5 2008/02/08 08:09:50 eric Exp $
 # ============================================
 
 
-SUBDIR= mime
+#SUBDIR= mime
 include $(utildir)/PubRule
 DISTFILES += $(SUBDIR) Makefile
 
