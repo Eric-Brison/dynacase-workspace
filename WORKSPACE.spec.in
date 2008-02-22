@@ -1,7 +1,7 @@
 #! /bin/rpm
 #
 #  File: 
-#  $Id: WORKSPACE.spec.in,v 1.24 2008/02/08 08:04:25 eric Exp $
+#  $Id: WORKSPACE.spec.in,v 1.25 2008/02/22 15:33:58 eric Exp $
 #
 #  This is the SPEC file for the What Users Module
 #  Anakeen What Application
@@ -64,7 +64,7 @@ URL: http://www.anakeen.com/
 Packager: Yannick Le Briquer <yannick.lebriquer@anakeen.com>
 BuildArchitectures: noarch
 BuildRoot: /tmp/anakeen-root
-Requires: FREEDOM-LIB >= 2.7.4
+Requires: FREEDOM-LIB >= 2.9.5
 Requires: FREEDOM-COMMON >= 0.2.1
 Requires: FREEDOM-DAV 
 Requires: VAULT >= 2.0.4

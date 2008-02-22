@@ -37,6 +37,7 @@ DIV.space {
 }
 TABLE.tfldlist TH {
   background-color:[COLOR_A9];
+  background-image: [CORE_FGIMG];
   border-left:[COLOR_A5] solid 1px;
 }
 TABLE.tfldlist TH.thover {

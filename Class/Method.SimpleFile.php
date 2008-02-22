@@ -440,6 +440,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
   $this->lay->set("istext",false);
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
+  $this->lay->set("haspdf",(($this->getValue("sfi_pdffile")!="")&&( ereg("application/pdf",$this->getValue("sfi_pdffile")))));
   if (! $this->lay->get("ishtml")) $this->lay->set("istext",ereg('^text/',$this->getValue("sfi_mimesys")));
 
   $this->lay->set("canedithtml",(ereg('^text/',$this->getValue("sfi_mimesys"))&&($this->getValue('sfi_inedition') != 1)));
