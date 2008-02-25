@@ -1,5 +1,5 @@
 # ============================================
-# $Id: Makefile.in,v 1.7 2008/02/08 08:04:25 eric Exp $
+# $Id: Makefile.in,v 1.8 2008/02/25 07:26:16 eric Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
@@ -24,8 +24,3 @@ DISTFILES += $(SUBDIR) \
             RELEASE VERSION   workspace.ods
 
 
-
-$(pubdir)/$(appname)/workspace.ods : workspace.ods
-	cp workspace.ods $(pubdir)/$(appname)
-
-publish: $(pubdir)/$(appname)/workspace.ods
