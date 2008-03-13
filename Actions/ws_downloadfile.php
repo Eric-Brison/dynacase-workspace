@@ -3,7 +3,7 @@
  * Download File in web client
  *
  * @author Anakeen 2006
- * @version $Id: ws_downloadfile.php,v 1.3 2006/05/18 07:23:52 eric Exp $
+ * @version $Id: ws_downloadfile.php,v 1.4 2008/03/13 11:10:16 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package WORKSPACE
  * @subpackage 
@@ -36,7 +36,7 @@ function ws_downloadfile(&$action) {
     
     if ($ovalue == "") $action->exiterror(_("no file referenced"));
     
-    ereg ("(.*)\|(.*)", $ovalue, $reg);
+    ereg (REGEXPFILE, $ovalue, $reg);
     $vaultid= $reg[2];
     // $mimetype=$reg[1];
     $mimetype= $doc->getValue("sfi_mimesys");

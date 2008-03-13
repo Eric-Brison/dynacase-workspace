@@ -3,7 +3,7 @@
  * Context menu view in folder list for a document
  *
  * @author Anakeen 2006
- * @version $Id: ws_popupsimplefile.php,v 1.12 2007/08/13 13:09:56 eric Exp $
+ * @version $Id: ws_popupsimplefile.php,v 1.13 2008/03/13 11:10:16 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -33,7 +33,7 @@ function ws_popupsimplefile(&$action) {
   $davserver=$action->getParam("FREEDAV_SERVEUR");
   if ($davserver) {
     $fvalue=$doc->getValue("sfi_file");
-    if (ereg ("(.*)\|(.*)", $fvalue, $reg)) {
+    if (ereg (REGEXPFILE, $fvalue, $reg)) {
       $vid= $reg[2];
       $mimetype=$reg[1];
     }

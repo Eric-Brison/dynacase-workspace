@@ -3,7 +3,7 @@
  * Display editor to modify HTML file
  *
  * @author Anakeen 2006
- * @version $Id: ws_edithtmlfile.php,v 1.5 2007/10/05 15:57:14 eric Exp $
+ * @version $Id: ws_edithtmlfile.php,v 1.6 2008/03/13 11:10:16 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -53,7 +53,7 @@ function ws_edithtmlfile(&$action,$istext=false) {
   
   $fvalue=$doc->getValue($aid);
 
-  if (  ereg ("(.*)\|(.*)", $fvalue, $reg)) {
+  if (  ereg (REGEXPFILE, $fvalue, $reg)) {
     $vaultid= $reg[2];
     $mimetype=$reg[1];
 

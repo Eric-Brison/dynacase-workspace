@@ -3,7 +3,7 @@
  * Display doucment explorer
  *
  * @author Anakeen 2006
- * @version $Id: ws_renamefile.php,v 1.3 2007/07/25 08:36:01 eric Exp $
+ * @version $Id: ws_renamefile.php,v 1.4 2008/03/13 11:10:16 eric Exp $
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
  * @package FREEDOM
  * @subpackage 
@@ -41,7 +41,7 @@ function ws_renamefile(&$action) {
   $f=$doc->getValue("sfi_file");
   if (seems_utf8($newname)) $newname=utf8_decode($newname);
 
-  if (ereg ("(.*)\|(.*)", $f, $reg)) {
+  if (ereg (REGEXPFILE, $f, $reg)) {
     $vf = newFreeVaultFile($dbaccess);
     $vid=$reg[2];
     $vf->Rename($vid,($newname));

@@ -32,7 +32,7 @@ function postCopy() {
   
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+    if (ereg (REGEXPFILE, $f, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	$cible=$info->path;
@@ -62,7 +62,7 @@ function postCopy() {
 function renameCopy() {
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+    if (ereg (REGEXPFILE, $f, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       $vid=$reg[2];
       if ($vf->Show($vid, $info) == "") {
@@ -130,7 +130,7 @@ function canThumbnail() {
 function computeThumbnail() {
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+    if (ereg (REGEXPFILE, $f, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 
@@ -262,7 +262,7 @@ function computeMime() {
   static $vf;
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+    if (ereg (REGEXPFILE, $f, $reg)) {
       if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	include_once ("WHAT/Lib.FileMime.php");
@@ -297,7 +297,7 @@ function computeFileSize() {
   static $vf;
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg ("(.*)\|(.*)", $f, $reg)) {
+    if (ereg (REGEXPFILE, $f, $reg)) {
       if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	include_once ("WHAT/Lib.FileMime.php");
@@ -474,7 +474,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));
   $fvalue=$this->getValue("sfi_file");
 
-  if (ereg ("(.*)\|(.*)", $fvalue, $reg)) {
+  if (ereg (REGEXPFILE, $fvalue, $reg)) {
     $vaultid= $reg[2];
     $mimetype=$reg[1];
     $this->lay->set("vaultid",$vaultid);	
