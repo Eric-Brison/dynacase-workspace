@@ -1,5 +1,5 @@
 # ============================================
-# $Id: Makefile.in,v 1.9 2008/03/28 09:02:33 eric Exp $
+# $Id: Makefile.in,v 1.10 2009/01/19 14:21:37 jerome Exp $
 # ============================================
 PACKAGE = @PACKAGE@
 VERSION = @VERSION@
@@ -17,6 +17,8 @@ GZIP_ENV = --best
 export targetdir PACKAGE
 
 SUBDIR=  Class Actions Zone Css Images Doc debian
+
+pages_not_xml = info.xml
 
 include $(utildir)/PubRule
 
