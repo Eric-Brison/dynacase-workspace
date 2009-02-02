@@ -39,7 +39,7 @@ function ws_renamefile(&$action) {
   $doc=new_doc($dbaccess,$docid);
 
   $f=$doc->getValue("sfi_file");
-  if (seems_utf8($newname)) $newname=utf8_decode($newname);
+  if (!seems_utf8($newname)) $newname=utf8_encode($newname);
 
   if (ereg (REGEXPFILE, $f, $reg)) {
     $vf = newFreeVaultFile($dbaccess);

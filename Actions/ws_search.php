@@ -43,7 +43,7 @@ function ws_search(&$action) {
 
   foreach ($lq as $k=>$v) {
     if (! in_array($v["id"],$noids)) {
-      $lq[$k]["title"]=utf8_encode($lq[$k]["title"]);
+      $lq[$k]["title"]=$lq[$k]["title"];
       $lq[$k]["stitle"]=str_replace("'","\\'",($lq[$k]["title"]));
     } else {
       unset($lq[$k]);

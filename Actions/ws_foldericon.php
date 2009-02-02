@@ -66,7 +66,7 @@ function ws_foldericon(&$action) {
     $ls=$doc->getContent();
     $tc=array();
     foreach ($ls as $k=>$v) {
-      $tc[]=array("title"=>utf8_encode($v["title"]),
+      $tc[]=array("title"=>$v["title"],
 		  "id"=>$v["id"],
 		  "folder"=>($v["doctype"]=='D'),
 		  "icon"=>$doc->getIcon($v["icon"]));

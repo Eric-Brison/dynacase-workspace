@@ -39,7 +39,7 @@ function ws_countfolder(&$action) {
   if ($doc->isAlive()) {
     $tc=$doc->getContent();
     $taction[]=array("actname"=>"RENAMEBRANCH",
-		     "actdocid"=>'['.$doc->id.','."'".utf8_encode(sprintf("%s (%d)",$doc->title,count($tc)))."']");
+		     "actdocid"=>'['.$doc->id.','."'".sprintf("%s (%d)",$doc->title,count($tc))."']");
   }
   $action->lay->setBlockData("ACTIONS",$taction);
   $action->lay->set("CODE","OK");

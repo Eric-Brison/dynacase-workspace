@@ -63,7 +63,7 @@ function ws_folderlist(&$action) {
   case "search":
     include_once("GENERIC/generic_util.php"); 
     // search
-    if (seems_utf8($key)) $keyword=utf8_decode($key);
+    if (! seems_utf8($key)) $keyword=utf8_encode($key);
     else $keyword=$key;
         
     $doc=createTmpDoc($dbaccess,5);
@@ -159,13 +159,13 @@ function ws_folderlist(&$action) {
 	$icon=$doc->getIcon($v["icon"]);
 
 
-      $tc[]=array("title"=>utf8_encode($v["title"]),
+      $tc[]=array("title"=>$v["title"],
 		  "id"=>$v["id"],
 		  "linkfld"=>($dynfolder ||($v["prelid"]==$doc->initid))?false:true,
 		  "isfld"=>($v["doctype"]=='D')||($v["doctype"]=='S'),
 		  "size"=>$dsize,
 		  "mime"=>getv($v,"sfi_mimetxtshort"),
-		  "mdate"=>utf8_encode(strftime("%d %b %Y %H:%M",getv($v,"revdate",0))),
+		  "mdate"=>strftime("%d %b %Y %H:%M",getv($v,"revdate",0)),
 		  "icon"=>$icon);
     }
     $action->lay->setBlockData("TREE",$tc);
@@ -177,14 +177,14 @@ function ws_folderlist(&$action) {
   }
   $action->lay->set("count",count($tc));
   $action->lay->set("delay",microtime_diff(microtime(),$mb));
-  $action->lay->set("title",utf8_encode($doc->title));
+  $action->lay->set("title",$doc->title);
   $action->lay->setBlockData("HEAD",$thead);
 
   if (($doc->doctype=='S') && ($doc->name != "")) {
     // rename folder only if it is a named search
     $taction=$action->lay->getBlockData("ACTIONS"); 
     $taction[]=array("actname"=>"RENAMEBRANCH",
-		     "actdocid"=>'['.$doc->id.','."'".utf8_encode(sprintf("%s (%d)",$doc->title,count($tc)))."']");
+		     "actdocid"=>'['.$doc->id.','."'".sprintf("%s (%d)",$doc->title,count($tc)))."']";
     $action->lay->setBlockData("ACTIONS",$taction);  
   }
   
