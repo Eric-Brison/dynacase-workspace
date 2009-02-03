@@ -38,27 +38,7 @@ function ws_deletedoc(&$action) {
   $action->lay->set("warning","");
   $err=movementDocument($action,$dbaccess,false,$docid,$pdocid,$addft);
   if ($err) $action->lay->set("warning",$err);
-  /*
-  $pdoc=new_doc($dbaccess,$pdocid);
-  
-  if ($pdoc->isAlive()) {
-
-    $doc=new_doc($dbaccess,$docid);
-    if ($doc->isAlive()) {
-      $err=$pdoc->DelFile($doc->id);
-      //$err=$doc->delete(); 
-    }
-  } else {
-    $action->lay->set("CODE","NOTALIVE");
-  }
-  if ($err == "") {
-    $action->lay->set("CODE","OK");
-    
-  } else {
-    $action->lay->set("CODE","NOTALIVE");
-    $action->lay->set("warning",utf8_encode($err));
-  }
-  */
+ 
   $action->lay->set("CODE","OK");
   $action->lay->set("count",1);
   $action->lay->set("delay",microtime_diff(microtime(),$mb));					

@@ -80,7 +80,7 @@ function ws_addfldbranch(&$action) {
     $tc=array();
 
     foreach ($ls as $k=>$v) {
-      $tc[]=array("title"=>ucfirst(utf8_encode($v["title"])),
+      $tc[]=array("title"=>ucfirst($v["title"]),
 		  "id"=>$v["id"],
 		  "linkfld"=>($top || ($v["prelid"]==$doc->initid))?false:true,
 		  "droppable"=>(($v["doctype"]=="D") || $v["dropft"])?"yes":"no",

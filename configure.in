@@ -22,7 +22,7 @@ PACKAGE=freedom-workspace
 AC_SUBST(APPNAME)
 APPNAME=WORKSPACE
 
-ac_default_prefix=/home/httpd/what
+ac_default_prefix=/usr/share/what
 AC_SUBST(PUBRULE)
 PUBRULE=
 AC_ARG_WITH(pubrule, [  --with-pubrule=dir	Path to PubRule], PUBRULE=$withval)
