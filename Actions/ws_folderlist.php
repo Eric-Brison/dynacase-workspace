@@ -184,10 +184,10 @@ function ws_folderlist(&$action) {
     // rename folder only if it is a named search
     $taction=$action->lay->getBlockData("ACTIONS"); 
     $taction[]=array("actname"=>"RENAMEBRANCH",
-		     "actdocid"=>'['.$doc->id.','."'".sprintf("%s (%d)",$doc->title,count($tc)))."']";
+		     "actdocid"=>'['.$doc->id.','."'".sprintf("%s (%d)",$doc->title,count($tc))."']");
+
     $action->lay->setBlockData("ACTIONS",$taction);  
-  }
-  
+  }  
   if (count($tc) > 0) {    
     $taction=$action->lay->getBlockData("ACTIONS"); 
     $taction[]=array("actname"=>"IMGRESIZE",
