@@ -69,6 +69,10 @@ function ws_addfldbranch(&$action) {
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
 
       $trash=new_doc($dbaccess,$action->getParam("FREEDOM_IDBASKET"));
+      if (! $trash->isAlive()) {
+	$fld=createTmpDoc($dbaccess, "DIR");
+	$trash=$fld->getHome();
+      } 
       $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
       $ls[$trash->id]["dropft"]='shortcut';
