@@ -1,8 +1,26 @@
 <?xml version="1.0"?>
-<module name="freedom-dav" disabled="no" version="@VERSION@" release="@RELEASE@">
-  <description>The freedom work space to exchange files.</description>
+<module name="freedom-workspace" disabled="no" version="@VERSION@" release="@RELEASE@">
+
+  <description lang="en">The freedom work space to exchange files.</description>
+
   <requires>
-    <module name="freedom-core" />
-    <module name="freedom-vault" />
+    <module name="freedom" />
+    <module name="dav" />
   </requires>
+
+  <post-install>
+    <process command="programs/app_post WORKSPACE I" />
+    <process command="programs/record_application WORKSPACE" />
+    <process command="programs/app_post WORKSPACE U" />
+    <process command="programs/update_catalog" />
+  </post-install>
+ 
+  <post-upgrade>
+    <process command="programs/pre_migration WORKSPACE" />
+    <process command="programs/app_post WORKSPACE U" />
+    <process command="programs/record_application WORKSAPCE" />
+    <process command="programs/post_migration WORKSPACE" />
+    <process command="programs/update_catalog" />
+  </post-upgrade>
+
 </module>
