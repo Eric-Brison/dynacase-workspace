@@ -5,7 +5,7 @@
 
   <requires>
     <module name="freedom" />
-    <module name="dav" />
+    <module name="freedom-dav" />
   </requires>
 
   <post-install>
