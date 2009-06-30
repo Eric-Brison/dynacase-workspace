@@ -23,6 +23,7 @@ function postModify() {
       $action->AddActionDone("UNLOCKFILE",$this->id);
     }
   }
+  $this->setValue("sfi_page",0); // to be recomputed
 }
 
 /**
@@ -84,6 +85,7 @@ function renameCopy() {
 
 function specRefresh() {
   $this->computeFileSize();
+  $this->setnumberpagePDF();
   //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
 }
 
@@ -546,6 +548,68 @@ function editupload() {
 function editversion() {
   $this->editattr();  
 }
+static public function getNumPagesInPDF($file) {
+        if(file_exists($file)) {
+                         //open the file for reading
+             if($handle = @fopen($file, "rb")) {
+                 $count = 0;
+                 $i=0;
+                 while (!feof($handle)) {
+                     if($i > 0) {
+                         $contents = fread($handle,8152);
+                         if(preg_match("/\/Count\s+([0-9]+)(\n|\s)*>>/m", $contents, $found)) {
+			   fclose($handle);
+			   return $found[1];
+                         }
+                     }
+                     else {
+                           $contents = fread($handle, 1000);
+                         //In some pdf files, there is an N tag containing the number of
+                         //of pages. This doesn't seem to be a result of the PDF version.
+                         //Saves reading the whole file.
+                         if(preg_match("/\/Count\s+([0-9]+)(\n|\s)*>>/m", $contents, $found)) {
+			   fclose($handle);
+			   return $found[1];
+                         }
+                         if(preg_match("/\/N\s+([0-9]+)/", $contents, $found)) {
+			   fclose($handle);
+			   return $found[1];
+                         }
+                     }
+                     $i++;
+                 }
+                 fclose($handle);
+		 /*
+                 //get all the trees with 'pages' and 'count'. the biggest number
+                 //is the total number of pages, if we couldn't find the /N switch above.                
+                 if(preg_match_all("/\/Type\s*\/Pages\s*.*\s*\/Count\s+([0-9]+)/", $contents, $capture, PREG_SET_ORDER)) {
+                     foreach($capture as $c) {
+                         if($c[1] > $count)
+                             $count = $c[1];
+                     }
+                     return $count;            
+                 }
+		 */
+             }
+         }
+         return 0;
 
+}
+
+function hasPDF() {
+  return (($this->getValue("sfi_pdffile")!="")&&( ereg("application/pdf",$this->getValue("sfi_pdffile"))));
+}
+function setnumberpagePDF() {
+  if ($this->hasPDF() && (! $this->getValue("sfi_pages"))) {
+
+    $pdffile=$this->getValue("sfi_pdffile");
+    if (ereg (REGEXPFILE, $pdffile, $reg)) {
+      $vf = newFreeVaultFile($this->dbaccess);
+      if ($vf->Show($reg[2], $info) == "") {
+	$this->setValue("sfi_pages",$this->getNumPagesInPDF($info->path));
+      }
+    }
+    }
+}
 
 ?>
