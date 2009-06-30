@@ -85,7 +85,7 @@ function renameCopy() {
 
 function specRefresh() {
   $this->computeFileSize();
-  $this->setnumberpagePDF();
+  //$this->setnumberpagePDF();
   //  if ($this->getValue("sfi_thumb")=="")   $this->computeThumbnail();
 }
 
@@ -551,6 +551,7 @@ function editversion() {
 static public function getNumPagesInPDF($file) {
         if(file_exists($file)) {
                          //open the file for reading
+	  return trim(`grep -c "/Type[[:space:]]*/Page\>" $file`);
              if($handle = @fopen($file, "rb")) {
                  $count = 0;
                  $i=0;
@@ -600,13 +601,12 @@ function hasPDF() {
   return (($this->getValue("sfi_pdffile")!="")&&( ereg("application/pdf",$this->getValue("sfi_pdffile"))));
 }
 function setnumberpagePDF() {
-  if ($this->hasPDF() && (! $this->getValue("sfi_pages"))) {
-
+   if ($this->hasPDF() && (! $this->getValue("sfi_pages"))) {    
     $pdffile=$this->getValue("sfi_pdffile");
     if (ereg (REGEXPFILE, $pdffile, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
-	$this->setValue("sfi_pages",$this->getNumPagesInPDF($info->path));
+	return $this->getNumPagesInPDF($info->path);
       }
     }
     }
