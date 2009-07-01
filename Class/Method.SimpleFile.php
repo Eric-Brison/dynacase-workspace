@@ -610,6 +610,7 @@ function setnumberpagePDF() {
       }
     }
     }
+   return "";
 }
 
 ?>
