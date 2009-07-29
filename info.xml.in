@@ -4,7 +4,6 @@
   <description lang="en">The freedom work space to exchange files.</description>
 
   <requires>
-    <module name="freedom" />
     <module name="freedom-dav" />
   </requires>
 
