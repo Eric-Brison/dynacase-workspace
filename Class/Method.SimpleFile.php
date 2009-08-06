@@ -241,7 +241,7 @@ function computeThumbnail() {
 	  if (file_exists($cible)) {
 	    $err=$vf->Store($cible, false , $vid);
 
-	    $ft="image/png|$vid";
+	    $ft="image/png|$vid|thumbnail.png";
 	    $this->setValue("sfi_thumb",$ft);
 	    $this->modify(true,array("sfi_thumb"),true);
 	    unlink($cible);
