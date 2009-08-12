@@ -663,8 +663,7 @@ function postAddFile(docid) {
   if (CLIPCID == docid) {
     refreshClipBoard(CLIPCID,document.getElementById('clipboard'))
   }
-  
-  if (IDBASKET == docid)   sendRenameFolderTree(docid); 
+    if ((IDBASKET == docid) || (IDOFFLINE == docid))  sendRenameFolderTree(docid); 
   disableSynchro();
   
 }

@@ -20,6 +20,7 @@
   <!--
     [JS:CODE] 
    var IDBASKET='[FREEDOM_IDBASKET]';
+   var IDOFFLINE='[FREEDOM_IDOFFLINE]';
 COL3H1=parseInt('[WS_COL3H1]');
 COL2H1=parseInt('[WS_COL2H1]');
 ROW2W1=parseInt('[WS_ROW2W1]');

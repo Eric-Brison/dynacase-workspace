@@ -39,7 +39,11 @@ $app_const= array(
 			 "user"=>"Y"),
   "WS_ROW2W1"    =>array("val"=>"",
 			 "descr"=>N_("width of folder tree box"),
-			 "user"=>"Y")
+			 "user"=>"Y"),
+  "WS_OFFLINE"    =>array("val"=>"no",
+			  "descr"=>N_("can use offline application"),
+			  "user"=>"N",
+			  "kind"=>"enum(yes|no)")
 );
 
 ?>

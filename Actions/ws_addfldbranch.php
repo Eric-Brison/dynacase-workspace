@@ -76,6 +76,14 @@ function ws_addfldbranch(&$action) {
       $ls[$trash->id]=getTDoc($dbaccess,$trash->id);
       $ls[$trash->id]["title"].="(".count($trash->getContent()).")";
       $ls[$trash->id]["dropft"]='shortcut';
+
+      
+      $trash=new_doc($dbaccess,'FLDOFFLINE_'.$action->user->id);
+      if ($trash->isAlive()) {
+	$ls[$trash->id]=getTDoc($dbaccess,$trash->id);
+	$ls[$trash->id]["title"].="(".count($trash->getContent()).")";
+	$ls[$trash->id]["dropft"]='shortcut';
+      }
       $top=true; // to not see link in top view
     } else {
       $ls=$doc->getContent(true,array("doctype ~ '^D|S$'"));

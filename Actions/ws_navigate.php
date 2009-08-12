@@ -80,7 +80,7 @@ function ws_navigate(&$action) {
   } else {    
     $persofldid=$perso["id"];
   }
-
+  if ($action->getParam("WS_OFFLINE")=="yes") addOffline($action);
   $action->lay->set("persofldid",$persofldid);
 }
 
@@ -92,7 +92,21 @@ function trashempty($dbaccess,$userid) {
   return ($q->nb == 0);
 
 }
+function addOffline(&$action) {
+  $dbaccess = $action->GetParam("FREEDOM_DB");
+  $desktop=getTDoc($dbaccess,'FLDOFFLINE_'.Doc::getWhatUserId());
+  if (! $desktop) {       
+    $desktop = createDoc($dbaccess,"DIR");  
+    $desktop->title = _("Offline");
+    $desktop->setTitle($desktop ->title);
+    $desktop->setValue("ba_desc", sprintf(_("Offline folder of %s"),$action->user->firstname." ".$action->user->lastname));
+    $desktop->icon = 'fldoffline.png';
+    $desktop->name = 'FLDOFFLINE_'.$action->user->id;
+    $desktop->Add();
 
-
-
+    $home=$desktop->getHome();
+    $home->addFile($desktop->initid);
+    $action->lay->set("FREEDOM_IDOFFLINE",$desktop->initid);
+  } else   $action->lay->set("FREEDOM_IDOFFLINE",$desktop["id"]);
+}
 ?>
