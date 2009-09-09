@@ -33,24 +33,9 @@ function postCopy() {
   
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg (REGEXPFILE, $f, $reg)) {
-      $vf = newFreeVaultFile($this->dbaccess);
-      if ($vf->Show($reg[2], $info) == "") {
-	$cible=$info->path;
-	if (file_exists($cible)) {
-	  $err=$vf->Store($cible, false , $vid);
-	  if ($err == "") {	 
-	    $pp=strrpos($info->name,'.');
-	    $base=$info->name;//substr($info->name,0,$pp). _(" (copy)").substr($info->name,$pp);
-	    $vf->Rename($vid,$base);   
-	    $this->setValue("sfi_file",$reg[1]."|$vid");
-	    $this->modify();
-	  }
-	}
-      }
-    }
+    $this->setValue("sfi_file",$this->copyFile("sfi_file"));
+    $this->modify();      
   }
-
 
   $this->deleteValue('sfi_inedition');
   $err=$this->modify();
