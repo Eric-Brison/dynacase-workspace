@@ -36,7 +36,7 @@ function ws_downloadfile(&$action) {
     
     if ($ovalue == "") $action->exiterror(_("no file referenced"));
     
-    ereg (REGEXPFILE, $ovalue, $reg);
+    preg_match(PREGEXPFILE, $ovalue, $reg);
     $vaultid= $reg[2];
     // $mimetype=$reg[1];
     $mimetype= $doc->getValue("sfi_mimesys");

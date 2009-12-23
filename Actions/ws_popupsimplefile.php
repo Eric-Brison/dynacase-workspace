@@ -33,7 +33,7 @@ function ws_popupsimplefile(&$action) {
   $davserver=$action->getParam("FREEDAV_SERVEUR");
   if ($davserver) {
     $fvalue=$doc->getValue("sfi_file");
-    if (ereg (REGEXPFILE, $fvalue, $reg)) {
+    if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
       $vid= $reg[2];
       $mimetype=$reg[1];
     }

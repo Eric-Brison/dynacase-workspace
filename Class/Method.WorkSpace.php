@@ -34,7 +34,7 @@ private function getProfilGroupName() {
 function postCreated() {
   if ($this->revision > 0) return;
   $ref=unaccent($this->title);
-  $ref=ereg_replace("[[:punct:]]","",$ref);
+  $ref=preg_replace("/[[:punct:]]/","",$ref);
   $ref=strtolower(str_replace(" ","_",$ref));
   $this->setValue("WSP_REF",$ref);
   $this->modify();

@@ -53,7 +53,7 @@ function ws_edithtmlfile(&$action,$istext=false) {
   
   $fvalue=$doc->getValue($aid);
 
-  if (  ereg (REGEXPFILE, $fvalue, $reg)) {
+  if (  preg_match(PREGEXPFILE, $fvalue, $reg)) {
     $vaultid= $reg[2];
     $mimetype=$reg[1];
 

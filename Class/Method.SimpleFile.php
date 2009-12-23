@@ -48,7 +48,7 @@ function postCopy() {
 function renameCopy() {
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg (REGEXPFILE, $f, $reg)) {
+    if (preg_match(PREGEXPFILE, $f, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       $vid=$reg[2];
       if ($vf->Show($vid, $info) == "") {
@@ -81,7 +81,7 @@ function specRefresh() {
 function canThumbnail() {
   $mime=$this->getValue("sfi_mimesys");
 	
-  if (ereg("(.*)/(.*)",$mime,$reg) ) {
+  if (preg_match("|(.*)/(.*)|",$mime,$reg) ) {
     $mimebase=$reg[1];
   }
   $convert="";
@@ -117,7 +117,7 @@ function canThumbnail() {
 function computeThumbnail() {
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg (REGEXPFILE, $f, $reg)) {
+    if (preg_match(PREGEXPFILE, $f, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 
@@ -249,7 +249,7 @@ function computeMime() {
   static $vf;
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg (REGEXPFILE, $f, $reg)) {
+    if (preg_match(PREGEXPFILE, $f, $reg)) {
       if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	include_once ("WHAT/Lib.FileMime.php");
@@ -284,7 +284,7 @@ function computeFileSize() {
   static $vf;
   $f=$this->getValue("sfi_file");
   if ($f) {
-    if (ereg (REGEXPFILE, $f, $reg)) {
+    if (preg_match(PREGEXPFILE, $f, $reg)) {
       if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	include_once ("WHAT/Lib.FileMime.php");
@@ -302,20 +302,20 @@ function mailsimplefile($target="_self",$ulink=true,$abstract=false) {
 function printsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->viewdefaultcard($target,$ulink,$abstract);
   
-  $istext=ereg("text",$this->getValue("sfi_mimesys"));
+  $istext=preg_match("/text/",$this->getValue("sfi_mimesys"));
   $this->lay->set("isimg",false);
   $this->lay->set("istext",$istext);
   if ($istext) {
 
     $err=$this->getTextValueFromFile("sfi_file",$text);
 
-    if (ereg("text/html",$this->getValue("sfi_mimesys"))) {
+    if (preg_match("|text/html|",$this->getValue("sfi_mimesys"))) {
       $this->lay->set("filecontent",$text);
     } else {
       $this->lay->set("filecontent",nl2br(htmlentities($text)));
     }
   } else {
-    $isimg=ereg("image",$this->getValue("sfi_mimesys"));
+    $isimg=preg_match("/image/",$this->getValue("sfi_mimesys"));
     $this->lay->set("isimg",$isimg);
     
     
@@ -427,17 +427,17 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thumb",($this->getValue("sfi_thumb")!=""));
   $this->lay->set("istext",false);
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
-  $this->lay->set("haspdf",(($this->getValue("sfi_pdffile")!="")&&( ereg("application/pdf",$this->getValue("sfi_pdffile")))));
-  if (! $this->lay->get("ishtml")) $this->lay->set("istext",ereg('^text/',$this->getValue("sfi_mimesys")));
+  $this->lay->set("haspdf",(($this->getValue("sfi_pdffile")!="")&&( preg_match("|application/pdf|",$this->getValue("sfi_pdffile")))));
+  if (! $this->lay->get("ishtml")) $this->lay->set("istext",preg_match('|^text/|',$this->getValue("sfi_mimesys")));
 
-  $this->lay->set("canedithtml",(ereg('^text/',$this->getValue("sfi_mimesys"))&&($this->getValue('sfi_inedition') != 1)));
+  $this->lay->set("canedithtml",(preg_match('|^text/|',$this->getValue("sfi_mimesys"))&&($this->getValue('sfi_inedition') != 1)));
 
   $this->lay->set("isinedition",($this->fileIsInEdition()==MENU_ACTIVE));
   $this->lay->set("isnotinedition",($this->fileIsNotInEdition()==MENU_ACTIVE));
   $this->lay->set("canedit",($this->canEdit()==""));
   $this->lay->set("canversionned",($this->canVersionned()==MENU_ACTIVE));
     //$this->lay->set("ishtml",ereg("html|plain",$this->getValue("sfi_mimesys")));
-  $this->lay->set("isinline",ereg("html|image|plain|text/xml",$this->getValue("sfi_mimesys")));
+  $this->lay->set("isinline",preg_match("=html|image|plain|text/xml=",$this->getValue("sfi_mimesys")));
   $this->lay->set("ETITLE",str_replace("'","\'",$this->title));
 
   $this->lay->set("thumbrecompute",$this->canThumbnail());
@@ -461,7 +461,7 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("thestatedesc",nl2br($dstate->getValue("frst_desc")));
   $fvalue=$this->getValue("sfi_file");
 
-  if (ereg (REGEXPFILE, $fvalue, $reg)) {
+  if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
     $vaultid= $reg[2];
     $mimetype=$reg[1];
     $this->lay->set("vaultid",$vaultid);	
@@ -583,12 +583,12 @@ static public function getNumPagesInPDF($file) {
 }
 
 function hasPDF() {
-  return (($this->getValue("sfi_pdffile")!="")&&( ereg("application/pdf",$this->getValue("sfi_pdffile"))));
+  return (($this->getValue("sfi_pdffile")!="")&&( preg_match("|application/pdf|",$this->getValue("sfi_pdffile"))));
 }
 function setnumberpagePDF() {
    if ($this->hasPDF() && (! $this->getValue("sfi_pages"))) {    
     $pdffile=$this->getValue("sfi_pdffile");
-    if (ereg (REGEXPFILE, $pdffile, $reg)) {
+    if (preg_match(PREGEXPFILE, $pdffile, $reg)) {
       $vf = newFreeVaultFile($this->dbaccess);
       if ($vf->Show($reg[2], $info) == "") {
 	return $this->getNumPagesInPDF($info->path);
