@@ -1,3 +1,9 @@
+
+/**
+ * @author Anakeen
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ */
+
 FCKConfig.ToolbarSets["ws"] = [
         ['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
         ['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],

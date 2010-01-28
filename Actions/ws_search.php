@@ -4,7 +4,7 @@
  *
  * @author Anakeen 2006
  * @version $Id: ws_search.php,v 1.1 2006/07/21 09:20:17 eric Exp $
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
  * @subpackage 
  */

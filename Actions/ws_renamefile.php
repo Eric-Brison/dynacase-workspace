@@ -4,7 +4,7 @@
  *
  * @author Anakeen 2006
  * @version $Id: ws_renamefile.php,v 1.4 2008/03/13 11:10:16 eric Exp $
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package FREEDOM
  * @subpackage 
  */

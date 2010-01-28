@@ -4,7 +4,7 @@
  *
  * @author Anakeen 2006
  * @version $Id: ws_restoredoc.php,v 1.7 2007/10/17 12:17:32 eric Exp $
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package FREEDOM
  * @subpackage 
  */

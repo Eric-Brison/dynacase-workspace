@@ -4,7 +4,7 @@
  *
  * @author Anakeen 2006
  * @version $Id: ws_emptytrash.php,v 1.4 2007/01/15 11:37:34 eric Exp $
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package FREEDOM
  * @subpackage 
  */

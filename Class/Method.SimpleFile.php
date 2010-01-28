@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Anakeen
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ */
+
+
 var $defaultview= "WORKSPACE:VIEWSIMPLEFILE:T";
 var $defaultmview= "WORKSPACE:MAILSIMPLEFILE:T";
 //var $defaultedit= "WORKSPACE:EDITSIMPLEFILE:T";

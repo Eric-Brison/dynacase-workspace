@@ -4,7 +4,7 @@
  *
  * @author Anakeen 2006
  * @version $Id: Lib.WsFtCommon.php,v 1.11 2007/03/26 08:57:03 eric Exp $
- * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
  * @subpackage 
  */
