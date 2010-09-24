@@ -8,7 +8,7 @@
   </replaces>
 
   <requires>
-    <module name="dynacase-dav" />
+    <module name="dynacase-platform" />
   </requires>
 
   <post-install>
