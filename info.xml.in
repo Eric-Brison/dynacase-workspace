@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
-<module name="freedom-workspace" disabled="no" version="@VERSION@" release="@RELEASE@" infopath="http://www.freedom-ecm.org/modules/freedom-workspace/freedom-workspace" >
+<module name="dynacase-workspace" disabled="no" version="@VERSION@" release="@RELEASE@" license="@LICENSE@" infopath="http://www.dynacase.org/modules/dynacase-workspace/dynacase-workspace" >
 
-  <description lang="en">The freedom work space to exchange files.</description>
+  <description lang="en">The dynacase work space to exchange files.</description>
+
+  <replaces>
+        <module name="freedom-workspace" />
+  </replaces>
 
   <requires>
-    <module name="freedom-dav" />
+    <module name="dynacase-dav" />
   </requires>
 
   <post-install>

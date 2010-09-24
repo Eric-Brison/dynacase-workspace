@@ -18,7 +18,7 @@ VERSION=`cat VERSION`
 AC_SUBST(RELEASE)
 RELEASE=`cat RELEASE`
 AC_SUBST(PACKAGE)
-PACKAGE=freedom-workspace
+PACKAGE=dynacase-workspace
 AC_SUBST(APPNAME)
 APPNAME=WORKSPACE
 
@@ -69,4 +69,4 @@ AC_ARG_WITH(dbport,
 [  --with-dbport=port number  the database port (default 5432)], DBPORT=$withval)
 
 
-AC_OUTPUT(Makefile WORKSPACE_init.php freedom-workspace.spec debian/changelog info.xml)
+AC_OUTPUT(Makefile WORKSPACE_init.php info.xml)
