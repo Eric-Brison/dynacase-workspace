@@ -48,7 +48,9 @@
     <li><a   title="[TEXT:Put the modified file]" href="javascript:void(0)" onclick="subwindow(250,500,'editfile','[CORE_STANDURL]app=GENERIC&action=GENERIC_EDIT&zone=WORKSPACE:EDITUPLOAD&id=[ID]&rtarget='+window.name)">[TEXT:Upload modified file]</a></li>
   [ENDIF isinedition]
     <li><a  href="[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]" title="[TEXT:Download file for reading]">[TEXT:Download]</a> </li>
-    [IF haspdf]<li><a  href="[CORE_STANDURL]&app=FDL&action=EXPORTFILE&cache=no&docid=[ID]&attrid=sfi_pdffile" title="[TEXT:Download PDF file]">[TEXT:PDF]</a>[ENDIF haspdf]
+    [IF haspdf]<li><a  href="[CORE_STANDURL]&app=FDL&action=EXPORTFILE&cache=no&docid=[ID]&attrid=sfi_pdffile" title="[TEXT:Download PDF file]">[TEXT:PDF]</a></li>
+    <li><a onclick="window.open('[CORE_STANDURL]app=FDL&action=IMPCARD&zone=FDL:VIEWBODYCARD:T&id=[ID]','rf[ID]','resizable=yes,scrollbars=yes,width=600')" title="[TEXT:Test beta file reader]">[TEXT:File Reader (beta)]</a></li>
+    [ENDIF haspdf]
   </ul>
 </div>
 

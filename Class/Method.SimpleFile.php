@@ -4,7 +4,27 @@
  * @author Anakeen
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  */
+/**
+ * Fichier simple
+ *
+ * @author Anakeen 2000
+ * @version $Id:  $
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @package FREEDOM
+ * @subpackage GED
+ */
+/**
+ */
 
+
+/**
+ * @begin-method-ignore
+ * this part will be deleted when construct document class until end-method-ignore
+ */
+Class _SIMPLEFILE extends Doc {
+        /*
+         * @end-method-ignore
+         */
 
 var $defaultview= "WORKSPACE:VIEWSIMPLEFILE:T";
 var $defaultmview= "WORKSPACE:MAILSIMPLEFILE:T";
@@ -603,5 +623,13 @@ function setnumberpagePDF() {
     }
    return "";
 }
+/**
+        * @begin-method-ignore
+        * this part will be deleted when construct document class until end-method-ignore
+        */
+}
 
+/*
+ * @end-method-ignore
+ */
 ?>

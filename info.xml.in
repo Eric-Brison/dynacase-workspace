@@ -21,7 +21,7 @@
   <post-upgrade>
     <process command="programs/pre_migration WORKSPACE" />
     <process command="programs/app_post WORKSPACE U" />
-    <process command="programs/record_application WORKSAPCE" />
+    <process command="programs/record_application WORKSPACE" />
     <process command="programs/post_migration WORKSPACE" />
     <process command="programs/update_catalog" />
   </post-upgrade>
