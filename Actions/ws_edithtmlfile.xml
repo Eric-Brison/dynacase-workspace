@@ -31,8 +31,8 @@ function submitfile(event,docid,attrid) {
 
 
 	var menuurl='';
-	if (isNetscape) menuurl='../../';
-	menuurl=menuurl+'[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
+	//if (isNetscape) menuurl='../../';
+	menuurl=menuurl+'?app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
       
        window.opener.attributeSend(event,menuurl,null,newval);
        oEditor.ResetIsDirty();

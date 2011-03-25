@@ -17,7 +17,7 @@ function submitfile(event,docid,attrid) {
        var newval= document.getElementById('textfile').value;       
        var menuurl='';
 	//	if (isNetscape) menuurl='../../';
-	menuurl=menuurl+'[CORE_STANDURL]app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
+	menuurl=menuurl+'?app=FDL&action=MODATTRIBUTE&stayedit=yes&docid='+docid+'&attrid='+attrid;
       
        window.opener.attributeSend(event,menuurl,null,newval);
        TEXTISMODIFIED=false;

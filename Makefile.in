@@ -27,3 +27,6 @@ DISTFILES += $(SUBDIR) \
             RELEASE VERSION   workspace.ods
 
 
+clean:
+	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst
+	/bin/rm -fr autom4te.cache

@@ -454,6 +454,13 @@ function viewsimplefile($target="_self",$ulink=true,$abstract=false) {
   $this->lay->set("istext",false);
   $this->lay->set("ishtml",$this->getValue("sfi_mimesys")=="text/html");
   $this->lay->set("haspdf",(($this->getValue("sfi_pdffile")!="")&&( preg_match("|application/pdf|",$this->getValue("sfi_pdffile")))));
+  
+  $this->lay->set("canusereader",false);
+  if ($this->lay->get("haspdf")) {
+  $this->lay->set("canusereader",true);
+  } else if (preg_match('/^(text|image)/',$this->getValue("sfi_mimesys"))) {
+      $this->lay->set("canusereader",true);
+  }
   if (! $this->lay->get("ishtml")) $this->lay->set("istext",preg_match('|^text/|',$this->getValue("sfi_mimesys")));
 
   $this->lay->set("canedithtml",(preg_match('|^text/|',$this->getValue("sfi_mimesys"))&&($this->getValue('sfi_inedition') != 1)));
