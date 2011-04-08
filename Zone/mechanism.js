@@ -129,6 +129,8 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   var url;
  
       
+  
+  if (! key) key='';
   if (addft=='del') url= CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid;
   else if (kview == 'list') url=CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key;
   else url= CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key;
@@ -210,6 +212,7 @@ function begindrag(event,oul,osp,docid,pdocid) {
 
     return false;
   }
+  return true;
 }
 
 
@@ -360,6 +363,7 @@ function movedrag(event) {
     }
     return false;
   }
+  return true;
 }
 function keydrag(event) {
   
@@ -474,7 +478,7 @@ function insertinfolder(event,o,oimg,docid,ulid) {
       DRAGGING=false;
     } 
 }
-function viewFolder(event,dirid,o) {
+function viewFolder(event,dirid,o,key) {
   var  where=document.getElementById('fldlist');
   if (o) {
     if (PREVSPANSELECT) PREVSPANSELECT.className='';
@@ -482,13 +486,13 @@ function viewFolder(event,dirid,o) {
     PREVSPANSELECT=o;
   }
   CFLDID=dirid;
-  folderSend(dirid,where,null,null,null,'list');
+  folderSend(dirid,where,null,null,null,'list',key);
 }
-function viewSearch(event,key,smode) {
+function viewSearch(event,key,smode, searchId) {
   var  where=document.getElementById('fldlist');
- 
   CFLDID=null;
-  folderSend('search',where,null,null,null,'list',key+'&searchmode='+smode);
+  CORDER='';
+  folderSend(searchId,where,null,null,null,'list',key+'&searchmode='+smode);
 }
 
 /**
@@ -532,13 +536,13 @@ function trackCR(event) {
   return false;
 }
 
-function changeOrder(event,norder) {
+function changeOrder(event,norder,key) {
   if (CORDER == norder) CDESCORDER=(!CDESCORDER); // invert order
   else {
     CORDER=norder;
     CDESCORDER=true;
   }
-  viewFolder(event,RCFLDID);
+  viewFolder(event,RCFLDID, null, key);
 }
 
 
@@ -845,6 +849,7 @@ function col3dragmove(event) {
     stopPropagation(event);
     return false;
   }
+  return true;
 }
 
 function col3dragend(event) {  
@@ -894,6 +899,7 @@ function col2dragmove(event) {
     stopPropagation(event);
     return false;
   }
+  return true;
 }
 
 function col2dragend(event) {  
@@ -946,6 +952,7 @@ function row2dragmove(event) {
     stopPropagation(event);
     return false;
   }
+  return true;
 }
 
 function row2dragend(event) {  

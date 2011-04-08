@@ -45,6 +45,7 @@ function redisplaywsdiv(event) {
 
   if (COL2H1 && (COL2H1>0)) ch=COL2H1;
   else ch=wh-250;
+  if (!dtabclip) ch=wh-14-30; // 30 is the height os searches
   if (ROW2W1 && (ROW2W1>0)) {
     if (ROW2W1<55) ROW2W1=55;
     wcol2=ROW2W1-parseInt(dcol1.style.width);
@@ -80,18 +81,20 @@ function redisplaywsdiv(event) {
   ikey.style.width=wcol2-60;
 
   ch+=30;if (isIE) ch -=3;
-  dtabclip.style.width=wcol2;
-  dtabclip.style.top=ch;
-  dtabclip.style.left=0;
-  dtabclip.style.height='19px';
-
+  if (dtabclip) {
+	  dtabclip.style.width=wcol2;
+	  dtabclip.style.top=ch;
+	  dtabclip.style.left=0;
+	  dtabclip.style.height='19px';
+  }
   ch+=16;if (isIE) ch -=0;
-  dsecondview.style.width=wcol2;
-  dsecondview.style.top=ch;
-  dsecondview.style.left=0;
-  ch=wh-ch-10;if (isIE) ch +=0;
-  dsecondview.style.height=ch;
-
+  if (dsecondview) {
+	  dsecondview.style.width=wcol2;
+	  dsecondview.style.top=ch;
+	  dsecondview.style.left=0;
+	  ch=wh-ch-10;if (isIE) ch +=0;
+	  dsecondview.style.height=ch;
+  }
   /*  dsecondul.style.top=dclipboard.style.top;
   dsecondul.style.left=dclipboard.style.left;
   dsecondul.style.width=dclipboard.style.width;
@@ -121,7 +124,7 @@ function redisplaywsdiv(event) {
 
   
 
-  if (dsecondview.style.display=='none') {
+  if (dsecondview && dsecondview.style.display=='none') {
     // adapt size of clipboard in case of resize
     var sy,ty,fh;
     fh=parseInt(dfolders.style.height);

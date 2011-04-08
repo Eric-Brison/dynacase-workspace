@@ -13,17 +13,30 @@
 
 
 
-include_once("FDL/Lib.Dir.php");
-include_once("GENERIC/generic_util.php");
+include_once("WORKSPACE/ws_navigate.php");
 
 
 /**
  * View folders and document for exchange them
  * @param Action &$action current action
  */
-function ws_navigate(&$action) {
+function ws_main(Action &$action) {
 
   $dbaccess = $action->GetParam("FREEDOM_DB");
+  
+  $nav=new ws_Navigate($action);
+  $spaces=new SearchDoc($dbaccess,"WORKSPACE");
+  $files=new SearchDoc($dbaccess,"SIMPLEFILE");
+  
+  $nav->setSpaces($spaces);
+  $nav->setFolderListHeight($action->getParam("WS_COL3H1"));
+  $nav->setFolderTreeHeight($action->getParam("WS_COL2H1"));
+  $nav->setFolderTreeWidth($action->getParam("WS_ROW2W1"));
+  
+  $nav->setGlobalSearch($files);
+  $action->lay->set("NAV",$nav->output());
+  
+  /*
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/geometry.js");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/subwindow.js");
   $action->parent->AddJsRef($action->GetParam("CORE_JSURL")."/AnchorPosition.js");
@@ -108,5 +121,7 @@ function addOffline(&$action) {
     $home->addFile($desktop->initid);
     $action->lay->set("FREEDOM_IDOFFLINE",$desktop->initid);
   } else   $action->lay->set("FREEDOM_IDOFFLINE",$desktop["id"]);
+*/
 }
+
 ?>

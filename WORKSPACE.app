@@ -24,7 +24,7 @@ $app_acl = array (
    
 $action_desc = array (
   array( 
-   "name"		=>"WS_NAVIGATE",
+   "name"		=>"WS_MAIN",
    "short_name"		=>N_("interface to navigate in spaces"),
    "acl"		=>"WORKSPACE_USER",
    "root"		=>"Y"

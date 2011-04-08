@@ -13,7 +13,7 @@
 <TR VALIGN=TOP>
   <TH width="20px" onmousedown="viewfoldermenu(event,[pid],this);return false;"><a  title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
 [BLOCK HEAD]
-  <TH  onmouseover="this.className='thover'" onmouseout="this.className=''" onclick="changeOrder(event,'[horder]');return false;">[IF issort]<img class="button" src="[orderimg]" align="right">[ENDIF issort][htitle]</TH>
+  <TH  onmouseover="this.className='thover'" onmouseout="this.className=''" onclick="changeOrder(event,'[horder]','[key]');return false;">[IF issort]<img class="button" src="[orderimg]" align="right">[ENDIF issort][htitle]</TH>
 [ENDBLOCK HEAD]
   
 </TR>
