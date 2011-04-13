@@ -132,6 +132,7 @@ function ws_folderlist(&$action) {
         $s->useCollection($doc->initid);
         $s->setSlice($slice);
         $s->setOrder($sqlOrder);
+        $s->excludeConfidential();
         if ($key) {
             if ($smode=="FULL") {
                 DocSearch::getFullSqlFilters($key, $sqlfilters, $orderby, $keys);
@@ -147,6 +148,7 @@ function ws_folderlist(&$action) {
 
             case "title":
                 usort($ls,"titlecmp");
+                $thead["title"]["issort"]=true;
                 break;
             case "size":
                 usort($ls,"sizecmp");
