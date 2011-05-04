@@ -6,7 +6,7 @@
 
 
 var DRAGGING=false;
-var DRAGDOC=false;// current document id being dragged
+var DRAGDOC=0;// current document id being dragged
 var PDRAGDOC=false; // current folder id of DRAGDOC
 var POUL=false; // current ul id object is being dragged
 var CORDER='title'; // current order for folder list
@@ -38,6 +38,16 @@ var REFRESH=false; // to indicate the the state is for resfresh one part
 var PREVVIEWDOCID=false; // to don't do twice teh same action
 var CORE_STANDURL=window.location.pathname+'?sole=Y&';
 var ALWAYSEXPAND=false; // set to true if you do not want the tree can be collapsed
+
+
+if (!("console" in window)) {
+	window.console = {
+		'log' : function(s) {
+		}
+	}
+}
+
+
 
 // ----------------------------- expand tree --------------------
 function folderTreeSend(n,cible,adddocid,padddocid,addft) {
@@ -89,7 +99,6 @@ function expandtree(oimg,id,ulid,adddocid,padddocid,addft,reset) {
   } else if (r==2) {
     oimg.src='Images/b_wait.png';
   }
-  if (isIE6) correctOnePNG(oimg);
 }
 function expandToptree(o,id,ulid) {
   enableSynchro();
@@ -132,13 +141,67 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   
   if (! key) key='';
   if (addft=='del') url= CORE_STANDURL+'app=WORKSPACE&action=WS_DELETEDOC&id='+adddocid;
-  else if (kview == 'list') url=CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERLIST&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key;
-  else url= CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key;
+  else if (kview == 'list') {
+	  var reg = new RegExp("([^:]*):(.*)");
+	  var folderList=reg.exec(FOLDERLISTACTION);
+	  url=CORE_STANDURL+'app='+folderList[1]+'&action='+folderList[2]+'&configNumber='+WSCONFIGNUMBER+'&kview='+kview+'&order='+CORDER+'&dorder='+CDESCORDER+'&id='+n+'&key='+key;
+  } else url= CORE_STANDURL+'app=WORKSPACE&action=WS_FOLDERICON&kview='+kview+'&id='+n+'&key='+key;
   if (adddocid) url+="&addid="+adddocid+"&addft="+addft+"&paddid="+padddocid;
   requestUrlSend(cible,url);
   changedragft(null,'');
 }
 
+function buttonNumber(event) {
+	  if (window.event) return button=window.event.button;
+	  else return button= event.button +1;
+	}
+
+function documentSetEvents(cible) {
+	if (!cible) return;
+	var trs=cible.getElementsByTagName('tr');
+	console.log("documentSetEvents", trs.length);
+	var docid=0;
+	var isFolder=false;
+	for (var i=0;i<trs.length;i++) {
+		if (trs[i].className != 'documentItem') continue;
+		docid=trs[i].getAttribute('docid');
+		dirid=trs[i].getAttribute('dirid');
+		isFolder=trs[i].getAttribute('isFolder');
+
+		if (docid) {
+			if (isFolder=="1") {
+				console.log("add event openFolder on ", docid);
+				addEvent(trs[i],'click',function (event) {
+					var e=getDocEl(event);
+					openFolder(event, e.getAttribute('docid'));
+				});
+			} else {
+				console.log("add event viewDoc on ", docid);
+				addEvent(trs[i],'click',function (event) {
+					var e=getDocEl(event);
+					viewDoc(event, e.getAttribute('docid'), e);
+				});
+				addEvent(trs[i],'dblclick',function (event) {
+					var e=getDocEl(event);
+					PREVVIEWDOCID=0;viewDoc(event, e.getAttribute('docid'), e);});
+				
+			}
+			addEvent(trs[i],'mousedown',function (event) {
+				var e=getDocEl(event);
+				console.log(buttonNumber(event));
+				if (buttonNumber(event) == 1) {
+					DRAGNOMOVE=e.getAttribute('readOnly');
+					begindrag(event,e.parentNode.parentNode,cathtml(e.firstChild,e.firstChild.nextSibling),e.getAttribute('docid'),e.getAttribute('dirid'));
+				}
+			});
+			addEvent(trs[i],'contextmenu',function (event) {
+				var e=getDocEl(event);
+				viewdetailmenu(event,e.getAttribute('docid'),e.getAttribute('dirid'),e);stopPropagation(event);return false;
+			});
+		}
+		
+	}
+}
 
 function emptytrash(event) {
   requestUrlSend(null,CORE_STANDURL+'app=WORKSPACE&action=WS_EMPTYTRASH');
@@ -229,6 +292,20 @@ function reallybegindrag(event) {
   }
 }
 
+
+function getDocEl(event) {
+	
+	if (event.currentTarget) return  event.currentTarget;
+	// for IE
+	if (event.srcElement) {
+		var e=event.srcElement;
+		while (e) {
+			if (e.getAttribute('docid')) return e;
+			e=e.parentNode;
+		}
+	}
+	return null;
+}
 var DEBUG=0;
 function overdragft(event,o) {  
   if (DRAGGING && DRAGDOC) {
@@ -416,7 +493,7 @@ function enddrag(event) {
   MICON.style.display='none';
   sendEvent(e,"mouseup");
   
-  DRAGDOC=false;
+  DRAGDOC=0;
   DRAGNOMOVE=false;
   DRAGGING=false;
   PECTRL=false;
@@ -637,7 +714,7 @@ function postActionRefresh(action,arg) {
     break;
   case "GETRDOCID":
    RCFLDID=docid;
-        
+   documentSetEvents(document.getElementById('fldlist'));
     break;
   case "IMGRESIZE":
     resizeImages();

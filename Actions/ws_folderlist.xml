@@ -7,24 +7,31 @@
   <branch><![CDATA[
 
 
-<TABLE  [IFNOT isdynamic]droppable="yes" dropft="move"  onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"[ENDIF isdynamic] CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
-<THEAD >	
+<table  [IFNOT isdynamic]droppable="yes" dropft="move"  onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"[ENDIF isdynamic] CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
+<thead >	
 <tr class="headfirst"><th align="left" colspan="5">[title], [nbdoc]</th></tr>
-<TR VALIGN=TOP>
-  <TH width="20px" onmousedown="viewfoldermenu(event,[pid],this);return false;"><a  title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
+<tr valign="top">
+  <th width="20px" onmousedown="viewfoldermenu(event,[pid],this);return false;"><a  title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
 [BLOCK HEAD]
-  <TH  onmouseover="this.className='thover'" onmouseout="this.className=''" onclick="changeOrder(event,'[horder]','[key]');return false;">[IF issort]<img class="button" src="[orderimg]" align="right">[ENDIF issort][htitle]</TH>
+  <th  onmouseover="this.className='thover'" onmouseout="this.className=''" onclick="changeOrder(event,'[horder]','[key]');return false;">[IF issort]<img class="button" src="[orderimg]" align="right">[ENDIF issort][htitle]</th>
 [ENDBLOCK HEAD]
   
-</TR>
-</THEAD>
+</tr>
+</thead>
 <tbody class="folder">
 [BLOCK TREE]
-<tr oncontextmenu="viewdetailmenu(event,[id],[docid],this);return false;"  [IFNOT isfld]onclick="viewDoc(event,'[id]',this);" ondblclick="PREVVIEWDOCID=0;viewDoc(event,'[id]',this);"[ENDIF isfld] [IF isfld]onclick="openFolder(event,'[id]');"[ENDIF isfld] onmouseover="overdoc(this)" onmouseout="outdoc(this)" 
-   onmousedown="DRAGNOMOVE=[isreadonly];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')"><td><img title="[TEXT:click and drag to move document]"  class="icon" needresize="1" src="[icon]" >
-  [IF linkfld]<img class="ilink" src="[IMG:link.gif]">[ENDIF linkfld]</td><td>[title]</td><td class="fixe">[mdate]</td><td class="fixe">[size]</td><td align="left">[mime]</td></tr>
+<tr class="documentItem" docid="[id]" dirid="[docid]" 
+    isFolder="[isfld]"
+    oncontextmenu2="viewdetailmenu(event,[id],[docid],this);return false;"  
+    [IFNOT isfld]onclick2="viewDoc(event,'[id]',this);" ondblclick2="PREVVIEWDOCID=0;viewDoc(event,'[id]',this);"[ENDIF isfld] 
+    [IF isfld]onclick2="openFolder(event,'[id]');"[ENDIF isfld] 
+   
+    onmousedown2="DRAGNOMOVE=[isreadonly];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')">
+    <td>[line]</td>
+    
+    </tr>
 [ENDBLOCK TREE]  
 </tbody>
-</TABLE>
+</table>
 ]]></branch>
 </status>

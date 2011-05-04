@@ -35,6 +35,9 @@ DIV.folders,DIV.fldlist,DIV.resume {
 DIV.space {
   border-color:[COLOR_WHITE];
 }
+TABLE.tfldlist tr.documentItem:hover {
+  background-color:[COLOR_C6];	
+}
 TABLE.tfldlist TH {
   background-color:[COLOR_A9];
   background-image: [CORE_FGIMG];

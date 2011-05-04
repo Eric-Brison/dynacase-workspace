@@ -41,10 +41,14 @@ DIV.smallspace IMG.icon{
   width:30px;
   height:30px;
 }
-DIV.smallspace IMG.ilink{
+DIV.smallspace IMG.ilink {
   position:relative;
   top:-17px;
   left:-7px;
+}
+div.fldlist img.ilink {
+  position:relative;
+  left:-4px;
 }
 DIV.rule2 {
   position:absolute;

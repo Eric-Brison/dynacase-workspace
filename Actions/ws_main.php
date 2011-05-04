@@ -14,6 +14,7 @@
 
 
 include_once("WORKSPACE/ws_navigate.php");
+include_once("WORKSPACE/ws_folderListFormat.php");
 
 
 /**
@@ -34,6 +35,39 @@ function ws_main(Action &$action) {
   $nav->setFolderTreeWidth($action->getParam("WS_ROW2W1"));
   
   $nav->setGlobalSearch($files);
+  
+  $nav->setFolderListColumn(array(
+            "icon" => array(
+                "htitle" => _("icon"),
+                "horder" => "title",
+                "issort" => false,
+                "method" => "wsFolderListFormat::getIcon(THIS, DIR)"
+            ),
+            "title" => array(
+                "htitle" => _("Filename Menu"),
+                "horder" => "title",
+                "issort" => false,
+                "method" => "::getHtmlTitle()"
+            ),
+            "date" => array(
+                "htitle" => _("Modification Date Menu"),
+                "horder" => "date",
+                "issort" => false,
+                "method" => "wsFolderListFormat::getMDate(THIS)"
+            ),
+            "size" => array(
+                "htitle" => _("File Size Menu"),
+                "horder" => "size",
+                "issort" => false,
+                "method" => "wsFolderListFormat::getFileSize(THIS)"
+            ),
+            "mime" => array(
+                "htitle" => _("File Type Menu"),
+                "horder" => "mime",
+                "issort" => false,
+                "method" => "wsFolderListFormat::getFileMime(THIS)"
+            )
+        ));
   $action->lay->set("NAV",$nav->output());
   
   /*

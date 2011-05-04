@@ -35,6 +35,8 @@ class ws_Navigate {
     private $folderTreeHeight=300;
     private $folderTreeWidth=250;
     private $globalSearch=null;
+    private $actionFolderList='WORKSPACE:WS_FOLDERLIST';
+    
     public function __construct(Action &$action) {
         $this->action=$action;
         $this->application=$action->parent;
@@ -74,6 +76,19 @@ class ws_Navigate {
         return ($q->nb == 0);
 
     }
+    
+    function setFolderListAction($actionName) {
+        if (preg_match('/([^:]*):(.*)/', $actionName, $reg)) {
+            $this->actionFolderList=$actionName;
+        }
+    }
+
+    function setFolderListColumn(array $column) {
+       
+            $this->actionColumnDefinition=$column;
+        
+    }
+    
     function addOffline(&$action) {
         $dbaccess = $this->action->dbaccess;
         $desktop=getTDoc($dbaccess,'FLDOFFLINE_'.Doc::getWhatUserId());
@@ -160,6 +175,7 @@ class ws_Navigate {
          $this->lay->set("folderListHeight",$this->folderListHeight);
          $this->lay->set("folderTreeHeight",$this->folderTreeHeight);
          $this->lay->set("folderTreeWidth",$this->folderTreeWidth);
+         $this->lay->set("actionFolderList",$this->actionFolderList);
          
     }
     private function  setSearchDocument() {
@@ -173,11 +189,19 @@ class ws_Navigate {
         $ws->addStaticQuery($this->globalSearch->getOriginalQuery());
          $this->lay->set("searchId", $ws->id);
     }
+    
+    private function memoConfiguration() {
+        global $action;
+        $this->configNumber=time();
+        $this->lay->set("configNumber", $this->configNumber);
+        $action->register("wsColumn".$this->configNumber, $this->actionColumnDefinition);
+    }
 
     public function output() {
         $this->setHeaders();
         $this->render();
         $this->setSearchDocument();
+        $this->memoConfiguration();
         return $this->lay->gen();
     }
 }
