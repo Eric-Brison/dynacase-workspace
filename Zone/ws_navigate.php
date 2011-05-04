@@ -36,6 +36,8 @@ class ws_Navigate {
     private $folderTreeWidth=250;
     private $globalSearch=null;
     private $actionFolderList='WORKSPACE:WS_FOLDERLIST';
+    private $actionColumnDefinition=array();
+    private $includeColumnDefinition='';
     
     public function __construct(Action &$action) {
         $this->action=$action;
@@ -83,6 +85,11 @@ class ws_Navigate {
         }
     }
 
+    function setFolderListInclude($phpFile) {
+       
+            $this->includeColumnDefinition=$phpFile;
+        
+    }
     function setFolderListColumn(array $column) {
        
             $this->actionColumnDefinition=$column;
@@ -195,6 +202,7 @@ class ws_Navigate {
         $this->configNumber=time();
         $this->lay->set("configNumber", $this->configNumber);
         $action->register("wsColumn".$this->configNumber, $this->actionColumnDefinition);
+        $action->register("wsInclude".$this->configNumber, $this->includeColumnDefinition);
     }
 
     public function output() {

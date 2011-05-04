@@ -94,7 +94,10 @@ function ws_folderlist(Action &$action) {
     if ($err) $action->lay->set("warning",$err);
 
     $configColumn=$action->read('wsColumn'.$action->getArgument("configNumber"));
-    
+    $configInclude=$action->read('wsInclude'.$action->getArgument("configNumber"));
+    if ($configInclude) {
+        include_once($configInclude);
+    }
     //--------------------------------------------------
     // construct header
     $thead=array("title"=>array("htitle"=>_("Filename Menu"),
@@ -164,16 +167,16 @@ $thead=$configColumn;
                 break;
 
         }
-        /*
+        
        
         $tc=array();
         if ($dorder){
             $action->lay->set("orderimg",$action->getImageUrl('b_up.png'));
         } else {
-            $ls=array_reverse($ls);
+           
             $action->lay->set("orderimg",$action->getImageUrl('b_down.png'));
         }
-
+/*
         $folder=array_filter($ls,"isfolder");
         $notfolder=array_filter($ls,"isnotfolder");
         $ls=array_merge($folder,$notfolder);
@@ -211,7 +214,9 @@ $thead=$configColumn;
                           "isfld"=>(($doc->doctype=='D')||($doc->doctype=='S'))?1:0);
             $line=array();
             foreach ($thead as $col) {
-                $line[]=$doc->applyMethod($col["method"],'',-1, array(), array("DIR"=>$dir));
+                $err='';
+                $mValue=$doc->applyMethod($col["method"],'',-1, array(), array("DIR"=>$dir), $err);
+                $line[]=($err)?$err:$mValue;
             }
             $tc[$c]["line"]=implode("</td><td>",$line);
             $c++;
@@ -230,6 +235,7 @@ $thead=$configColumn;
     } else {
         $action->lay->set("title",$dir->getHtmltitle());
     }
+    $action->lay->set("colspan",count($thead));
     $action->lay->setBlockData("HEAD",array_slice($thead,1));
     $action->lay->set("key", "$key&searchmode=$smode");
     if (($dir->doctype=='S') && ($dir->name != "")) {

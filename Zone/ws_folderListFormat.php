@@ -1,11 +1,11 @@
 <?php
 /**
- * Display doucment explorer
+ * Format column for folder list
  *
  * @author Anakeen 2006
- * @version $Id: ws_navigate.php,v 1.12 2007/07/30 16:03:37 eric Exp $
+ * @version $Id:  $
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @package FREEDOM
+ * @package WORKSPACE
  * @subpackage
  */
 /**
@@ -16,13 +16,9 @@
 
 
 /**
- * View folders and document for exchange them
- * @param Action &$action current action
+ * Format column for folder list
+ * 
  */
-
-
-
-
 class wsFolderListFormat {
     
     static public function getIcon(Doc &$doc, DocCollection &$dir=null) {
