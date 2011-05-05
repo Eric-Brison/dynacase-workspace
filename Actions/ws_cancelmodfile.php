@@ -38,7 +38,7 @@ function ws_cancelmodfile(&$action) {
 
   $err = $doc->unlock(); // lock
   if ($err=="") {
-    $action->AddActionDone("UNLOCKFILE",$doc->id);
+    $action->AddActionDone("UNLOCKDOC",$doc->id);
     $doc->deleteValue("sfi_inedition");
     $err=$doc->modify();
     if ($err == "") {

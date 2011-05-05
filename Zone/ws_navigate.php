@@ -36,7 +36,9 @@ class ws_Navigate {
     private $folderTreeWidth=250;
     private $globalSearch=null;
     private $actionFolderList='WORKSPACE:WS_FOLDERLIST';
-    private $actionColumnDefinition=array();
+    private $actionFolderDocPopup='WORKSPACE:WS_POPUPDOCFOLDER';
+    private $actionFolderPopup='WORKSPACE:WS_POPUPLISTFOLDER';
+    private $actionColumnDefinition="wsFolderListFormat::getColumnDescription()";
     private $includeColumnDefinition='';
     
     public function __construct(Action &$action) {
@@ -85,12 +87,23 @@ class ws_Navigate {
         }
     }
 
+    function setFolderDocPopup($actionName) {
+        if (preg_match('/([^:]*):(.*)/', $actionName, $reg)) {
+            $this->actionFolderDocPopup=$actionName;
+        }
+    }
+
+    function setFolderPopup($actionName) {
+        if (preg_match('/([^:]*):(.*)/', $actionName, $reg)) {
+            $this->actionFolderPopup=$actionName;
+        }
+    }
     function setFolderListInclude($phpFile) {
        
             $this->includeColumnDefinition=$phpFile;
         
     }
-    function setFolderListColumn(array $column) {
+    function setFolderListColumn( $column) {
        
             $this->actionColumnDefinition=$column;
         
@@ -183,6 +196,8 @@ class ws_Navigate {
          $this->lay->set("folderTreeHeight",$this->folderTreeHeight);
          $this->lay->set("folderTreeWidth",$this->folderTreeWidth);
          $this->lay->set("actionFolderList",$this->actionFolderList);
+         $this->lay->set("actionFolderDocPopup",$this->actionFolderDocPopup);
+         $this->lay->set("actionFolderPopup",$this->actionFolderPopup);
          
     }
     private function  setSearchDocument() {

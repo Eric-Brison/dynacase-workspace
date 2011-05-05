@@ -42,7 +42,7 @@ function ws_fixversion(&$action) {
   $err = $doc->unlock(true); // lock
   if ($err=="") {
 
-    $action->AddActionDone("UNLOCKFILE",$doc->id);
+    $action->AddActionDone("UNLOCKDOC",$doc->id);
     if ($err == "") {      
       $doc->setValue("sfi_version",$newversion);
       $err=$doc->modify(); 

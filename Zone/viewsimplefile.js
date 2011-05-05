@@ -86,11 +86,11 @@ function receiptActionNotification(code,arg) {
   for (var i=0;i<code.length;i++) {
     switch (code[i]) {
       
-    case "LOCKFILE":
+    case "LOCKDOC":
       var ilck=document.getElementById('imglck');
       if (ilck) ilck.src='Images/clef1.gif';
       break;
-    case "UNLOCKFILE":
+    case "UNLOCKDOC":
       var ilck=document.getElementById('imglck');
       if (ilck) ilck.src='Images/1x1.gif';
       displayemptyvalue();

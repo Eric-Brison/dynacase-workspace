@@ -32,7 +32,7 @@ function ws_downloadeditfile(&$action) {
 
   $err = $doc->lock(); // lock
   if ($err=="") {
-    $action->AddActionDone("LOCKFILE",$doc->id);
+    $action->AddActionDone("LOCKDOC",$doc->id);
     $doc->setValue("sfi_inedition",1);
     $err=$doc->modify();
     if ($err == "") {

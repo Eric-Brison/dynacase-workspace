@@ -46,7 +46,7 @@ function postModify() {
     $err=$this->unlock(); // auto unlock in not in edition mode
     if ($err=="") {
       global $action;
-      $action->AddActionDone("UNLOCKFILE",$this->id);
+      $action->AddActionDone("UNLOCKDOC",$this->id);
     }
   }
   $this->setValue("sfi_page",0); // to be recomputed

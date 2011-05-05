@@ -170,13 +170,11 @@ function documentSetEvents(cible) {
 
 		if (docid) {
 			if (isFolder=="1") {
-				console.log("add event openFolder on ", docid);
 				addEvent(trs[i],'click',function (event) {
 					var e=getDocEl(event);
 					openFolder(event, e.getAttribute('docid'));
 				});
 			} else {
-				console.log("add event viewDoc on ", docid);
 				addEvent(trs[i],'click',function (event) {
 					var e=getDocEl(event);
 					viewDoc(event, e.getAttribute('docid'), e);
@@ -650,13 +648,17 @@ function getPrevLiButton(o) {
 
 
 function viewdetailmenu(event,docid,dirid,source) {
-  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPDOCFOLDER&id='+docid+'&dirid='+dirid;
-  viewmenu(event,menuurl,source);
+	var reg = new RegExp("([^:]*):(.*)");
+	var popup=reg.exec(FOLDERDOCPOPUPACTION);
+	var menuurl=CORE_STANDURL+'app='+popup[1]+'&action='+popup[2]+'&id='+docid+'&dirid='+dirid+'&configNumber='+WSCONFIGNUMBER;
+	viewmenu(event,menuurl,source);
 }
 
 function viewfoldermenu(event,docid,source) {
-  var menuurl=CORE_STANDURL+'app=WORKSPACE&action=WS_POPUPLISTFOLDER&id='+docid;
-  viewmenu(event,menuurl,source); 
+	var reg = new RegExp("([^:]*):(.*)");
+	var popup=reg.exec(FOLDERPOPUPACTION);
+	var menuurl=CORE_STANDURL+'app='+popup[1]+'&action='+popup[2]+'&id='+docid+'&configNumber='+WSCONFIGNUMBER;
+	viewmenu(event,menuurl,source); 
 }
 
 
@@ -672,6 +674,7 @@ function postActionRefresh(action,arg) {
     postAddFile(docid);
     postAddFolder(docid);
     break;
+  case "MODFOLDERCONTAINT":
   case "ADDFILE":
     //    alert("ADDFILE:"+docid);
     postAddFile(docid);
@@ -707,8 +710,8 @@ function postActionRefresh(action,arg) {
     endexpandtree(EXPANDIMG,EXPWHERE,0);
     EXPANDIMG=null;    
     break;
-  case "LOCKFILE":
-  case "UNLOCKFILE":    
+  case "LOCKDOC":
+  case "UNLOCKDOC":    
    postLocking(docid);
         
     break;
@@ -739,7 +742,7 @@ function endexpandtree(o,w,c) {
        }
      }
    }
-
+// add document in folder docid
 function postAddFile(docid) {
   var fldid;
   var img;

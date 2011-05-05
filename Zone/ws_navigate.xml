@@ -6,6 +6,8 @@ COL3H1=parseInt('[folderListHeight]');
 COL2H1=parseInt('[folderTreeHeight]');
 ROW2W1=parseInt('[folderTreeWidth]');
   var FOLDERLISTACTION='[actionFolderList]';
+  var FOLDERDOCPOPUPACTION='[actionFolderDocPopup]';
+  var FOLDERPOPUPACTION='[actionFolderPopup]';
   var WSCONFIGNUMBER='[configNumber]';
 function changeMode(o) {
   var mode=document.getElementById('searchmode').value;

@@ -42,7 +42,7 @@ function ws_addversion(&$action) {
   $err = $doc->unlock(true); // lock
   if ($err=="") {
 
-    $action->AddActionDone("UNLOCKFILE",$doc->id);
+    $action->AddActionDone("UNLOCKDOC",$doc->id);
     if ($err == "") {
       $err=$doc->AddRevision($newcomment);
       if ($err=="") {
