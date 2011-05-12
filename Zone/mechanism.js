@@ -151,9 +151,11 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   changedragft(null,'');
 }
 
-function buttonNumber(event) {
-	  if (window.event) return button=window.event.button;
-	  else return button= event.button +1;
+function buttonNumber(e) {
+	if (!e)  e = window.event;
+	if (e.which) return e.which;
+	else if (e.button) e.button +1;
+	return 0;
 	}
 
 function documentSetEvents(cible) {
