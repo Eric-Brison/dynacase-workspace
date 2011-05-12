@@ -33,10 +33,10 @@ function ws_main(Action &$action) {
   $nav->setFolderListHeight($action->getParam("WS_COL3H1"));
   $nav->setFolderTreeHeight($action->getParam("WS_COL2H1"));
   $nav->setFolderTreeWidth($action->getParam("WS_ROW2W1"));
-  
+  $nav->setFolderListColumn("wsFolderListFormat::getColumnDescription()");
   $nav->setGlobalSearch($files);
   
-  $nav->setFolderListColumn(array(
+ /* $nav->setFolderListColumn(array(
             "icon" => array(
                 "htitle" => _("icon"),
                 "horder" => "title",
@@ -67,7 +67,7 @@ function ws_main(Action &$action) {
                 "issort" => false,
                 "method" => "wsFolderListFormat::getFileMime(THIS)"
             )
-        ));
+        ));*/
   $action->lay->set("NAV",$nav->output());
   
   /*

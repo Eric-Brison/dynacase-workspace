@@ -92,21 +92,10 @@ function ws_folderlist(Action &$action)
     if ($configInclude) {
         include_once ($configInclude);
     }
+    if (! $configColumn) $configColumn="wsFolderListFormat::getColumnDescription()";
     //--------------------------------------------------
     // construct header
-    /*
-    $thead=array("title"=>array("htitle"=>_("Filename Menu"),
-			      "horder"=>"title",
-			      "issort"=>false),
-	       "date"=>array("htitle"=>_("Modification Date Menu"),
-			     "horder"=>"date",
-			     "issort"=>false),
-	       "size"=>array("htitle"=>_("File Size Menu"),
-			     "horder"=>"size",
-			     "issort"=>false),
-	       "mime"=>array("htitle"=>_("File Type Menu"),
-			     "horder"=>"mime",
-			     "issort"=>false));*/
+ 
     $thead = $dir->applyMethod($configColumn);
     //--------------------------------------------------
     // construct body
