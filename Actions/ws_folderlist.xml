@@ -21,13 +21,12 @@
 <tbody class="folder">
 [BLOCK TREE]
 <tr class="documentItem" docid="[id]" dirid="[docid]" 
-    isFolder="[isfld]"
+    isFolder="[isfld]" 
     oncontextmenu2="viewdetailmenu(event,[id],[docid],this);return false;"  
     [IFNOT isfld]onclick2="viewDoc(event,'[id]',this);" ondblclick2="PREVVIEWDOCID=0;viewDoc(event,'[id]',this);"[ENDIF isfld] 
     [IF isfld]onclick2="openFolder(event,'[id]');"[ENDIF isfld] 
    
-    onmousedown2="DRAGNOMOVE=[isreadonly];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')">
-    <td>[line]</td>
+    onmousedown2="DRAGNOMOVE=[isreadonly];begindrag(event,this.parentNode.parentNode,cathtml(this.firstChild,this.firstChild.nextSibling),'[id]','[pid]')"><td>[line]</td>
     
     </tr>
 [ENDBLOCK TREE]  

@@ -40,6 +40,7 @@ class ws_Navigate {
     private $actionFolderPopup='WORKSPACE:WS_POPUPLISTFOLDER';
     private $actionColumnDefinition="wsFolderListFormat::getColumnDescription()";
     private $includeColumnDefinition='';
+    private $initialFolder=0;
     
     public function __construct(Action &$action) {
         $this->action=$action;
@@ -108,6 +109,9 @@ class ws_Navigate {
             $this->actionColumnDefinition=$column;
         
     }
+    function setInitialFolder($dirid) {
+            $this->initialFolder=$dirid;
+    }
     
     function addOffline(&$action) {
         $dbaccess = $this->action->dbaccess;
@@ -160,6 +164,7 @@ class ws_Navigate {
 			"sid"=>$doc->id);
             }
         }
+        $this->lay->Set("nospaces",($this->spaces==null));
         $famid = getFamIdFromName($dbaccess,"SIMPLEFILE");
         $mode=getSearchMode($this->action,$famid);
         $this->lay->Set("FULLMODE",($mode=="FULL"));
@@ -198,6 +203,7 @@ class ws_Navigate {
          $this->lay->set("actionFolderList",$this->actionFolderList);
          $this->lay->set("actionFolderDocPopup",$this->actionFolderDocPopup);
          $this->lay->set("actionFolderPopup",$this->actionFolderPopup);
+         $this->lay->set("initialFolder",$this->initialFolder);
          
     }
     private function  setSearchDocument() {

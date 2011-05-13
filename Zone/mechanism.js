@@ -151,11 +151,14 @@ function folderSend(n,cible,adddocid,padddocid,addft,kview,key) {
   changedragft(null,'');
 }
 
-function buttonNumber(e) {
+function mouseLeft(e) {
+	
 	if (!e)  e = window.event;
-	if (e.which) return e.which;
-	else if (e.button) e.button +1;
-	return 0;
+	var n=0;
+	if (e.which) n=e.which;
+	else if (e.button) n=e.button +1;
+	if (isIE) n-=1;
+	return (n==1);
 	}
 
 function documentSetEvents(cible) {
@@ -169,6 +172,7 @@ function documentSetEvents(cible) {
 		docid=trs[i].getAttribute('docid');
 		dirid=trs[i].getAttribute('dirid');
 		isFolder=trs[i].getAttribute('isFolder');
+		dragable=(document.getElementById('col2')!=null); // no folder where drop document
 
 		if (docid) {
 			if (isFolder=="1") {
@@ -186,14 +190,17 @@ function documentSetEvents(cible) {
 					PREVVIEWDOCID=0;viewDoc(event, e.getAttribute('docid'), e);});
 				
 			}
+			if (dragable) {
 			addEvent(trs[i],'mousedown',function (event) {
 				var e=getDocEl(event);
-				console.log(buttonNumber(event));
-				if (buttonNumber(event) == 1) {
+				console.log('mosedown',e);
+				if (mouseLeft(event)) {
 					DRAGNOMOVE=e.getAttribute('readOnly');
+					console.log(e.firstChild,e.firstChild.nextSibling);
 					begindrag(event,e.parentNode.parentNode,cathtml(e.firstChild,e.firstChild.nextSibling),e.getAttribute('docid'),e.getAttribute('dirid'));
 				}
 			});
+			}
 			addEvent(trs[i],'contextmenu',function (event) {
 				var e=getDocEl(event);
 				viewdetailmenu(event,e.getAttribute('docid'),e.getAttribute('dirid'),e);stopPropagation(event);return false;
