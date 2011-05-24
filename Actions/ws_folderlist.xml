@@ -9,7 +9,7 @@
 
 <table  [IFNOT isdynamic]droppable="yes" dropft="move"  onmouseover="overdragft(event,this)" onmouseout="outdragft(event,this)"[ENDIF isdynamic] CELLSPACING=0 class="tfldlist" ondblclick="if (REFRESH) viewFolder(event,'[pid]')">
 <thead >	
-<tr class="headfirst"><th align="left" colspan="[colspan]">[title], [nbdoc]</th></tr>
+<tr class="headfirst"><th align="left" colspan="[colspan]" title="[TEXT:Clic to reload documents list]" onclick="viewFolder(event,'[docid]')">[title], [nbdoc]</th></tr>
 <tr valign="top">
   <th width="20px" onmousedown="viewfoldermenu(event,[pid],this);return false;"><a  title="[TEXT:Actions...]"><IMG class="button"  SRC="[IMG:b_exec.png]" ALIGN="left"></a></th>
 [BLOCK HEAD]
