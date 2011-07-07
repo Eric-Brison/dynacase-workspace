@@ -194,7 +194,7 @@ class ws_Navigate {
         } else {
             $persofldid=$perso["id"];
         }
-        if ($this->action->getParam("WS_OFFLINE")=="yes") addOffline($this->action);
+        if ($this->action->getParam("WS_OFFLINE")=="yes") $this->addOffline($this->action);
         $this->lay->set("persofldid",$persofldid);
          $this->lay->set("myspace",$this->viewMySpace);
          $this->lay->set("folderListHeight",$this->folderListHeight);
