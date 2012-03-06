@@ -1,22 +1,14 @@
 <?php
-/**
+/*
  * View Document
  *
- * @author Anakeen 2000 
- * @version $Id: ws_viewdoc.php,v 1.2 2006/06/12 16:03:51 eric Exp $
+ * @author Anakeen
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @package FREEDOM
- * @subpackage 
- */
- /**
- */
+ * @package WORKSPACE
+*/
 
-
-
-include_once("FDL/Class.Doc.php");
-include_once("FDL/fdl_card.php");
-
-
+include_once ("FDL/Class.Doc.php");
+include_once ("FDL/fdl_card.php");
 /**
  * View a document
  * @param Action &$action current action
@@ -31,12 +23,14 @@ include_once("FDL/fdl_card.php");
  * @global reload Http var : (Y|N) if Y update freedom folders in client navigator
  * @global dochead Http var :  (Y|N) if N don't see head of document (not title and icon)
  */
-function ws_viewdoc(&$action) {
-  header('Content-type: text/xml; charset=iso-8859-1'); 
-  fdl_card($action);
-  $action->lay->set("count",1);
-  $action->lay->set("CODE","OK");
-  $action->lay->set("warning","");
-  $action->lay->set("delay","1");
-  $a= _("object")
+function ws_viewdoc(&$action)
+{
+    header('Content-type: text/xml; charset=iso-8859-1');
+    fdl_card($action);
+    $action->lay->set("count", 1);
+    $action->lay->set("CODE", "OK");
+    $action->lay->set("warning", "");
+    $action->lay->set("delay", "1");
+    $a = _("object");
 }
+?>

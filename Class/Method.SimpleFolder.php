@@ -1,28 +1,43 @@
 <?php
-
-/**
+/*
  * @author Anakeen
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @package WORKSPACE
+*/
+/**
+ * @begin-method-ignore
+ * this part will be deleted when construct document class until end-method-ignore
  */
-
-
-var $defaultview= "WORKSPACE:VIEWSIMPLEFOLDER:T";
-var $defaultedit= "WORKSPACE:EDITSIMPLEFOLDER";
-
-
-
-function viewsimplefolder($target="_self",$ulink=true,$abstract=false) {
-  global $action;
-  $this->viewdefaultcard($target,$ulink,$abstract);
-  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
-  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/popupdoc.js");
-  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDC/Layout/inserthtml.js");
-  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/WORKSPACE/Layout/viewsimplefolder.js");
-  $this->lay->set("icon",$this->getIcon());
+Class _SIMPLEFOLDER extends _DIR
+{
+    /*
+     * @end-method-ignore
+    */
+    
+    var $defaultview = "WORKSPACE:VIEWSIMPLEFOLDER:T";
+    var $defaultedit = "WORKSPACE:EDITSIMPLEFOLDER";
+    
+    function viewsimplefolder($target = "_self", $ulink = true, $abstract = false)
+    {
+        global $action;
+        $this->viewdefaultcard($target, $ulink, $abstract);
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDL/Layout/editattr.js");
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDL/Layout/popupdoc.js");
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDC/Layout/inserthtml.js");
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/WORKSPACE/Layout/viewsimplefolder.js");
+        $this->lay->set("icon", $this->getIcon());
+    }
+    
+    function editsimplefolder()
+    {
+        $this->editattr();
+    }
+    /**
+     * @begin-method-ignore
+     * this part will be deleted when construct document class until end-method-ignore
+     */
 }
-
-function editsimplefolder() {
-  $this->editattr();
-  
-}
+/*
+ * @end-method-ignore
+*/
 ?>

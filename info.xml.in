@@ -8,20 +8,22 @@
   </replaces>
 
   <requires>
-    <module name="dynacase-platform" comp="lt" version="3.2.0" />
+    <module name="dynacase-platform" comp="ge" version="3.2.0" />
   </requires>
 
   <post-install>
-    <process command="programs/app_post WORKSPACE I" />
     <process command="programs/record_application WORKSPACE" />
+    <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace.ods" />
+    <process command="programs/app_post WORKSPACE I" />
     <process command="programs/app_post WORKSPACE U" />
     <process command="programs/update_catalog" />
   </post-install>
  
   <post-upgrade>
     <process command="programs/pre_migration WORKSPACE" />
-    <process command="programs/app_post WORKSPACE U" />
     <process command="programs/record_application WORKSPACE" />
+    <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace.ods" />
+    <process command="programs/app_post WORKSPACE U" />
     <process command="programs/post_migration WORKSPACE" />
     <process command="programs/update_catalog" />
   </post-upgrade>

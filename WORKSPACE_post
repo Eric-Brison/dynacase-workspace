@@ -15,10 +15,7 @@ fi
 #post update
 #------------------------------
 if [ "$1" = "U" ] ; then
-
-  $wpub/wsh.php --api=freedom_import --file=$wpub/WORKSPACE/workspace.ods
-  
-
+  echo
 fi
 
 #------------------------------
