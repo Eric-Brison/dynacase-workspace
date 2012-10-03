@@ -11,6 +11,7 @@
  * @param int $cdocid current document to move/add/del
  * @param int $pfldid parent folder where comes the document
  * @param string $docft the function : [add|move|del]
+ * @templateController
  */
 function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft)
 {

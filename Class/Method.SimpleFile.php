@@ -314,13 +314,23 @@ Class _SIMPLEFILE extends Doc
             }
         }
     }
-    
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function mailsimplefile($target = "_self", $ulink = true, $abstract = false)
     {
         $this->viewsimplefile($target, $ulink, $abstract);
         $this->lay->set("moddate", strftime("%A %d %B %Y %H:%M", $this->revdate));
     }
-    
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function printsimplefile($target = "_self", $ulink = true, $abstract = false)
     {
         $this->viewdefaultcard($target, $ulink, $abstract);
@@ -342,6 +352,12 @@ Class _SIMPLEFILE extends Doc
             $this->lay->set("isimg", $isimg);
         }
     }
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function viewsimpleprop($target = "_self", $ulink = true, $abstract = false)
     {
         $this->computeMime();
@@ -400,6 +416,12 @@ Class _SIMPLEFILE extends Doc
         
         $this->lay->set("thepath", $spath);
     }
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function viewsimplefile($target = "_self", $ulink = true, $abstract = false)
     {
         global $action;
@@ -487,7 +509,9 @@ Class _SIMPLEFILE extends Doc
             $this->lay->set("vaultid", $vaultid);
         }
     }
-    
+    /**
+     * @templateController
+     */
     function createtext()
     {
         global $action;
@@ -539,7 +563,9 @@ Class _SIMPLEFILE extends Doc
         if ($this->getValue('sfi_inedition') == 1) return MENU_INACTIVE;
         return MENU_ACTIVE;
     }
-    
+    /**
+     * @templateController
+     */
     function editupload()
     {
         global $action;
@@ -547,7 +573,9 @@ Class _SIMPLEFILE extends Doc
         $this->viewprop();
         $this->editattr();
     }
-    
+    /**
+     * @templateController
+     */
     function editversion()
     {
         $this->editattr();
@@ -557,7 +585,7 @@ Class _SIMPLEFILE extends Doc
         if (file_exists($file)) {
             //open the file for reading
             return trim(`grep -c "/Type[[:space:]]*/Page\>" $file`);
-            if ($handle = @fopen($file, "rb")) {
+            /*if ($handle = @fopen($file, "rb")) {
                 $count = 0;
                 $i = 0;
                 while (!feof($handle)) {
@@ -584,7 +612,7 @@ Class _SIMPLEFILE extends Doc
                     $i++;
                 }
                 fclose($handle);
-                /*
+            /*
                  //get all the trees with 'pages' and 'count'. the biggest number
                  //is the total number of pages, if we couldn't find the /N switch above.                
                  if(preg_match_all("/\/Type\s*\/Pages\s*.*\s*\/Count\s+([0-9]+)/", $contents, $capture, PREG_SET_ORDER)) {
@@ -594,8 +622,8 @@ Class _SIMPLEFILE extends Doc
                      }
                      return $count;            
                  }
-                */
-            }
+            
+            }*/
         }
         return 0;
     }

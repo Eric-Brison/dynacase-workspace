@@ -47,7 +47,7 @@ class wsFolderListFormat
                 "htitle" => _("icon") ,
                 "horder" => "title",
                 "issort" => false,
-                "method" => "wsFolderListFormat::getIcon(THIS, DIR)"
+                "method" => "wsFolderListFormat::getIcon(THIS)"
             ) ,
             "title" => array(
                 "htitle" => _("Filename Menu") ,

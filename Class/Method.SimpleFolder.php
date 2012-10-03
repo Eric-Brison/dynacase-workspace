@@ -8,7 +8,7 @@
  * @begin-method-ignore
  * this part will be deleted when construct document class until end-method-ignore
  */
-Class _SIMPLEFOLDER extends _DIR
+Class _SIMPLEFOLDER extends Dir
 {
     /*
      * @end-method-ignore
@@ -16,7 +16,12 @@ Class _SIMPLEFOLDER extends _DIR
     
     var $defaultview = "WORKSPACE:VIEWSIMPLEFOLDER:T";
     var $defaultedit = "WORKSPACE:EDITSIMPLEFOLDER";
-    
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function viewsimplefolder($target = "_self", $ulink = true, $abstract = false)
     {
         global $action;
@@ -27,7 +32,9 @@ Class _SIMPLEFOLDER extends _DIR
         $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/WORKSPACE/Layout/viewsimplefolder.js");
         $this->lay->set("icon", $this->getIcon());
     }
-    
+    /**
+     * @templateController
+     */
     function editsimplefolder()
     {
         $this->editattr();

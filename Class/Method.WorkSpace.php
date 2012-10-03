@@ -304,6 +304,9 @@ class _WORKSPACE extends _DIR
         
         if (($fiold !== false) && ($fi != $fiold)) $this->recomputeIGroupProfil();
     }
+    /**
+     * @templateController
+     */
     function adminworkspace()
     {
         global $action;
@@ -344,6 +347,12 @@ class _WORKSPACE extends _DIR
             $this->lay->set("nmembers", sprintf(_("%s members") , count($tmv)));
         }
     }
+    /**
+     * @param string $target
+     * @param bool $ulink
+     * @param bool $abstract
+     * @templateController
+     */
     function viewworkspace($target = "_self", $ulink = true, $abstract = false)
     {
         $this->viewdefaultcard($target, $ulink, $abstract);
