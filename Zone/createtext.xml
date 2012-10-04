@@ -7,22 +7,10 @@
 </table>
 </div>
 
+<textarea id="wscreatefile" name="wscreatefile"></textarea>
 
-
-			<script type="text/javascript">
-
-var oFCKeditor = new FCKeditor( 'wscreatefile' ) ;
-oFCKeditor.BasePath = 'fckeditor/';
-oFCKeditor.Config["CustomConfigurationsPath"] = "../../WORKSPACE/Layout/ws_fckeditor.js"  ;
-
-oFCKeditor.ToolbarSet = 'ws';
-
-oFCKeditor.Config['FullPage'] = true ;
-
-oFCKeditor.Config['SkinPath'] =  'skins/silver/';
-oFCKeditor.Height='100%';
-//oFCKeditor.Width='100%';
-oFCKeditor.Create();
-
-
-			</script>
+<script type="text/javascript">
+htmlText.initEditor('wscreatefile', {
+    fullPage : true
+});
+</script>

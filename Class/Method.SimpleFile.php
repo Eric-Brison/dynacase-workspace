@@ -518,7 +518,8 @@ Class _SIMPLEFILE extends Doc
         $a = $this->getAttribute("sfi_titlew");
         $a->needed = "Y";
         
-        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/fckeditor/fckeditor.js");
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/ckeditor/ckeditor.js");
+        $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDL/Layout/edithtmltext.js");
         $this->editattr();
     }
     
