@@ -112,11 +112,6 @@ $action_desc = array (
    "acl"		=>"WORKSPACE_USER"
   )  ,
   array( 
-   "name"		=>"WS_MODHTMLFILE",
-   "short_name"		=>N_("edit HTML file"),
-   "acl"		=>"WORKSPACE_USER"
-  )  ,
-  array( 
    "name"		=>"WS_MODEDITFILE",
    "short_name"		=>N_("edit download file"),
    "acl"		=>"WORKSPACE_USER"
