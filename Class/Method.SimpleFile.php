@@ -403,7 +403,7 @@ Class _SIMPLEFILE extends Doc
         
         $size = $this->getRawValue("sfi_filesize");
         if ($size < 0) $dsize = "";
-        else if ($size < 1024) $dsize = sprintf(_("%d bytes") , $size);
+        else if ($size < 1024) $dsize = sprintf(_("ws %d bytes") , $size);
         else if ($size < 1048576) $dsize = sprintf(_("%d kb") , $size / 1024);
         else $dsize = sprintf(_("%.01f Mb") , $size / 1048576);
         $this->lay->set("dsize", $dsize);
@@ -456,7 +456,7 @@ Class _SIMPLEFILE extends Doc
         
         $size = $this->getRawValue("sfi_filesize");
         if ($size < 0) $dsize = "";
-        else if ($size < 1024) $dsize = sprintf(_("%d bytes") , $size);
+        else if ($size < 1024) $dsize = sprintf(_("ws %d bytes") , $size);
         else if ($size < 1048576) $dsize = sprintf(_("%d kb") , $size / 1024);
         else $dsize = sprintf(_("%.01f Mb") , $size / 1048576);
         $this->lay->set("dsize", $dsize);

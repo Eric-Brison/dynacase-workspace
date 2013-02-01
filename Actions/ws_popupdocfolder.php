@@ -79,7 +79,7 @@ function ws_popupdocfolder(Action & $action)
             "barmenu" => "false"
         ) ,
         "tobasket" => array(
-            "descr" => _("Add to basket") ,
+            "descr" => _("ws Add to basket") ,
             "jsfunction" => "addToBasket(event,$docid)",
             "confirm" => "false",
             "tconfirm" => "",

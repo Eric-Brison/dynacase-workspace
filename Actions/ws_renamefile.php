@@ -20,6 +20,7 @@ function ws_renamefile(Action & $action)
     header('Content-type: text/xml; charset=utf-8');
     
     $mb = microtime();
+
     $docid = GetHttpVars("id");
     $newname = GetHttpVars("newname");
     $dbaccess = $action->GetParam("FREEDOM_DB");
@@ -35,7 +36,7 @@ function ws_renamefile(Action & $action)
         $vf = newFreeVaultFile($dbaccess);
         $vid = $reg[2];
         $vf->Rename($vid, ($newname));
-        $doc->addHistoryEntry(sprintf(_("Rename file as %s") , ($newname)));
+        $doc->addHistoryEntry(sprintf(_("ws Rename file as %s") , ($newname)));
         $doc->postStore();
         $err = $doc->modify();
     }

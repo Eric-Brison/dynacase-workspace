@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-01 16:34+0100\n"
-"PO-Revision-Date: 2007-08-13 11:13+0200\n"
+"POT-Creation-Date: 2013-02-01 17:29+0100\n"
+"PO-Revision-Date: 2013-02-01 17:31+0100\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "Language: fr\n"
@@ -24,11 +24,6 @@ msgstr " (copie)"
 #, c-format
 msgid "%.01f Mb"
 msgstr "%.01f Mo"
-
-#: Class/Method.SimpleFile.php:406 Class/Method.SimpleFile.php:459
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
 
 #: Class/Method.WorkSpace.php:246
 #, c-format
@@ -131,8 +126,8 @@ msgid "Access For Workspace edition"
 msgstr "Accès à l'édition des espaces de travail"
 
 #: WORKSPACE.app:22
-msgid "Access for exchange documents"
-msgstr "Access à l'échange de documents"
+msgid "Access for access to workspaces"
+msgstr "Accès aux espaces partagés"
 
 #: textxml.php:110
 msgid "Actions..."
@@ -142,15 +137,6 @@ msgstr "Actions..."
 msgid "Actual version"
 msgstr "Version actuelle"
 
-#: Actions/ws_popupsimplefolder.php:62 Actions/ws_popupsimplefile.php:147
-msgid "Add a note"
-msgstr "Ajouter une note"
-
-#: Actions/ws_popupsimplefolder.php:72 Actions/ws_popupsimplefile.php:167
-#: Actions/ws_popupdocfolder.php:82
-msgid "Add to basket"
-msgstr ""
-
 #: textxml.php:123
 msgid "Add version"
 msgstr "Ajouter une version"
@@ -159,13 +145,9 @@ msgstr "Ajouter une version"
 msgid "Allocated to"
 msgstr "Affecté à"
 
-#: textxml.php:138
-msgid "Cancel"
-msgstr ""
-
 #: textxml.php:109
 msgid "Clic to reload documents list"
-msgstr ""
+msgstr "Cliquer pour recharger le document"
 
 #: textxml.php:21
 msgid "Clic to view menu"
@@ -187,14 +169,6 @@ msgstr "Cliquer pour modifier le titre"
 msgid "Click to rename file"
 msgstr "Cliquer pour renommer le fichier"
 
-#: textxml.php:64
-msgid "Click to view menu"
-msgstr ""
-
-#: textxml.php:119 textxml.php:136
-msgid "Comment"
-msgstr "Commentaire"
-
 #: textxml.php:98
 msgid "Contributors"
 msgstr "Contributeurs"
@@ -210,10 +184,6 @@ msgstr "Créer une nouvelle version"
 #: textxml.php:124
 msgid "Create new version for the document"
 msgstr "Créer une nouvelle version pour le document"
-
-#: textxml.php:3
-msgid "Creation date"
-msgstr "Date de création"
 
 #: Actions/ws_popupsimplefile.php:137 Actions/ws_popupdocfolder.php:52
 msgid "Delete"
@@ -234,10 +204,6 @@ msgstr "Désaffecter"
 #: Actions/ws_popupsimplefile.php:81
 msgid "Diffuse"
 msgstr "Diffuser"
-
-#: textxml.php:22
-msgid "Directory"
-msgstr "Répertoire"
 
 #: textxml.php:61
 msgid "Display"
@@ -370,9 +336,9 @@ msgid "Group of users that can view files in [ADOC %d] space"
 msgstr ""
 "Groupe des utilisateurs qui peuvent voir les fichiers de l'espace [ADOC %d]"
 
-#: textxml.php:59 textxml.php:102
+#: textxml.php:102
 msgid "Historic"
-msgstr "Historique"
+msgstr ""
 
 #: Actions/ws_popupdocfolder.php:62
 msgid "History"
@@ -398,21 +364,9 @@ msgstr "Date de dernier accès"
 msgid "Lock"
 msgstr ""
 
-#: textxml.php:8
-msgid "Locked by"
-msgstr "Verrouillé par"
-
 #: Admin/WORKSPACEADMIN.app:7
 msgid "Manage workspaces"
-msgstr ""
-
-#: Zone/ws_folderListFormat.php:59
-msgid "Modification Date Menu"
-msgstr "Date de modification"
-
-#: textxml.php:4
-msgid "Modification date"
-msgstr "Date de dernière modification"
+msgstr "Gestion des espaces de travail"
 
 #: textxml.php:95
 msgid "Modify keywords"
@@ -429,10 +383,6 @@ msgstr "Nommer la version"
 #: textxml.php:11
 msgid "Namespace"
 msgstr "Nom de l'espace"
-
-#: Actions/ws_popuplistfolder.php:52
-msgid "New directory"
-msgstr "Nouveau répertoire"
 
 #: Actions/ws_popuplistfolder.php:28 textxml.php:40
 msgid "New file"
@@ -510,10 +460,6 @@ msgstr "Récupérer le fichier modifié"
 msgid "Reader group"
 msgstr "Groupe lecteur"
 
-#: Actions/ws_popupsimplefile.php:222
-msgid "Reaffect"
-msgstr "Réaffecter"
-
 #: textxml.php:54
 msgid "Redactor group"
 msgstr "Groupe rédacteur"
@@ -529,11 +475,6 @@ msgstr "Recharger"
 #: textxml.php:62
 msgid "Reload file"
 msgstr "Recharger le fichier"
-
-#: Actions/ws_renamefile.php:38
-#, c-format
-msgid "Rename file as %s"
-msgstr "Renommer le fichier en %s"
 
 #: Actions/ws_popupsimplefile.php:71
 msgid "Reserve"
@@ -568,17 +509,9 @@ msgstr "Lancer la recherche"
 msgid "Send user searches"
 msgstr "Lancer la recherche d'utilisateurs à insérer"
 
-#: textxml.php:1
-msgid "Size"
-msgstr "Taille"
-
 #: textxml.php:50
 msgid "Space"
 msgstr "Espace"
-
-#: textxml.php:88
-msgid "State"
-msgstr "État"
 
 #: textxml.php:41
 msgid "Stay in edition mode ?"
@@ -673,10 +606,6 @@ msgstr ""
 "Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
 "du fichier original"
 
-#: textxml.php:28
-msgid "Trash"
-msgstr "Corbeille"
-
 #: textxml.php:46
 msgid "Undefined version"
 msgstr "Non définie"
@@ -745,7 +674,7 @@ msgstr "Espace de travail"
 
 #: Admin/WORKSPACEADMIN.app:6
 msgid "WorkSpace Admin"
-msgstr ""
+msgstr "Administration des espaces de travail"
 
 #: Actions/ws_popupsimplefile.php:93
 msgid "Workflow"
@@ -1116,6 +1045,81 @@ msgstr "largeur du cadre dans l'arborescence des fichiers"
 msgid "workspace profile for [ADOC %d] - %s - space files"
 msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] - %s "
 
+#: Class/Method.SimpleFile.php:406 Class/Method.SimpleFile.php:459
+#, c-format
+msgid "ws %d bytes"
+msgstr "%d octets"
+
+#: Actions/ws_popupsimplefolder.php:62 Actions/ws_popupsimplefile.php:147
+msgid "ws Add a note"
+msgstr "Ajouter une note"
+
+#: Actions/ws_popupsimplefolder.php:72 Actions/ws_popupsimplefile.php:167
+#: Actions/ws_popupdocfolder.php:82
+msgid "ws Add to basket"
+msgstr ""
+
+#: textxml.php:138
+msgid "ws Cancel"
+msgstr "Annuler"
+
+#: textxml.php:64
+msgid "ws Click to view menu"
+msgstr "Cliquer pour voir le menu"
+
+#: textxml.php:119 textxml.php:136
+msgid "ws Comment"
+msgstr "Commentaire"
+
+#: textxml.php:3
+msgid "ws Creation date"
+msgstr "Date de création"
+
+#: textxml.php:22
+msgid "ws Directory"
+msgstr "Répertoire"
+
+#: textxml.php:59
+msgid "ws Historic"
+msgstr "Historique"
+
+#: textxml.php:8
+msgid "ws Locked by"
+msgstr "Verrouillé par"
+
+#: Zone/ws_folderListFormat.php:59
+msgid "ws Modification Date Menu"
+msgstr "Date de modification"
+
+#: textxml.php:4
+msgid "ws Modification date"
+msgstr "Date de dernière modification"
+
+#: Actions/ws_popuplistfolder.php:52
+msgid "ws New directory"
+msgstr "Nouveau répertoire"
+
+#: Actions/ws_popupsimplefile.php:222
+msgid "ws Reaffect"
+msgstr "Réaffecter"
+
+#: Actions/ws_renamefile.php:39
+#, c-format
+msgid "ws Rename file as %s"
+msgstr "Renommer le fichier en %s"
+
+#: textxml.php:1
+msgid "ws Size"
+msgstr "Taille"
+
+#: textxml.php:88
+msgid "ws State"
+msgstr "État"
+
+#: textxml.php:28
+msgid "ws Trash"
+msgstr "Corbeille"
+
 #~ msgid "%s system"
 #~ msgstr "Système %s"
 
@@ -1125,8 +1129,14 @@ msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] - %s "
 #~ msgid "1 document"
 #~ msgstr "1 document"
 
+#~ msgid "Access for exchange documents"
+#~ msgstr "Access à l'échange de documents"
+
 #~ msgid "Add new file"
 #~ msgstr "Ajouter un fichier"
+
+#~ msgid "Add to basket"
+#~ msgstr "Ajouter au panier"
 
 #~ msgid "Affect"
 #~ msgstr "Affecter"

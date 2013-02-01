@@ -144,7 +144,7 @@ function ws_popupsimplefile(Action & $action)
             "barmenu" => "false"
         ) ,
         "postit" => array(
-            "descr" => _("Add a note") ,
+            "descr" => _("ws Add a note") ,
             "jsfunction" => "postit('$surl&app=GENERIC&action=GENERIC_EDIT&classid=27&pit_title=&pit_idadoc=$docid',50,50,300,200)",
             "confirm" => "false",
             "tconfirm" => "",
@@ -164,7 +164,7 @@ function ws_popupsimplefile(Action & $action)
             "barmenu" => "false"
         ) ,
         "tobasket" => array(
-            "descr" => _("Add to basket") ,
+            "descr" => _("ws Add to basket") ,
             "jsfunction" => "shortcutToFld(event,$docid,'" . $action->getParam("FREEDOM_IDBASKET") . "')",
             "confirm" => "false",
             "tconfirm" => "",
@@ -219,7 +219,7 @@ function ws_popupsimplefile(Action & $action)
     $tlink["reserve"]["visibility"] = ($doc->fileIsNotInEdition() == MENU_ACTIVE) ? POPUP_ACTIVE : POPUP_INVISIBLE;
     
     if ($doc->hasUTag("AFFECTED")) {
-        $tlink["affect"]["descr"] = _("Reaffect");
+        $tlink["affect"]["descr"] = _("ws Reaffect");
         $tlink["desaffect"]["visibility"] = POPUP_ACTIVE;
     }
     $err = $doc->CanLockFile();

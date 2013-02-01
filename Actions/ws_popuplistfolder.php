@@ -49,7 +49,7 @@ function ws_popuplistfolder(Action & $action)
             "barmenu" => "false"
         ) ,
         "createfolder" => array(
-            "descr" => _("New directory") ,
+            "descr" => _("ws New directory") ,
             "url" => "$surl&app=GENERIC&action=GENERIC_EDIT&classid=SIMPLEFOLDER&&dirid=$docid",
             "confirm" => "false",
             "control" => "false",

@@ -19,7 +19,7 @@ $app_acl = array(
         "description" => N_("Access For Workspace edition")),
     array(
         "name" => "WORKSPACE_USER",
-        "description" => N_("Access for exchange documents"))
+        "description" => N_("Access for access to workspaces"))
 );
 
 $action_desc = array(

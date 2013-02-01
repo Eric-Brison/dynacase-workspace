@@ -24,7 +24,7 @@
   <ul >
     <li><a href="javascript:void(0)" id="ogident" onclick="unviewinline();" class="active">[TEXT:Identification]</a></li>
 
-    <li><a href="javascript:void(0)" id="oghisto"  title="[TEXT:View historic]"  onclick="viewinline(event,'[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N','histo')">[TEXT:Historic]</a></li>
+    <li><a href="javascript:void(0)" id="oghisto"  title="[TEXT:View historic]"  onclick="viewinline(event,'[CORE_STANDURL]app=FREEDOM&action=HISTO&id=[ID]&viewrev=N','histo')">[TEXT:ws Historic]</a></li>
     [IF isinline]<li><a  id="oginline" href="javascript:void(0)" title="[TEXT:View file inline]" onclick="viewinline(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_DOWNLOADFILE&id=[ID]&inline=yes','inline')">[TEXT:Display]</a></li>
     <li><a href="javascript:void(0)" id="ogreload"  style="display:none" title="[TEXT:Reload file]" onclick="wsreload(event,'iinline')" >[TEXT:Reload]</a></li>
 
@@ -35,7 +35,7 @@
 
 <div id="menu">
   <ul>
-    <li><a  href="javascript:void(0)" onclick="viewdocmenu(event,'[ID]',false,this);return false" title="[TEXT:Click to view menu]" onmouseover="godocmenu(event,this)" onmouseout="aborddocmenu()">[TEXT:Others]&darr;</a> </li>
+    <li><a  href="javascript:void(0)" onclick="viewdocmenu(event,'[ID]',false,this);return false" title="[TEXT:ws Click to view menu]" onmouseover="godocmenu(event,this)" onmouseout="aborddocmenu()">[TEXT:Others]&darr;</a> </li>
     [IF canedit][IF canedithtml]<li><a style="white-space:nowrap" title="[TEXT:Use internal editor to modify file]" href="javascript:void(0)" onclick="WEDITHTML=subwindow(500,800,'edit[ID]','[CORE_STANDURL]app=WORKSPACE&action=[IF ishtml]WS_EDITHTMLFILE[ENDIF ishtml][IF istext]WS_EDITTEXTFILE[ENDIF istext]&id=[ID]')" >[TEXT:Edit inline]</a></li>[ENDIF canedithtml][ENDIF canedit]
 
 [IF isnotinedition]
@@ -68,7 +68,7 @@
 <div class="srub">[IF canedit]<a  href="javascript:void(0)" onclick="editattr(event,'[ID]','sfi_version',document.getElementById('sfi_version'))" title="[TEXT:Name the version]">[ENDIF canedit]<b>[TEXT:Version] : </b>[IF canedit]</a>[ENDIF canedit] 
   [IF S_SFI_VERSION]<b id="sfi_version">[V_SFI_VERSION]</b>[ENDIF S_SFI_VERSION]
      [IFNOT S_SFI_VERSION]<b id="sfi_version" style="color:[COLOR_A5]">[noversiontext]</b>[ENDIF S_SFI_VERSION][IF canedit]<a style="display:none" href="javascript:void(0)" onclick="subwindow(350,600,'version','[CORE_STANDURL]app=WORKSPACE&action=WS_EDITADDVERSION&id=[ID]')"><img width="22px" needresize="1" style="border:none[IFNOT canversionned];display:none[ENDIF canversionned]" title="[TEXT:Create new version]" id="imgver" src="[IMG:version.gif]"></a> <a href="javascript:void(0)" onclick="popdiv(event,'[CORE_STANDURL]app=WORKSPACE&action=WS_EDITFIXVERSION&id=[ID]','[TEXT:Fix version]',0,40,400,250)" title="[TEXT:Fix version]">[TEXT:Fix]</a>[ENDIF canedit] 
-<span style="[IFNOT ISIE]white-space:nowrap;[ENDIF ISIE]border-color:[statecolor]" class="statetext">[IF stateid] - [TEXT:State] : <a class="tooltip"  title="[thestatedesc]"><i style="cursor:pointer" onclick="subwindow(300,500,'viewstate','[CORE_STANDURL]app=FDL&action=EDITAFFECT&id=[ID]')">[thestate]</i></a> [ENDIF stateid]</span> </div>
+<span style="[IFNOT ISIE]white-space:nowrap;[ENDIF ISIE]border-color:[statecolor]" class="statetext">[IF stateid] - [TEXT:ws State] : <a class="tooltip"  title="[thestatedesc]"><i style="cursor:pointer" onclick="subwindow(300,500,'viewstate','[CORE_STANDURL]app=FDL&action=EDITAFFECT&id=[ID]')">[thestate]</i></a> [ENDIF stateid]</span> </div>
 </div>
 
 <div class="simpletitle">[IF canedit]<a  title="[TEXT:Click to modify title]" 

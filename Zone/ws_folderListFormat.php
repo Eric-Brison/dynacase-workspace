@@ -56,7 +56,7 @@ class wsFolderListFormat
                 "method" => "::getHtmlTitle()"
             ) ,
             "date" => array(
-                "htitle" => _("Modification Date Menu") ,
+                "htitle" => _("ws Modification Date Menu") ,
                 "horder" => "date",
                 "issort" => false,
                 "method" => "wsFolderListFormat::getMDate(THIS)"
