@@ -11,18 +11,18 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * Display info before download
  * @param Action &$action current action
- * @global id Http var : document for file to edit (SIMPLEFILE family)
+ * @global string $d Http var : document for file to edit (SIMPLEFILE family)
  */
-function ws_cancelmodfile(&$action)
+function ws_cancelmodfile(Action & $action)
 {
     
-    $docid = GetHttpVars("id");
+    $docid = $action->getArgument("id");
     $dbaccess = $action->GetParam("FREEDOM_DB");
-    $autoclose = (GetHttpVars("autoclose", "N") == "Y"); // close window after
+    $autoclose = ($action->getArgument("autoclose", "N") == "Y"); // close window after
     $doc = new_doc($dbaccess, $docid);
     if (!$doc->isAlive()) $action->exitError(sprintf(_("document %s does not exist") , $docid));
     
-    if ($doc->getValue('sfi_inedition') != 1) $action->exitError(sprintf(_("document %s is not in edition") , $docid));
+    if ($doc->getRawValue('sfi_inedition') != 1) $action->exitError(sprintf(_("document %s is not in edition") , $docid));
     
     $err = $doc->control("edit");
     if ($err != "") $action->exiterror($err);
@@ -30,10 +30,10 @@ function ws_cancelmodfile(&$action)
     $err = $doc->unlock(); // lock
     if ($err == "") {
         $action->AddActionDone("UNLOCKDOC", $doc->id);
-        $doc->deleteValue("sfi_inedition");
+        $doc->clearValue("sfi_inedition");
         $err = $doc->modify();
         if ($err == "") {
-            $doc->AddComment(_("file modification aborted"));
+            $doc->addHistoryEntry(_("file modification aborted"));
         }
     }
     if (!$autoclose) redirect($action, "FDL", "FDL_CARD&id=" . $doc->id, $action->GetParam("CORE_STANDURL"));

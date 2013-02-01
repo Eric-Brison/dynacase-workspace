@@ -10,14 +10,17 @@
 include_once ("FDL/popupdoc.php");
 include_once ("FDL/popupdocdetail.php");
 // -----------------------------------
-function ws_popupsimplefolder(&$action)
+function ws_popupsimplefolder(Action & $action)
 {
     // -----------------------------------
     // define accessibility
-    $docid = GetHttpVars("id");
-    $abstract = (GetHttpVars("abstract", 'N') == "Y");
-    $zone = GetHttpVars("zone"); // special zone
+    $docid = $action->getArgument("id");
+    $abstract = ($action->getArgument("abstract", 'N') == "Y");
+    $zone = $action->getArgument("zone"); // special zone
     $dbaccess = $action->GetParam("FREEDOM_DB");
+    /**
+     * @var _SIMPLEFOLDER $doc
+     */
     $doc = new_Doc($dbaccess, $docid);
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
@@ -56,7 +59,7 @@ function ws_popupsimplefolder(&$action)
             "barmenu" => "false"
         ) ,
         "postit" => array(
-            "descr" => _("Add a note") ,
+            "descr" => _("ws Add a note") ,
             "jsfunction" => "postit('$surl&app=GENERIC&action=GENERIC_EDIT&classid=27&pit_title=&pit_idadoc=$docid',50,50,300,200)",
             "confirm" => "false",
             "tconfirm" => "",
@@ -66,7 +69,7 @@ function ws_popupsimplefolder(&$action)
             "barmenu" => "false"
         ) ,
         "tobasket" => array(
-            "descr" => _("Add to basket") ,
+            "descr" => _("ws Add to basket") ,
             "jsfunction" => "shortcutToFld(event,$docid,'" . $action->getParam("FREEDOM_IDBASKET") . "')",
             "confirm" => "false",
             "tconfirm" => "",
@@ -93,7 +96,7 @@ function ws_popupsimplefolder(&$action)
         $tlink["duplicate"]["visibility"] = POPUP_INVISIBLE;
     }
     
-    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getValue("se_sqlselect")))) {
+    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getRawValue("se_sqlselect")))) {
         $tlink["trash"] = array(
             "descr" => _("Empty trash") ,
             "jsfunction" => "emptytrash(event)",

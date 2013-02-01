@@ -164,7 +164,7 @@ function mouseLeft(e) {
 function documentSetEvents(cible) {
 	if (!cible) return;
 	var trs=cible.getElementsByTagName('tr');
-	console.log("documentSetEvents", trs.length);
+	//console.log("documentSetEvents", trs.length);
 	var docid=0;
 	var isFolder=false;
 	for (var i=0;i<trs.length;i++) {
@@ -193,10 +193,10 @@ function documentSetEvents(cible) {
 			if (dragable) {
 			addEvent(trs[i],'mousedown',function (event) {
 				var e=getDocEl(event);
-				console.log('mosedown',e);
+				//console.log('mosedown',e);
 				if (mouseLeft(event)) {
 					DRAGNOMOVE=e.getAttribute('readOnly');
-					console.log(e.firstChild,e.firstChild.nextSibling);
+					//console.log(e.firstChild,e.firstChild.nextSibling);
 					begindrag(event,e.parentNode.parentNode,cathtml(e.firstChild,e.firstChild.nextSibling),e.getAttribute('docid'),e.getAttribute('dirid'));
 				}
 			});

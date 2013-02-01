@@ -13,7 +13,7 @@
 
 
 
-</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea>
+</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:ws Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea>
 
 </td></tr></table>
 <hr width="50%"><table style="display:inline"><tr><td style="vertical-align:text-top"> 

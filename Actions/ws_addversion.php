@@ -11,17 +11,17 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * Create new version
  * @param Action &$action current action
- * @global id Http var : document for file to edit (SIMPLEFILE family)
- * @global newstate Http var : new state
+ * @global string $id Http var : document for file to edit (SIMPLEFILE family)
+ * @global string $newstate Http var : new state
  */
-function ws_addversion(&$action)
+function ws_addversion(Action & $action)
 {
     
-    $docid = GetHttpVars("id");
-    $newversion = GetHttpVars("newversion");
-    $newcomment = GetHttpVars("comversion");
-    $newstate = GetHttpVars("newstate");
-    $autoclose = (GetHttpVars("autoclose", "N") == "Y"); // close window after
+    $docid = $action->getArgument("id");
+    $newversion = $action->getArgument("newversion");
+    $newcomment = $action->getArgument("comversion");
+    $newstate = $action->getArgument("newstate");
+    $autoclose = ($action->getArgument("autoclose", "N") == "Y"); // close window after
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $doc = new_doc($dbaccess, $docid);
@@ -35,7 +35,7 @@ function ws_addversion(&$action)
         
         $action->AddActionDone("UNLOCKDOC", $doc->id);
         if ($err == "") {
-            $err = $doc->AddRevision($newcomment);
+            $err = $doc->revise($newcomment);
             if ($err == "") {
                 $doc->setValue("sfi_version", $newversion);
                 $err = $doc->modify();
@@ -45,6 +45,7 @@ function ws_addversion(&$action)
     if ($err) $action->AddWarningMsg($err);
     else {
         if ($newstate >= 0) {
+            $commentstate = '';
             $err = $doc->changeFreeState($newstate, $commentstate, false);
             if ($err != "") $action->addWarningMsg($err);
             else {

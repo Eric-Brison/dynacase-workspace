@@ -12,19 +12,18 @@ include_once ("WORKSPACE/Lib.WsFtCommon.php");
 /**
  * Put a doc in trash
  * @param Action &$action current action
- * @global id Http var : document id to trash
- * @global addft Http var : action to realize : [del]
- * @global paddid Http var : current folder of document comes
+ * @global string $id Http var : document id to trash
+ * @global string $addft Http var : action to realize : [del]
+ * @global string$ paddid Http var : current folder of document comes
  */
-function ws_emptytrash(&$action)
+function ws_emptytrash(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
-    $docid = GetHttpVars("id");
-    $pdocid = GetHttpVars("paddid");
-    $addft = GetHttpVars("addft");
+    $docid = $action->getArgument("id");
+    $pdocid = $action->getArgument("paddid");
+    $addft = $action->getArgument("addft");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
@@ -42,10 +41,10 @@ function ws_emptytrash(&$action)
     
     $err = movementDocument($action, $dbaccess, false, $docid, $pdocid, $addft);
     if ($err) $action->lay->set("warning", $err);
-    
+    $taction = array();
     if ($err == "") $taction[] = array(
         "actname" => "EMPTYTRASH",
-        "actdocid" => $pdoc->initid
+        "actdocid" => $pdocid
     );
     $action->lay->setBlockData("ACTIONS", $taction);
     $action->lay->set("CODE", "OK");

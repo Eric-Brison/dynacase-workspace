@@ -11,12 +11,12 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * Display editor to modify HTML file
  * @param Action &$action current action
- * @global id Http var : document id for add version
- * @global attrid Http var : id of file attribute
+ * @global string $id Http var : document id for add version
+ * @global string $attrid Http var : id of file attribute
  */
-function ws_editaddversion(&$action)
+function ws_editaddversion(Action & $action)
 {
-    $docid = GetHttpVars("id");
+    $docid = $action->getArgument("id");
     
     $dbaccess = $action->GetParam("FREEDOM_DB");
     $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/WORKSPACE/Layout/ws_editaddversion.js");
@@ -30,7 +30,7 @@ function ws_editaddversion(&$action)
     
     if ($err != "") {
         // test object permission before modify values (no access control on values yet)
-        $err = $doc->CanUpdateDoc();
+        $err = $doc->canEdit();
     }
     if ($err != "") $action->exitError($err);
     
@@ -38,8 +38,9 @@ function ws_editaddversion(&$action)
     $action->lay->set("title", $doc->title);
     $action->lay->set("docid", $doc->id);
     // search free states
-    $sqlfilters = array();
-    $tfree = getChildDoc($dbaccess, 0, "0", "ALL", $sqlfilters, $action->user->id, "TABLE", "FREESTATE");
+    $s = new SearchDoc($action->dbaccess, "FREESTATE");
+    $s->setObjectReturn(false);
+    $tfree = $s->search();
     $tstate = array();
     if ($doc->wid == 0) {
         foreach ($tfree as $k => $v) {

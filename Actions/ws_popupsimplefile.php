@@ -10,20 +10,24 @@
 include_once ("FDL/popupdoc.php");
 include_once ("FDL/popupdocdetail.php");
 // -----------------------------------
-function ws_popupsimplefile(&$action)
+function ws_popupsimplefile(Action & $action)
 {
     // -----------------------------------
     // define accessibility
-    $docid = GetHttpVars("id");
-    $abstract = (GetHttpVars("abstract", 'N') == "Y");
-    $zone = GetHttpVars("zone"); // special zone
+    $docid = $action->getArgument("id");
+    $abstract = ($action->getArgument("abstract", 'N') == "Y");
+    $zone = $action->getArgument("zone"); // special zone
     $dbaccess = $action->GetParam("FREEDOM_DB");
+    /**
+     * @var _SIMPLEFILE $doc
+     */
     $doc = new_Doc($dbaccess, $docid);
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
     $davserver = $action->getParam("FREEDAV_SERVEUR");
+    $vid = '';
     if ($davserver) {
-        $fvalue = $doc->getValue("sfi_file");
+        $fvalue = $doc->getRawValue("sfi_file");
         if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
             $vid = $reg[2];
             $mimetype = $reg[1];
@@ -140,7 +144,7 @@ function ws_popupsimplefile(&$action)
             "barmenu" => "false"
         ) ,
         "postit" => array(
-            "descr" => _("Add a note") ,
+            "descr" => _("ws Add a note") ,
             "jsfunction" => "postit('$surl&app=GENERIC&action=GENERIC_EDIT&classid=27&pit_title=&pit_idadoc=$docid',50,50,300,200)",
             "confirm" => "false",
             "tconfirm" => "",
@@ -160,7 +164,7 @@ function ws_popupsimplefile(&$action)
             "barmenu" => "false"
         ) ,
         "tobasket" => array(
-            "descr" => _("Add to basket") ,
+            "descr" => _("ws Add to basket") ,
             "jsfunction" => "shortcutToFld(event,$docid,'" . $action->getParam("FREEDOM_IDBASKET") . "')",
             "confirm" => "false",
             "tconfirm" => "",
@@ -205,7 +209,6 @@ function ws_popupsimplefile(&$action)
         )
     );
     changeMenuVisibility($action, $tlink, $doc);
-    
     if ($doc->doctype == 'Z') {
         $tlink["restore"]["visibility"] = POPUP_ACTIVE;
         $tlink["duplicate"]["visibility"] = POPUP_INVISIBLE;
@@ -216,7 +219,7 @@ function ws_popupsimplefile(&$action)
     $tlink["reserve"]["visibility"] = ($doc->fileIsNotInEdition() == MENU_ACTIVE) ? POPUP_ACTIVE : POPUP_INVISIBLE;
     
     if ($doc->hasUTag("AFFECTED")) {
-        $tlink["affect"]["descr"] = _("Reaffect");
+        $tlink["affect"]["descr"] = _("ws Reaffect");
         $tlink["desaffect"]["visibility"] = POPUP_ACTIVE;
     }
     $err = $doc->CanLockFile();
@@ -226,7 +229,7 @@ function ws_popupsimplefile(&$action)
         $tlink["openineditor"]["visibility"] = POPUP_INVISIBLE;
     }
     
-    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getValue("se_sqlselect")))) {
+    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getRawValue("se_sqlselect")))) {
         $tlink["trash"] = array(
             "descr" => _("Empty trash") ,
             "jsfunction" => "emptytrash(event)",

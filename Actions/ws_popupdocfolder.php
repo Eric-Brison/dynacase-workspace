@@ -10,14 +10,14 @@
 include_once ("FDL/popupdoc.php");
 include_once ("FDL/popupdocdetail.php");
 // -----------------------------------
-function ws_popupdocfolder(&$action)
+function ws_popupdocfolder(Action & $action)
 {
     // -----------------------------------
     // define accessibility
-    $docid = GetHttpVars("id");
-    $dirid = GetHttpVars("dirid");
-    $abstract = (GetHttpVars("abstract", 'N') == "Y");
-    $zone = GetHttpVars("zone"); // special zone
+    $docid = $action->getArgument("id");
+    $dirid = $action->getArgument("dirid");
+    $abstract = ($action->getArgument("abstract", 'N') == "Y");
+    $zone = $action->getArgument("zone"); // special zone
     $dbaccess = $action->GetParam("FREEDOM_DB");
     $doc = new_Doc($dbaccess, $docid);
     $fld = new_Doc($dbaccess, $dirid);
@@ -79,7 +79,7 @@ function ws_popupdocfolder(&$action)
             "barmenu" => "false"
         ) ,
         "tobasket" => array(
-            "descr" => _("Add to basket") ,
+            "descr" => _("ws Add to basket") ,
             "jsfunction" => "addToBasket(event,$docid)",
             "confirm" => "false",
             "tconfirm" => "",
@@ -134,7 +134,7 @@ function ws_popupdocfolder(&$action)
         $tlink["duplicate"]["visibility"] = POPUP_INVISIBLE;
     }
     
-    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getValue("se_sqlselect")))) {
+    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getRawValue("se_sqlselect")))) {
         $tlink["trash"] = array(
             "descr" => _("Empty trash") ,
             "jsfunction" => "emptytrash(event)",

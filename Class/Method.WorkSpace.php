@@ -8,7 +8,7 @@
  * @begin-method-ignore
  * this part will be deleted when construct document class until end-method-ignore
  */
-class _WORKSPACE extends _DIR
+class _WORKSPACE extends Dir
 {
     /*
      * @end-method-ignore
@@ -26,7 +26,7 @@ class _WORKSPACE extends _DIR
      */
     private function getViewGroupName()
     {
-        $ref = $this->getValue("WSP_REF");
+        $ref = $this->getRawValue("WSP_REF");
         return "GWS_V" . strtoupper($ref);
     }
     /**
@@ -34,7 +34,7 @@ class _WORKSPACE extends _DIR
      */
     private function getEditGroupName()
     {
-        $ref = $this->getValue("WSP_REF");
+        $ref = $this->getRawValue("WSP_REF");
         return "GWS_E" . strtoupper($ref);
     }
     /**
@@ -42,7 +42,7 @@ class _WORKSPACE extends _DIR
      */
     private function getProfilGroupName()
     {
-        $ref = $this->getValue("WSP_REF");
+        $ref = $this->getRawValue("WSP_REF");
         return "GWS_P" . strtoupper($ref);
     }
     /**
@@ -51,13 +51,21 @@ class _WORKSPACE extends _DIR
      */
     function postCreated()
     {
-        if ($this->revision > 0) return;
+        if ($this->revision > 0) return '';
         $ref = unaccent($this->title);
         $ref = preg_replace("/[[:punct:]]/", "", $ref);
         $ref = strtolower(str_replace(" ", "_", $ref));
         $this->setValue("WSP_REF", $ref);
         $this->modify();
+        $err = '';
+        $gvname = $gename = '';
+        $gv = null;
+        $ge = null;
         if ($ref != "") {
+            /**
+             * @var _IGROUP $gv
+             * @var _IGROUP $ge
+             */
             $gv = createDoc($this->dbaccess, "IGROUP", false);
             $ge = createDoc($this->dbaccess, "IGROUP", false);
             
@@ -76,16 +84,19 @@ class _WORKSPACE extends _DIR
             $err = $gv->Add();
             if ($err == "") $err = $ge->Add();
             if ($err == "") {
-                $err = $gv->Postmodify();
+                $err = $gv->postStore();
                 if ($err == "-") $err = "";
-                if ($err == "") $err = $ge->Postmodify();
+                if ($err == "") $err = $ge->postStore();
                 if ($err == "-") $err = "";
                 if ($err == "") {
+                    /**
+                     * @var $gw _IGROUP
+                     */
                     $gw = new_doc($this->dbaccess, "GWORKSPACE");
                     
                     if ($gw->isAlive()) {
-                        $err = $gw->AddFile($gv->id);
-                        $err.= $gv->AddFile($ge->id);
+                        $err = $gw->insertDocument($gv->id);
+                        $err.= $gv->insertDocument($ge->id);
                     }
                 }
             }
@@ -95,6 +106,7 @@ class _WORKSPACE extends _DIR
                 $pdoc->setValue("ba_title", sprintf(_("%s files") , $ref));
                 $pdoc->setValue("prf_desc", sprintf(_("default profile for [ADOC %d] - %s - space files") , $this->id, $ref));
                 $err = $pdoc->Add();
+                $pfld = null;
                 if ($err == "") {
                     $pfld = createDoc($this->dbaccess, "PDIR", false);
                     $pfld->setValue("ba_title", sprintf(_("%s directories") , $ref));
@@ -119,7 +131,7 @@ class _WORKSPACE extends _DIR
                     $pdoc->addControl("GWSPADMIN", "edit");
                     $pdoc->addControl("GWSPADMIN", "unlock");
                     $pdoc->addControl("GWSPADMIN", "viewacl");
-                    $err = $pfld->setControl(false); //activate the profile
+                    $err.= $pfld->setControl(false); //activate the profile
                     $pfld->addControl($gvname, 'view');
                     $pfld->addControl($gvname, 'open');
                     $pfld->addControl($gename, 'edit');
@@ -149,11 +161,15 @@ class _WORKSPACE extends _DIR
                 $pspace->addControl("GWSPADMIN", "delete");
                 $pspace->addControl("GWSPADMIN", "viewacl");
                 $pspace->addControl("GWSPADMIN", "modifyacl");
-                $pspace->addControl($gvname, 'view');
-                $pspace->addControl($gvname, 'open');
+                if ($gvname) {
+                    $pspace->addControl($gvname, 'view');
+                    $pspace->addControl($gvname, 'open');
+                }
                 $pspace->addControl("WSP_IDADMIN", 'view');
                 $pspace->addControl("WSP_IDADMIN", 'edit');
-                $pspace->addControl($gename, 'modify');
+                if ($gename) {
+                    $pspace->addControl($gename, 'modify');
+                }
                 //    $this->dprofid=$pspace->id;
                 $this->setprofil($pspace->id);
                 $this->modify(true, array(
@@ -196,15 +212,17 @@ class _WORKSPACE extends _DIR
             $p->addControl("GWSPADMIN", "delete");
             $p->addControl("GWSPADMIN", "viewacl");
             $p->addControl("GWSPADMIN", "modifyacl");
-            $idadmin = $this->getValue("wsp_idadmin");
+            $idadmin = $this->getRawValue("wsp_idadmin");
             $ua = new_doc($this->dbaccess, $idadmin);
-            $uida = $ua->getValue("us_whatid");
+            $uida = $ua->getRawValue("us_whatid");
             if ($uida > 0) {
                 $p->addControl($uida, 'view');
                 $p->addControl($uida, 'edit');
                 $p->addControl($uida, 'open');
                 $p->addControl($uida, 'modify');
             }
+            $gvname = $this->getViewGroupName();
+            $gename = $this->getEditGroupName();
             $p->addControl($gvname, 'view');
             $p->addControl($gvname, 'open');
             $p->addControl($gename, 'modify');
@@ -217,6 +235,7 @@ class _WORKSPACE extends _DIR
     function preDelete()
     {
         // delete content
+        $err = '';
         $terr = $this->deleteItems();
         if (count($terr) > 0) {
             $dc = 0;
@@ -226,7 +245,7 @@ class _WORKSPACE extends _DIR
             }
             addWarningMsg(sprintf(_("%d documents deleted") , $dc));
         }
-        if ($err) return $err;
+        return $err;
     }
     /**
      * suppress profil & associated groups
@@ -236,6 +255,7 @@ class _WORKSPACE extends _DIR
         $gename = $this->getEditGroupName();
         $gvname = $this->getViewGroupName();
         // delete groups
+        $err = '';
         $g = new_doc($this->dbaccess, $gename);
         if ($g->isAlive()) $err = $g->delete();
         if ($err) return $err;
@@ -244,13 +264,13 @@ class _WORKSPACE extends _DIR
         if ($g->isAlive()) $err = $g->delete();
         if ($err) return $err;
         // delete profile
-        $pid = $this->getValue("fld_pdocid");
+        $pid = $this->getRawValue("fld_pdocid");
         if ($pid) {
             $pdoc = new_doc($this->dbaccess, $pid);
             if ($pdoc->isAlive()) $err = $pdoc->delete();
             if ($err) return $err;
         }
-        $pid = $this->getValue("fld_pdirid");
+        $pid = $this->getRawValue("fld_pdirid");
         if ($pid) {
             $pdoc = new_doc($this->dbaccess, $pid);
             if ($pdoc->isAlive()) $err = $pdoc->delete();
@@ -260,49 +280,57 @@ class _WORKSPACE extends _DIR
     }
     /**
      * change groups members
-     * @global uchange Http var : array of document user id to indicate the change
-     * @global uprof Http var : array of document user id to indicate the new group
+     * @global string $uchange Http var : array of document user id to indicate the change
+     * @global string $uprof Http var : array of document user id to indicate the new group
+     * @return string
      */
-    function postModify()
+    function postStore()
     {
         $gename = $this->getEditGroupName();
         $gvname = $this->getViewGroupName();
-        
+        /**
+         * @var _IGROUP $ge
+         * @var _IGROUP $gv
+         */
         $ge = new_doc($this->dbaccess, $gename);
         $gv = new_doc($this->dbaccess, $gvname);
         
         $changes = getHttpVars("uchange");
         $uprofs = getHttpVars("uprof");
         if ($changes) {
+            /**
+             * @var array $changes
+             */
             foreach ($changes as $duid => $change) {
                 if ($change == "nochange") continue;
                 if ($change == "change") {
                     if ($uprofs[$duid] == "edit") {
-                        $gv->delFile($duid);
-                        $ge->addFile($duid);
+                        $gv->removeDocument($duid);
+                        $ge->insertDocument($duid);
                     } else {
-                        $ge->delFile($duid);
-                        $gv->addFile($duid);
+                        $ge->removeDocument($duid);
+                        $gv->insertDocument($duid);
                     }
                 }
                 if ($change == "new") {
                     if ($uprofs[$duid] == "edit") {
-                        $ge->addFile($duid);
+                        $ge->insertDocument($duid);
                     } else {
-                        $gv->addFile($duid);
+                        $gv->insertDocument($duid);
                     }
                 }
                 if ($change == "deleted") {
-                    $ge->delFile($duid);
-                    $gv->delFile($duid);
+                    $ge->removeDocument($duid);
+                    $gv->removeDocument($duid);
                 }
             }
         }
         
-        $fi = $this->getValue("wsp_idadmin");
-        $fiold = $this->getOldValue("wsp_idadmin");
+        $fi = $this->getRawValue("wsp_idadmin");
+        $fiold = $this->getOldRawValue("wsp_idadmin");
         
         if (($fiold !== false) && ($fi != $fiold)) $this->recomputeIGroupProfil();
+        return '';
     }
     /**
      * @templateController
@@ -318,8 +346,8 @@ class _WORKSPACE extends _DIR
         $ge = new_doc($this->dbaccess, $this->getEditGroupName());
         
         if ($gv->isAlive()) {
-            $tuvid = $gv->getTValue("grp_idruser");
-            $tuv = $gv->getTValue("grp_ruser");
+            $tuvid = $gv->getMultipleRawValues("grp_idruser");
+            $tuv = $gv->getMultipleRawValues("grp_ruser");
             $tmv = array();
             foreach ($tuvid as $k => $v) {
                 $tmv[$v] = array(
@@ -331,8 +359,8 @@ class _WORKSPACE extends _DIR
             }
             
             if ($ge->isAlive()) {
-                $tuvid = $ge->getTValue("grp_idruser");
-                $tuv = $ge->getTValue("grp_ruser");
+                $tuvid = $ge->getMultipleRawValues("grp_idruser");
+                $tuv = $ge->getMultipleRawValues("grp_ruser");
                 foreach ($tuvid as $k => $v) {
                     $tmv[$v] = array(
                         "name" => $tuv[$k],

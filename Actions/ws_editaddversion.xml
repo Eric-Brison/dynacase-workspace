@@ -56,10 +56,10 @@ addEvent(window,'load',function z() {viewstatedescription(document.getElementByI
 	[ENDBLOCK freestate]
 	</select><br> <i><span id="sdescription">-</span></i></td></tr></table>
 
-</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea><br><br><div style="text-align:right">
+</td><td style="text-align:left;vertical-align:text-top" title="[TEXT:Revision comment]">[TEXT:ws Comment]:<textarea style="vertical-align:text-top;width:100%" name="comversion"></textarea><br><br><div style="text-align:right">
 <input type="hidden" name="id" value="[docid]">
 <input type="submit" onsubmit="window.setTimeout('verifydownload([docid])',2000);" value="[TEXT:Create new version]">
-<input type="reset" onclick="self.close()" value="[TEXT:Cancel]">
+<input type="reset" onclick="self.close()" value="[TEXT:ws Cancel]">
 </div>
 </td></tr></table>
 

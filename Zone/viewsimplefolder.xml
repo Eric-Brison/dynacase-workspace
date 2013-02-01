@@ -1,7 +1,7 @@
 
 <table width="100%"><tr><td style="width:80px">
 <a href="javascript:void(0)"><img align="left" needresize="1" width="80px" style="border:none" src="[icon]"  title="[TEXT:Clic to view menu]" onclick="viewsimplefoldermenu(event,[ID]);return false;"></a></td>
-<td>[TEXT:Directory]<br>
+<td>[TEXT:ws Directory]<br>
   <b><P title="[TEXT:Click to modify title]" id="sfi_title" 
 	onclick="editattr(event,'[ID]','ba_title',document.getElementById('sfi_title'))" 
 	style="cursor:text;display:inline;margin-left:22px">[V_BA_TITLE]</P></b>
