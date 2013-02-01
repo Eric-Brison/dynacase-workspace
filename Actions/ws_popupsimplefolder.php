@@ -10,14 +10,17 @@
 include_once ("FDL/popupdoc.php");
 include_once ("FDL/popupdocdetail.php");
 // -----------------------------------
-function ws_popupsimplefolder(&$action)
+function ws_popupsimplefolder(Action & $action)
 {
     // -----------------------------------
     // define accessibility
-    $docid = GetHttpVars("id");
-    $abstract = (GetHttpVars("abstract", 'N') == "Y");
-    $zone = GetHttpVars("zone"); // special zone
+    $docid = $action->getArgument("id");
+    $abstract = ($action->getArgument("abstract", 'N') == "Y");
+    $zone = $action->getArgument("zone"); // special zone
     $dbaccess = $action->GetParam("FREEDOM_DB");
+    /**
+     * @var _SIMPLEFOLDER $doc
+     */
     $doc = new_Doc($dbaccess, $docid);
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
@@ -93,7 +96,7 @@ function ws_popupsimplefolder(&$action)
         $tlink["duplicate"]["visibility"] = POPUP_INVISIBLE;
     }
     
-    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getValue("se_sqlselect")))) {
+    if (($doc->doctype != 'S') && (preg_match("/doctype='Z'/", $doc->getRawValue("se_sqlselect")))) {
         $tlink["trash"] = array(
             "descr" => _("Empty trash") ,
             "jsfunction" => "emptytrash(event)",

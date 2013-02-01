@@ -12,15 +12,14 @@ include_once ("WORKSPACE/Lib.WsFtCommon.php");
 /**
  * Add branch in folder tree
  * @param Action &$action current action
- * @global addid Http var : document id to add/move to basket id
- * @global paddid Http var : current folder of document id to add/move to basket id
- * @global addft Http var : action to realize : [add|move]
- * @global itself Http var : if Y view the folder (not the content) [Y|N]
+ * @global string $addid Http var : document id to add/move to basket id
+ * @global string $paddid Http var : current folder of document id to add/move to basket id
+ * @global string $addft Http var : action to realize : [add|move]
+ * @global string $itself Http var : if Y view the folder (not the content) [Y|N]
  */
-function ws_addfldbranch(&$action)
+function ws_addfldbranch(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
     $docid = GetHttpVars("id");
@@ -31,6 +30,9 @@ function ws_addfldbranch(&$action)
     
     $dbaccess = $action->GetParam("FREEDOM_DB");
     $action->lay->set("warning", "");
+    /**
+     * @var Dir $doc
+     */
     $doc = new_doc($dbaccess, $docid);
     $err = movementDocument($action, $dbaccess, $doc->id, $addid, $pdocid, $addft);
     if ($err) $action->lay->set("warning", $err);
@@ -38,11 +40,15 @@ function ws_addfldbranch(&$action)
     $action->lay->set("pid", $doc->id);
     $action->lay->set("CODE", "KO");
     $top = false;
+    
+    $tc = array();
     if ($doc->isAlive()) {
         if ($itself) {
             $ls = array();
             $ls[$docid] = getTDoc($dbaccess, $docid);
-            
+            /**
+             * @var Dir $trash
+             */
             $trash = new_doc($dbaccess, "WS_MYTRASH");
             $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
             $ls[$trash->id]["dropft"] = 'del';
@@ -62,6 +68,9 @@ function ws_addfldbranch(&$action)
             
             $trash = new_doc($dbaccess, $action->getParam("FREEDOM_IDBASKET"));
             if (!$trash->isAlive()) {
+                /**
+                 * @var Dir $fld
+                 */
                 $fld = createTmpDoc($dbaccess, "DIR");
                 $trash = $fld->getHome();
             }
@@ -83,17 +92,16 @@ function ws_addfldbranch(&$action)
             ));
             uasort($ls, "titlesort");
         }
-        $tc = array();
         
         foreach ($ls as $k => $v) {
             $tc[] = array(
                 "title" => ucfirst($v["title"]) ,
                 "id" => $v["id"],
                 "linkfld" => ($top || ($v["prelid"] == $doc->initid)) ? false : true,
-                "droppable" => (($v["doctype"] == "D") || $v["dropft"]) ? "yes" : "no",
+                "droppable" => (($v["doctype"] == "D") || (!empty($v["dropft"]))) ? "yes" : "no",
                 "icon" => $doc->getIcon($v["icon"]) ,
                 "haschild" => hasChildFld($dbaccess, $v["initid"], ($v["doctype"] == 'S')) ,
-                "dropft" => $v["dropft"] ? $v["dropft"] : "move"
+                "dropft" => (!empty($v["dropft"])) ? $v["dropft"] : "move"
             );
         }
         

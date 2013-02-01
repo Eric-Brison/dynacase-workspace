@@ -12,21 +12,20 @@ include_once ("WORKSPACE/Lib.WsFtCommon.php");
 /**
  * Add/Move document to clipboard
  * @param Action &$action current action
- * @global id Http var : basket id
- * @global addid Http var : document id to add/move to basket id
- * @global paddid Http var : current folder of document comes
- * @global addft Http var : action to realize : [add|move]
+ * @global string $id Http var : basket id
+ * @global string $addid Http var : document id to add/move to basket id
+ * @global string $paddid Http var : current folder of document comes
+ * @global string $addft Http var : action to realize : [add|move]
  */
-function ws_foldericon(&$action)
+function ws_foldericon(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
-    $docid = GetHttpVars("id");
-    $pdocid = GetHttpVars("paddid");
-    $addid = GetHttpVars("addid");
-    $addft = GetHttpVars("addft");
+    $docid = $action->getArgument("id");
+    $pdocid = $action->getArgument("paddid");
+    $addid = $action->getArgument("addid");
+    $addft = $action->getArgument("addft");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
@@ -34,6 +33,10 @@ function ws_foldericon(&$action)
     switch ($docid) {
         case "lock":
             // test locked
+            
+            /**
+             * @var DocSearch $doc
+             */
             $doc = createTmpDoc($dbaccess, 5);
             $doc->title = "locked";
             $doc->Add();
@@ -53,11 +56,10 @@ function ws_foldericon(&$action)
         $action->lay->set("CODE", "KO");
         
         $action->lay->set("droppable", ($doc->doctype == "D") ? "yes" : "no");
-        
+        $tc = array();
         if ($doc->isAlive()) {
             
             $ls = $doc->getContent();
-            $tc = array();
             foreach ($ls as $k => $v) {
                 $tc[] = array(
                     "title" => $v["title"],

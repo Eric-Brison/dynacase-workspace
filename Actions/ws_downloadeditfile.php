@@ -11,11 +11,11 @@ include_once ("WORKSPACE/ws_downloadfile.php");
 /**
  * Download the file from simplefile family document
  * @param Action &$action current action
- * @global id Http var : document id
+ * @global string $id Http var : document id
  */
-function ws_downloadeditfile(&$action)
+function ws_downloadeditfile(Action & $action)
 {
-    $docid = GetHttpVars("id");
+    $docid = $action->getArgument("id");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $doc = new_doc($dbaccess, $docid);
@@ -29,7 +29,7 @@ function ws_downloadeditfile(&$action)
         $err = $doc->modify();
         if ($err == "") {
             global $_SERVER;
-            $doc->AddComment(sprintf(_("%s file downloaded by %s on %s") , $doc->getValue("sfi_title") , $action->user->firstname . " " . $action->user->lastname, $_SERVER["REMOTE_ADDR"]));
+            $doc->addHistoryEntry(sprintf(_("%s file downloaded by %s on %s") , $doc->getRawValue("sfi_title") , $action->user->firstname . " " . $action->user->lastname, $_SERVER["REMOTE_ADDR"]));
         }
         ws_downloadfile($action);
     }

@@ -11,27 +11,27 @@ include_once ("FDL/exportfile.php");
 /**
  * Download the file from simplefile family document
  * @param Action &$action current action
- * @global id Http var : document id
+ * @global string $id Http var : document id
  */
 function ws_downloadfile(&$action)
 {
-    $docid = GetHttpVars("id");
-    $inline = (GetHttpVars("inline") == "yes");
+    $docid = $action->getArgument("id");
+    $inline = ($action->getArgument("inline") == "yes");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $doc = new_doc($dbaccess, $docid);
     $err = $doc->control("view");
     if ($err != "") $action->exiterror($err);
     
-    $ovalue = $doc->getValue("sfi_file");
+    $ovalue = $doc->getRawValue("sfi_file");
     
     if ($ovalue == "") $action->exiterror(_("no file referenced"));
     
     preg_match(PREGEXPFILE, $ovalue, $reg);
     $vaultid = $reg[2];
     // $mimetype=$reg[1];
-    $mimetype = $doc->getValue("sfi_mimesys");
+    $mimetype = $doc->getRawValue("sfi_mimesys");
     
-    DownloadVault($action, $vaultid, true, $mimetype, $imgheight, $inline, false);
+    DownloadVault($action, $vaultid, true, $mimetype, $width = '', $inline, false);
     exit;
 }

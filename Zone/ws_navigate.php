@@ -19,6 +19,9 @@ class ws_Navigate
 {
     private $action;
     private $application;
+    /**
+     * @var SearchDoc
+     */
     private $spaces = null;
     private $viewMySpace = true;
     private $folderListHeight = 200;
@@ -112,10 +115,10 @@ class ws_Navigate
         $this->initialFolder = $dirid;
     }
     
-    function addOffline(&$action)
+    function addOffline(Action & $action)
     {
         $dbaccess = $this->action->dbaccess;
-        $desktop = getTDoc($dbaccess, 'FLDOFFLINE_' . Doc::getWhatUserId());
+        $desktop = getTDoc($dbaccess, 'FLDOFFLINE_' . Doc::getSystemUserId());
         if (!$desktop) {
             $desktop = createDoc($dbaccess, "DIR");
             $desktop->title = _("Offline");
@@ -124,9 +127,11 @@ class ws_Navigate
             $desktop->icon = 'fldoffline.png';
             $desktop->name = 'FLDOFFLINE_' . $action->user->id;
             $desktop->Add();
-            
+            /**
+             * @var Dir $desktop
+             */
             $home = $desktop->getHome();
-            $home->addFile($desktop->initid);
+            $home->insertDocument($desktop->initid);
             $action->lay->set("FREEDOM_IDOFFLINE", $desktop->initid);
         } else $action->lay->set("FREEDOM_IDOFFLINE", $desktop["id"]);
     }
@@ -158,7 +163,10 @@ class ws_Navigate
         
         if ($this->spaces) {
             $this->spaces->search();
-            while ($doc = $this->spaces->nextDoc()) {
+            /**
+             * @var Doc $doc
+             */
+            while ($doc = $this->spaces->getNextDoc()) {
                 $tlayspaces[] = array(
                     "stitle" => $doc->title,
                     "sicon" => $doc->getIcon() ,
@@ -172,13 +180,17 @@ class ws_Navigate
         $this->lay->Set("FULLMODE", ($mode == "FULL"));
         
         $this->lay->setBlockData("SPACES", $tlayspaces);
-        if ($this->trashempty($this->action->user->id)) $this->lay->set("imgtrash", $this->action->getImageUrl('trashempty.png'));
-        else $this->lay->set("imgtrash", $this->action->getImageUrl('trash.png'));
-        
-        $homename = "WS_PERSOFLD_" . Doc::getWhatUserId();
+        if ($this->trashempty($this->action->user->id)) $this->lay->set("imgtrash", $this->action->parent->getImageLink('trashempty.png'));
+        else $this->lay->set("imgtrash", $this->action->parent->getImageLink('trash.png'));
+        $persofldid = '';
+        $homename = "WS_PERSOFLD_" . Doc::getSystemUserId();
         $perso = getTDoc($dbaccess, $homename);
         if (!$perso) {
             // create "my space" folder
+            
+            /**
+             * @var _SIMPLEFOLDER $perso
+             */
             $perso = createDoc($dbaccess, "SIMPLEFOLDER", false);
             $perso->name = $homename;
             
@@ -190,7 +202,7 @@ class ws_Navigate
             if ($err == "") {
                 $persofldid = $perso->id;
                 $home = $perso->getHome();
-                if ($home) $home->AddFile($persofldid); //add in general home
+                if ($home) $home->insertDocument($persofldid); //add in general home
                 
             }
         } else {
@@ -212,6 +224,9 @@ class ws_Navigate
         if (!$this->globalSearch) {
             $this->globalSearch = new SearchDoc($this->action->dbaccess);
         }
+        /**
+         * @var _DSEARCH $ws
+         */
         $ws = createTmpDoc($this->action->dbaccess, "DSEARCH");
         $ws->setValue("ba_title", sprintf(_("search %s") , "workspace"));
         $ws->add();
@@ -222,10 +237,10 @@ class ws_Navigate
     private function memoConfiguration()
     {
         global $action;
-        $this->configNumber = time();
-        $this->lay->set("configNumber", $this->configNumber);
-        $action->register("wsColumn" . $this->configNumber, $this->actionColumnDefinition);
-        $action->register("wsInclude" . $this->configNumber, $this->includeColumnDefinition);
+        $configNumber = time();
+        $this->lay->set("configNumber", $configNumber);
+        $action->register("wsColumn" . $configNumber, $this->actionColumnDefinition);
+        $action->register("wsInclude" . $configNumber, $this->includeColumnDefinition);
     }
     
     public function output()

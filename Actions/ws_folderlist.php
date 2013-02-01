@@ -13,27 +13,26 @@ include_once ("WORKSPACE/ws_folderListFormat.php");
 /**
  * View list of documents from one folder
  * @param Action &$action current action
- * @global id Http var : folder id where move/add document
- * @global addid Http var : document id to add/move to basket id
- * @global paddid Http var : current folder of document id to add/move to basket id
- * @global addft Http var : action to realize : [add|move]
- * @global order Http var : list order [title,date,size,type]
- * @global dorder Http var : decrease or increase [true,false]
+ * @global string $id Http var : folder id where move/add document
+ * @global string $addid Http var : document id to add/move to basket id
+ * @global string $paddid Http var : current folder of document id to add/move to basket id
+ * @global string $addft Http var : action to realize : [add|move]
+ * @global string $order Http var : list order [title,date,size,type]
+ * @global string $dorder Http var : decrease or increase [true,false]
  */
 function ws_folderlist(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
-    $docid = GetHttpVars("id");
-    $pdocid = GetHttpVars("paddid");
-    $addid = GetHttpVars("addid");
-    $addft = GetHttpVars("addft");
-    $order = GetHttpVars("order");
-    $key = GetHttpVars("key");
-    $smode = GetHttpVars("searchmode");
-    $dorder = (GetHttpVars("dorder", "true") == "true");
+    $docid = $action->getArgument("id");
+    $pdocid = $action->getArgument("paddid");
+    $addid = $action->getArgument("addid");
+    $addft = $action->getArgument("addft");
+    $order = $action->getArgument("order");
+    $key = $action->getArgument("key");
+    $smode = $action->getArgument("searchmode");
+    $dorder = ($action->getArgument("dorder", "true") == "true");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
@@ -41,6 +40,10 @@ function ws_folderlist(Action & $action)
     switch ($docid) {
         case "lock":
             // test locked
+            
+            /**
+             * @var DocSearch $dir
+             */
             $dir = createTmpDoc($dbaccess, 5);
             $dir->title = "locked";
             $dir->Add();
@@ -49,6 +52,10 @@ function ws_folderlist(Action & $action)
 
         case "trash":
             // test locked
+            
+            /**
+             * @var DocSearch $dir
+             */
             $dir = createTmpDoc($dbaccess, 5);
             $dir->title = _("trash");
             $dir->Add();
@@ -60,7 +67,9 @@ function ws_folderlist(Action & $action)
             // search
             if (!seems_utf8($key)) $keyword = utf8_encode($key);
             else $keyword = $key;
-            
+            /**
+             * @var DocSearch $dir
+             */
             $dir = createTmpDoc($dbaccess, 5);
             $dir->title = sprintf(_("search %s") , $keyword);
             $dir->Add();
@@ -93,12 +102,18 @@ function ws_folderlist(Action & $action)
         if (!$configColumn) $configColumn = "wsFolderListFormat::getColumnDescription()";
         //--------------------------------------------------
         // construct header
+        
+        /**
+         * @var array $thead
+         */
         $thead = $dir->applyMethod($configColumn);
         //--------------------------------------------------
         // construct body
         $action->lay->set("pid", $dir->initid);
         $action->lay->set("docid", $dir->id);
         $action->lay->set("CODE", "KO");
+        $count = 0;
+        $dynfolder = false;
         if ($dir->isAlive()) {
             //    $ls=$dir->getContent();
             $slice = $action->GetParam("FDL_FOLDERMAXITEM", 1000);
@@ -152,10 +167,10 @@ function ws_folderlist(Action & $action)
                 
                 $tc = array();
                 if ($dorder) {
-                    $action->lay->set("orderimg", $action->getImageUrl('b_up.png'));
+                    $action->lay->set("orderimg", $action->parent->getImageLink('b_up.png'));
                 } else {
                     
-                    $action->lay->set("orderimg", $action->getImageUrl('b_down.png'));
+                    $action->lay->set("orderimg", $action->parent->getImageLink('b_down.png'));
                 }
                 /*
                 $folder=array_filter($ls,"isfolder");
@@ -190,7 +205,7 @@ function ws_folderlist(Action & $action)
                 $count = $s->count();
                 $c = 0;
                 $tc = array();
-                while ($doc = $s->nextDoc()) {
+                while ($doc = $s->getNextDoc()) {
                     $tc[$c] = array(
                         "id" => $doc->id,
                         "isfld" => (($doc->doctype == 'D') || ($doc->doctype == 'S')) ? 1 : 0

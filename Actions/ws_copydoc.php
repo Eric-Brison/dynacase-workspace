@@ -11,14 +11,13 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * duplicate a documment
  * @param Action &$action current action
- * @global id Http var : document id to trash
- * @global addft Http var : action to realize : [del]
- * @global paddid Http var : current folder of document comes
+ * @global string $id Http var : document id to trash
+ * @global string $addft Http var : action to realize : [del]
+ * @global string $paddid Http var : current folder of document comes
  */
-function ws_copydoc(&$action)
+function ws_copydoc(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
     $docid = GetHttpVars("id");
@@ -29,7 +28,7 @@ function ws_copydoc(&$action)
     $action->lay->set("warning", "");
     $taction = array();
     $doc = new_Doc($dbaccess, $docid);
-    $copy = $doc->copy();
+    $copy = $doc->duplicate();
     if (is_object($copy)) {
         $copy->refresh();
         if (method_exists($copy, "renameCopy")) $copy->renameCopy();
@@ -45,8 +44,11 @@ function ws_copydoc(&$action)
             $dirid = $doc->prelid;
         }
         if (($dirid > 0) && ($copy->id > 0)) {
+            /**
+             * @var Dir $fld
+             */
             $fld = new_Doc($dbaccess, $dirid);
-            $err = $fld->AddFile($copy->id);
+            $err = $fld->insertDocument($copy->id);
             $taction[] = array(
                 "actname" => "ADDFILE",
                 "actdocid" => $dirid

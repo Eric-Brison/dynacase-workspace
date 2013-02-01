@@ -17,9 +17,9 @@ class wsFolderListFormat
     {
         $icon = $doc->getIcon('', 20);
         $link = '';
-        if (($dir->doctype == 'D') && ($doc->prelid != $dir->initid)) {
+        if ($dir && ($dir->doctype == 'D') && ($doc->prelid != $dir->initid)) {
             global $action;
-            $link = sprintf('<img class="ilink" src="%s">', $action->getImageUrl('link.gif'));
+            $link = sprintf('<img class="ilink" src="%s">', $action->parent->getImageLink('link.gif'));
         }
         return sprintf('<img class="icon" src="%s">%s', $icon, $link);
     }
@@ -29,7 +29,7 @@ class wsFolderListFormat
     }
     static public function getFileSize(Doc & $doc)
     {
-        $size = $doc->getValue("sfi_filesize", -1);
+        $size = $doc->getRawValue("sfi_filesize", -1);
         if ($size < 0) $dsize = "";
         else if ($size < 1024) $dsize = _("<1 kb");
         else if ($size < 1048576) $dsize = sprintf(_("%d kb") , $size / 1024);
@@ -38,7 +38,7 @@ class wsFolderListFormat
     }
     static public function getFileMime(Doc & $doc)
     {
-        return $doc->getValue("sfi_mimetxtshort");
+        return $doc->getRawValue("sfi_mimetxtshort");
     }
     static public function getColumnDescription()
     {

@@ -9,13 +9,13 @@
 
 include_once ("FDL/popupdoc.php");
 // -----------------------------------
-function ws_popuplistfolder(&$action)
+function ws_popuplistfolder(Action & $action)
 {
     // -----------------------------------
     // define accessibility
-    $docid = GetHttpVars("id");
-    $abstract = (GetHttpVars("abstract", 'N') == "Y");
-    $zone = GetHttpVars("zone"); // special zone
+    $docid = $action->getArgument("id");
+    $abstract = ($action->getArgument("abstract", 'N') == "Y");
+    $zone = $action->getArgument("zone"); // special zone
     $dbaccess = $action->GetParam("FREEDOM_DB");
     $doc = new_Doc($dbaccess, $docid);
     //  if ($doc->doctype=="C") return; // not for familly
@@ -74,7 +74,7 @@ function ws_popuplistfolder(&$action)
         $tlink["createtext"]["visibility"] = POPUP_INVISIBLE;
     }
     
-    if ((preg_match("/doctype[ ]*=[ ]*'Z'/", $doc->getValue("se_sqlselect")))) {
+    if ((preg_match("/doctype[ ]*=[ ]*'Z'/", $doc->getrawValue("se_sqlselect")))) {
         $tlink["trash"] = array(
             "descr" => _("Empty trash") ,
             "jsfunction" => "emptytrash(event)",

@@ -13,13 +13,18 @@
  * @param string $docft the function : [add|move|del]
  * @templateController
  */
-function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft)
+function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft)
 {
     //  $action->lay->set("warning","prel:$dbaccess,$cfldid,$cdocid,$pfldid,$docft");
+    
+    /**
+     * @var Dir $doc
+     */
     $doc = new_doc($dbaccess, $cfldid);
     $pdoc = new_doc($dbaccess, $pfldid);
     $taction = array();
-    
+    $err = '';
+    $adddoc = null;
     if (($docft == "move") || ($docft == "link") || ($docft == "shortcut")) {
         if ($doc->isAlive()) {
             if ($cdocid) {
@@ -32,7 +37,7 @@ function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft
                         if (in_array($adddoc->initid, $prelid)) $err = sprintf(_("cannot move folder %s in %s cause loop") , $adddoc->title, $doc->title);
                     }
                     if ($err == "") {
-                        $err = $doc->AddFile($adddoc->id);
+                        $err = $doc->insertDocument($adddoc->id);
                         if ($err == "") {
                             if (strstr("SD", $adddoc->doctype) === false) {
                                 $taction[] = array(
@@ -68,11 +73,11 @@ function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft
             if ($cdocid) {
                 $adddoc = new_doc($dbaccess, $cdocid);
                 if ($adddoc->isAlive()) {
-                    $copy = $adddoc->copy();
+                    $copy = $adddoc->duplicate();
                     if ($copy) {
                         if ($err == "") {
                             
-                            $err = $doc->AddFile($copy->id);
+                            $err = $doc->insertDocument($copy->id);
                             if ($err == "") {
                                 if (strstr("SD", $copy->doctype) === false) {
                                     $taction[] = array(
@@ -88,16 +93,24 @@ function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft
                             }
                             
                             if ($err == "") {
-                                if (method_exists($copy, "renameCopy")) $copy->renameCopy();
+                                if (method_exists($copy, "renameCopy")) {
+                                    /**
+                                     * @var _SIMPLEFILE $copy
+                                     */
+                                    $copy->renameCopy();
+                                }
                                 $copy->title = sprintf(_("duplication of %s ") , $copy->title);
                                 $copy->prelid = $doc->initid;
                                 
                                 $copy->SetTitle($copy->title);
-                                $copy->refresh();
-                                $copy->postmodify();
-                                $copy->modify();
+                                $copy->store();
                             }
-                            if ($copy->doctype == 'D') $terr = $adddoc->copyItems($copy->id);
+                            if ($copy->doctype == 'D') {
+                                /**
+                                 * @var Dir $adddoc
+                                 */
+                                $terr = $adddoc->copyItems($copy->id);
+                            }
                         }
                     } else {
                         $err = sprintf(_("failed to copy document %s") , $doc->title);
@@ -111,7 +124,10 @@ function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft
         if (($docft == "move")) {
             if ($pdoc->isAlive()) {
                 if ($pdoc->defDoctype == "D") {
-                    $err = $pdoc->DelFile($adddoc->id);
+                    /**
+                     * @var Dir $pdoc
+                     */
+                    $err = $pdoc->removeDocument($adddoc->id);
                     if ($err == "") {
                         if (strstr("SD", $adddoc->doctype) === false) {
                             $taction[] = array(
@@ -164,7 +180,7 @@ function movementDocument(&$action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft
                         }
                     } else {
                         if ($pdoc->isAlive()) {
-                            $err = $pdoc->DelFile($adddoc->initid);
+                            $err = $pdoc->removeDocument($adddoc->initid);
                             if ($err == "") {
                                 if (strstr("SD", $adddoc->doctype) === false) {
                                     $taction[] = array(

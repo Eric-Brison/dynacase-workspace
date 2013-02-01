@@ -12,14 +12,15 @@ include_once ("FDL/Lib.Dir.php");
  * view spaces to administrates them
  * @param Action &$action current action
  */
-function admin(&$action)
+function admin(Action & $action)
 {
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
-    $fdoc = new_doc($dbaccess, "WORKSPACE");
+    $fdoc = new_doc($action->dbaccess, "WORKSPACE");
     
-    $filter = array();
-    $ls = getChildDoc($dbaccess, 0, 0, "ALL", $filter, $action->user->id, "TABLE", "WORKSPACE");
+    $s = new SearchDoc($action->dbaccess, "WORKSPACE");
+    $s->setObjectReturn(false);
+    $ls = $s->search();
+    
     foreach ($ls as $k => $v) {
         $ls[$k]["ICON"] = $fdoc->getIcon($v["icon"]);
     }

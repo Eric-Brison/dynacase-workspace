@@ -12,30 +12,31 @@ include_once ("WORKSPACE/Lib.WsFtCommon.php");
 /**
  * View list of documents from one folder
  * @param Action &$action current action
- * @global famid Http var : family id where search document
- * @global key Http var : filter key on the title
+ * @global string $famid Http var : family id where search document
+ * @global string $key Http var : filter key on the title
  */
-function ws_search(&$action)
+function ws_search(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
-    $famid = GetHttpVars("famid");
-    $key = GetHttpVars("key");
-    $noids = explode('|', GetHttpVars("noids"));
-    $dbaccess = $action->GetParam("FREEDOM_DB");
+    $famid = $action->getArgument("famid");
+    $key = $action->getArgument("key");
+    $noids = explode('|', $action->getArgument("noids"));
     
     $action->lay->set("warning", "");
     $action->lay->set("CODE", "OK");
     $limit = 20;
     $filter[] = "title ~* '" . pg_escape_string($key) . "'";
     
-    $lq = getChildDoc($dbaccess, 0, 0, $limit, $filter, $action->user->id, "TABLE", $famid);
+    $s = new SearchDoc($action->dbaccess, $famid);
+    $s->addFilter("title ~* '%s'", $key);
+    $s->setSlice($limit);
+    $lq = $s->search();
     
     foreach ($lq as $k => $v) {
         if (!in_array($v["id"], $noids)) {
-            $lq[$k]["title"] = $lq[$k]["title"];
+            // $lq[$k]["title"] = $lq[$k]["title"];
             $lq[$k]["stitle"] = str_replace("'", "\\'", ($lq[$k]["title"]));
         } else {
             unset($lq[$k]);

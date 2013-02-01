@@ -11,17 +11,17 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * Create new version
  * @param Action &$action current action
- * @global id Http var : document for file to edit (SIMPLEFILE family)
- * @global newstate Http var : new state
+ * @global string $id Http var : document for file to edit (SIMPLEFILE family)
+ * @global string $newstate Http var : new state
  */
-function ws_fixversion(&$action)
+function ws_fixversion(Action & $action)
 {
     
-    $docid = GetHttpVars("id");
-    $newversion = GetHttpVars("newversion");
-    $newcomment = GetHttpVars("comversion");
-    $newstate = GetHttpVars("newstate");
-    $autoclose = (GetHttpVars("autoclose", "N") == "Y"); // close window after
+    $docid = $action->getArgument("id");
+    $newversion = $action->getArgument("newversion");
+    $newcomment = $action->getArgument("comversion");
+    $newstate = $action->getArgument("newstate");
+    $autoclose = ($action->getArgument("autoclose", "N") == "Y"); // close window after
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $doc = new_doc($dbaccess, $docid);
@@ -39,12 +39,12 @@ function ws_fixversion(&$action)
             $err = $doc->modify();
             if ($err == "") {
                 if (($newstate >= 0) && ($newstate != $doc->state)) {
-                    $err = $doc->changeFreeState($newstate, $commentstate, false);
+                    $err = $doc->changeFreeState($newstate, $commentstate = '', false);
                     if ($err != "") $action->addWarningMsg($err);
                 }
                 if ($err == "") {
-                    $err = $doc->AddRevision($newcomment);
-                    $doc->deleteValue("sfi_version");
+                    $err = $doc->revise($newcomment);
+                    $doc->clearValue("sfi_version");
                     $doc->state = '';
                     $err = $doc->modify();
                 }

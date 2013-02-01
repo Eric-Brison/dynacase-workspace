@@ -12,21 +12,23 @@ include_once ("WORKSPACE/Lib.WsFtCommon.php");
 /**
  * Put a doc in trash
  * @param Action &$action current action
- * @global id Http var : document id to trash
- * @global addft Http var : action to realize : [del]
- * @global paddid Http var : current folder of document comes
+ * @global string $id Http var : document id to trash
+ * @global string $addft Http var : action to realize : [del]
+ * @global string $paddid Http var : current folder of document comes
  */
-function ws_countfolder(&$action)
+function ws_countfolder(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
-    $action->lay->setEncoding("utf-8");
     
     $mb = microtime();
     $docid = GetHttpVars("id");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
-    
+    $taction = array();
+    /**
+     * @var Dir $doc
+     */
     $doc = new_doc($dbaccess, $docid);
     if ($doc->isAlive()) {
         $tc = $doc->getContent();

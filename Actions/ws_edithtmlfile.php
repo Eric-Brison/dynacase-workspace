@@ -11,13 +11,13 @@ include_once ("FDL/Lib.Dir.php");
 /**
  * Display editor to modify HTML file
  * @param Action &$action current action
- * @global id Http var : document id to edi
- * @global attrid Http var : id of file attribute
+ * @global string $id Http var : document id to edi
+ * @global string $attrid Http var : id of file attribute
  */
-function ws_edithtmlfile(&$action, $istext = false)
+function ws_edithtmlfile(Action & $action, $istext = false)
 {
-    $docid = GetHttpVars("id");
-    $aid = GetHttpVars("attrid");
+    $docid = $action->getArgument("id");
+    $aid = $action->getArgument("attrid");
     
     $dbaccess = $action->GetParam("FREEDOM_DB");
     //  $action->parent->AddJsRef($action->GetParam("CORE_PUBURL")."/FDL/Layout/editattr.js");
@@ -29,7 +29,7 @@ function ws_edithtmlfile(&$action, $istext = false)
     
     if ($err != "") {
         // test object permission before modify values (no access control on values yet)
-        $err = $doc->CanUpdateDoc();
+        $err = $doc->canEdit();
     }
     if ($err != "") $action->exitError($err);
     
@@ -39,13 +39,17 @@ function ws_edithtmlfile(&$action, $istext = false)
         $aid = $attr->id;
     }
     
-    $fvalue = $doc->getValue($aid);
-    
+    $fvalue = $doc->getRawValue($aid);
+    $big = false;
     if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
         $vaultid = $reg[2];
         $mimetype = $reg[1];
         
         $vf = newFreeVaultFile($dbaccess);
+        $info = null;
+        /**
+         * @var VaultFileInfo $info
+         */
         $err = $vf->Retrieve($vaultid, $info);
         if ($err != "") $action->exitError($err);
         
