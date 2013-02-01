@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-01 17:29+0100\n"
-"PO-Revision-Date: 2013-02-01 17:31+0100\n"
+"PO-Revision-Date: 2013-02-01 17:52+0100\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
 "Language: fr\n"
@@ -432,9 +432,7 @@ msgstr ""
 #: textxml.php:115 textxml.php:144
 msgid ""
 "On the document clic to 'upload file' to save modified file in the work space"
-msgstr ""
-"Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier "
-"modifié dans l'espace de travail"
+msgstr "Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier modifié dans l'espace de travail."
 
 #: textxml.php:65
 msgid "Others"
@@ -663,10 +661,7 @@ msgstr ""
 msgid ""
 "When the modification are done, you must go to web shared folder application "
 "and select the file"
-msgstr ""
-"Quand les modifications sont finies, vous devez aller sur l'application "
-"\"échange de documents\" afin de sélectionner le document pour replacer le "
-"fichier modifié"
+msgstr "Quand les modifications sont finies, vous devez aller sur l'application \"Espaces de travail\" afin de sélectionner le document pour remplacer le fichier modifié."
 
 #: WORKSPACE.app:6
 msgid "WorkSpace"
@@ -682,9 +677,7 @@ msgstr ""
 
 #: textxml.php:38
 msgid "You must click on the Search... button to select the modified file "
-msgstr ""
-"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
-"modifié"
+msgstr "Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier modifié."
 
 #: textxml.php:43
 msgid "You need to select the file"
@@ -1057,7 +1050,7 @@ msgstr "Ajouter une note"
 #: Actions/ws_popupsimplefolder.php:72 Actions/ws_popupsimplefile.php:167
 #: Actions/ws_popupdocfolder.php:82
 msgid "ws Add to basket"
-msgstr ""
+msgstr "Ajouter au panier"
 
 #: textxml.php:138
 msgid "ws Cancel"
