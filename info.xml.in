@@ -14,6 +14,7 @@
 
   <post-install>
     <process command="programs/record_application WORKSPACE" />
+    <process command="programs/record_application WORKSPACEADMIN" />
     <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace.ods" />
     <process command="programs/app_post WORKSPACE I" />
     <process command="programs/app_post WORKSPACE U" />
@@ -23,6 +24,7 @@
   <post-upgrade>
     <process command="programs/pre_migration WORKSPACE" />
     <process command="programs/record_application WORKSPACE" />
+    <process command="programs/record_application WORKSPACEADMIN" />
     <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace.ods" />
     <process command="programs/app_post WORKSPACE U" />
     <process command="programs/post_migration WORKSPACE" />
@@ -30,6 +32,9 @@
   </post-upgrade>
 
   <changelog>
+    <version number="0.6.1" date="2013-02-01">
+      <change title="Update for 3.2.5 Dynacase core" />
+    </version>
     <version number="0.6.0-3" date="2010-03-03">
       <change title="Added infopath link" />
     </version>

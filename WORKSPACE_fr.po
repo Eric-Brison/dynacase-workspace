@@ -6,786 +6,1202 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WORKSPACE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-13 11:13+0200\n"
+"POT-Creation-Date: 2013-02-01 16:34+0100\n"
 "PO-Revision-Date: 2007-08-13 11:13+0200\n"
 "Last-Translator: Eric Brison <eric.brison@anakeen.com>\n"
 "Language-Team: French <distrib@anakeen.com>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "trash"
-msgstr "corbeille"
+#: Class/Method.SimpleFile.php:77
+msgid " (copy)"
+msgstr " (copie)"
 
-msgid "Filename Menu"
-msgstr "Nom"
-
-msgid "Modification Date Menu"
-msgstr "Date de modification"
-
-msgid "File Size Menu"
-msgstr "Taille"
-
-msgid "File Type Menu"
-msgstr "Type"
-
-msgid "<1 kb"
-msgstr "<1 ko"
-
-#, c-format
-msgid "%d kb"
-msgstr "%d ko"
-
+#: Zone/ws_folderListFormat.php:36 Class/Method.SimpleFile.php:408
+#: Class/Method.SimpleFile.php:461
 #, c-format
 msgid "%.01f Mb"
 msgstr "%.01f Mo"
 
+#: Class/Method.SimpleFile.php:406 Class/Method.SimpleFile.php:459
+#, c-format
+msgid "%d bytes"
+msgstr "%d octets"
+
+#: Class/Method.WorkSpace.php:246
+#, c-format
+msgid "%d documents deleted"
+msgstr "%d documents supprimÃ©s"
+
+#: Actions/ws_folderlist.php:261
 #, c-format
 msgid "%d items"
-msgstr "%d éléments"
+msgstr "%d Ã©lÃ©ments"
 
-msgid "1 item"
-msgstr "1 élément"
-
-msgid "0 item"
-msgstr "0 élément"
-
-msgid "Reserve"
-msgstr "Réserver"
-
-msgid "Diffuse"
-msgstr "Diffuser"
-
-msgid "Desaffect"
-msgstr "Désaffecter"
-
-msgid "Add a note"
-msgstr "Ajouter une note"
-
-msgid "properties"
-msgstr "Propriétés"
-
-msgid "Reaffect"
-msgstr "Réaffecter"
-
-msgid "Empty trash"
-msgstr "Vider la corbeille"
-
+#: Zone/ws_folderListFormat.php:35 Class/Method.SimpleFile.php:407
+#: Class/Method.SimpleFile.php:460
 #, c-format
-msgid "document %s does not exist"
-msgstr "Le document %s n'existe pas"
+msgid "%d kb"
+msgstr "%d ko"
 
+#: Actions/ws_edithtmlfile.php:77
 #, c-format
-msgid "document %s is not in edition"
-msgstr "le document %s n'est pas en édition"
+msgid "%s : edit HTML file"
+msgstr "%s : Ã©dition du fichier HTML"
 
-msgid "file modification aborted"
-msgstr "modification du fichier abandonnée"
-
-#, c-format
-msgid "cannot duplicate %s document"
-msgstr "le document %s ne peut pas être dupliqué"
-
-#, c-format
-msgid "%s file downloaded by %s on %s"
-msgstr "fichier %s téléchargé par %s sur %s"
-
+#: Actions/ws_edithtmlfile.php:74
 #, c-format
 msgid "%s attribute is not a file"
 msgstr "L'attribut %s n'est pas du type fichier"
 
+#: Class/Method.WorkSpace.php:112
 #, c-format
-msgid "%s : edit HTML file"
-msgstr "%s : édition du fichier HTML"
+msgid "%s directories"
+msgstr "dossiers %s"
 
+#: Actions/ws_downloadeditfile.php:32
 #, c-format
-msgid "document %s already in edition"
-msgstr "le document %s est déjà en édition"
+msgid "%s file downloaded by %s on %s"
+msgstr "fichier %s tÃ©lÃ©chargÃ© par %s sur %s"
 
+#: Class/Method.WorkSpace.php:106
 #, c-format
-msgid "Download <i>%s</i> file<br> for modification"
-msgstr "Télécharger le fichier <i>%s</i><br> pour modification"
+msgid "%s files"
+msgstr "fichiers %s"
 
+#: Class/Method.WorkSpace.php:182
 #, c-format
-msgid ""
-"The file %s has been downloaded and the document has been locked and "
-"tagged : in edition"
-msgstr ""
-"Le file %s a été téléchargé et le document a été verrouillé et a été "
-"marqué : en édition"
+msgid "%s group profile"
+msgstr "profil du groupe %s"
 
-msgid "the trash cannot be empty"
-msgstr "La corbeille ne peut pas être vidée"
-
-msgid "no user defined"
-msgstr "pas d'utilisateur défini"
-
-msgid "My space"
-msgstr "Mon espace"
-
+#: Class/Method.WorkSpace.php:375
 #, c-format
-msgid "personal space of %s"
-msgstr "espace personnel de %s"
+msgid "%s members"
+msgstr "%s membres"
 
-msgid "Delete link"
-msgstr "Supprimer le lien"
-
-#, c-format
-msgid ""
-"This link will be deleted.\n"
-"Sure delete %s ?"
-msgstr ""
-"Ce lien va être supprimé.\n"
-"Êtes vous certain de vouloir supprimer %s"
-
-#, c-format
-msgid ""
-"This document will be dropped in the trash.\n"
-"Sure delete %s ?"
-msgstr ""
-"Ce document va être mis dans la poubelle\n"
-"Êtes vous certain de vouloir supprimer %s"
-
-msgid "restore folder and its containt"
-msgstr "Restaurer le dossier et son contenu"
-
-msgid "New file"
-msgstr "Nouveau fichier"
-
-msgid "New text"
-msgstr "Nouveau texte"
-
-msgid "New directory"
-msgstr "Nouveau répertoire"
-
-msgid "Edit file"
-msgstr "Editer le fichier"
-
-msgid "Delete the folder and its containt"
-msgstr "Supprimer le dossier et son contenu"
-
-#, c-format
-msgid "Sure delete %s and its containt ?"
-msgstr "Etes-vous sur de supprimer %s et son contenu ?"
-
-#, c-format
-msgid "Rename file as %s"
-msgstr "Renommer le fichier en %s"
-
-msgid "WorkSpace"
-msgstr "Espace de travail"
-
-msgid "Documents Exchange"
-msgstr "Echange de documents"
-
-msgid "Access For Workspace edition"
-msgstr "Accès à l'édition des espaces de travail"
-
-msgid "Access for exchange documents"
-msgstr "Access à l'échange de documents"
-
-msgid "interface to navigate in spaces"
-msgstr "interface pour naviguer dans les espaces"
-
-msgid "add branch in folder tree"
-msgstr "ajouter une branche dans l'arbre des dossiers"
-
-msgid "to view clipboard"
-msgstr "pour voir le panier"
-
-msgid "to view folder"
-msgstr "pour voir un dossier"
-
-msgid "to view a document"
-msgstr "pour voir un document"
-
-msgid "rename file name"
-msgstr "renommer le fichier"
-
-msgid "popup menu global in folder list"
-msgstr "menu popup global pour la liste de dossier"
-
-msgid "popup menu in folder list"
-msgstr "menu popup pour le contenu de dossier"
-
-msgid "popup menu for simplefile family"
-msgstr "menu popup pour la famille simplefile"
-
-msgid "popup menu for simplefolder family"
-msgstr "menu popup pour la famille simplefolder"
-
-msgid "empty the user trash"
-msgstr "vider la corbeille"
-
-msgid "restore a document from the trash"
-msgstr "restaurer un document depuis la corbeille"
-
-msgid "download file from simplefile"
-msgstr "télécharger un fichier pour simplefile"
-
-msgid "edit HTML file"
-msgstr "éditer le fichier HTML"
-
-msgid "edit download file"
-msgstr "édition téléchargement de fichier"
-
-msgid "refresh count item of folder"
-msgstr "raffraichi le nombre d'item de dossier"
-
-msgid "cancel download file"
-msgstr "annulation du téléchargement"
-
-msgid "edit for add new version"
-msgstr "édition d'une nouvelle version"
-
-msgid "edit for fix new version"
-msgstr "édition pour figer la version"
-
-msgid "download file for edition"
-msgstr "téléchargement de fichier en édition"
-
-msgid "upload file for modification"
-msgstr "replacer le fichier"
-
-msgid "create a new version"
-msgstr "créer une nouvelle version"
-
-msgid "fix a new version"
-msgstr "figer la version"
-
-msgid "duplicate a document"
-msgstr "dupliquer un document"
-
-msgid "search a document"
-msgstr "rechercher un document"
-
+#: Class/Method.WorkSpace.php:73
 #, c-format
 msgid "%s readers"
 msgstr "lecteur de %s"
 
+#: Class/Method.WorkSpace.php:152
+#, c-format
+msgid "%s workspace profile"
+msgstr "profil de l'espace %s"
+
+#: Class/Method.WorkSpace.php:79
+#, c-format
+msgid "%s writers"
+msgstr "rÃ©dacteur de %s"
+
+#: Actions/ws_folderlist.php:263
+msgid "0 item"
+msgstr "0 Ã©lÃ©ment"
+
+#: Actions/ws_folderlist.php:262
+msgid "1 item"
+msgstr "1 Ã©lÃ©ment"
+
+#: Zone/ws_folderListFormat.php:34
+msgid "<1 kb"
+msgstr "<1 ko"
+
+#: textxml.php:126
+msgid "A new document version will be created with the new name version"
+msgstr ""
+"Une nouvelle version de document va Ãªtre crÃ©Ã©e avec la nouvelle dÃ©nomination "
+"de la version"
+
+#: textxml.php:73
+msgid "Abord file modification"
+msgstr "Abandonner la modification"
+
+#: textxml.php:72
+msgid "Abort modification and unlock document"
+msgstr "Abandonne la modification en cours et dÃ©verouille le document"
+
+#: textxml.php:49 textxml.php:100
+msgid "Abstract"
+msgstr "RÃ©sumÃ©"
+
+#: Admin/WORKSPACEADMIN.app:20 WORKSPACE.app:19
+msgid "Access For Workspace edition"
+msgstr "AccÃ¨s Ã  l'Ã©dition des espaces de travail"
+
+#: WORKSPACE.app:22
+msgid "Access for exchange documents"
+msgstr "Access Ã  l'Ã©change de documents"
+
+#: textxml.php:110
+msgid "Actions..."
+msgstr "Actions..."
+
+#: textxml.php:128
+msgid "Actual version"
+msgstr "Version actuelle"
+
+#: Actions/ws_popupsimplefolder.php:62 Actions/ws_popupsimplefile.php:147
+msgid "Add a note"
+msgstr "Ajouter une note"
+
+#: Actions/ws_popupsimplefolder.php:72 Actions/ws_popupsimplefile.php:167
+#: Actions/ws_popupdocfolder.php:82
+msgid "Add to basket"
+msgstr ""
+
+#: textxml.php:123
+msgid "Add version"
+msgstr "Ajouter une version"
+
+#: textxml.php:9
+msgid "Allocated to"
+msgstr "AffectÃ© Ã "
+
+#: textxml.php:138
+msgid "Cancel"
+msgstr ""
+
+#: textxml.php:109
+msgid "Clic to reload documents list"
+msgstr ""
+
+#: textxml.php:21
+msgid "Clic to view menu"
+msgstr "Cliquer pour voir le menu"
+
+#: textxml.php:24 textxml.php:107
+msgid "Click to modify description"
+msgstr "Cliquer pour modifier la description"
+
+#: textxml.php:92
+msgid "Click to modify subject"
+msgstr "Cliquer pour modifier le sujet"
+
+#: textxml.php:23 textxml.php:89 textxml.php:106
+msgid "Click to modify title"
+msgstr "Cliquer pour modifier le titre"
+
+#: textxml.php:56
+msgid "Click to rename file"
+msgstr "Cliquer pour renommer le fichier"
+
+#: textxml.php:64
+msgid "Click to view menu"
+msgstr ""
+
+#: textxml.php:119 textxml.php:136
+msgid "Comment"
+msgstr "Commentaire"
+
+#: textxml.php:98
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#: textxml.php:148
+msgid "Create new space"
+msgstr "CrÃ©er un nouvel espace"
+
+#: textxml.php:84 textxml.php:137
+msgid "Create new version"
+msgstr "CrÃ©er une nouvelle version"
+
+#: textxml.php:124
+msgid "Create new version for the document"
+msgstr "CrÃ©er une nouvelle version pour le document"
+
+#: textxml.php:3
+msgid "Creation date"
+msgstr "Date de crÃ©ation"
+
+#: Actions/ws_popupsimplefile.php:137 Actions/ws_popupdocfolder.php:52
+msgid "Delete"
+msgstr ""
+
+#: Actions/ws_popupdocfolder.php:52
+msgid "Delete link"
+msgstr "Supprimer le lien"
+
+#: Actions/ws_popupsimplefolder.php:52
+msgid "Delete the folder and its containt"
+msgstr "Supprimer le dossier et son contenu"
+
+#: Actions/ws_popupsimplefile.php:105
+msgid "Desaffect"
+msgstr "DÃ©saffecter"
+
+#: Actions/ws_popupsimplefile.php:81
+msgid "Diffuse"
+msgstr "Diffuser"
+
+#: textxml.php:22
+msgid "Directory"
+msgstr "RÃ©pertoire"
+
+#: textxml.php:61
+msgid "Display"
+msgstr "Afficher"
+
+#: Actions/ws_editaddversion.php:26 Actions/ws_edithtmlfile.php:25
+#: Actions/ws_editfixversion.php:25
+#, c-format
+msgid "Document %s is not alive"
+msgstr ""
+
+#: WORKSPACE.app:7
+msgid "Documents Exchange"
+msgstr "Echange de documents"
+
+#: textxml.php:145
+msgid "Don't view yet this information"
+msgstr "Ne plus voir cette information"
+
+#: textxml.php:103
+msgid "Double Click to recompute the thumbnail"
+msgstr "Double-cliquer pour mettre Ã  jour la miniature"
+
+#: textxml.php:77
+msgid "Download"
+msgstr "TÃ©lÃ©charger"
+
+#: Actions/ws_uploadfile.php:30 Actions/ws_editmodfile.php:31
+#, c-format
+msgid "Download <i>%s</i> file<br> for modification"
+msgstr "TÃ©lÃ©charger le fichier <i>%s</i><br> pour modification"
+
+#: textxml.php:78
+msgid "Download PDF file"
+msgstr ""
+
+#: textxml.php:68
+msgid "Download file for edit and modify it"
+msgstr "TÃ©lÃ©charger le fichier afin de le modifier"
+
+#: textxml.php:76
+msgid "Download file for reading"
+msgstr "TÃ©lÃ©charger le fichier pour le consulter"
+
+#: textxml.php:139
+msgid "Downloading file... "
+msgstr "TÃ©lÃ©chargement en cours..."
+
+#: Actions/ws_popupsimplefile.php:157 Actions/ws_popupdocfolder.php:72
+msgid "Duplicate"
+msgstr ""
+
+#: Actions/ws_popupsimplefolder.php:42 Actions/ws_popupsimplefile.php:51
+#: Actions/ws_popupdocfolder.php:42
+msgid "Edit"
+msgstr ""
+
+#: Actions/ws_popupsimplefile.php:61 textxml.php:71
+msgid "Edit file"
+msgstr "Editer le fichier"
+
+#: textxml.php:67
+msgid "Edit inline"
+msgstr "Editer en ligne"
+
+#: Actions/ws_popupsimplefolder.php:101 Actions/ws_popupsimplefile.php:234
+#: Actions/ws_popuplistfolder.php:79 Actions/ws_popupdocfolder.php:139
+msgid "Empty trash"
+msgstr "Vider la corbeille"
+
+#: textxml.php:81
+msgid "File Reader (beta)"
+msgstr ""
+
+#: Zone/ws_folderListFormat.php:65
+msgid "File Size Menu"
+msgstr "Taille"
+
+#: Zone/ws_folderListFormat.php:71
+msgid "File Type Menu"
+msgstr "Type"
+
+#: textxml.php:10
+msgid "File path"
+msgstr "Emplacement"
+
+#: textxml.php:6
+msgid "File type"
+msgstr "Type de fichier"
+
+#: Zone/ws_folderListFormat.php:53
+msgid "Filename Menu"
+msgstr "Nom"
+
+#: textxml.php:87
+msgid "Fix"
+msgstr "Figer"
+
+#: textxml.php:117
+msgid "Fix document with version"
+msgstr "Figer le document avec la version"
+
+#: textxml.php:120
+msgid "Fix state"
+msgstr "Ã‰tat pour la version"
+
+#: textxml.php:85 textxml.php:86 textxml.php:122
+msgid "Fix version"
+msgstr "Figer la version"
+
+#: textxml.php:105
+msgid "Folder"
+msgstr ""
+
+#: Actions/ws_editaddversion.php:56
+#, c-format
+msgid "From %s state to"
+msgstr ""
+
+#: Class/Method.WorkSpace.php:80
+#, c-format
+msgid "Group of users that can edit files in [ADOC %d] space"
+msgstr ""
+"Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace [ADOC "
+"%d]"
+
+#: Class/Method.WorkSpace.php:74
 #, c-format
 msgid "Group of users that can view files in [ADOC %d] space"
 msgstr ""
 "Groupe des utilisateurs qui peuvent voir les fichiers de l'espace [ADOC %d]"
 
-#, c-format
-msgid "%s writers"
-msgstr "rédacteur de %s"
+#: textxml.php:59 textxml.php:102
+msgid "Historic"
+msgstr "Historique"
 
-#, c-format
-msgid "Group of users that can edit files in [ADOC %d] space"
+#: Actions/ws_popupdocfolder.php:62
+msgid "History"
 msgstr ""
-"Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace [ADOC %"
-"d]"
 
-#, c-format
-msgid "%s files"
-msgstr "fichiers %s"
+#: textxml.php:57
+msgid "Identification"
+msgstr "Identification"
 
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space files"
-msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] -%s "
+#: textxml.php:99
+msgid "ImaggePreview"
+msgstr "AperÃ§u"
 
-#, c-format
-msgid "%s directories"
-msgstr "dossiers %s"
+#: textxml.php:48 textxml.php:96
+msgid "Keywords"
+msgstr "Mots-Clefs"
 
-#, c-format
-msgid "default profile for [ADOC %d] - %s - space directories"
-msgstr "profil par défaut pour les répertoires de l'espace [ADOC %d] -%s"
+#: textxml.php:5
+msgid "Last acces date"
+msgstr "Date de dernier accÃ¨s"
 
-#, c-format
-msgid "%s workspace profile"
-msgstr "profil de l'espace %s"
-
-#, c-format
-msgid "workspace profile for [ADOC %d] - %s - space files"
-msgstr "profil par défaut pour les fichiers de l'espace [ADOC %d] - %s "
-
-#, c-format
-msgid "%s group profile"
-msgstr "profil du groupe %s"
-
-#, c-format
-msgid "intranet group profile for [ADOC %d] - %s - space files"
+#: Actions/ws_popupsimplefile.php:115
+msgid "Lock"
 msgstr ""
-"profil par défaut pour les groupes lecteur / rédaceteur de l'espace [ADOC %"
-"d] - %s "
 
-#, c-format
-msgid "%s members"
-msgstr "%s membres"
+#: textxml.php:8
+msgid "Locked by"
+msgstr "VerrouillÃ© par"
 
-#, c-format
-msgid "cannot move folder %s in %s cause loop"
+#: Admin/WORKSPACEADMIN.app:7
+msgid "Manage workspaces"
 msgstr ""
-"le répertoire %s ne peut être déplacer dans %s car ce dernier est un dossier "
-"parent "
 
-#, c-format
-msgid "duplication of %s "
-msgstr "copie de %s"
+#: Zone/ws_folderListFormat.php:59
+msgid "Modification Date Menu"
+msgstr "Date de modification"
 
-#, c-format
-msgid "failed to copy document %s"
-msgstr "échec de la copie du document %s"
+#: textxml.php:4
+msgid "Modification date"
+msgstr "Date de derniÃ¨re modification"
 
-msgid " (copy)"
-msgstr " (copie)"
+#: textxml.php:95
+msgid "Modify keywords"
+msgstr "Modifier les mots-clefs"
 
-msgid "undefined"
-msgstr "non défini"
+#: Zone/ws_navigate.php:197
+msgid "My space"
+msgstr "Mon espace"
 
-#, c-format
-msgid "unknow user %s"
-msgstr "utilisateur inconnu %s"
+#: textxml.php:82
+msgid "Name the version"
+msgstr "Nommer la version"
 
-#, c-format
-msgid "%d bytes"
-msgstr "%d octets"
+#: textxml.php:11
+msgid "Namespace"
+msgstr "Nom de l'espace"
 
-#, c-format
-msgid "locked by %s %s"
-msgstr "Verrouillé par %s %s"
+#: Actions/ws_popuplistfolder.php:52
+msgid "New directory"
+msgstr "Nouveau rÃ©pertoire"
 
-msgid "No title"
-msgstr "Pas de titre"
+#: Actions/ws_popuplistfolder.php:28 textxml.php:40
+msgid "New file"
+msgstr "Nouveau fichier"
 
-msgid "undefined version"
-msgstr "non définie"
-
-msgid "current version"
-msgstr "courante"
-
-#, c-format
-msgid "%d documents deleted"
-msgstr "%d documents supprimés"
-
-msgid "do not see confirmation before download for edition"
-msgstr "ne plus voir la confirmation avant de télécharger en édition"
-
-msgid "height of folder list box"
-msgstr "hauteur du cadre de la liste des dossiers"
-
-msgid "height of folder tree box"
-msgstr "hauteur du cadre de l'arborescence des fichiers"
-
-msgid "width of folder tree box"
-msgstr "largeur du cadre dans l'arborescence des fichiers"
-
-msgid "Add version"
-msgstr "Ajouter une version"
-
-msgid "Create new version for the document"
-msgstr "Créer une nouvelle version pour le document"
-
-msgid "The current version will be archived with the version"
-msgstr "La version courante va être archivée avec la version"
-
-msgid "A new document version will be created with the new name version"
+#: Actions/ws_editaddversion.php:57 textxml.php:130
+msgid "New state"
 msgstr ""
-"Une nouvelle version de document va être créée avec la nouvelle dénomination "
-"de la version"
 
-msgid "Version name is empty"
-msgstr "Le nom de la version est vide"
+#: Actions/ws_popuplistfolder.php:40
+msgid "New text"
+msgstr "Nouveau texte"
 
-msgid "Actual version"
-msgstr "Version actuelle"
-
+#: textxml.php:129
 msgid "New version"
 msgstr "Nouvelle version"
 
+#: textxml.php:104
+msgid "No abstract"
+msgstr "Pas de rÃ©sumÃ©"
+
+#: textxml.php:97
+msgid "No keyword"
+msgstr "Pas de mots-clefs"
+
+#: textxml.php:108
+msgid "No result"
+msgstr ""
+
+#: textxml.php:94
+msgid "No subject"
+msgstr "Pas de sujet"
+
+#: textxml.php:91 Class/Method.SimpleFile.php:454
+msgid "No title"
+msgstr "Pas de titre"
+
+#: Zone/ws_navigate.php:124
+msgid "Offline"
+msgstr ""
+
+#: Zone/ws_navigate.php:126
+#, c-format
+msgid "Offline folder of %s"
+msgstr ""
+
+#: textxml.php:115 textxml.php:144
+msgid ""
+"On the document clic to 'upload file' to save modified file in the work space"
+msgstr ""
+"Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier "
+"modifiÃ© dans l'espace de travail"
+
+#: textxml.php:65
+msgid "Others"
+msgstr ""
+
+#: textxml.php:79
+msgid "PDF"
+msgstr ""
+
+#: textxml.php:27
+msgid "Private"
+msgstr "PrivÃ©"
+
+#: Actions/ws_popuplistfolder.php:95
+msgid "Properties"
+msgstr ""
+
+#: textxml.php:74
+msgid "Put the modified file"
+msgstr "RÃ©cupÃ©rer le fichier modifiÃ©"
+
+#: textxml.php:52
+msgid "Reader group"
+msgstr "Groupe lecteur"
+
+#: Actions/ws_popupsimplefile.php:222
+msgid "Reaffect"
+msgstr "RÃ©affecter"
+
+#: textxml.php:54
+msgid "Redactor group"
+msgstr "Groupe rÃ©dacteur"
+
+#: textxml.php:51
+msgid "Reference name"
+msgstr "Nom de rÃ©fÃ©rence"
+
+#: textxml.php:63
+msgid "Reload"
+msgstr "Recharger"
+
+#: textxml.php:62
+msgid "Reload file"
+msgstr "Recharger le fichier"
+
+#: Actions/ws_renamefile.php:38
+#, c-format
+msgid "Rename file as %s"
+msgstr "Renommer le fichier en %s"
+
+#: Actions/ws_popupsimplefile.php:71
+msgid "Reserve"
+msgstr "RÃ©server"
+
+#: textxml.php:69
+msgid "Reserve the file"
+msgstr "RÃ©server le fichier"
+
+#: textxml.php:118 textxml.php:135
 msgid "Revision comment"
-msgstr "Commentaire de révision"
+msgstr "Commentaire de rÃ©vision"
 
-msgid "Comment"
-msgstr "Commentaire"
+#: textxml.php:26
+msgid "Search Words"
+msgstr ""
 
-msgid "Create new version"
-msgstr "Créer une nouvelle version"
+#: textxml.php:25 textxml.php:29
+msgid "Search containing characters"
+msgstr ""
 
-msgid "The text has be modified"
-msgstr "Le texte a été modifié"
+#: textxml.php:42
+msgid "Select it if you want to change again the file after this save"
+msgstr ""
+"SÃ©lectionner si vous vouler refaire des modifications aprÃ¨s la sauvegarde"
 
-msgid "Downloading file... "
-msgstr "Téléchargement en cours..."
+#: textxml.php:31
+msgid "Send searches"
+msgstr "Lancer la recherche"
 
+#: textxml.php:13
+msgid "Send user searches"
+msgstr "Lancer la recherche d'utilisateurs Ã  insÃ©rer"
+
+#: textxml.php:1
+msgid "Size"
+msgstr "Taille"
+
+#: textxml.php:50
+msgid "Space"
+msgstr "Espace"
+
+#: textxml.php:88
+msgid "State"
+msgstr "Ã‰tat"
+
+#: textxml.php:41
+msgid "Stay in edition mode ?"
+msgstr "Rester en mode Ã©dition ?"
+
+#: textxml.php:47 textxml.php:93
+msgid "Subject"
+msgstr "Sujet"
+
+#: Actions/ws_popupsimplefile.php:140
+#, c-format
+msgid "Sure delete %s ?"
+msgstr ""
+
+#: Actions/ws_popupsimplefolder.php:55
+#, c-format
+msgid "Sure delete %s and its containt ?"
+msgstr "Etes-vous sur de supprimer %s et son contenu ?"
+
+#: Actions/ws_popupsimplefile.php:160 Actions/ws_popupdocfolder.php:75
+msgid "Sure duplicate ?"
+msgstr ""
+
+#: textxml.php:80
+msgid "Test beta file reader"
+msgstr ""
+
+#: textxml.php:125
+msgid "The current version will be archived with the version"
+msgstr "La version courante va Ãªtre archivÃ©e avec la version"
+
+#: Actions/ws_uploadfile.php:31 Actions/ws_editmodfile.php:32
+#, c-format
+msgid ""
+"The file %s has been downloaded and the document has been locked and "
+"tagged : in edition"
+msgstr ""
+"Le file %s a Ã©tÃ© tÃ©lÃ©chargÃ© et le document a Ã©tÃ© verrouillÃ© et a Ã©tÃ© "
+"marquÃ© : en Ã©dition"
+
+#: textxml.php:111 textxml.php:140
 msgid ""
 "The file will be downloaded in your personal computer. You need to save it "
 "in your personal space. Do not try to open it directly because you can loose "
 "it"
 msgstr ""
-"Le fichier va être téléchargé sur votre ordinateur. Vous devez le sauver "
+"Le fichier va Ãªtre tÃ©lÃ©chargÃ© sur votre ordinateur. Vous devez le sauver "
 "dans votre espace personnel. N'essayer pas de l'ouvrir directement car vous "
 "risquez de perdre vos modifications"
 
+#: textxml.php:114 textxml.php:143
+msgid "The name file must the same as previous name"
+msgstr "Le nom du fichier doit Ãªtre le mÃªme que le nom initial"
+
+#: textxml.php:44
+msgid "The name of the file must be the same as previous name"
+msgstr "Le nom du fichier doit Ãªtre le mÃªme que l'original"
+
+#: textxml.php:146 textxml.php:147
+msgid "The text has be modified"
+msgstr "Le texte a Ã©tÃ© modifiÃ©"
+
+#: textxml.php:20
+msgid "The version rename will not create new version"
+msgstr "Le renommage de la version ne crÃ©e pas de nouvelle version"
+
+#: Actions/ws_popupdocfolder.php:55
+#, c-format
+msgid ""
+"This document will be dropped in the trash.\n"
+"Sure delete %s ?"
+msgstr ""
+"Ce document va Ãªtre mis dans la poubelle\n"
+"ÃŠtes vous certain de vouloir supprimer %s"
+
+#: Actions/ws_popupdocfolder.php:55
+#, c-format
+msgid ""
+"This link will be deleted.\n"
+"Sure delete %s ?"
+msgstr ""
+"Ce lien va Ãªtre supprimÃ©.\n"
+"ÃŠtes vous certain de vouloir supprimer %s"
+
+#: textxml.php:90
+msgid "Title"
+msgstr ""
+
+#: textxml.php:39
+msgid "To prevent error, the filename must be the same as the previous name"
+msgstr ""
+"Afin de limiter les erreurs, le nom du fichier doit Ãªtre le mÃªme que celui "
+"du fichier original"
+
+#: textxml.php:28
+msgid "Trash"
+msgstr "Corbeille"
+
+#: textxml.php:46
+msgid "Undefined version"
+msgstr "Non dÃ©finie"
+
+#: Actions/ws_popupsimplefile.php:126
+msgid "Unlock"
+msgstr ""
+
+#: textxml.php:75
+msgid "Upload modified file"
+msgstr "Replacer le fichier modifiÃ©"
+
+#: textxml.php:70
+msgid "Use external software editor to modify file"
+msgstr "Utiliser votre Ã©diteur pour modifier le fichier"
+
+#: textxml.php:66
+msgid "Use internal editor to modify file"
+msgstr "Utiliser l'Ã©diteur interne pour modifier le fichier"
+
+#: textxml.php:7 textxml.php:45 textxml.php:83
+msgid "Version"
+msgstr ""
+
+#: textxml.php:116 textxml.php:127
+msgid "Version name is empty"
+msgstr "Le nom de la version est vide"
+
+#: textxml.php:101
+msgid "View complete historic"
+msgstr "Voir l'historique complet"
+
+#: textxml.php:60
+msgid "View file inline"
+msgstr "Voir le fichier en ligne"
+
+#: textxml.php:58
+msgid "View historic"
+msgstr "Voir l'historique"
+
+#: Actions/ws_popupsimplefolder.php:32 Actions/ws_popupsimplefile.php:41
+#: Actions/ws_popupdocfolder.php:32
+msgid "View latest"
+msgstr ""
+
+#: textxml.php:112 textxml.php:141
 msgid ""
 "When the file is saved, you can edit it with the appropriated application "
 "and save it at the same place"
 msgstr ""
-"Lorsque le fichier est sauvé, vous pouver l'éditer avec le programme "
-"approprié et sauver les modifications du fichier sans le renommer"
+"Lorsque le fichier est sauvÃ©, vous pouver l'Ã©diter avec le programme "
+"appropriÃ© et sauver les modifications du fichier sans le renommer"
 
+#: textxml.php:113 textxml.php:142
 msgid ""
 "When the modification are done, you must go to web shared folder application "
 "and select the file"
 msgstr ""
 "Quand les modifications sont finies, vous devez aller sur l'application "
-"\"échange de documents\" afin de sélectionner le document pour replacer le "
-"fichier modifié"
+"\"Ã©change de documents\" afin de sÃ©lectionner le document pour replacer le "
+"fichier modifiÃ©"
 
-msgid "The name file must the same as previous name"
-msgstr "Le nom du fichier doit être le même que le nom initial"
+#: WORKSPACE.app:6
+msgid "WorkSpace"
+msgstr "Espace de travail"
 
-msgid ""
-"On the document clic to 'upload file' to save modified file in the work space"
+#: Admin/WORKSPACEADMIN.app:6
+msgid "WorkSpace Admin"
 msgstr ""
-"Sur le document cliquez sur 'Replacer le fichier' pour sauver le fichier "
-"modifié dans l'espace de travail"
 
-msgid "Don't view yet this information"
-msgstr "Ne plus voir cette information"
-
-msgid "Actions..."
-msgstr "Actions..."
-
-msgid "click and drag to move document"
-msgstr "Clic et glisse pour déplacer le document "
-
-msgid "Documents exchange"
-msgstr "Echange de documents"
-
-msgid "Private"
-msgstr "Privé"
-
-msgid "Trash"
-msgstr "Corbeille"
-
-msgid "input file name to search"
-msgstr "nom du fichier à rechercher"
-
-msgid "Send searches"
-msgstr "Lancer la recherche"
-
-msgid "alternate between private space and document basket"
-msgstr "alternance entre l'espace privé et le porte-documents"
-
-msgid "private space"
-msgstr "espace privé"
-
-msgid "my locked documents"
-msgstr "mes documents verrouillés"
-
-msgid "my documents to read"
-msgstr "mes documents à lire"
-
-msgid "my basket"
-msgstr "mon panier"
-
-msgid "display/undisplay"
-msgstr "afficher/cacher"
-
-msgid "Create new space"
-msgstr "Créer un nouvel espace"
-
-msgid "Fix document with version"
-msgstr "Figer le document avec la version"
-
-msgid "Fix state"
-msgstr "État pour la version"
-
-msgid "Fix version"
-msgstr "Figer la version"
-
-msgid "Click to rename file"
-msgstr "Cliquer pour renommer le fichier"
-
-msgid "Identification"
-msgstr "Identification"
-
-msgid "View historic"
-msgstr "Voir l'historique"
-
-msgid "Historic"
-msgstr "Historique"
-
-msgid "View file inline"
-msgstr "Voir le fichier en ligne"
-
-msgid "Display"
-msgstr "Afficher"
-
-msgid "Reload file"
-msgstr "Recharger le fichier"
-
-msgid "Reload"
-msgstr "Recharger"
-
-msgid "Use internal editor to modify file"
-msgstr "Utiliser l'éditeur interne pour modifier le fichier"
-
-msgid "Edit inline"
-msgstr "Editer en ligne"
-
-msgid "Download file for edit and modify it"
-msgstr "Télécharger le fichier afin de le modifier"
-
-msgid "Reserve the file"
-msgstr "Réserver le fichier"
-
-msgid "Use external software editor to modify file"
-msgstr "Utiliser votre éditeur pour modifier le fichier"
-
-msgid "Open in editor"
-msgstr "Ouvrir dans un éditeur"
-
-msgid "Abort modification and unlock document"
-msgstr "Abandonne la modification en cours et déverouille le document"
-
-msgid "Abord file modification"
-msgstr "Abandonner la modification"
-
-msgid "Put the modified file"
-msgstr "Récupérer le fichier modifié"
-
-msgid "Upload modified file"
-msgstr "Replacer le fichier modifié"
-
-msgid "Download file for reading"
-msgstr "Télécharger le fichier pour le consulter"
-
-msgid "Download"
-msgstr "Télécharger"
-
-msgid "Name the version"
-msgstr "Nommer la version"
-
-msgid "Fix"
-msgstr "Figer"
-
-msgid "State"
-msgstr "État"
-
-msgid "Click to modify title"
-msgstr "Cliquer pour modifier le titre"
-
-msgid "Click to modify subject"
-msgstr "Cliquer pour modifier le sujet"
-
-msgid "Subject"
-msgstr "Sujet"
-
-msgid "No subject"
-msgstr "Pas de sujet"
-
-msgid "Modify keywords"
-msgstr "Modifier les mots-clefs"
-
-msgid "Keywords"
-msgstr "Mots-Clefs"
-
-msgid "No keyword"
-msgstr "Pas de mots-clefs"
-
-msgid "Contributors"
-msgstr "Contributeurs"
-
-msgid "ImaggePreview"
-msgstr "Aperçu"
-
-msgid "Abstract"
-msgstr "Résumé"
-
-msgid "View complete historic"
-msgstr "Voir l'historique complet"
-
-msgid "Double Click to recompute the thumbnail"
-msgstr "Double-cliquer pour mettre à jour la miniature"
-
-msgid "No abstract"
-msgstr "Pas de résumé"
-
-msgid "Namespace"
-msgstr "Nom de l'espace"
-
-msgid "type characters to filter users on it's name"
+#: Actions/ws_popupsimplefile.php:93
+msgid "Workflow"
 msgstr ""
-"Saisissez les caractères pour filtrer sur le nom de l'utilisateur à "
-"rechercher"
 
-msgid "Send user searches"
-msgstr "Lancer la recherche d'utilisateurs à insérer"
-
-msgid "redactor"
-msgstr "rédacteur"
-
-msgid "reader"
-msgstr "lecteur"
-
-msgid "suppress member"
-msgstr "enlever un membre"
-
-msgid "Click to modify description"
-msgstr "Cliquer pour modifier la description"
-
+#: textxml.php:38
 msgid "You must click on the Search... button to select the modified file "
 msgstr ""
-"Vous devez cliquer sur le bouton Parcourir ... pour sélectionner le fichier "
-"modifié"
+"Vous devez cliquer sur le bouton Parcourir ... pour sÃ©lectionner le fichier "
+"modifiÃ©"
 
-msgid "To prevent error, the filename must be the same as the previous name"
-msgstr ""
-"Afin de limiter les erreurs, le nom du fichier doit être le même que celui "
-"du fichier original"
-
-msgid "Stay in edition mode ?"
-msgstr "Rester en mode édition ?"
-
-msgid "Select it if you want to change again the file after this save"
-msgstr ""
-"Sélectionner si vous vouler refaire des modifications après la sauvegarde"
-
+#: textxml.php:43
 msgid "You need to select the file"
 msgstr "Vous devez selectionner un fichier"
 
-msgid "The name of the file must be the same as previous name"
-msgstr "Le nom du fichier doit être le même que l'original"
+#: WORKSPACE.app:34
+msgid "add branch in folder tree"
+msgstr "ajouter une branche dans l'arbre des dossiers"
 
-msgid "The version rename will not create new version"
-msgstr "Le renommage de la version ne crée pas de nouvelle version"
+#: textxml.php:32
+msgid "alternate between private space and document basket"
+msgstr "alternance entre l'espace privÃ© et le porte-documents"
 
-msgid "Clic to view menu"
-msgstr "Cliquer pour voir le menu"
-
-msgid "Directory"
-msgstr "Répertoire"
-
-msgid "Size"
-msgstr "Taille"
-
+#: textxml.php:2
 msgid "bytes"
 msgstr "octets"
 
-msgid "Creation date"
-msgstr "Date de création"
+#: WORKSPACE_init.php:36 Admin/WORKSPACEADMIN_init.php:36
+msgid "can use offline application"
+msgstr ""
 
-msgid "Modification date"
-msgstr "Date de dernière modification"
+#: WORKSPACE.app:126
+msgid "cancel download file"
+msgstr "annulation du tÃ©lÃ©chargement"
 
-msgid "Last acces date"
-msgstr "Date de dernier accès"
+#: Actions/ws_copydoc.php:39
+#, c-format
+msgid "cannot duplicate %s document"
+msgstr "le document %s ne peut pas Ãªtre dupliquÃ©"
 
-msgid "File type"
-msgstr "Type de fichier"
+#: Class/Lib.WsFtCommon.php:37
+#, c-format
+msgid "cannot move folder %s in %s cause loop"
+msgstr ""
+"le rÃ©pertoire %s ne peut Ãªtre dÃ©placer dans %s car ce dernier est un dossier "
+"parent "
 
-msgid "Locked by"
-msgstr "Verrouillé par"
+#: WORKSPACE.app:151
+msgid "create a new version"
+msgstr "crÃ©er une nouvelle version"
 
-msgid "Allocated to"
-msgstr "Affecté à"
+#: Class/Method.SimpleFile.php:496
+msgid "current version"
+msgstr "courante"
 
-msgid "File path"
-msgstr "Emplacement"
+#: Class/Method.WorkSpace.php:113
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space directories"
+msgstr "profil par dÃ©faut pour les rÃ©pertoires de l'espace [ADOC %d] -%s"
 
-msgid "Undefined version"
-msgstr "Non définie"
+#: Class/Method.WorkSpace.php:107
+#, c-format
+msgid "default profile for [ADOC %d] - %s - space files"
+msgstr "profil par dÃ©faut pour les fichiers de l'espace [ADOC %d] -%s "
 
-msgid "Space"
-msgstr "Espace"
+#: textxml.php:37
+msgid "display/undisplay"
+msgstr "afficher/cacher"
 
-msgid "Reference name"
-msgstr "Nom de référence"
+#: WORKSPACE_init.php:15 Admin/WORKSPACEADMIN_init.php:15
+msgid "do not see confirmation before download for edition"
+msgstr "ne plus voir la confirmation avant de tÃ©lÃ©charger en Ã©dition"
 
-msgid "Reader group"
-msgstr "Groupe lecteur"
+#: Actions/ws_uploadfile.php:27 Actions/ws_editmodfile.php:28
+#, c-format
+msgid "document %s already in edition"
+msgstr "le document %s est dÃ©jÃ  en Ã©dition"
 
+#: Actions/ws_addversion.php:28 Actions/ws_cancelmodfile.php:23
+#: Actions/ws_uploadfile.php:25 Actions/ws_editmodfile.php:26
+#: Actions/ws_fixversion.php:28
+#, c-format
+msgid "document %s does not exist"
+msgstr "Le document %s n'existe pas"
+
+#: Actions/ws_addversion.php:52
+#, c-format
+msgid "document %s has the new state %s"
+msgstr ""
+
+#: Actions/ws_cancelmodfile.php:25
+#, c-format
+msgid "document %s is not in edition"
+msgstr "le document %s n'est pas en Ã©dition"
+
+#: Actions/ws_restoredoc.php:37
+#, c-format
+msgid "document [%s] not found"
+msgstr ""
+
+#: WORKSPACE.app:141
+msgid "download file for edition"
+msgstr "tÃ©lÃ©chargement de fichier en Ã©dition"
+
+#: WORKSPACE.app:94
+msgid "download file from simplefile"
+msgstr "tÃ©lÃ©charger un fichier pour simplefile"
+
+#: WORKSPACE.app:161
+msgid "duplicate a document"
+msgstr "dupliquer un document"
+
+#: Class/Lib.WsFtCommon.php:102
+#, c-format
+msgid "duplication of %s "
+msgstr "copie de %s"
+
+#: WORKSPACE.app:99
+msgid "edit HTML file"
+msgstr "Ã©diter le fichier HTML"
+
+#: WORKSPACE.app:104
+msgid "edit TEXT file"
+msgstr ""
+
+#: WORKSPACE.app:111 WORKSPACE.app:116
+msgid "edit download file"
+msgstr "Ã©dition tÃ©lÃ©chargement de fichier"
+
+#: WORKSPACE.app:131
+msgid "edit for add new version"
+msgstr "Ã©dition d'une nouvelle version"
+
+#: WORKSPACE.app:136
+msgid "edit for fix new version"
+msgstr "Ã©dition pour figer la version"
+
+#: WORKSPACE.app:84
+msgid "empty the user trash"
+msgstr "vider la corbeille"
+
+#: Class/Lib.WsFtCommon.php:116
+#, c-format
+msgid "failed to copy document %s"
+msgstr "Ã©chec de la copie du document %s"
+
+#: Actions/ws_cancelmodfile.php:36
+msgid "file modification aborted"
+msgstr "modification du fichier abandonnÃ©e"
+
+#: WORKSPACE.app:156
+msgid "fix a new version"
+msgstr "figer la version"
+
+#: Class/Method.SimpleFile.php:379
+msgid "fixed"
+msgstr ""
+
+#: WORKSPACE_init.php:21 Admin/WORKSPACEADMIN_init.php:21
+msgid "height of folder list box"
+msgstr "hauteur du cadre de la liste des dossiers"
+
+#: WORKSPACE_init.php:26 Admin/WORKSPACEADMIN_init.php:26
+msgid "height of folder tree box"
+msgstr "hauteur du cadre de l'arborescence des fichiers"
+
+#: Zone/ws_folderListFormat.php:47
+msgid "icon"
+msgstr ""
+
+#: textxml.php:30
+msgid "input file name to search"
+msgstr "nom du fichier Ã  rechercher"
+
+#: Admin/WORKSPACEADMIN.app:27 WORKSPACE.app:28
+msgid "interface to navigate in spaces"
+msgstr "interface pour naviguer dans les espaces"
+
+#: Class/Method.WorkSpace.php:183
+#, c-format
+msgid "intranet group profile for [ADOC %d] - %s - space files"
+msgstr ""
+"profil par dÃ©faut pour les groupes lecteur / rÃ©daceteur de l'espace [ADOC "
+"%d] - %s "
+
+#: Class/Method.SimpleFile.php:447
+#, c-format
+msgid "locked by %s %s"
+msgstr "VerrouillÃ© par %s %s"
+
+#: textxml.php:36
+msgid "my basket"
+msgstr "mon panier"
+
+#: textxml.php:35
+msgid "my documents to read"
+msgstr "mes documents Ã  lire"
+
+#: textxml.php:34
+msgid "my locked documents"
+msgstr "mes documents verrouillÃ©s"
+
+#: Actions/ws_downloadfile.php:28
+msgid "no file referenced"
+msgstr ""
+
+#: textxml.php:121 textxml.php:134
+msgid "no state"
+msgstr ""
+
+#: Actions/ws_emptytrash.php:39
+msgid "no user defined"
+msgstr "pas d'utilisateur dÃ©fini"
+
+#: Class/Method.SimpleFile.php:378 Class/Method.SimpleFile.php:380
+msgid "nobody"
+msgstr ""
+
+#: Actions/ws_viewdoc.php:34
+msgid "object"
+msgstr ""
+
+#: Zone/ws_navigate.php:198
+#, c-format
+msgid "personal space of %s"
+msgstr "espace personnel de %s"
+
+#: WORKSPACE.app:74
+msgid "popup menu for simplefile family"
+msgstr "menu popup pour la famille simplefile"
+
+#: WORKSPACE.app:79
+msgid "popup menu for simplefolder family"
+msgstr "menu popup pour la famille simplefolder"
+
+#: WORKSPACE.app:64
+msgid "popup menu global in folder list"
+msgstr "menu popup global pour la liste de dossier"
+
+#: WORKSPACE.app:69
+msgid "popup menu in folder list"
+msgstr "menu popup pour le contenu de dossier"
+
+#: Actions/ws_popupsimplefile.php:187
+msgid "print"
+msgstr ""
+
+#: textxml.php:33
+msgid "private space"
+msgstr "espace privÃ©"
+
+#: Actions/ws_popupsimplefile.php:199 Actions/ws_popupdocfolder.php:112
+msgid "properties"
+msgstr "PropriÃ©tÃ©s"
+
+#: textxml.php:15 textxml.php:18
+msgid "reader"
+msgstr "lecteur"
+
+#: textxml.php:14 textxml.php:17
+msgid "redactor"
+msgstr "rÃ©dacteur"
+
+#: WORKSPACE.app:121
+msgid "refresh count item of folder"
+msgstr "raffraichi le nombre d'item de dossier"
+
+#: WORKSPACE.app:59
+msgid "rename file name"
+msgstr "renommer le fichier"
+
+#: Actions/ws_popupsimplefolder.php:82 Actions/ws_popupsimplefile.php:177
+#: Actions/ws_popupdocfolder.php:92
+msgid "restore"
+msgstr ""
+
+#: WORKSPACE.app:89
+msgid "restore a document from the trash"
+msgstr "restaurer un document depuis la corbeille"
+
+#: Actions/ws_popupdocfolder.php:102
+msgid "restore folder and its containt"
+msgstr "Restaurer le dossier et son contenu"
+
+#: Zone/ws_navigate.php:231 Actions/ws_folderlist.php:74
+#: Actions/ws_folderlist.php:236
+#, c-format
+msgid "search %s"
+msgstr ""
+
+#: WORKSPACE.app:166
+msgid "search a document"
+msgstr "rechercher un document"
+
+#: textxml.php:16 textxml.php:19
+msgid "suppress member"
+msgstr "enlever un membre"
+
+#: textxml.php:133
+msgid "the state will be removed"
+msgstr ""
+
+#: textxml.php:131
+msgid "the state will be unchanged"
+msgstr ""
+
+#: Actions/ws_emptytrash.php:37
+msgid "the trash cannot be empty"
+msgstr "La corbeille ne peut pas Ãªtre vidÃ©e"
+
+#: WORKSPACE.app:49 WORKSPACE.app:54
+msgid "to view a document"
+msgstr "pour voir un document"
+
+#: WORKSPACE.app:39
+msgid "to view clipboard"
+msgstr "pour voir le panier"
+
+#: WORKSPACE.app:44
+msgid "to view folder"
+msgstr "pour voir un dossier"
+
+#: Actions/ws_folderlist.php:60
+msgid "trash"
+msgstr "corbeille"
+
+#: textxml.php:12
+msgid "type characters to filter users on it's name"
+msgstr ""
+"Saisissez les caractÃ¨res pour filtrer sur le nom de l'utilisateur Ã  "
+"rechercher"
+
+#: textxml.php:132
+msgid "unchanged state"
+msgstr ""
+
+#: Class/Method.SimpleFile.php:377
+msgid "undefined"
+msgstr "non dÃ©fini"
+
+#: Class/Method.SimpleFile.php:496
+msgid "undefined version"
+msgstr "non dÃ©finie"
+
+#: Class/Method.SimpleFile.php:387 Class/Method.SimpleFile.php:399
+#, c-format
+msgid "unknow user %s"
+msgstr "utilisateur inconnu %s"
+
+#: WORKSPACE.app:146
+msgid "upload file for modification"
+msgstr "replacer le fichier"
+
+#: textxml.php:53
 msgid "view members of reader group"
 msgstr "voir les membres du groupe lecteur"
 
-msgid "Redactor group"
-msgstr "Groupe rédacteur"
-
+#: textxml.php:55
 msgid "view members of redactor group"
-msgstr "voir les membres du groupe rédacteur"
+msgstr "voir les membres du groupe rÃ©dacteur"
 
-#~ msgid "edit for new version"
-#~ msgstr "édition d'une nouvelle version"
+#: WORKSPACE_init.php:31 Admin/WORKSPACEADMIN_init.php:31
+msgid "width of folder tree box"
+msgstr "largeur du cadre dans l'arborescence des fichiers"
 
-#~ msgid "Modify the file"
-#~ msgstr "Modifier le fichier"
+#: Class/Method.WorkSpace.php:153
+#, c-format
+msgid "workspace profile for [ADOC %d] - %s - space files"
+msgstr "profil par dÃ©faut pour les fichiers de l'espace [ADOC %d] - %s "
 
-#~ msgid "Rename the version"
-#~ msgstr "Renommer la version"
-
-#~ msgid "1 document"
-#~ msgstr "1 document"
+#~ msgid "%s system"
+#~ msgstr "SystÃ¨me %s"
 
 #~ msgid "0 document"
 #~ msgstr "0 document"
 
+#~ msgid "1 document"
+#~ msgstr "1 document"
+
 #~ msgid "Add new file"
 #~ msgstr "Ajouter un fichier"
 
+#~ msgid "Affect"
+#~ msgstr "Affecter"
+
 #~ msgid "Create new text"
-#~ msgstr "Créer un texte"
+#~ msgstr "CrÃ©er un texte"
 
-#~ msgid "Thumbnail"
-#~ msgstr "Miniature"
+#~ msgid "Documents exchange"
+#~ msgstr "Echange de documents"
 
-#~ msgid "Return to main view"
-#~ msgstr "Retour à la vue principale"
+#~ msgid "Edit HTML file"
+#~ msgstr "Editer le fichier HTML"
 
-#~ msgid "Participates"
-#~ msgstr "Participants"
-
-#~ msgid "Modify the abstract"
-#~ msgstr "Modifier le résumé"
-
-#~ msgid "Group of users that can view files in %s space"
-#~ msgstr ""
-#~ "Groupe des utilisateurs qui peuvent voir les fichiers de l'espace %s"
+#~ msgid "Files Management"
+#~ msgstr "Gestion de fichiers"
 
 #~ msgid "Group of users that can edit files in %s space"
 #~ msgstr ""
 #~ "Groupe des utilisateurs qui peuvent modifier les fichiers de l'espace %s"
 
-#~ msgid "default profile for %s - %s - space files"
-#~ msgstr "profil par défaut pour les fichiers de l'espace %s -%s "
-
-#~ msgid "default profile for %s - %s - space directories"
-#~ msgstr "profil par défaut pour les répertoires de l'espace %s -%s"
-
-#~ msgid "workspace profile for %s - %s - space files"
-#~ msgstr "profil par défaut pour les fichiers de l'espace %s - %s "
-
-#~ msgid "intranet group profile for %s - %s - space files"
+#~ msgid "Group of users that can view files in %s space"
 #~ msgstr ""
-#~ "profil par défaut pour les groupes lecteur / rédaceteur de l'espace %s - %"
-#~ "s "
+#~ "Groupe des utilisateurs qui peuvent voir les fichiers de l'espace %s"
 
-#~ msgid "Affect"
-#~ msgstr "Affecter"
+#~ msgid "Modify the abstract"
+#~ msgstr "Modifier le rÃ©sumÃ©"
+
+#~ msgid "Modify the file"
+#~ msgstr "Modifier le fichier"
+
+#~ msgid "Open in editor"
+#~ msgstr "Ouvrir dans un Ã©diteur"
+
+#~ msgid "Participates"
+#~ msgstr "Participants"
+
+#~ msgid "Rename the version"
+#~ msgstr "Renommer la version"
+
+#~ msgid "Return to main view"
+#~ msgstr "Retour Ã  la vue principale"
 
 #, fuzzy
 #~ msgid ""
 #~ "This document EDwill be dropped in the trash.\n"
 #~ "Sure delete %s ?"
 #~ msgstr ""
-#~ "Ce document va être mis dans la poubelle\n"
-#~ "Êtes vous certain de vouloir supprimer %s"
+#~ "Ce document va Ãªtre mis dans la poubelle\n"
+#~ "ÃŠtes vous certain de vouloir supprimer %s"
+
+#~ msgid "Thumbnail"
+#~ msgstr "Miniature"
 
 #~ msgid "Undefined"
-#~ msgstr "Non défini"
+#~ msgstr "Non dÃ©fini"
 
-#~ msgid "Edit HTML file"
-#~ msgstr "Editer le fichier HTML"
+#~ msgid "click and drag to move document"
+#~ msgstr "Clic et glisse pour dÃ©placer le document "
+
+#~ msgid "default profile for %s - %s - space directories"
+#~ msgstr "profil par dÃ©faut pour les rÃ©pertoires de l'espace %s -%s"
+
+#~ msgid "default profile for %s - %s - space files"
+#~ msgstr "profil par dÃ©faut pour les fichiers de l'espace %s -%s "
+
+#~ msgid "edit for new version"
+#~ msgstr "Ã©dition d'une nouvelle version"
+
+#~ msgid "intranet group profile for %s - %s - space files"
+#~ msgstr ""
+#~ "profil par dÃ©faut pour les groupes lecteur / rÃ©daceteur de l'espace %s - "
+#~ "%s "
 
 #~ msgid "my affected documents"
-#~ msgstr "mes documents affectés"
+#~ msgstr "mes documents affectÃ©s"
 
-#~ msgid "%s system"
-#~ msgstr "Système %s"
-
-#~ msgid "Files Management"
-#~ msgstr "Gestion de fichiers"
+#~ msgid "workspace profile for %s - %s - space files"
+#~ msgstr "profil par dÃ©faut pour les fichiers de l'espace %s - %s "
