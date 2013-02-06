@@ -10,7 +10,7 @@ export appname
 
 include $(utildir)/PubRule
 
-SUBDIR=  Actions
+SUBDIR=  Actions Images
 
 
 
