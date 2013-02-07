@@ -26,7 +26,12 @@ include $(utildir)/PubRule
 DISTFILES += $(SUBDIR) \
             RELEASE VERSION   workspace.ods
 
+webinst-services:
+	make -C Services webinst RELEASE=$(RELEASE) PACKAGE=$(PACKAGE)-services VERSION=$(VERSION) appname=@APPNAME@
+	mv Services/*webinst .
+
+webinst: webinst-services
 
 clean:
-	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst
+	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst Services/info.xml Admin/WORKSPACEADMIN_init.php
 	/bin/rm -fr autom4te.cache

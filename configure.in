@@ -48,4 +48,4 @@ AC_ARG_ENABLE(debug,
 
 
 
-AC_OUTPUT(Makefile WORKSPACE_init.php info.xml Admin/WORKSPACEADMIN_init.php)
+AC_OUTPUT(Makefile WORKSPACE_init.php info.xml Services/info.xml Admin/WORKSPACEADMIN_init.php)
