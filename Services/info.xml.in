@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<module name="dynacase-workspace-services" disabled="no" version="@VERSION@" release="@RELEASE@" license="@LICENSE@" >
+
+  <description lang="en">Webdesk Services for workspace moduless.</description>
+
+  <replaces>
+        <module name="freedom-workspace" />
+  </replaces>
+
+  <requires>
+    <module name="dynacase-workspace" comp="ge" version="@VERSION@" />
+    <module name="dynacase-webdesk-ui" comp="ge" version="2.0.0" />
+  </requires>
+
+  <post-install>
+    <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace-services.ods" />
+  </post-install>
+ 
+  <post-upgrade>
+      <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace-services.ods" />
+  </post-upgrade>
+
+  <changelog>
+
+  </changelog>
+
+</module>
