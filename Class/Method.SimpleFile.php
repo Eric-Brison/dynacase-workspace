@@ -45,7 +45,7 @@ Class _SIMPLEFILE extends Doc
     /**
      * use for duplicate physicaly the file
      */
-    function postDuplicate()
+    function postDuplicate(&$copyfrom)
     {
         
         $f = $this->getRawValue("sfi_file");
