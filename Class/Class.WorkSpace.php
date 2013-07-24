@@ -4,15 +4,15 @@
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
 */
-/**
- * @begin-method-ignore
- * this part will be deleted when construct document class until end-method-ignore
- */
-class _WORKSPACE extends Dir
+namespace Dcp\Workspace;
+
+use \Dcp\AttributeIdentifiers\Workspace as myAttribute;
+use \Dcp\AttributeIdentifiers as Attribute;
+use \Dcp\Family\Dir;
+use \Dcp\Family\Igroup;
+
+class WorkSpace extends Dir
 {
-    /*
-     * @end-method-ignore
-    */
     public $eviews = array(
         "WORKSPACE:ADMINWORKSPACE"
     );
@@ -26,7 +26,7 @@ class _WORKSPACE extends Dir
      */
     private function getViewGroupName()
     {
-        $ref = $this->getRawValue("WSP_REF");
+        $ref = $this->getRawValue(myAttribute::wsp_ref);
         return "GWS_V" . strtoupper($ref);
     }
     /**
@@ -34,7 +34,7 @@ class _WORKSPACE extends Dir
      */
     private function getEditGroupName()
     {
-        $ref = $this->getRawValue("WSP_REF");
+        $ref = $this->getRawValue(myAttribute::wsp_ref);
         return "GWS_E" . strtoupper($ref);
     }
     /**
@@ -42,7 +42,7 @@ class _WORKSPACE extends Dir
      */
     private function getProfilGroupName()
     {
-        $ref = $this->getRawValue("WSP_REF");
+        $ref = $this->getRawValue(myAttribute::wsp_ref);
         return "GWS_P" . strtoupper($ref);
     }
     /**
@@ -55,7 +55,7 @@ class _WORKSPACE extends Dir
         $ref = unaccent($this->title);
         $ref = preg_replace("/[[:punct:]]/", "", $ref);
         $ref = strtolower(str_replace(" ", "_", $ref));
-        $this->setValue("WSP_REF", $ref);
+        $this->setValue(myAttribute::wsp_ref, $ref);
         $this->modify();
         $err = '';
         $gvname = $gename = '';
@@ -63,21 +63,19 @@ class _WORKSPACE extends Dir
         $ge = null;
         if ($ref != "") {
             /**
-             * @var _IGROUP $gv
-             * @var _IGROUP $ge
+             * @var IGROUP $gv
+             * @var IGROUP $ge
              */
-            $gv = createDoc($this->dbaccess, "IGROUP", false);
-            $ge = createDoc($this->dbaccess, "IGROUP", false);
+            $gv = createDoc($this->dbaccess, Igroup::familyName, false);
+            $ge = createDoc($this->dbaccess, Igroup::familyName, false);
             
-            $gv->setValue("us_login", "gv." . $ref);
-            $gv->setValue("grp_name", sprintf(_("%s readers") , $this->title));
-            $gv->setValue("grp_role", sprintf(_("Group of users that can view files in [ADOC %d] space") , $this->id));
+            $gv->setValue(Attribute\Igroup::us_login, "gv." . $ref);
+            $gv->setValue(Attribute\Igroup::grp_name, sprintf(_("%s readers") , $this->title));
             $gvname = $this->getViewGroupName();
             $gv->name = $gvname;
             
-            $ge->setValue("us_login", "ge." . $ref);
-            $ge->setValue("grp_name", sprintf(_("%s writers") , $this->title));
-            $ge->setValue("grp_role", sprintf(_("Group of users that can edit files in [ADOC %d] space") , $this->id));
+            $ge->setValue(Attribute\Igroup::us_login, "ge." . $ref);
+            $ge->setValue(Attribute\Igroup::grp_name, sprintf(_("%s writers") , $this->title));
             $gename = $this->getEditGroupName();
             $ge->name = $gename;
             
@@ -90,7 +88,7 @@ class _WORKSPACE extends Dir
                 if ($err == "-") $err = "";
                 if ($err == "") {
                     /**
-                     * @var $gw _IGROUP
+                     * @var $gw IGROUP
                      */
                     $gw = new_doc($this->dbaccess, "GWORKSPACE");
                     
@@ -103,22 +101,22 @@ class _WORKSPACE extends Dir
             if ($err == "") {
                 // create 2 profil
                 $pdoc = createDoc($this->dbaccess, "PDOC", false);
-                $pdoc->setValue("ba_title", sprintf(_("%s files") , $ref));
-                $pdoc->setValue("prf_desc", sprintf(_("default profile for [ADOC %d] - %s - space files") , $this->id, $ref));
+                $pdoc->setValue(Attribute\PDoc::ba_title, sprintf(_("%s files") , $ref));
+                $pdoc->setValue(Attribute\PDoc::prf_desc, sprintf(_("default profile for [ADOC %d] - %s - space files") , $this->id, $ref));
                 $err = $pdoc->Add();
                 $pfld = null;
                 if ($err == "") {
                     $pfld = createDoc($this->dbaccess, "PDIR", false);
-                    $pfld->setValue("ba_title", sprintf(_("%s directories") , $ref));
-                    $pfld->setValue("prf_desc", sprintf(_("default profile for [ADOC %d] - %s - space directories") , $this->id, $ref));
+                    $pfld->setValue(Attribute\PDir::ba_title, sprintf(_("%s directories") , $ref));
+                    $pfld->setValue(Attribute\PDir::prf_desc, sprintf(_("default profile for [ADOC %d] - %s - space directories") , $this->id, $ref));
                     $err = $pfld->Add();
                 }
                 if ($err == "") {
                     // affect default profil sor space
-                    $this->setValue("fld_pdocid", $pdoc->id);
-                    $this->setValue("fld_pdoc", $pdoc->title);
-                    $this->setValue("fld_pdirid", $pfld->id);
-                    $this->setValue("fld_pdir", $pfld->title);
+                    $this->setValue(myAttribute::fld_pdocid, $pdoc->id);
+                    $this->setValue(myAttribute::fld_pdoc, $pdoc->title);
+                    $this->setValue(myAttribute::fld_pdirid, $pfld->id);
+                    $this->setValue(myAttribute::fld_pdir, $pfld->title);
                 }
                 // affect acls in profil
                 if ($err == "") {
@@ -149,10 +147,10 @@ class _WORKSPACE extends Dir
         if ($err == "") {
             // create this own profil
             $pspace = createDoc($this->dbaccess, "PDIR", false);
-            $pspace->setValue("ba_title", sprintf(_("%s workspace profile") , $ref));
-            $pspace->setValue("prf_desc", sprintf(_("workspace profile for [ADOC %d] - %s - space files") , $this->id, $ref));
-            $pspace->setValue("dpdoc_famid", $this->fromid);
-            $pspace->setValue("dpdoc_fam", $this->getTitle($this->fromid));
+            $pspace->setValue(Attribute\PDir::ba_title, sprintf(_("%s workspace profile") , $ref));
+            $pspace->setValue(Attribute\PDir::prf_desc, sprintf(_("workspace profile for [ADOC %d] - %s - space files") , $this->id, $ref));
+            $pspace->setValue(Attribute\PDir::dpdoc_famid, $this->fromid);
+            $pspace->setValue(Attribute\PDir::dpdoc_fam, $this->getTitle($this->fromid));
             $err = $pspace->Add();
             if ($err == "") {
                 $pspace->setControl(false);
@@ -179,8 +177,8 @@ class _WORKSPACE extends Dir
             }
             
             $pigroup = createDoc($this->dbaccess, "PDIR", false);
-            $pigroup->setValue("ba_title", sprintf(_("%s group profile") , $ref));
-            $pigroup->setValue("prf_desc", sprintf(_("intranet group profile for [ADOC %d] - %s - space files") , $this->id, $ref));
+            $pigroup->setValue(Attribute\PDir::ba_title, sprintf(_("%s group profile") , $ref));
+            $pigroup->setValue(Attribute\PDir::prf_desc, sprintf(_("intranet group profile for [ADOC %d] - %s - space files") , $this->id, $ref));
             $pigroup->name = $this->getProfilGroupName();
             $err = $pigroup->Add();
             if ($err == "") {
@@ -212,9 +210,9 @@ class _WORKSPACE extends Dir
             $p->addControl("GWSPADMIN", "delete");
             $p->addControl("GWSPADMIN", "viewacl");
             $p->addControl("GWSPADMIN", "modifyacl");
-            $idadmin = $this->getRawValue("wsp_idadmin");
+            $idadmin = $this->getRawValue(myAttribute::wsp_idadmin);
             $ua = new_doc($this->dbaccess, $idadmin);
-            $uida = $ua->getRawValue("us_whatid");
+            $uida = $ua->getRawValue(Attribute\Iuser::us_whatid);
             if ($uida > 0) {
                 $p->addControl($uida, 'view');
                 $p->addControl($uida, 'edit');
@@ -264,13 +262,13 @@ class _WORKSPACE extends Dir
         if ($g->isAlive()) $err = $g->delete();
         if ($err) return $err;
         // delete profile
-        $pid = $this->getRawValue("fld_pdocid");
+        $pid = $this->getRawValue(myAttribute::fld_pdocid);
         if ($pid) {
             $pdoc = new_doc($this->dbaccess, $pid);
             if ($pdoc->isAlive()) $err = $pdoc->delete();
             if ($err) return $err;
         }
-        $pid = $this->getRawValue("fld_pdirid");
+        $pid = $this->getRawValue(myAttribute::fld_pdirid);
         if ($pid) {
             $pdoc = new_doc($this->dbaccess, $pid);
             if ($pdoc->isAlive()) $err = $pdoc->delete();
@@ -289,8 +287,8 @@ class _WORKSPACE extends Dir
         $gename = $this->getEditGroupName();
         $gvname = $this->getViewGroupName();
         /**
-         * @var _IGROUP $ge
-         * @var _IGROUP $gv
+         * @var IGROUP $ge
+         * @var IGROUP $gv
          */
         $ge = new_doc($this->dbaccess, $gename);
         $gv = new_doc($this->dbaccess, $gvname);
@@ -326,11 +324,25 @@ class _WORKSPACE extends Dir
             }
         }
         
-        $fi = $this->getRawValue("wsp_idadmin");
-        $fiold = $this->getOldRawValue("wsp_idadmin");
+        $fi = $this->getRawValue(myAttribute::wsp_idadmin);
+        $fiold = $this->getOldRawValue(myAttribute::wsp_idadmin);
         
         if (($fiold !== false) && ($fi != $fiold)) $this->recomputeIGroupProfil();
         return '';
+    }
+    /**
+     * @param Igroup $igroup
+     * @return array
+     */
+    private function getMembersOfIGroup(Igroup & $igroup)
+    {
+        $account = $igroup->getAccount();
+        $userList = $account->getAllMembers();
+        foreach ($userList as & $user) {
+            $user['title'] = htmlspecialchars(trim($user['lastname'] . " " . $user['firstname']));
+        }
+        unset($user);
+        return $userList;
     }
     /**
      * @templateController
@@ -341,32 +353,33 @@ class _WORKSPACE extends Dir
         $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDC/Layout/inserthtml.js");
         $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/WORKSPACE/Layout/adminworkspace.js");
         $this->editattr();
-        
+        /**
+         * @var \Dcp\Family\Igroup $gv
+         * @var \Dcp\Family\Igroup $ge
+         */
         $gv = new_doc($this->dbaccess, $this->getViewGroupName());
         $ge = new_doc($this->dbaccess, $this->getEditGroupName());
         
         if ($gv->isAlive()) {
-            $tuvid = $gv->getMultipleRawValues("grp_idruser");
-            $tuv = $gv->getMultipleRawValues("grp_ruser");
             $tmv = array();
-            foreach ($tuvid as $k => $v) {
-                $tmv[$v] = array(
-                    "name" => $tuv[$k],
-                    "iduser" => $v,
-                    "viewselected" => "selected",
-                    "editselected" => ""
+            $userList = $this->getMembersOfIGroup($gv);
+            foreach ($userList as $user) {
+                $tmv[$user['id']] = array(
+                    'name' => $user['title'],
+                    'iduser' => $user['fid'],
+                    'viewselected' => 'selected',
+                    'editselected' => ''
                 );
             }
             
             if ($ge->isAlive()) {
-                $tuvid = $ge->getMultipleRawValues("grp_idruser");
-                $tuv = $ge->getMultipleRawValues("grp_ruser");
-                foreach ($tuvid as $k => $v) {
-                    $tmv[$v] = array(
-                        "name" => $tuv[$k],
-                        "iduser" => $v,
-                        "viewselected" => "",
-                        "editselected" => "selected"
+                $userList = $this->getMembersOfIGroup($ge);
+                foreach ($userList as $user) {
+                    $tmv[$user['id']] = array(
+                        'name' => $user['title'],
+                        'iduser' => $user['fid'],
+                        'viewselected' => '',
+                        'editselected' => 'selected'
                     );
                 }
             }
@@ -398,12 +411,4 @@ class _WORKSPACE extends Dir
         
         $this->lay->set("icon", $this->getIcon());
     }
-    /**
-     * @begin-method-ignore
-     * this part will be deleted when construct document class until end-method-ignore
-     */
 }
-/*
- * @end-method-ignore
-*/
-?>

@@ -6,15 +6,15 @@
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
 */
-/**
- * @begin-method-ignore
- * this part will be deleted when construct document class until end-method-ignore
- */
-Class _SIMPLEFILE extends Doc
+
+namespace Dcp\Workspace;
+
+use \Dcp\AttributeIdentifiers\SimpleFile as myAttribute;
+use \Dcp\AttributeIdentifiers as Attribute;
+use \Dcp\Family\Document;
+
+Class SimpleFile extends Document
 {
-    /*
-     * @end-method-ignore
-    */
     
     var $defaultview = "WORKSPACE:VIEWSIMPLEFILE:T";
     var $defaultmview = "WORKSPACE:MAILSIMPLEFILE:T";
@@ -24,13 +24,13 @@ Class _SIMPLEFILE extends Doc
     {
         $this->computeMime();
         /*
-        $fi=$this->getRawValue("sfi_file");
-        $fiold=$this->getOldValue("sfi_file");
+        $fi=$this->getRawValue(myAttribute::sfi_file);
+        $fiold=$this->getOldValue(myAttribute::sfi_file);
         if (($fiold !== false) && ($fi != $fiold))  $this->computeThumbnail();
         */
         
-        $fi = $this->getRawValue("sfi_inedition");
-        $fiold = $this->getOldRawValue("sfi_inedition");
+        $fi = $this->getRawValue(myAttribute::sfi_inedition);
+        $fiold = $this->getOldRawValue(myAttribute::sfi_inedition);
         
         if (($fi == 0) && ($fiold == 1)) {
             $err = $this->unlock(); // auto unlock in not in edition mode
@@ -39,7 +39,7 @@ Class _SIMPLEFILE extends Doc
                 $action->AddActionDone("UNLOCKDOC", $this->id);
             }
         }
-        $this->setValue("sfi_page", 0); // to be recomputed
+        $this->setValue(myAttribute::sfi_pages, 0); // to be recomputed
         
     }
     /**
@@ -48,13 +48,13 @@ Class _SIMPLEFILE extends Doc
     function postDuplicate(&$copyfrom)
     {
         
-        $f = $this->getRawValue("sfi_file");
+        $f = $this->getRawValue(myAttribute::sfi_file);
         if ($f) {
-            $this->setValue("sfi_file", $this->copyFile("sfi_file"));
+            $this->setValue(myAttribute::sfi_file, $this->copyFile(myAttribute::sfi_file));
             $this->modify();
         }
         
-        $this->clearValue('sfi_inedition');
+        $this->clearValue(myAttribute::sfi_inedition);
         $err = $this->modify();
         
         return $err;
@@ -64,7 +64,7 @@ Class _SIMPLEFILE extends Doc
      */
     function renameCopy()
     {
-        $f = $this->getRawValue("sfi_file");
+        $f = $this->getRawValue(myAttribute::sfi_file);
         if ($f) {
             if (preg_match(PREGEXPFILE, $f, $reg)) {
                 $vf = newFreeVaultFile($this->dbaccess);
@@ -88,7 +88,7 @@ Class _SIMPLEFILE extends Doc
     {
         $this->computeFileSize();
         //$this->setnumberpagePDF();
-        //  if ($this->getRawValue("sfi_thumb")=="")   $this->computeThumbnail();
+        //  if ($this->getRawValue(myAttribute::sfi_thumb)=="")   $this->computeThumbnail();
         
     }
     /**
@@ -97,7 +97,7 @@ Class _SIMPLEFILE extends Doc
      */
     function canThumbnail()
     {
-        $mime = $this->getRawValue("sfi_mimesys");
+        $mime = $this->getRawValue(myAttribute::sfi_mimesys);
         $mimebase = '';
         if (preg_match("|(.*)/(.*)|", $mime, $reg)) {
             $mimebase = $reg[1];
@@ -136,7 +136,7 @@ Class _SIMPLEFILE extends Doc
     
     function computeThumbnail()
     {
-        $f = $this->getRawValue("sfi_file");
+        $f = $this->getRawValue(myAttribute::sfi_file);
         if ($f) {
             if (preg_match(PREGEXPFILE, $f, $reg)) {
                 $vf = newFreeVaultFile($this->dbaccess);
@@ -159,9 +159,9 @@ Class _SIMPLEFILE extends Doc
                                 $err = $vf->Store($cible, false, $vid);
                                 
                                 $ft = "image/png|$vid";
-                                $this->setValue("sfi_thumb", $ft);
+                                $this->setValue(myAttribute::sfi_thumb, $ft);
                                 $this->modify(true, array(
-                                    "sfi_thumb"
+                                    myAttribute::sfi_thumb
                                 ) , true);
                                 unlink($cible);
                             }
@@ -185,9 +185,9 @@ Class _SIMPLEFILE extends Doc
                                     $err = $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid";
-                                    $this->setValue("sfi_thumb", $ft);
+                                    $this->setValue(myAttribute::sfi_thumb, $ft);
                                     $this->modify(true, array(
-                                        "sfi_thumb"
+                                        myAttribute::sfi_thumb
                                     ) , true);
                                     unlink($cible);
                                 }
@@ -213,9 +213,9 @@ Class _SIMPLEFILE extends Doc
                                     $err = $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid";
-                                    $this->setValue("sfi_thumb", $ft);
+                                    $this->setValue(myAttribute::sfi_thumb, $ft);
                                     $this->modify(true, array(
-                                        "sfi_thumb"
+                                        myAttribute::sfi_thumb
                                     ) , true);
                                     unlink($cible);
                                 }
@@ -244,9 +244,9 @@ Class _SIMPLEFILE extends Doc
                                     $err = $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid|thumbnail.png";
-                                    $this->setValue("sfi_thumb", $ft);
+                                    $this->setValue(myAttribute::sfi_thumb, $ft);
                                     $this->modify(true, array(
-                                        "sfi_thumb"
+                                        myAttribute::sfi_thumb
                                     ) , true);
                                     unlink($cible);
                                 }
@@ -267,26 +267,26 @@ Class _SIMPLEFILE extends Doc
     function computeMime()
     {
         static $vf;
-        $f = $this->getRawValue("sfi_file");
+        $f = $this->getRawValue(myAttribute::sfi_file);
         if ($f) {
             if (preg_match(PREGEXPFILE, $f, $reg)) {
                 if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
                 if ($vf->Show($reg[2], $info) == "") {
                     include_once ("WHAT/Lib.FileMime.php");
                     
-                    $this->setValue("sfi_mimetxt", getTextMimeFile($info->path));
-                    $short = strtok($this->getRawValue("sfi_mimetxt") , ",");
-                    if (!$short) $short = $this->getRawValue("sfi_mimetxt");
-                    $this->setValue("sfi_mimetxtshort", $short);
-                    $this->setValue("sfi_mimesys", getSysMimeFile($info->path, $info->name));
-                    $this->setValue("sfi_title", $info->name);
-                    $this->setValue("sfi_filesize", $info->size);
+                    $this->setValue(myAttribute::sfi_mimetxt, getTextMimeFile($info->path));
+                    $short = strtok($this->getRawValue(myAttribute::sfi_mimetxt) , ",");
+                    if (!$short) $short = $this->getRawValue(myAttribute::sfi_mimetxt);
+                    $this->setValue(myAttribute::sfi_mimetxtshort, $short);
+                    $this->setValue(myAttribute::sfi_mimesys, getSysMimeFile($info->path, $info->name));
+                    $this->setValue(myAttribute::sfi_title, $info->name);
+                    $this->setValue(myAttribute::sfi_filesize, $info->size);
                     
-                    $mime = $this->getRawValue("sfi_mimesys");
+                    $mime = $this->getRawValue(myAttribute::sfi_mimesys);
                     
                     $icon = getIconMimeFile($mime);
                     if ($icon) {
-                        $this->setValue("sfi_mimeicon", $icon);
+                        $this->setValue(myAttribute::sfi_mimeicon, $icon);
                         $this->icon = $icon;
                     } else {
                         $fdoc = $this->getFamilyDocument();
@@ -302,13 +302,13 @@ Class _SIMPLEFILE extends Doc
     function computeFileSize()
     {
         static $vf;
-        $f = $this->getRawValue("sfi_file");
+        $f = $this->getRawValue(myAttribute::sfi_file);
         if ($f) {
             if (preg_match(PREGEXPFILE, $f, $reg)) {
                 if (!$vf) $vf = newFreeVaultFile($this->dbaccess);
                 if ($vf->Show($reg[2], $info) == "") {
                     include_once ("WHAT/Lib.FileMime.php");
-                    $this->setValue("sfi_filesize", $info->size);
+                    $this->setValue(myAttribute::sfi_filesize, $info->size);
                 }
             }
         }
@@ -334,20 +334,20 @@ Class _SIMPLEFILE extends Doc
     {
         $this->viewdefaultcard($target, $ulink, $abstract);
         
-        $istext = preg_match("/text/", $this->getRawValue("sfi_mimesys"));
+        $istext = preg_match("/text/", $this->getRawValue(myAttribute::sfi_mimesys));
         $this->lay->set("isimg", false);
         $this->lay->set("istext", $istext);
         if ($istext) {
             
             $err = $this->getTextValueFromFile("sfi_file", $text);
             
-            if (preg_match("|text/html|", $this->getRawValue("sfi_mimesys"))) {
+            if (preg_match("|text/html|", $this->getRawValue(myAttribute::sfi_mimesys))) {
                 $this->lay->set("filecontent", $text);
             } else {
                 $this->lay->set("filecontent", nl2br(htmlentities($text)));
             }
         } else {
-            $isimg = preg_match("/image/", $this->getRawValue("sfi_mimesys"));
+            $isimg = preg_match("/image/", $this->getRawValue(myAttribute::sfi_mimesys));
             $this->lay->set("isimg", $isimg);
         }
     }
@@ -380,7 +380,8 @@ Class _SIMPLEFILE extends Doc
         elseif ($this->locked == 0) $this->lay->set("thelocker", _("nobody"));
         else {
             $uid = abs($this->locked);
-            $u = new User("", $uid);
+            // $u = new User("", $uid);
+            $u = new \Account("", $uid);
             if ($u->isAffected()) {
                 $this->lay->set("thelocker", sprintf("%s %s", $u->firstname, $u->lastname));
             } else {
@@ -392,7 +393,7 @@ Class _SIMPLEFILE extends Doc
             $this->lay->set("theallocate", $this->lay->get("thelocker"));
         } else {
             if ($auid > 0) {
-                $u = new User("", $auid);
+                $u = new \Account("", $auid);
                 if ($u->isAffected()) {
                     $this->lay->set("theallocate", sprintf("%s %s", $u->firstname, $u->lastname));
                 } else {
@@ -401,7 +402,7 @@ Class _SIMPLEFILE extends Doc
             }
         }
         
-        $size = $this->getRawValue("sfi_filesize");
+        $size = $this->getRawValue(myAttribute::sfi_filesize);
         if ($size < 0) $dsize = "";
         else if ($size < 1024) $dsize = sprintf(_("ws %d bytes") , $size);
         else if ($size < 1048576) $dsize = sprintf(_("%d kb") , $size / 1024);
@@ -443,44 +444,44 @@ Class _SIMPLEFILE extends Doc
         $this->lay->set("todo", "");
         $uid = abs($this->locked);
         if (($uid > 0) && ($uid != $this->userid)) {
-            $u = new User("", $uid);
+            $u = new \Account("", $uid);
             $this->lay->set("locker", sprintf(_("locked by %s %s") , $u->firstname, $u->lastname));
         }
         $todo = $this->getUTag("AFFECTED");
         if ($todo) {
             $this->lay->set("todo", nl2br($todo->comment));
         }
-        $thetitle = $this->getRawValue("sfi_titlew");
+        $thetitle = $this->getRawValue(myAttribute::sfi_titlew);
         if ($thetitle == "") $thetitle = sprintf(_("No title"));
         $this->lay->set("thetitle", $thetitle);
         
-        $size = $this->getRawValue("sfi_filesize");
+        $size = $this->getRawValue(myAttribute::sfi_filesize);
         if ($size < 0) $dsize = "";
         else if ($size < 1024) $dsize = sprintf(_("ws %d bytes") , $size);
         else if ($size < 1048576) $dsize = sprintf(_("%d kb") , $size / 1024);
         else $dsize = sprintf(_("%.01f Mb") , $size / 1048576);
         $this->lay->set("dsize", $dsize);
-        $this->lay->set("thumb", ($this->getRawValue("sfi_thumb") != ""));
+        $this->lay->set("thumb", ($this->getRawValue(myAttribute::sfi_thumb) != ""));
         $this->lay->set("istext", false);
-        $this->lay->set("ishtml", $this->getRawValue("sfi_mimesys") == "text/html");
-        $this->lay->set("haspdf", (($this->getRawValue("sfi_pdffile") != "") && (preg_match("|application/pdf|", $this->getRawValue("sfi_pdffile")))));
+        $this->lay->set("ishtml", $this->getRawValue(myAttribute::sfi_mimesys) == "text/html");
+        $this->lay->set("haspdf", (($this->getRawValue(myAttribute::sfi_pdffile) != "") && (preg_match("|application/pdf|", $this->getRawValue(myAttribute::sfi_pdffile)))));
         
         $this->lay->set("canusereader", false);
         if ($this->lay->get("haspdf")) {
             $this->lay->set("canusereader", true);
-        } else if (preg_match('/^(text|image)/', $this->getRawValue("sfi_mimesys"))) {
+        } else if (preg_match('/^(text|image)/', $this->getRawValue(myAttribute::sfi_mimesys))) {
             $this->lay->set("canusereader", true);
         }
-        if (!$this->lay->get("ishtml")) $this->lay->set("istext", preg_match('|^text/|', $this->getRawValue("sfi_mimesys")));
+        if (!$this->lay->get("ishtml")) $this->lay->set("istext", preg_match('|^text/|', $this->getRawValue(myAttribute::sfi_mimesys)));
         
-        $this->lay->set("canedithtml", (preg_match('|^text/|', $this->getRawValue("sfi_mimesys")) && ($this->getRawValue('sfi_inedition') != 1)));
+        $this->lay->set("canedithtml", (preg_match('|^text/|', $this->getRawValue(myAttribute::sfi_mimesys)) && ($this->getRawValue(myAttribute::sfi_inedition) != 1)));
         
         $this->lay->set("isinedition", ($this->fileIsInEdition() == MENU_ACTIVE));
         $this->lay->set("isnotinedition", ($this->fileIsNotInEdition() == MENU_ACTIVE));
         $this->lay->set("canedit", ($this->canEdit() == ""));
         $this->lay->set("canversionned", ($this->canVersionned() == MENU_ACTIVE));
-        //$this->lay->set("ishtml",ereg("html|plain",$this->getRawValue("sfi_mimesys")));
-        $this->lay->set("isinline", preg_match("=html|image|plain|text/xml=", $this->getRawValue("sfi_mimesys")));
+        //$this->lay->set("ishtml",ereg("html|plain",$this->getRawValue(myAttribute::sfi_mimesys)));
+        $this->lay->set("isinline", preg_match("=html|image|plain|text/xml=", $this->getRawValue(myAttribute::sfi_mimesys)));
         $this->lay->set("ETITLE", str_replace("'", "\'", $this->title));
         
         $this->lay->set("thumbrecompute", $this->canThumbnail());
@@ -497,11 +498,11 @@ Class _SIMPLEFILE extends Doc
         $this->lay->set("participate", implode(", ", $parti));
         $this->lay->set("thestate", $this->getState());
         $this->lay->set("stateid", ($this->state) ? $this->state : false);
-        $this->lay->set("viewabstract", (($this->getRawValue('sfi_description') != "") && ($this->getRawValue('sfi_thumb') == "")));
+        $this->lay->set("viewabstract", (($this->getRawValue(myAttribute::sfi_description) != "") && ($this->getRawValue(myAttribute::sfi_thumb) == "")));
         
         $dstate = new_doc($this->dbaccess, $this->state);
-        $this->lay->set("thestatedesc", nl2br($dstate->getRawValue("frst_desc")));
-        $fvalue = $this->getRawValue("sfi_file");
+        $this->lay->set("thestatedesc", nl2br($dstate->getRawValue(Attribute\Freestate::frst_desc)));
+        $fvalue = $this->getRawValue(myAttribute::sfi_file);
         
         if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
             $vaultid = $reg[2];
@@ -516,9 +517,9 @@ Class _SIMPLEFILE extends Doc
     {
         global $action;
         /**
-         * @var NormalAttribute $a
+         * @var \NormalAttribute $a
          */
-        $a = $this->getAttribute("sfi_titlew");
+        $a = $this->getAttribute(myAttribute::sfi_titlew);
         $a->needed = "Y";
         
         $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/ckeditor/ckeditor.js");
@@ -532,8 +533,8 @@ Class _SIMPLEFILE extends Doc
         $err = '';
         $html = getHttpVars("wscreatefile");
         
-        if (($this->getRawValue("sfi_file") == "") && $html) {
-            $err = $this->SetTextValueInFile("sfi_file", $html, $this->getRawValue("sfi_titlew") . ".html");
+        if (($this->getRawValue(myAttribute::sfi_file) == "") && $html) {
+            $err = $this->SetTextValueInFile(myAttribute::sfi_file, $html, $this->getRawValue(myAttribute::sfi_titlew) . ".html");
             if ($err == "") $err = $this->modify();
         }
         return $err;
@@ -546,7 +547,7 @@ Class _SIMPLEFILE extends Doc
     {
         if ($this->CanEdit() != "") return MENU_INVISIBLE;
         
-        if ($this->getRawValue('sfi_inedition') == 1) return MENU_ACTIVE;
+        if ($this->getRawValue(myAttribute::sfi_inedition) == 1) return MENU_ACTIVE;
         else return MENU_INVISIBLE;
     }
     /**
@@ -564,8 +565,8 @@ Class _SIMPLEFILE extends Doc
     function canVersionned()
     {
         if ($this->CanEdit() != "") return MENU_INACTIVE;
-        if ($this->getRawValue('sfi_version') == "") return MENU_INVISIBLE;
-        if ($this->getRawValue('sfi_inedition') == 1) return MENU_INACTIVE;
+        if ($this->getRawValue(myAttribute::sfi_version) == "") return MENU_INVISIBLE;
+        if ($this->getRawValue(myAttribute::sfi_inedition) == 1) return MENU_INACTIVE;
         return MENU_ACTIVE;
     }
     /**
@@ -635,12 +636,12 @@ Class _SIMPLEFILE extends Doc
     
     function hasPDF()
     {
-        return (($this->getRawValue("sfi_pdffile") != "") && (preg_match("|application/pdf|", $this->getRawValue("sfi_pdffile"))));
+        return (($this->getRawValue(myAttribute::sfi_pdffile) != "") && (preg_match("|application/pdf|", $this->getRawValue(myAttribute::sfi_pdffile))));
     }
     function setnumberpagePDF()
     {
-        if ($this->hasPDF() && (!$this->getRawValue("sfi_pages"))) {
-            $pdffile = $this->getRawValue("sfi_pdffile");
+        if ($this->hasPDF() && (!$this->getRawValue(myAttribute::sfi_pages))) {
+            $pdffile = $this->getRawValue(myAttribute::sfi_pdffile);
             if (preg_match(PREGEXPFILE, $pdffile, $reg)) {
                 $vf = newFreeVaultFile($this->dbaccess);
                 if ($vf->Show($reg[2], $info) == "") {
@@ -650,12 +651,4 @@ Class _SIMPLEFILE extends Doc
         }
         return "";
     }
-    /**
-     * @begin-method-ignore
-     * this part will be deleted when construct document class until end-method-ignore
-     */
 }
-/*
- * @end-method-ignore
-*/
-?>
