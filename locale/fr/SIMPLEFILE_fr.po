@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SIMPLEFILE \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2013-07-30T09:50:19+02:00\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_description"
+msgstr "résumé"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_file"
+msgstr "fichier"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_filesize"
+msgstr "taille"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_fr_file"
+msgstr "Cadre fichier"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_frdesc"
+msgstr "Description"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_inedition"
+msgstr "fichier en édition ?"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_keyword"
+msgstr "mots-clés"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_mimeicon"
+msgstr "icone"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_mimesys"
+msgstr "type système"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_mimetxt"
+msgstr "type"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_mimetxtshort"
+msgstr "type court"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_pages"
+msgstr "nombre de pages"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_pdffile"
+msgstr "PDF"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_subject"
+msgstr "sujet"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_tab_desc"
+msgstr "Description"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_tab_file"
+msgstr "fichier"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_thumb"
+msgstr "miniature"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_title"
+msgstr "nom du fichier"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_titlew"
+msgstr "titre"
+
+#: workspace.ods.csv
+#, fuzzy
+msgid "SIMPLEFILE#sfi_version"
+msgstr "version"
+
+#, fuzzy
+msgid "SIMPLEFILE#title"
+msgstr "fichier"

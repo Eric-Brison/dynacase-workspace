@@ -5,7 +5,6 @@ PACKAGE = @PACKAGE@
 VERSION = @VERSION@
 utildir=@PUBRULE@
 appname = @APPNAME@
-applib=FDL
 pubdir = @prefix@
 srcdir = @srcdir@
 
@@ -16,12 +15,19 @@ GZIP_ENV = --best
 
 export targetdir PACKAGE
 
-SUBDIR=  Class Actions Zone Css Images Doc Admin
+SUBDIR=  Class Actions Zone Css Images Doc Admin locale
 
 pages_not_xml = info.xml
 pages_not_php=fam2po.php po2js.php
 
+.PHONY : webinst-services webinst clean stub
+
+STUB = Class/stubWorkspaceFamilies.php
+STUB_ODS = workspace.ods
+
 include $(utildir)/PubRule
+
+TRANSODS = workspace.ods
 
 DISTFILES += $(SUBDIR) \
             RELEASE VERSION   workspace.ods
@@ -32,6 +38,12 @@ webinst-services:
 
 webinst: webinst-services
 
+Class/stub%Families.php: ${STUB_ODS}
+	php ${utildir}/genStubFamilyClass.php ${STUB_ODS} > $@
+
+stub: ${STUB}
+
 clean:
 	/bin/rm -f *.*~ config.* Makefile configure $(appname)_init.php info.xml $(PACKAGE)-*webinst Services/info.xml Admin/WORKSPACEADMIN_init.php
 	/bin/rm -fr autom4te.cache
+

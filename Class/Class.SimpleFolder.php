@@ -4,16 +4,12 @@
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
 */
-/**
- * @begin-method-ignore
- * this part will be deleted when construct document class until end-method-ignore
- */
-Class _SIMPLEFOLDER extends Dir
+namespace Dcp\Workspace;
+
+use \Dcp\Family\Dir;
+
+Class SimpleFolder extends Dir
 {
-    /*
-     * @end-method-ignore
-    */
-    
     var $defaultview = "WORKSPACE:VIEWSIMPLEFOLDER:T";
     var $defaultedit = "WORKSPACE:EDITSIMPLEFOLDER";
     /**
@@ -39,12 +35,4 @@ Class _SIMPLEFOLDER extends Dir
     {
         $this->editattr();
     }
-    /**
-     * @begin-method-ignore
-     * this part will be deleted when construct document class until end-method-ignore
-     */
 }
-/*
- * @end-method-ignore
-*/
-?>

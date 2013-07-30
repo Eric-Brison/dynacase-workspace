@@ -32,7 +32,7 @@ function ws_copydoc(Action & $action)
     if (is_object($copy)) {
         $copy->refresh();
         if (method_exists($copy, "renameCopy")) $copy->renameCopy();
-        $copy->postmodify();
+        $copy->poststore();
         $err = $copy->modify();
     } else {
         
