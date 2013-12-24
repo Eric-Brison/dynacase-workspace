@@ -20,8 +20,4 @@
       <process command="./wsh.php --api=importDocuments --file=./WORKSPACE/workspace-services.ods" />
   </post-upgrade>
 
-  <changelog>
-
-  </changelog>
-
 </module>
