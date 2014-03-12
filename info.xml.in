@@ -8,7 +8,7 @@
   </replaces>
 
   <requires>
-    <module name="dynacase-core" comp="ge" version="3.2.10" />
+    <module name="dynacase-core" comp="ge" version="3.3.0" />
     <module name="dynacase-webdesk-ui" comp="ge" version="2.0.0" />
   </requires>
 
