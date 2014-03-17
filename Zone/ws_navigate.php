@@ -48,7 +48,7 @@ class ws_Navigate
     }
     /**
      * use predefined search object
-     * @param array $families
+     * @param SearchDoc $search
      */
     public function setGlobalSearch(SearchDoc $search)
     {
@@ -75,7 +75,7 @@ class ws_Navigate
     private function trashempty($userid)
     {
         $q = new QueryDb($this->action->dbaccess, "Doc");
-        $q->Query(0, 0, "TABLE", sprintf("select id from doc where doctype='Z' and owner=%d limit 1", $userid));
+        $q->Query(0, 0, "TABLE", sprintf("SELECT id FROM family.documents WHERE doctype = 'Z' AND owner = %d LIMIT 1", $userid));
         
         return ($q->nb == 0);
     }
@@ -189,7 +189,7 @@ class ws_Navigate
             // create "my space" folder
             
             /**
-             * @var _SIMPLEFOLDER $perso
+             * @var \Dcp\Family\SimpleFolder $perso
              */
             $perso = createDoc($dbaccess, "SIMPLEFOLDER", false);
             $perso->name = $homename;
@@ -225,7 +225,7 @@ class ws_Navigate
             $this->globalSearch = new SearchDoc($this->action->dbaccess);
         }
         /**
-         * @var _DSEARCH $ws
+         * @var \Dcp\Core\DetailSearch $ws
          */
         $ws = createTmpDoc($this->action->dbaccess, "DSEARCH");
         $ws->setValue("ba_title", sprintf(_("search %s") , "workspace"));
@@ -252,4 +252,3 @@ class ws_Navigate
         return $this->lay->gen();
     }
 }
-?>
