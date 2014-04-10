@@ -18,12 +18,13 @@ function ws_editaddversion(Action & $action)
 {
     $docid = $action->getArgument("id");
     
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/WORKSPACE/Layout/ws_editaddversion.js");
     $action->parent->AddJsRef($action->GetParam("CORE_PUBURL") . "/FDC/Layout/getdoc.js");
     
-    $doc = new_doc($dbaccess, $docid);
-    if (!$doc->isAlive()) $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null || !$doc->isAlive()) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     
     $err = $doc->lock(true); // autolock
     if ($err == "") $action->AddActionDone("LOCKDOC", $doc->id);
@@ -43,7 +44,7 @@ function ws_editaddversion(Action & $action)
     $tfree = $s->search();
     $tstate = array();
     if ($doc->wid == 0) {
-        foreach ($tfree as $k => $v) {
+        foreach ($tfree as $v) {
             $tstate[] = array(
                 "fstate" => $v["initid"],
                 "lstate" => $v["title"],

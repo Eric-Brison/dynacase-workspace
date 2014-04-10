@@ -66,8 +66,8 @@ class WorkSpace extends Dir
              * @var IGROUP $gv
              * @var IGROUP $ge
              */
-            $gv = createDoc($this->dbaccess, Igroup::familyName, false);
-            $ge = createDoc($this->dbaccess, Igroup::familyName, false);
+            $gv = \Dcp\DocManager::createDocument(Igroup::familyName, false);
+            $ge = \Dcp\DocManager::createDocument(Igroup::familyName, false);
             
             $gv->setValue(Attribute\Igroup::us_login, "gv." . $ref);
             $gv->setValue(Attribute\Igroup::grp_name, sprintf(_("%s readers") , $this->title));
@@ -90,9 +90,9 @@ class WorkSpace extends Dir
                     /**
                      * @var $gw IGROUP
                      */
-                    $gw = new_doc($this->dbaccess, "GWORKSPACE");
+                    $gw = \Dcp\DocManager::getDocument("GWORKSPACE");
                     
-                    if ($gw->isAlive()) {
+                    if ($gw !== null && $gw->isAlive()) {
                         $err = $gw->insertDocument($gv->id);
                         $err.= $gv->insertDocument($ge->id);
                     }
@@ -100,13 +100,13 @@ class WorkSpace extends Dir
             }
             if ($err == "") {
                 // create 2 profil
-                $pdoc = createDoc($this->dbaccess, "PDOC", false);
+                $pdoc = \Dcp\DocManager::createDocument("PDOC", false);
                 $pdoc->setValue(Attribute\PDoc::ba_title, sprintf(_("%s files") , $ref));
                 $pdoc->setValue(Attribute\PDoc::prf_desc, sprintf(_("default profile for [ADOC %d] - %s - space files") , $this->id, $ref));
                 $err = $pdoc->Add();
                 $pfld = null;
                 if ($err == "") {
-                    $pfld = createDoc($this->dbaccess, "PDIR", false);
+                    $pfld = \Dcp\DocManager::createDocument("PDIR", false);
                     $pfld->setValue(Attribute\PDir::ba_title, sprintf(_("%s directories") , $ref));
                     $pfld->setValue(Attribute\PDir::prf_desc, sprintf(_("default profile for [ADOC %d] - %s - space directories") , $this->id, $ref));
                     $err = $pfld->Add();
@@ -146,7 +146,7 @@ class WorkSpace extends Dir
         
         if ($err == "") {
             // create this own profil
-            $pspace = createDoc($this->dbaccess, "PDIR", false);
+            $pspace = \Dcp\DocManager::createDocument("PDIR", false);
             $pspace->setValue(Attribute\PDir::ba_title, sprintf(_("%s workspace profile") , $ref));
             $pspace->setValue(Attribute\PDir::prf_desc, sprintf(_("workspace profile for [ADOC %d] - %s - space files") , $this->id, $ref));
             $pspace->setValue(Attribute\PDir::dpdoc_famid, $this->fromid);
@@ -176,7 +176,7 @@ class WorkSpace extends Dir
                 ) , true);
             }
             
-            $pigroup = createDoc($this->dbaccess, "PDIR", false);
+            $pigroup = \Dcp\DocManager::createDocument("PDIR", false);
             $pigroup->setValue(Attribute\PDir::ba_title, sprintf(_("%s group profile") , $ref));
             $pigroup->setValue(Attribute\PDir::prf_desc, sprintf(_("intranet group profile for [ADOC %d] - %s - space files") , $this->id, $ref));
             $pigroup->name = $this->getProfilGroupName();
@@ -200,8 +200,8 @@ class WorkSpace extends Dir
     }
     function recomputeIGroupProfil()
     {
-        $p = new_doc($this->dbaccess, $this->getProfilGroupName());
-        if ($p->isAlive()) {
+        $p = \Dcp\DocManager::getDocument($this->getProfilGroupName());
+        if ($p !== null && $p->isAlive()) {
             $p->RemoveControl();
             $p->addControl("GWSPADMIN", "view");
             $p->addControl("GWSPADMIN", "edit");
@@ -211,8 +211,8 @@ class WorkSpace extends Dir
             $p->addControl("GWSPADMIN", "viewacl");
             $p->addControl("GWSPADMIN", "modifyacl");
             $idadmin = $this->getRawValue(myAttribute::wsp_idadmin);
-            $ua = new_doc($this->dbaccess, $idadmin);
-            $uida = $ua->getRawValue(Attribute\Iuser::us_whatid);
+            $ua = \Dcp\DocManager::getDocument($idadmin);
+            $uida = ($ua !== null ? $ua->getRawValue(Attribute\Iuser::us_whatid) : 0);
             if ($uida > 0) {
                 $p->addControl($uida, 'view');
                 $p->addControl($uida, 'edit');
@@ -254,25 +254,41 @@ class WorkSpace extends Dir
         $gvname = $this->getViewGroupName();
         // delete groups
         $err = '';
-        $g = new_doc($this->dbaccess, $gename);
-        if ($g->isAlive()) $err = $g->delete();
-        if ($err) return $err;
-        
-        $g = new_doc($this->dbaccess, $gvname);
-        if ($g->isAlive()) $err = $g->delete();
-        if ($err) return $err;
-        // delete profile
-        $pid = $this->getRawValue(myAttribute::fld_pdocid);
-        if ($pid) {
-            $pdoc = new_doc($this->dbaccess, $pid);
-            if ($pdoc->isAlive()) $err = $pdoc->delete();
-            if ($err) return $err;
+        $ge = \Dcp\DocManager::getDocument($gename);
+        if ($ge !== null && $ge->isAlive()) {
+            $err = $ge->delete();
         }
-        $pid = $this->getRawValue(myAttribute::fld_pdirid);
-        if ($pid) {
-            $pdoc = new_doc($this->dbaccess, $pid);
-            if ($pdoc->isAlive()) $err = $pdoc->delete();
-            if ($err) return $err;
+        if ($err) {
+            return $err;
+        }
+        
+        $gv = \Dcp\DocManager::getDocument($gvname);
+        if ($gv !== null && $gv->isAlive()) {
+            $err = $gv->delete();
+        }
+        if ($err) {
+            return $err;
+        }
+        // delete profile
+        $pdocid = $this->getRawValue(myAttribute::fld_pdocid);
+        if ($pdocid) {
+            $pdoc = \Dcp\DocManager::getDocument($pdocid);
+            if ($pdoc !== null && $pdoc->isAlive()) {
+                $err = $pdoc->delete();
+            }
+            if ($err) {
+                return $err;
+            }
+        }
+        $pdirid = $this->getRawValue(myAttribute::fld_pdirid);
+        if ($pdirid) {
+            $pdir = \Dcp\DocManager::getDocument($pdirid);
+            if ($pdir !== null && $pdir->isAlive()) {
+                $err = $pdir->delete();
+            }
+            if ($err) {
+                return $err;
+            }
         }
         return $err;
     }
@@ -290,8 +306,14 @@ class WorkSpace extends Dir
          * @var IGROUP $ge
          * @var IGROUP $gv
          */
-        $ge = new_doc($this->dbaccess, $gename);
-        $gv = new_doc($this->dbaccess, $gvname);
+        $ge = \Dcp\DocManager::getDocument($gename);
+        if ($ge === null) {
+            return sprintf(_("document %s does not exist") , $gename);
+        }
+        $gv = \Dcp\DocManager::getDocument($gvname);
+        if ($gv === null) {
+            return sprintf(_("document %s does not exist") , $gvname);
+        }
         
         $changes = getHttpVars("uchange");
         $uprofs = getHttpVars("uprof");
@@ -357,10 +379,10 @@ class WorkSpace extends Dir
          * @var \Dcp\Family\Igroup $gv
          * @var \Dcp\Family\Igroup $ge
          */
-        $gv = new_doc($this->dbaccess, $this->getViewGroupName());
-        $ge = new_doc($this->dbaccess, $this->getEditGroupName());
+        $gv = \Dcp\DocManager::getDocument($this->getViewGroupName());
+        $ge = \Dcp\DocManager::getDocument($this->getEditGroupName());
         
-        if ($gv->isAlive()) {
+        if ($gv !== null && $gv->isAlive()) {
             $tmv = array();
             $userList = $this->getMembersOfIGroup($gv);
             foreach ($userList as $user) {
@@ -372,7 +394,7 @@ class WorkSpace extends Dir
                 );
             }
             
-            if ($ge->isAlive()) {
+            if ($ge !== null && $ge->isAlive()) {
                 $userList = $this->getMembersOfIGroup($ge);
                 foreach ($userList as $user) {
                     $tmv[$user['id']] = array(
@@ -399,15 +421,15 @@ class WorkSpace extends Dir
         $this->viewdefaultcard($target, $ulink, $abstract);
         
         $gvname = $this->getViewGroupName();
-        $gv = new_doc($this->dbaccess, $gvname);
+        $gv = \Dcp\DocManager::getDocument($gvname);
         
         $gename = $this->getEditGroupName();
-        $ge = new_doc($this->dbaccess, $gename);
+        $ge = \Dcp\DocManager::getDocument($gename);
         
-        $this->lay->set("geid", $ge->id);
-        $this->lay->set("getitle", $ge->title);
-        $this->lay->set("gvid", $gv->id);
-        $this->lay->set("gvtitle", $gv->title);
+        $this->lay->set("geid", (isset($ge->id) ? $ge->id : ''));
+        $this->lay->set("getitle", (isset($ge->title) ? $ge->title : ''));
+        $this->lay->set("gvid", (isset($gv->id) ? $gv->id : ''));
+        $this->lay->set("gvtitle", (isset($gv->title) ? $gv->title : ''));
         
         $this->lay->set("icon", $this->getIcon());
     }

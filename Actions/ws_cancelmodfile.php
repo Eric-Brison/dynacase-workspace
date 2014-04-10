@@ -17,10 +17,9 @@ function ws_cancelmodfile(Action & $action)
 {
     
     $docid = $action->getArgument("id");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     $autoclose = ($action->getArgument("autoclose", "N") == "Y"); // close window after
-    $doc = new_doc($dbaccess, $docid);
-    if (!$doc->isAlive()) $action->exitError(sprintf(_("document %s does not exist") , $docid));
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null || !$doc->isAlive()) $action->exitError(sprintf(_("document %s does not exist") , $docid));
     
     if ($doc->getRawValue('sfi_inedition') != 1) $action->exitError(sprintf(_("document %s is not in edition") , $docid));
     
@@ -38,4 +37,3 @@ function ws_cancelmodfile(Action & $action)
     }
     if (!$autoclose) redirect($action, "FDL", "FDL_CARD&id=" . $doc->id, $action->GetParam("CORE_STANDURL"));
 }
-?>

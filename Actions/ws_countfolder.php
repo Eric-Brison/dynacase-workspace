@@ -22,15 +22,14 @@ function ws_countfolder(Action & $action)
     
     $mb = microtime();
     $docid = GetHttpVars("id");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
     $taction = array();
     /**
      * @var Dir $doc
      */
-    $doc = new_doc($dbaccess, $docid);
-    if ($doc->isAlive()) {
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc !== null && $doc->isAlive()) {
         $tc = $doc->getContent();
         $taction[] = array(
             "actname" => "RENAMEBRANCH",

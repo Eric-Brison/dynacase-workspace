@@ -20,16 +20,19 @@ function ws_renamefile(Action & $action)
     header('Content-type: text/xml; charset=utf-8');
     
     $mb = microtime();
-
+    
     $docid = GetHttpVars("id");
     $newname = GetHttpVars("newname");
     $dbaccess = $action->GetParam("FREEDOM_DB");
     $err = '';
     $action->lay->set("warning", "");
     
-    $doc = new_doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $err = sprintf(_("Document %s is not alive") , $docid);
+    }
     
-    $f = $doc->getRawValue("sfi_file");
+    $f = ($doc !== null) ? $doc->getRawValue("sfi_file") : '';
     if (!seems_utf8($newname)) $newname = utf8_encode($newname);
     
     if (preg_match(PREGEXPFILE, $f, $reg)) {

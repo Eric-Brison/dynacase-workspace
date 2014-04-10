@@ -21,6 +21,7 @@ function ws_addfldbranch(Action & $action)
 {
     header('Content-type: text/xml; charset=utf-8');
     
+    $err = '';
     $mb = microtime();
     $docid = GetHttpVars("id");
     $addid = GetHttpVars("addid");
@@ -33,56 +34,83 @@ function ws_addfldbranch(Action & $action)
     /**
      * @var Dir $doc
      */
-    $doc = new_doc($dbaccess, $docid);
-    $err = movementDocument($action, $dbaccess, $doc->id, $addid, $pdocid, $addft);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc !== null) {
+        \Dcp\DocManager::cache()->addDocument($doc);
+        $err = movementDocument($action, $dbaccess, $doc->id, $addid, $pdocid, $addft);
+    }
     if ($err) $action->lay->set("warning", $err);
     
-    $action->lay->set("pid", $doc->id);
+    $action->lay->set("pid", (($doc !== null) ? $doc->id : ''));
     $action->lay->set("CODE", "KO");
     $top = false;
     
     $tc = array();
-    if ($doc->isAlive()) {
+    if ($doc !== null && $doc->isAlive()) {
         if ($itself) {
             $ls = array();
-            $ls[$docid] = getTDoc($dbaccess, $docid);
+            $ls[$docid] = \Dcp\DocManager::getRawDocument($docid);
             /**
              * @var Dir $trash
              */
-            $trash = new_doc($dbaccess, "WS_MYTRASH");
-            $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-            $ls[$trash->id]["dropft"] = 'del';
-            $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-            
-            $trash = new_doc($dbaccess, "WS_MYTOVIEWDOC");
-            $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-            $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-            
-            $trash = new_doc($dbaccess, "WS_MYAFFECTDOC");
-            $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-            $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-            
-            $trash = new_doc($dbaccess, "WS_MYLOCKEDFILE");
-            $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-            $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-            
-            $trash = new_doc($dbaccess, $action->getParam("FREEDOM_IDBASKET"));
-            if (!$trash->isAlive()) {
+            $trash = \Dcp\DocManager::getDocument("WS_MYTRASH");
+            if ($trash !== null && $trash->isAlive()) {
+                \Dcp\DocManager::cache()->addDocument($trash);
+                $ls[$trash->id] = \Dcp\DocManager::getRawDocument($trash->id);
+                $ls[$trash->id]["dropft"] = 'del';
+                $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
+            }
+            /**
+             * @var Dir $mytoviewdoc
+             */
+            $mytoviewdoc = \Dcp\DocManager::getDocument("WS_MYTOVIEWDOC");
+            if ($mytoviewdoc !== null && $mytoviewdoc->isAlive()) {
+                \Dcp\DocManager::cache()->addDocument($mytoviewdoc);
+                $ls[$mytoviewdoc->id] = \Dcp\DocManager::getRawDocument($mytoviewdoc->id);
+                $ls[$mytoviewdoc->id]["title"].= "(" . count($mytoviewdoc->getContent()) . ")";
+            }
+            /**
+             * @var Dir $myaffectdoc
+             */
+            $myaffectdoc = \Dcp\DocManager::getDocument("WS_MYAFFECTDOC");
+            if ($myaffectdoc !== null && $myaffectdoc->isAlive()) {
+                \Dcp\DocManager::cache()->addDocument($myaffectdoc);
+                $ls[$myaffectdoc->id] = \Dcp\DocManager::getRawDocument($myaffectdoc->id);
+                $ls[$myaffectdoc->id]["title"].= "(" . count($myaffectdoc->getContent()) . ")";
+            }
+            /**
+             * @var Dir $mylockedfile
+             */
+            $mylockedfile = \Dcp\DocManager::getDocument("WS_MYLOCKEDFILE");
+            if ($mylockedfile !== null && $mylockedfile->isAlive()) {
+                \Dcp\DocManager::cache()->addDocument($mylockedfile);
+                $ls[$mylockedfile->id] = \Dcp\DocManager::getRawDocument($mylockedfile->id);
+                $ls[$mylockedfile->id]["title"].= "(" . count($mylockedfile->getContent()) . ")";
+            }
+            /**
+             * @var Dir $basket
+             */
+            $basket = \Dcp\DocManager::getDocument($action->getParam("FREEDOM_IDBASKET"));
+            if ($basket === null || !$basket->isAlive()) {
                 /**
                  * @var Dir $fld
                  */
-                $fld = createTmpDoc($dbaccess, "DIR");
-                $trash = $fld->getHome();
+                $fld = \Dcp\DocManager::createTemporaryDocument("DIR");
+                $basket = $fld->getHome();
             }
-            $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-            $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-            $ls[$trash->id]["dropft"] = 'shortcut';
-            
-            $trash = new_doc($dbaccess, 'FLDOFFLINE_' . $action->user->id);
-            if ($trash->isAlive()) {
-                $ls[$trash->id] = getTDoc($dbaccess, $trash->id);
-                $ls[$trash->id]["title"].= "(" . count($trash->getContent()) . ")";
-                $ls[$trash->id]["dropft"] = 'shortcut';
+            \Dcp\DocManager::cache()->addDocument($basket);
+            $ls[$basket->id] = \Dcp\DocManager::getRawDocument($basket->id);
+            $ls[$basket->id]["title"].= "(" . count($basket->getContent()) . ")";
+            $ls[$basket->id]["dropft"] = 'shortcut';
+            /**
+             * @var Dir $offline
+             */
+            $offline = \Dcp\DocManager::getDocument('FLDOFFLINE_' . $action->user->id);
+            if ($offline !== null && $offline->isAlive()) {
+                \Dcp\DocManager::cache()->addDocument($offline);
+                $ls[$offline->id] = \Dcp\DocManager::getRawDocument($offline->id);
+                $ls[$offline->id]["title"].= "(" . count($offline->getContent()) . ")";
+                $ls[$offline->id]["dropft"] = 'shortcut';
             }
             $top = true; // to not see link in top view
             
@@ -93,7 +121,7 @@ function ws_addfldbranch(Action & $action)
             uasort($ls, "titlesort");
         }
         
-        foreach ($ls as $k => $v) {
+        foreach ($ls as $v) {
             $tc[] = array(
                 "title" => ucfirst($v["title"]) ,
                 "id" => $v["id"],
@@ -128,4 +156,3 @@ function titlesort($a, $b)
 {
     return strcasecmp($a["title"], $b["title"]);
 }
-?>

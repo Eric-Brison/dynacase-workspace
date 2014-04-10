@@ -16,16 +16,15 @@ include_once ("FDL/Lib.Dir.php");
  */
 function ws_addversion(Action & $action)
 {
-    
     $docid = $action->getArgument("id");
     $newversion = $action->getArgument("newversion");
     $newcomment = $action->getArgument("comversion");
     $newstate = $action->getArgument("newstate");
     $autoclose = ($action->getArgument("autoclose", "N") == "Y"); // close window after
-    $dbaccess = $action->GetParam("FREEDOM_DB");
-    
-    $doc = new_doc($dbaccess, $docid);
-    if (!$doc->isAlive()) $action->exitError(sprintf(_("document %s does not exist") , $docid));
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null || !$doc->isAlive()) {
+        $action->exitError(sprintf(_("document %s does not exist") , $docid));
+    }
     
     $err = $doc->control("edit");
     if ($err != "") $action->exiterror($err);
@@ -55,4 +54,3 @@ function ws_addversion(Action & $action)
     }
     if (!$autoclose) redirect($action, "FDL", "FDL_CARD&id=" . $doc->id, $action->GetParam("CORE_STANDURL"));
 }
-?>

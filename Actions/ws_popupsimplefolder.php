@@ -15,13 +15,15 @@ function ws_popupsimplefolder(Action & $action)
     // -----------------------------------
     // define accessibility
     $docid = $action->getArgument("id");
-    $abstract = ($action->getArgument("abstract", 'N') == "Y");
     $zone = $action->getArgument("zone"); // special zone
-    $dbaccess = $action->GetParam("FREEDOM_DB");
+    
     /**
-     * @var _SIMPLEFOLDER $doc
+     * @var \Dcp\Family\SimpleFolder $doc
      */
-    $doc = new_Doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
     // -------------------- Menu menu ------------------
@@ -111,4 +113,3 @@ function ws_popupsimplefolder(Action & $action)
     //  addFamilyPopup($tlink,$doc);
     popupdoc($action, $tlink, $tsubmenu);
 }
-?>
