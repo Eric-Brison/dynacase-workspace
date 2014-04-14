@@ -17,9 +17,11 @@ function ws_downloadfile(&$action)
 {
     $docid = $action->getArgument("id");
     $inline = ($action->getArgument("inline") == "yes");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
-    $doc = new_doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null || !$doc->isAlive()) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     $err = $doc->control("view");
     if ($err != "") $action->exiterror($err);
     

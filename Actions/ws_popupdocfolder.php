@@ -16,11 +16,15 @@ function ws_popupdocfolder(Action & $action)
     // define accessibility
     $docid = $action->getArgument("id");
     $dirid = $action->getArgument("dirid");
-    $abstract = ($action->getArgument("abstract", 'N') == "Y");
     $zone = $action->getArgument("zone"); // special zone
-    $dbaccess = $action->GetParam("FREEDOM_DB");
-    $doc = new_Doc($dbaccess, $docid);
-    $fld = new_Doc($dbaccess, $dirid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
+    $fld = \Dcp\DocManager::getDocument($dirid);
+    if ($fld === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $dirid));
+    }
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
     $islink = ($doc->prelid != $fld->initid);
@@ -149,4 +153,3 @@ function ws_popupdocfolder(Action & $action)
     //  addFamilyPopup($tlink,$doc);
     popupdoc($action, $tlink, $tsubmenu);
 }
-?>

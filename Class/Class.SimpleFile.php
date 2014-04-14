@@ -156,7 +156,7 @@ Class SimpleFile extends Document
                             system($cmd);
                             // print_r2 ($cmd);
                             if (file_exists($cible)) {
-                                $err = $vf->Store($cible, false, $vid);
+                                $vf->Store($cible, false, $vid);
                                 
                                 $ft = "image/png|$vid";
                                 $this->setValue(myAttribute::sfi_thumb, $ft);
@@ -179,10 +179,9 @@ Class SimpleFile extends Document
                                 $cible = uniqid("/var/tmp/thumb") . ".png";
                                 //	    $cmd = sprintf("convert -thumbnail 200 %s[0] -crop 205x205+0+0  -mattecolor black -frame 5x5+2+2 \( +clone -background black -shadow 4x4+4+4 \) +swap   -background none -mosaic  %s",$ciblepdf, $cible);
                                 $cmd = sprintf($convertcmd, $ciblepng, $cible);
-                                $c = system($cmd);
-                                // print ($cmd."<br>$c");
+                                system($cmd);
                                 if (file_exists($cible)) {
-                                    $err = $vf->Store($cible, false, $vid);
+                                    $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid";
                                     $this->setValue(myAttribute::sfi_thumb, $ft);
@@ -210,7 +209,7 @@ Class SimpleFile extends Document
                                 system($cmd);
                                 //	  print ($cmd);
                                 if (file_exists($cible)) {
-                                    $err = $vf->Store($cible, false, $vid);
+                                    $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid";
                                     $this->setValue(myAttribute::sfi_thumb, $ft);
@@ -241,7 +240,7 @@ Class SimpleFile extends Document
                                 system($cmd);
                                 // print ($cmd);
                                 if (file_exists($cible)) {
-                                    $err = $vf->Store($cible, false, $vid);
+                                    $vf->Store($cible, false, $vid);
                                     
                                     $ft = "image/png|$vid|thumbnail.png";
                                     $this->setValue(myAttribute::sfi_thumb, $ft);
@@ -339,7 +338,7 @@ Class SimpleFile extends Document
         $this->lay->set("istext", $istext);
         if ($istext) {
             
-            $err = $this->getTextValueFromFile("sfi_file", $text);
+            $this->getTextValueFromFile("sfi_file", $text);
             
             if (preg_match("|text/html|", $this->getRawValue(myAttribute::sfi_mimesys))) {
                 $this->lay->set("filecontent", $text);
@@ -363,11 +362,12 @@ Class SimpleFile extends Document
         $this->modify();
         
         $this->viewdefaultcard($target, $ulink, $abstract);
-        if ($this->revision == 0) {
-            $cdate = FrenchDateToUnixTs($this->cdate);
-        } else {
-            $idoc = new_doc($this->dbaccess, $this->initid);
-            $cdate = FrenchDateToUnixTs($idoc->cdate);
+        $cdate = FrenchDateToUnixTs($this->cdate);
+        if ($this->revision != 0) {
+            $idoc = \Dcp\DocManager::getDocument($this->initid);
+            if ($idoc !== null) {
+                $cdate = FrenchDateToUnixTs($idoc->cdate);
+            }
         }
         $uid = 0;
         $adate = FrenchDateToUnixTs($this->adate);
@@ -411,7 +411,7 @@ Class SimpleFile extends Document
         
         $path = $this->getMainPath();
         $spath = "";
-        foreach ($path as $k => $v) {
+        foreach ($path as $v) {
             $spath = $v . "/" . $spath;
         }
         
@@ -489,8 +489,7 @@ Class SimpleFile extends Document
         
         $h = $this->getHisto(true);
         $parti = array();
-        $tcomment = array();
-        foreach ($h as $k => $v) {
+        foreach ($h as $v) {
             if (($v["code"] == "MODATTR") || ($v["code"] == "MODIFY") || ($v["code"] == "CREATE")) $parti[$v["uname"]] = $v["uname"];
         }
         
@@ -500,13 +499,12 @@ Class SimpleFile extends Document
         $this->lay->set("stateid", ($this->state) ? $this->state : false);
         $this->lay->set("viewabstract", (($this->getRawValue(myAttribute::sfi_description) != "") && ($this->getRawValue(myAttribute::sfi_thumb) == "")));
         
-        $dstate = new_doc($this->dbaccess, $this->state);
-        $this->lay->set("thestatedesc", nl2br($dstate->getRawValue(Attribute\Freestate::frst_desc)));
+        $dstate = \Dcp\DocManager::getDocument($this->state);
+        $this->lay->set("thestatedesc", ($dstate !== null ? nl2br($dstate->getRawValue(Attribute\Freestate::frst_desc)) : ''));
         $fvalue = $this->getRawValue(myAttribute::sfi_file);
         
         if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
             $vaultid = $reg[2];
-            $mimetype = $reg[1];
             $this->lay->set("vaultid", $vaultid);
         }
     }

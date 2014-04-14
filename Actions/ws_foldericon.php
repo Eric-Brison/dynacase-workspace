@@ -30,6 +30,8 @@ function ws_foldericon(Action & $action)
     
     $action->lay->set("warning", "");
     
+    $err = '';
+    $doc = null;
     switch ($docid) {
         case "lock":
             // test locked
@@ -37,46 +39,49 @@ function ws_foldericon(Action & $action)
             /**
              * @var DocSearch $doc
              */
-            $doc = createTmpDoc($dbaccess, 5);
+            $doc = \Dcp\DocManager::createTemporaryDocument(5);
             $doc->title = "locked";
             $doc->Add();
-            if ($action->user->id > 1) $doc->addQuery("select * from doc where abs(locked) = " . $action->user->id);
-            else $doc->addQuery("select * from doc where locked = " . $action->user->id);
+            if ($action->user->id > 1) {
+                $doc->addQuery("select * from doc where abs(locked) = " . $action->user->id);
+            } else {
+                $doc->addQuery("select * from doc where locked = " . $action->user->id);
+            }
             break;
 
         default:
             
-            $doc = new_doc($dbaccess, $docid);
-        }
-        
-        $err = movementDocument($action, $dbaccess, $doc->id, $addid, $pdocid, $addft);
-        if ($err) $action->lay->set("warning", $err);
-        
-        $action->lay->set("pid", $docid);
-        $action->lay->set("CODE", "KO");
-        
-        $action->lay->set("droppable", ($doc->doctype == "D") ? "yes" : "no");
-        $tc = array();
-        if ($doc->isAlive()) {
-            
-            $ls = $doc->getContent();
-            foreach ($ls as $k => $v) {
-                $tc[] = array(
-                    "title" => $v["title"],
-                    "id" => $v["id"],
-                    "folder" => ($v["doctype"] == 'D') ,
-                    "icon" => $doc->getIcon($v["icon"])
-                );
-            }
-            
-            $action->lay->setBlockData("TREE", $tc);
-            $action->lay->set("ulid", uniqid("ul"));
-            $action->lay->set("CODE", "OK");
-        } else {
-            $action->lay->set("CODE", "NOTALIVE");
-        }
-        $action->lay->set("count", count($tc));
-        $action->lay->set("delay", microtime_diff(microtime() , $mb));
+            $doc = \Dcp\DocManager::getDocument($docid);
     }
     
+    if ($doc !== null) {
+        $err = movementDocument($action, $dbaccess, $doc->id, $addid, $pdocid, $addft);
+    }
+    if ($err) $action->lay->set("warning", $err);
     
+    $action->lay->set("pid", $docid);
+    $action->lay->set("CODE", "KO");
+    
+    $action->lay->set("droppable", ($doc !== null && $doc->doctype == "D") ? "yes" : "no");
+    $tc = array();
+    if ($doc !== null && $doc->isAlive()) {
+        
+        $ls = $doc->getContent();
+        foreach ($ls as $v) {
+            $tc[] = array(
+                "title" => $v["title"],
+                "id" => $v["id"],
+                "folder" => ($v["doctype"] == 'D') ,
+                "icon" => $doc->getIcon($v["icon"])
+            );
+        }
+        
+        $action->lay->setBlockData("TREE", $tc);
+        $action->lay->set("ulid", uniqid("ul"));
+        $action->lay->set("CODE", "OK");
+    } else {
+        $action->lay->set("CODE", "NOTALIVE");
+    }
+    $action->lay->set("count", count($tc));
+    $action->lay->set("delay", microtime_diff(microtime() , $mb));
+}

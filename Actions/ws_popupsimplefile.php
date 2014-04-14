@@ -15,13 +15,15 @@ function ws_popupsimplefile(Action & $action)
     // -----------------------------------
     // define accessibility
     $docid = $action->getArgument("id");
-    $abstract = ($action->getArgument("abstract", 'N') == "Y");
     $zone = $action->getArgument("zone"); // special zone
-    $dbaccess = $action->GetParam("FREEDOM_DB");
+    
     /**
-     * @var _SIMPLEFILE $doc
+     * @var \Dcp\Family\SimpleFile $doc
      */
-    $doc = new_Doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
     $davserver = $action->getParam("FREEDAV_SERVEUR");
@@ -30,7 +32,6 @@ function ws_popupsimplefile(Action & $action)
         $fvalue = $doc->getRawValue("sfi_file");
         if (preg_match(PREGEXPFILE, $fvalue, $reg)) {
             $vid = $reg[2];
-            $mimetype = $reg[1];
         }
     }
     // -------------------- Menu menu ------------------
@@ -244,4 +245,3 @@ function ws_popupsimplefile(Action & $action)
     //  addFamilyPopup($tlink,$doc);
     popupdoc($action, $tlink, $tsubmenu);
 }
-?>

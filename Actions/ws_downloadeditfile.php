@@ -16,9 +16,11 @@ include_once ("WORKSPACE/ws_downloadfile.php");
 function ws_downloadeditfile(Action & $action)
 {
     $docid = $action->getArgument("id");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
-    $doc = new_doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null || !$doc->isAlive()) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     $err = $doc->control("edit");
     if ($err != "") $action->exiterror($err);
     

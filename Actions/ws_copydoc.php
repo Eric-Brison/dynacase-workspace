@@ -22,24 +22,27 @@ function ws_copydoc(Action & $action)
     $mb = microtime();
     $docid = GetHttpVars("id");
     $dirid = GetHttpVars("paddid");
-    $addft = GetHttpVars("addft", "del");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
     $taction = array();
-    $doc = new_Doc($dbaccess, $docid);
-    $copy = $doc->duplicate();
-    if (is_object($copy)) {
-        $copy->refresh();
-        if (method_exists($copy, "renameCopy")) $copy->renameCopy();
-        $copy->poststore();
-        $err = $copy->modify();
+    $copy = null;
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $err = sprintf(_("cannot duplicate %s document") , $docid);
     } else {
-        
-        $err = sprintf(_("cannot duplicate %s document") , $doc->title);
+        $copy = $doc->duplicate();
+        if (is_object($copy)) {
+            $copy->refresh();
+            if (method_exists($copy, "renameCopy")) $copy->renameCopy();
+            $copy->poststore();
+            $err = $copy->modify();
+        } else {
+            $err = sprintf(_("cannot duplicate %s document") , $doc->title);
+            $copy = null;
+        }
     }
     
-    if ($err == "") {
+    if ($copy !== null) {
         if (($dirid == 0) && ($copy->id > 0)) {
             $dirid = $doc->prelid;
         }
@@ -47,12 +50,14 @@ function ws_copydoc(Action & $action)
             /**
              * @var Dir $fld
              */
-            $fld = new_Doc($dbaccess, $dirid);
-            $err = $fld->insertDocument($copy->id);
-            $taction[] = array(
-                "actname" => "ADDFILE",
-                "actdocid" => $dirid
-            );
+            $fld = \Dcp\DocManager::getDocument($dirid);
+            if ($fld !== null) {
+                $err = $fld->insertDocument($copy->id);
+                $taction[] = array(
+                    "actname" => "ADDFILE",
+                    "actdocid" => $dirid
+                );
+            }
         }
     }
     

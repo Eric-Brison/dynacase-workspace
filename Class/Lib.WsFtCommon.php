@@ -7,10 +7,13 @@
  * @package WORKSPACE
 */
 /**
+ * @param Action $action
+ * @param $dbaccess
  * @param int $cfldid current folder where place the document
  * @param int $cdocid current document to move/add/del
  * @param int $pfldid parent folder where comes the document
  * @param string $docft the function : [add|move|del]
+ * @return string
  * @templateController
  */
 function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid, $docft)
@@ -20,16 +23,16 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
     /**
      * @var Dir $doc
      */
-    $doc = new_doc($dbaccess, $cfldid);
-    $pdoc = new_doc($dbaccess, $pfldid);
+    $doc = \Dcp\DocManager::getDocument($cfldid);
+    $pdoc = \Dcp\DocManager::getDocument($pfldid);
     $taction = array();
     $err = '';
     $adddoc = null;
     if (($docft == "move") || ($docft == "link") || ($docft == "shortcut")) {
-        if ($doc->isAlive()) {
+        if ($doc !== null && $doc->isAlive()) {
             if ($cdocid) {
-                $adddoc = new_doc($dbaccess, $cdocid);
-                if ($adddoc->isAlive()) {
+                $adddoc = \Dcp\DocManager::getDocument($cdocid);
+                if ($adddoc !== null && $adddoc->isAlive()) {
                     if (($docft == "move") && ($adddoc->doctype == 'D')) {
                         // verify to not loop in folder : normaly it is permit but for this kind of application we don't permit this
                         $prel = $doc->getMainPath();
@@ -52,7 +55,7 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
                             }
                         }
                         if (($err == "") && ($docft == "move")) {
-                            if (($adddoc->prelid == $pfldid) || ($pdoc->defDoctype == 'S')) {
+                            if (($adddoc->prelid == $pfldid) || (isset($pdoc->defDoctype) && $pdoc->defDoctype == 'S')) {
                                 // change primary relation
                                 $adddoc->prelid = $doc->initid;
                                 $adddoc->modify(true, array(
@@ -69,10 +72,10 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
     if ($err != "") return $err;
     
     if ($docft == "copy") {
-        if ($doc->isAlive()) {
+        if ($doc !== null && $doc->isAlive()) {
             if ($cdocid) {
-                $adddoc = new_doc($dbaccess, $cdocid);
-                if ($adddoc->isAlive()) {
+                $adddoc = \Dcp\DocManager::getDocument($cdocid);
+                if ($adddoc !== null && $adddoc->isAlive()) {
                     $copy = $adddoc->duplicate();
                     if ($copy) {
                         if ($err == "") {
@@ -95,7 +98,7 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
                             if ($err == "") {
                                 if (method_exists($copy, "renameCopy")) {
                                     /**
-                                     * @var _SIMPLEFILE $copy
+                                     * @var \Dcp\Family\SimpleFile $copy
                                      */
                                     $copy->renameCopy();
                                 }
@@ -109,7 +112,7 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
                                 /**
                                  * @var Dir $adddoc
                                  */
-                                $terr = $adddoc->copyItems($copy->id);
+                                $adddoc->copyItems($copy->id);
                             }
                         }
                     } else {
@@ -122,7 +125,7 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
     
     if ($err == "") {
         if (($docft == "move")) {
-            if ($pdoc->isAlive()) {
+            if ($pdoc !== null && $pdoc->isAlive()) {
                 if ($pdoc->defDoctype == "D") {
                     /**
                      * @var Dir $pdoc
@@ -153,9 +156,8 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
     if ($err == "") {
         if (($docft == "del")) {
             if ($cdocid) {
-                $adddoc = new_doc($dbaccess, $cdocid);
-                if ($adddoc->isAlive()) {
-                    $pdoc = new_doc($dbaccess, $pfldid);
+                $adddoc = \Dcp\DocManager::getDocument($cdocid);
+                if ($adddoc !== null && $adddoc->isAlive()) {
                     if (($adddoc->prelid == $pfldid) || ($pdoc->defDoctype == 'S')) {
                         $isnotfld = (strstr("SD", $adddoc->doctype) === false);
                         
@@ -179,7 +181,7 @@ function movementDocument(Action & $action, $dbaccess, $cfldid, $cdocid, $pfldid
                             }
                         }
                     } else {
-                        if ($pdoc->isAlive()) {
+                        if ($pdoc !== null && $pdoc->isAlive()) {
                             $err = $pdoc->removeDocument($adddoc->initid);
                             if ($err == "") {
                                 if (strstr("SD", $adddoc->doctype) === false) {

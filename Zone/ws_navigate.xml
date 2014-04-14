@@ -10,18 +10,6 @@ ROW2W1=parseInt('[folderTreeWidth]');
   var FOLDERPOPUPACTION='[actionFolderPopup]';
   var WSCONFIGNUMBER='[configNumber]';
   var WSINITIALFOLDER='[initialFolder]';
-function changeMode(o) {
-  var mode=document.getElementById('searchmode').value;
-  if (mode=='FULL') {
-    document.getElementById('searchmode').value='REGEXP';
-    o.value='~';
-    o.title="[TEXT:Search containing characters]";
-  } else {
-    document.getElementById('searchmode').value='FULL';
-    o.title="[TEXT:Search Words]";
-    o.value='*';
-  }
-}
 if (WSINITIALFOLDER && WSINITIALFOLDER!='0') {
   [IF nospaces]
     addEvent(window,'load',function(event) {viewFolder(event,WSINITIALFOLDER);});
@@ -51,9 +39,7 @@ if (WSINITIALFOLDER && WSINITIALFOLDER!='0') {
 </div>
 <div  id="bscroll2"  style="border-bottom:inset 1px [COLOR_BLACK]" onmousedown="col2dragbegin(event)" class="bvresize" ></div>
 <div id="searches" class="searches">
-<input id="searchmode" name="mode" type="hidden" value="REGEXP">
-<input id="searchbutton" title="[TEXT:Search containing characters]" type="button" value="~" onclick="changeMode(this)">
-[IF FULLMODE]<script>changeMode(document.getElementById('searchbutton'))</script>[ENDIF FULLMODE]<input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" style="border:1px [COLOR_BLACK] solid" onkeypress="if (trackCR(event)) viewSearch(event,this.value,document.getElementById('searchmode').value,'[searchId]');"></input><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value,document.getElementById('searchmode').value,'[searchId]');" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]">
+<input id="ikey" title="[TEXT:input file name to search]" size="12" type="text" style="border:1px [COLOR_BLACK] solid" onkeypress="if (trackCR(event)) viewSearch(event,this.value,'REGEXP','[searchId]');"/><input type="image" class="button" title="[TEXT:Send searches]" onclick="viewSearch(event,document.getElementById('ikey').value,'REGEXP','[searchId]');" align="absbottom" style="width:22px;border:none;background-color:transparent" src="[IMG:search.png]"/>
 </div>
 [IF myspace]
 <div id="tabclip"  ondblclick="if (REFRESH) refreshClipBoard(CLIPCID,document.getElementById('clipboard'))" class="tabclip">

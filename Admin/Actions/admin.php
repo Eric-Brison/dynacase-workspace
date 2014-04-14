@@ -15,7 +15,11 @@ include_once ("FDL/Lib.Dir.php");
 function admin(Action & $action)
 {
     
-    $fdoc = new_doc($action->dbaccess, "WORKSPACE");
+    $fdoc = \Dcp\DocManager::getFamily("WORKSPACE");
+    if ($fdoc === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , "WORKSPACE"));
+    }
+    \Dcp\DocManager::cache()->addDocument($fdoc);
     
     $s = new SearchDoc($action->dbaccess, "WORKSPACE");
     $s->setObjectReturn(false);
@@ -28,4 +32,3 @@ function admin(Action & $action)
     $action->lay->setBlockData("SPACES", $ls);
     $action->lay->set("ficon", $fdoc->geticon());
 }
-?>

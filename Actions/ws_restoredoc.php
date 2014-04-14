@@ -24,13 +24,12 @@ function ws_restoredoc(Action & $action)
     $docid = $action->getArgument("id");
     $reload = ($action->getArgument("reload") == "Y");
     $containt = ($action->getArgument("containt") == "yes");
-    $dbaccess = $action->GetParam("FREEDOM_DB");
     
     $action->lay->set("warning", "");
     $err = '';
-    $doc = new_doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
     
-    if ($doc->isAffected()) {
+    if ($doc !== null && $doc->isAffected()) {
         if (!$doc->isAlive()) {
             $err = $doc->undelete();
         }
@@ -41,7 +40,7 @@ function ws_restoredoc(Action & $action)
     if ($err == "") {
         if ($reload) {
             $action->AddActionDone("ADDFILE", $doc->prelid);
-            $action->AddActionDone("UNTRASHFILE", getIdFromName($dbaccess, "WS_MYTRASH"));
+            $action->AddActionDone("UNTRASHFILE", \Dcp\DocManager::getIdFromName("WS_MYTRASH"));
         } else {
             $taction[] = array(
                 "actname" => "ADDFILE",
@@ -49,14 +48,14 @@ function ws_restoredoc(Action & $action)
             );
             $taction[] = array(
                 "actname" => "UNTRASHFILE",
-                "actdocid" => getIdFromName($dbaccess, "WS_MYTRASH")
+                "actdocid" => \Dcp\DocManager::getIdFromName("WS_MYTRASH")
             );
         }
         if ($containt && $doc->doctype == "D") {
             /**
              * @var Dir $doc
              */
-            $terr = $doc->reviveItems();
+            $doc->reviveItems();
         }
     }
     
@@ -70,4 +69,3 @@ function ws_restoredoc(Action & $action)
     $action->lay->set("count", 1);
     $action->lay->set("delay", microtime_diff(microtime() , $mb));
 }
-?>

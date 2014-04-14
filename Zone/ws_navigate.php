@@ -117,10 +117,9 @@ class ws_Navigate
     
     function addOffline(Action & $action)
     {
-        $dbaccess = $this->action->dbaccess;
-        $desktop = getTDoc($dbaccess, 'FLDOFFLINE_' . Doc::getSystemUserId());
-        if (!$desktop) {
-            $desktop = createDoc($dbaccess, "DIR");
+        $desktop = \Dcp\DocManager::getRawDocument('FLDOFFLINE_' . Doc::getSystemUserId());
+        if ($desktop === null) {
+            $desktop = \Dcp\DocManager::createDocument("DIR");
             $desktop->title = _("Offline");
             $desktop->setTitle($desktop->title);
             $desktop->setValue("ba_desc", sprintf(_("Offline folder of %s") , $action->user->firstname . " " . $action->user->lastname));
@@ -156,9 +155,6 @@ class ws_Navigate
     }
     public function render()
     {
-        
-        $dbaccess = $this->action->GetParam("FREEDOM_DB");
-        
         $tlayspaces = array();
         
         if ($this->spaces) {
@@ -175,23 +171,20 @@ class ws_Navigate
             }
         }
         $this->lay->Set("nospaces", ($this->spaces == null));
-        $famid = getFamIdFromName($dbaccess, "SIMPLEFILE");
-        $mode = getSearchMode($this->action, $famid);
-        $this->lay->Set("FULLMODE", ($mode == "FULL"));
         
         $this->lay->setBlockData("SPACES", $tlayspaces);
         if ($this->trashempty($this->action->user->id)) $this->lay->set("imgtrash", $this->action->parent->getImageLink('trashempty.png'));
         else $this->lay->set("imgtrash", $this->action->parent->getImageLink('trash.png'));
         $persofldid = '';
         $homename = "WS_PERSOFLD_" . Doc::getSystemUserId();
-        $perso = getTDoc($dbaccess, $homename);
-        if (!$perso) {
+        $perso = \Dcp\DocManager::getRawDocument($homename);
+        if ($perso === null) {
             // create "my space" folder
             
             /**
              * @var \Dcp\Family\SimpleFolder $perso
              */
-            $perso = createDoc($dbaccess, "SIMPLEFOLDER", false);
+            $perso = \Dcp\DocManager::createDocument("SIMPLEFOLDER", false);
             $perso->name = $homename;
             
             $perso->setValue("ba_title", _("My space"));
@@ -227,7 +220,7 @@ class ws_Navigate
         /**
          * @var \Dcp\Core\DetailSearch $ws
          */
-        $ws = createTmpDoc($this->action->dbaccess, "DSEARCH");
+        $ws = \Dcp\DocManager::createTemporaryDocument("DSEARCH");
         $ws->setValue("ba_title", sprintf(_("search %s") , "workspace"));
         $ws->add();
         $ws->addStaticQuery($this->globalSearch->getOriginalQuery());

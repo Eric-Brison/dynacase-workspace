@@ -14,10 +14,10 @@ function ws_popuplistfolder(Action & $action)
     // -----------------------------------
     // define accessibility
     $docid = $action->getArgument("id");
-    $abstract = ($action->getArgument("abstract", 'N') == "Y");
-    $zone = $action->getArgument("zone"); // special zone
-    $dbaccess = $action->GetParam("FREEDOM_DB");
-    $doc = new_Doc($dbaccess, $docid);
+    $doc = \Dcp\DocManager::getDocument($docid);
+    if ($doc === null) {
+        $action->exitError(sprintf(_("Document %s is not alive") , $docid));
+    }
     //  if ($doc->doctype=="C") return; // not for familly
     $tsubmenu = array();
     // -------------------- Menu menu ------------------
@@ -106,4 +106,3 @@ function ws_popuplistfolder(Action & $action)
     );
     popupdoc($action, $tlink, $tsubmenu);
 }
-?>
