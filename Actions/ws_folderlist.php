@@ -45,7 +45,7 @@ function ws_folderlist(Action & $action)
             $dir = \Dcp\DocManager::createTemporaryDocument(5);
             $dir->title = "locked";
             $dir->Add();
-            $dir->addQuery("select * from doc where abs(locked) = " . $action->user->id);
+            $dir->addQuery("select * from docread where abs(locked) = " . $action->user->id);
             break;
 
         case "trash":
@@ -57,7 +57,7 @@ function ws_folderlist(Action & $action)
             $dir = \Dcp\DocManager::createTemporaryDocument(5);
             $dir->title = _("trash");
             $dir->Add();
-            $dir->addQuery("select * from doc where doctype='Z' and owner = " . $action->user->id);
+            $dir->addQuery("select * from docread where doctype='Z' and owner = " . $action->user->id);
             break;
 
         case "search":
@@ -73,6 +73,7 @@ function ws_folderlist(Action & $action)
              */
             $dir = \Dcp\DocManager::createTemporaryDocument(5);
             $dir->title = sprintf(_("search %s") , $keyword);
+            $dir->setValue("se_famid", \Dcp\DocManager::getFamilyIdFromName("SIMPLEFILE"));
             $dir->Add();
             
             $s = new SearchDoc('', 'SIMPLEFILE');
@@ -89,6 +90,7 @@ function ws_folderlist(Action & $action)
             if ($dir === null) {
                 $action->exitError(sprintf(_("Document %s is not alive") , $docid));
             }
+            \Dcp\DocManager::cache()->addDocument($dir);
     }
     
     $err = movementDocument($action, $dbaccess, $dir->id, $addid, $pdocid, $addft);
@@ -130,7 +132,6 @@ function ws_folderlist(Action & $action)
                 $thead["date"]["issort"] = true;
                 break;
         }
-        
         $s = new SearchDoc($dbaccess);
         $s->useCollection($dir->initid);
         $s->setSlice($slice);
@@ -141,6 +142,7 @@ function ws_folderlist(Action & $action)
         }
         $s->setObjectReturn();
         $ls = $s->search();
+        // print_r2($s->getSearchInfo());
         switch ($order) {
             case "title":
                 
@@ -170,30 +172,7 @@ function ws_folderlist(Action & $action)
                 $ls=array_merge($folder,$notfolder);
         */
         $dynfolder = ($dir->doctype != 'D');
-        /*
-                foreach ($ls as $k=>$v) {
-                $size=getv($v,"sfi_filesize",-1);
-                if ($size < 0) $dsize="";
-                else if ($size < 1024) $dsize=_("<1 kb");
-                else if ($size < 1048576) $dsize=sprintf(_("%d kb"),$size/1024);
-                else $dsize=sprintf(_("%.01f Mb"),$size/1048576);
-                //    $icon=getv($v,"sfi_mimeicon");
-                //       if (! $icon) $icon=$dir->getIcon($v["icon"]);
-                //       else $icon=$dir->getIcon($icon);
-            
-                $icon=$dir->getIcon($v["icon"]);
-            
-            
-                $tc[]=array("title"=>$v["title"],
-                "id"=>$v["id"],
-                "linkfld"=>($dynfolder ||($v["prelid"]==$dir->initid))?false:true,
-                "isfld"=>($v["doctype"]=='D')||($v["doctype"]=='S')?1:0,
-                "size"=>$dsize,
-                "mime"=>getv($v,"sfi_mimetxtshort"),
-                "mdate"=>strftime("%d %b %Y %H:%M",getv($v,"revdate",0)),
-                "icon"=>$icon);
-                }
-        */
+        
         $count = $s->count();
         $c = 0;
         $tc = array();

@@ -222,6 +222,7 @@ class ws_Navigate
          */
         $ws = \Dcp\DocManager::createTemporaryDocument("DSEARCH");
         $ws->setValue("ba_title", sprintf(_("search %s") , "workspace"));
+        $ws->setValue("se_famid", $this->globalSearch->fromid);
         $ws->add();
         $ws->addStaticQuery($this->globalSearch->getOriginalQuery());
         $this->lay->set("searchId", $ws->id);
