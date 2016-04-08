@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<module name="dynacase-workspace-services" disabled="no" version="@VERSION@" release="@RELEASE@" license="@LICENSE@" >
+<module name="dynacase-workspace-services" version="@VERSION@" release="@RELEASE@" license="http://www.gnu.org/licenses/lgpl-3.0.txt GNU Lesser General Public License v3.0" >
 
   <description lang="en">Webdesk Services for workspace moduless.</description>
 

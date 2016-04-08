@@ -22,9 +22,6 @@ PACKAGE=dynacase-workspace
 AC_SUBST(APPNAME)
 APPNAME=WORKSPACE
 
-LICENSE="http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License"
-AC_SUBST(LICENSE)
-
 ac_default_prefix=/var/www/dynacase
 
 AC_SUBST(PUBRULE)
