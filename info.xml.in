@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<module name="dynacase-workspace" disabled="no" version="@VERSION@" release="@RELEASE@" license="@LICENSE@" infopath="http://www.dynacase.org/modules/dynacase-workspace/dynacase-workspace" >
+<module name="dynacase-workspace" version="@VERSION@" release="@RELEASE@" license="http://www.gnu.org/licenses/lgpl-3.0.txt GNU Lesser General Public License v3.0">
 
   <description lang="en">The dynacase work space to exchange files.</description>
 

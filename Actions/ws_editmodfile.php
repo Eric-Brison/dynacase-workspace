@@ -3,7 +3,6 @@
  * Display info before download file for editing and replace it
  *
  * @author Anakeen
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package WORKSPACE
 */
 
