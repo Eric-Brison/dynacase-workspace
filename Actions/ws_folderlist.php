@@ -1,5 +1,8 @@
 <?php
 /*
+ * @author Anakeen
+ */
+/*
  * Display doucment explorer
  *
  * @author Anakeen
@@ -74,7 +77,7 @@ function ws_folderlist(Action & $action)
             $dir->Add();
             $famid = getFamIdFromName($dbaccess, "SIMPLEFILE");
             
-            setSearchMode($action, $famid, $smode);
+            \Dcp\Workspace\Utils::setSearchMode($action, $famid, $smode);
             $full = ($smode == "FULL");
             $sqlfilter = $dir->getSqlGeneralFilters($keyword, "yes", false, $full);
             

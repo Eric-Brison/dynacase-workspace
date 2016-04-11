@@ -1,5 +1,8 @@
 <?php
 /*
+ * @author Anakeen
+ */
+/*
  * Display doucment explorer
  *
  * @author Anakeen
@@ -175,7 +178,7 @@ class ws_Navigate
         }
         $this->lay->Set("nospaces", ($this->spaces == null));
         $famid = getFamIdFromName($dbaccess, "SIMPLEFILE");
-        $mode = getSearchMode($this->action, $famid);
+        $mode = \Dcp\Workspace\Utils::getSearchMode($this->action, $famid);
         $this->lay->Set("FULLMODE", ($mode == "FULL"));
         
         $this->lay->setBlockData("SPACES", $tlayspaces);
@@ -224,7 +227,7 @@ class ws_Navigate
             $this->globalSearch = new SearchDoc($this->action->dbaccess);
         }
         /**
-         * @var _DSEARCH $ws
+         * @var \Dcp\Family\DSEARCH $ws
          */
         $ws = createTmpDoc($this->action->dbaccess, "DSEARCH");
         $ws->setValue("ba_title", sprintf(_("search %s") , "workspace"));

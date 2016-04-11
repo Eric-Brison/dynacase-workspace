@@ -11,30 +11,36 @@ $app_const = array(
     "VERSION" => "@VERSION@-@RELEASE@",
     "WS_AUTODOWNLOAD" => array(
         "val" => "no",
-        "descr" => N_("do not see confirmation before download for edition") ,
+        "descr" => N_("do not see confirmation before download for edition"),
         "user" => "Y",
         "kind" => "enum(yes|no)"
-    ) ,
+    ),
     "WS_COL3H1" => array(
         "val" => "",
-        "descr" => N_("height of folder list box") ,
+        "descr" => N_("height of folder list box"),
         "user" => "Y"
-    ) ,
+    ),
     "WS_COL2H1" => array(
         "val" => "",
-        "descr" => N_("height of folder tree box") ,
+        "descr" => N_("height of folder tree box"),
         "user" => "Y"
-    ) ,
+    ),
     "WS_ROW2W1" => array(
         "val" => "",
-        "descr" => N_("width of folder tree box") ,
+        "descr" => N_("width of folder tree box"),
         "user" => "Y"
-    ) ,
+    ),
     "WS_OFFLINE" => array(
         "val" => "no",
-        "descr" => N_("can use offline application") ,
+        "descr" => N_("can use offline application"),
         "user" => "N",
         "kind" => "enum(yes|no)"
+    ),
+    "WS_MODESEARCH" => array(
+        "val" => "",
+        "descr" => N_("search mode"),
+        "global" => "Y",
+        "kind" => "static",
+        "user" => "Y"
     )
 );
-?>
